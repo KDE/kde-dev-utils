@@ -157,7 +157,8 @@ void KUIViewerPart::slotStyle(int)
 	return;
     }
 
-    QString style = m_style->currentText();
+    QString  styleName = m_style->currentText();
+    QStyle*  style     = QStyleFactory::create(styleName);
     kdDebug() << "Change style..." << endl;
     m_widget->hide();
     QApplication::setOverrideCursor( WaitCursor );
