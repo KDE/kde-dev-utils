@@ -28,19 +28,11 @@
 #define MALLOC_HOOKS
 #define _GNU_SOURCE
 
-#ifndef	_MALLOC_INTERNAL
-#define	_MALLOC_INTERNAL
 #include <pthread.h>
-#define _LIBC
-#define NOT_IN_libc
 #include <malloc.h>
-#include <bits/libc-lock.h>
-#endif
 
-#undef _LIBC
 #include <dlfcn.h>
 #include <stdio.h>
-#define _LIBC
 #include <string.h>
 #include <stdlib.h>
 #include <execinfo.h>
@@ -99,8 +91,8 @@
 
 typedef struct
 {
-	__ptr_t ptr;
-	__malloc_size_t size;
+	void* ptr;
+	size_t size;
 	int bt_size;
 	void** bt;
 } tr_entry;
@@ -120,26 +112,26 @@ void kuntrace(void);
 
 static void addAllocationToTree(void);
 
-static void tr_freehook __P ((__ptr_t, const __ptr_t));
-static __ptr_t tr_reallochook __P ((__ptr_t, __malloc_size_t,
-									const __ptr_t));
-static __ptr_t tr_mallochook __P ((__malloc_size_t, const __ptr_t));
+static void tr_freehook __P ((void*, const void*));
+static void* tr_reallochook __P ((void*, size_t,
+									const void*));
+static void* tr_mallochook __P ((size_t, const void*));
 /* Old hook values.  */
-static void (*tr_old_free_hook) __P ((__ptr_t ptr, const __ptr_t));
-static __ptr_t (*tr_old_malloc_hook) __P ((__malloc_size_t size,
-										   const __ptr_t));
-static __ptr_t (*tr_old_realloc_hook) __P ((__ptr_t ptr,
-											__malloc_size_t size,
-											const __ptr_t));
+static void (*tr_old_free_hook) __P ((void* ptr, const void*));
+static void* (*tr_old_malloc_hook) __P ((size_t size,
+										   const void*));
+static void* (*tr_old_realloc_hook) __P ((void* ptr,
+											size_t size,
+											const void*));
 
 static FILE* mallstream;
 static char malloc_trace_buffer[TRACE_BUFFER_SIZE];
 
 
 /* Address to breakpoint on accesses to... */
-__ptr_t mallwatch;
+void* mallwatch;
 
-__libc_lock_define_initialized (static, lock)
+static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 
 static int bt_size;
@@ -211,8 +203,8 @@ tr_backtrace(void **_bt, int size)
 }
 
 __inline__ static void 
-tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
-	   __malloc_size_t size, int op)
+tr_log(const void* caller, void* ptr, void* old,
+	   size_t size, int op)
 {
 	int i, offset;
 
@@ -383,15 +375,15 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 
 static void
 tr_freehook (ptr, caller)
-     __ptr_t ptr;
-     const __ptr_t caller;
+     void* ptr;
+     const void* caller;
 {
 	if (ptr == NULL)
 		return;
 	if (ptr == mallwatch)
 		tr_break ();
 
-	__libc_lock_lock (lock);
+        pthread_mutex_lock(&lock);
 #ifdef PROFILE
 	tr_frees++;
 	tr_current_mallocs--;
@@ -406,26 +398,26 @@ tr_freehook (ptr, caller)
 	tr_log(caller, ptr, 0, 0, TR_FREE);
 
 	__free_hook = tr_freehook;
-	__libc_lock_unlock (lock);
+        pthread_mutex_unlock(&lock);
 }
 
-static __ptr_t
+static void*
 tr_mallochook (size, caller)
-     __malloc_size_t size;
-     const __ptr_t caller;
+     size_t size;
+     const void* caller;
 {
-	__ptr_t hdr;
+	void* hdr;
 
-	__libc_lock_lock (lock);
+        pthread_mutex_lock(&lock);
 
 	__malloc_hook = tr_old_malloc_hook;
 	__realloc_hook = tr_old_realloc_hook;
 	__free_hook = tr_old_free_hook;
 
 	if (tr_old_malloc_hook != NULL)
-		hdr = (__ptr_t) (*tr_old_malloc_hook) (size, caller);
+		hdr = (void*) (*tr_old_malloc_hook) (size, caller);
 	else
-		hdr = (__ptr_t) malloc(size);
+		hdr = (void*) malloc(size);
 	tr_log(caller, hdr, 0, size, TR_MALLOC);
 	/* We only build the allocation tree if mallTreeFile has been set. */
 	if (mallTreeFile)
@@ -441,7 +433,7 @@ tr_mallochook (size, caller)
 	if (tr_current_mallocs > tr_max_mallocs)
 		tr_max_mallocs = tr_current_mallocs;
 #endif
-	__libc_lock_unlock (lock);
+        pthread_mutex_unlock(&lock);
 
 	if (hdr == mallwatch)
 		tr_break ();
@@ -449,27 +441,27 @@ tr_mallochook (size, caller)
 	return hdr;
 }
 
-static __ptr_t
+static void*
 tr_reallochook (ptr, size, caller)
-     __ptr_t ptr;
-     __malloc_size_t size;
-     const __ptr_t caller;
+     void* ptr;
+     size_t size;
+     const void* caller;
 {
-	__ptr_t hdr;
+	void* hdr;
 
 	if (ptr == mallwatch)
 		tr_break ();
 
-	__libc_lock_lock (lock);
+        pthread_mutex_lock(&lock);
 
 	__free_hook = tr_old_free_hook;
 	__malloc_hook = tr_old_malloc_hook;
 	__realloc_hook = tr_old_realloc_hook;
 
 	if (tr_old_realloc_hook != NULL)
-		hdr = (__ptr_t) (*tr_old_realloc_hook) (ptr, size, caller);
+		hdr = (void*) (*tr_old_realloc_hook) (ptr, size, caller);
 	else
-		hdr = (__ptr_t) realloc (ptr, size);
+		hdr = (void*) realloc (ptr, size);
 
 	tr_log(caller, hdr, ptr, size, TR_REALLOC);
 
@@ -488,7 +480,7 @@ tr_reallochook (ptr, size, caller)
 	}
 #endif
 
-	__libc_lock_unlock (lock);
+        pthread_mutex_unlock(&lock);
 
 	if (hdr == mallwatch)
 		tr_break ();

@@ -6,19 +6,6 @@ case "$host" in
       if test ! -f /usr/lib/libiberty.a; then
          kde_compile_kmtrace=no
       fi
-      AC_TRY_COMPILE([
-#include <stdlib.h>
-], [
-#if __GLIBC__ > 2
-no idea if this ever works
-#else
-#if __GLIBC__ == 2 && __GLIBC_MINOR__ >= 3
-kmtrace does no longer compile with glibc 2.3.x or newer
-#endif
-#endif
-], , [
-kde_compile_kmtrace=no
-])
       ;;
    *)
       kde_compile_kmtrace=no
