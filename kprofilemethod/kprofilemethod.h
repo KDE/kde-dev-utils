@@ -20,6 +20,7 @@
 #define KPROFILE_METHOD_H
 
 #include <qdatetime.h>
+#include <kdebug.h>
 
 /**
  * Those macros help profiling using QTime.
