@@ -11,7 +11,10 @@
 class KToggleAction;
 class KListView;
 
-class KParts::ReadOnlyPart;
+namespace KParts {
+class ReadOnlyPart;
+}
+
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
