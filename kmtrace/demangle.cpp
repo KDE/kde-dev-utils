@@ -45,7 +45,7 @@ int main(int argc, char **argv)
       fgets(buf, 1024, stdin);
       QCString line = buf;
       line = line.stripWhiteSpace();
-      const char *res = cplus_demangle(line.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
+      char *res = cplus_demangle(line.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
       if (res)
       {
          printf("%s\n", res);
