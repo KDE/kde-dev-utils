@@ -40,6 +40,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <execinfo.h>
 #include <unistd.h>
 
 #ifdef USE_IN_LIBIO
@@ -93,6 +94,7 @@
 
 #define TRACE_BUFFER_SIZE 512
 
+void ktrace(void);
 void kuntrace(void);
 
 static void tr_freehook __P ((__ptr_t, const __ptr_t));
@@ -115,7 +117,7 @@ static char malloc_trace_buffer[TRACE_BUFFER_SIZE];
 /* Address to breakpoint on accesses to... */
 __ptr_t mallwatch;
 
-__libc_lock_define_initialized (static, lock);
+__libc_lock_define_initialized (static, lock)
 
 
 typedef struct
@@ -156,40 +158,40 @@ tr_break()
 {
 }
 
-static void __inline__
-tr_backtrace(void **bt, int size)
+__inline__ static void 
+tr_backtrace(void **_bt, int size)
 {
 	int i;
 	Dl_info info;
 	for (i = 0; i < size; i++)
 	{
-		long hash = (((unsigned long)bt[i]) / 4) % TR_HASHTABLE_SIZE;
-		if ((tr_hashtable[hash]!= bt[i]) && dladdr(bt[i], &info) &&
+		long hash = (((unsigned long)_bt[i]) / 4) % TR_HASHTABLE_SIZE;
+		if ((tr_hashtable[hash]!= _bt[i]) && dladdr(_bt[i], &info) &&
 			info.dli_fname  && *info.dli_fname)
 		{
-			if (bt[i] >= (void *) info.dli_saddr)
+			if (_bt[i] >= (void *) info.dli_saddr)
 				sprintf(tr_offsetbuf, "+%#lx", (unsigned long)
-						(bt[i] - info.dli_saddr));
+						(_bt[i] - info.dli_saddr));
 			else
 				sprintf(tr_offsetbuf, "-%#lx", (unsigned long)
-						(info.dli_saddr - bt[i]));
+						(info.dli_saddr - _bt[i]));
 			fprintf(mallstream, "%s%s%s%s%s[%p]\n",
 					info.dli_fname ?: "",
 					info.dli_sname ? "(" : "",
 					info.dli_sname ?: "",
 					info.dli_sname ? tr_offsetbuf : "",
 					info.dli_sname ? ")" : "",
-					bt[i]);
-			tr_hashtable[hash] = bt[i];
+					_bt[i]);
+			tr_hashtable[hash] = _bt[i];
 		}
 		else
 		{
-			fprintf(mallstream, "[%p]\n", bt[i]);
+			fprintf(mallstream, "[%p]\n", _bt[i]);
 		}
 	} 
 }
 
-static void __inline__
+__inline__ static void 
 tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 	   __malloc_size_t size, int op)
 {

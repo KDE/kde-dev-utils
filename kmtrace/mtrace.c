@@ -52,7 +52,7 @@ static FILE *mallstream;
 static const char mallenv[]= "MALLOC_TRACE";
 static char malloc_trace_buffer[TRACE_BUFFER_SIZE];
 
-__libc_lock_define_initialized (static, lock);
+__libc_lock_define_initialized (static, lock)
 
 /* Address to breakpoint on accesses to... */
 __ptr_t mallwatch;
