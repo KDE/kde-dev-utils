@@ -561,18 +561,18 @@ void readExcludeFile(const char *name)
 static KCmdLineOptions options[] =
 {
   { "x", 0, 0 },
-  { "exclude <file>", "File containing symbols to exclude from output.", 0},
+  { "exclude <file>", "File containing symbols to exclude from output", 0},
   { "e", 0, 0 },
-  { "exe <file>", "Executable to use for looking up unknown symbols.", 0},
-  { "+<trace-log>", "Log file to investigate.", 0},
+  { "exe <file>", "Executable to use for looking up unknown symbols", 0},
+  { "+<trace-log>", "Log file to investigate", 0},
   {"t", 0, 0},
-  {"tree <file>", "File to write allocations tree.", 0},
+  {"tree <file>", "File to write allocations tree", 0},
   {"th", 0, 0},
   {"treethreshold <value>",
-    "Don't print subtrees which allocated less than <value> memory.", 0},
+    "Don't print subtrees which allocated less than <value> memory", 0},
   {"td", 0, 0},
   {"treedepth <value>",
-    "Don't print subtrees that are deeper than <value>.", 0},
+    "Don't print subtrees that are deeper than <value>", 0},
   KCmdLineLastOption
 };
 
@@ -580,7 +580,7 @@ int main(int argc, char *argv[])
 {
   KInstance instance("kmtrace");
 
-  KCmdLineArgs::init(argc, argv, "kmtrace", "KDE Memory leak tracer.", "v1.0");
+  KCmdLineArgs::init(argc, argv, "kmtrace", "KDE Memory leak tracer", "v1.0");
 
   KCmdLineArgs::addCmdLineOptions(options);
 

@@ -37,7 +37,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
 {
     // we need an instance
     setInstance( KUIViewerPartFactory::instance() );
-    
+
     KGlobal::locale()->insertCatalogue("kuiviewer");
 
     // this should be your custom internal widget
@@ -96,7 +96,7 @@ KAboutData *KUIViewerPart::createAboutData()
     // which the part's rc file is installed ('partrcdir' in the
     // Makefile)
     KAboutData *aboutData = new KAboutData("kuiviewerpart", I18N_NOOP("KUIViewerPart"), "0.1",
-					   I18N_NOOP("Displays Designer's UI files."),
+					   I18N_NOOP("Displays Designer's UI files"),
 					   KAboutData::License_LGPL );
     aboutData->addAuthor("Richard Moore", 0, "rich@kde.org");
     aboutData->addAuthor("Ian Reinhart Geiser", 0, "geiseri@kde.org");
