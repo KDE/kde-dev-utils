@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 
     // And exec() the command
 
-    execl("/bin/sh", "sh", "-c", cmd, 0L);
+    execl("/bin/sh", "sh", "-c", cmd, (void *)0);
 
     perror("execl()");
     exit(1);
