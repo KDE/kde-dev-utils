@@ -21,9 +21,15 @@ AM_CPPFLAGS = -DQT_NO_ASCII_CAST -UQT_NO_COMPAT -O3
 LDADD = $(LIB_KDECORE) /usr/lib/libiberty.a 
 INCLUDES = $(all_includes)
 
-bin_PROGRAMS = kmtrace
+bin_PROGRAMS = kmtrace demangle match
 kmtrace_SOURCES = kmtrace.cpp
 kmtrace_LDFLAGS = $(all_libraries)
+
+demangle_SOURCES = demangle.cpp
+demangle_LDFLAGS = $(all_libraries)
+
+match_SOURCES = match.cpp
+match_LDFLAGS = $(all_libraries)
 
 bin_SCRIPTS = kminspector
 

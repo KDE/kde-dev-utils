@@ -671,6 +671,7 @@ release_libc_mem (void)
 		__libc_freeres ();*/
 
 	kuntrace();
+        write(2, "kuntrace()\n", 11); 
 }
 #endif
 
@@ -791,6 +792,7 @@ kuntrace()
 #endif
 	fclose (mallstream);
 	mallstream = NULL;
+	write(2, "kuntrace()\n", 11);
 }
 
 int fork()
@@ -810,5 +812,33 @@ int fork()
     }
   }
   return result;
+}
+
+
+static int my_mcount_lock = 0;
+void mcount()
+{
+   Dl_info info;
+   int i = 1;
+   if (my_mcount_lock) return;
+   my_mcount_lock = 1;
+   bt_size = backtrace(bt, TR_BT_SIZE);
+#if 0
+for(i = 1; (i < 5) && (i < bt_size); i++)
+{
+#endif
+   if (dladdr(bt[i], &info) &&	info.dli_fname  && *info.dli_fname)
+   {
+	fprintf(stdout, "%s\n", info.dli_sname ? info.dli_sname : "");
+   }
+   else
+   {
+	fprintf(stdout, "[%p]\n", bt[i]);
+   }
+#if 0
+}
+   fprintf(stdout, "\n");
+#endif   
+   my_mcount_lock = 0;
 }
 
