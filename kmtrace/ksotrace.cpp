@@ -4,6 +4,7 @@ class KTraceActivate
 {
 public:
    KTraceActivate() { ktrace(); }
+   ~KTraceActivate() { kuntrace(); }
 } kTraceActivateInstance;
 
 
