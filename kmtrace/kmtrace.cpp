@@ -46,6 +46,9 @@ QSortedList<Entry> *entryList = 0;
 
 const char *unknown = "<unknown>";
 int allocCount = 0;
+int leakedCount = 0;
+int totalBytesAlloced = 0;
+int totalBytesLeaked = 0;
 
 int fromHex(const char *str);
 void parseLine(const QCString &_line, char operation);
@@ -95,8 +98,9 @@ void parseLine(const QCString &_line, char operation)
      entry->count = 1;
      entry->total_size = entry->size;
      entry->backtrace[cols_count-4] = 0;
+     totalBytesAlloced += entry->size;
      if (entryDict->find(entry->base))
-        fprintf(stderr, "Allocated twice: 0x%08x\n", entry->base);
+        fprintf(stderr, "\rAllocated twice: 0x%08x                    \n", entry->base);
      entryDict->replace(entry->base, entry);
    } break;
    case '-':
@@ -106,7 +110,7 @@ void parseLine(const QCString &_line, char operation)
      if (!entry)
      {
 	if (base)
-           fprintf(stderr, "Freeing unalloacted memory: 0x%08x\n", base);
+           fprintf(stderr, "\rFreeing unalloacted memory: 0x%08x                   \n", base);
      }
      else
      {
@@ -124,6 +128,7 @@ void sortBlocks()
    for(;it.current(); ++it)
    {
       Entry *entry = it.current();
+      totalBytesLeaked += entry->total_size;
       entryList->append(entry);
       for(int i = 0; entry->backtrace[i]; i++)
       {
@@ -156,7 +161,7 @@ void collectDupes()
    }
 }
 
-void lookupSymbols(FILE *stream)
+int lookupSymbols(FILE *stream)
 {
   int i = 0;
   int symbols = 0;
@@ -190,6 +195,7 @@ void lookupSymbols(FILE *stream)
      }
   }
   fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols\n", i, symbols, symbolDict->count());
+  return symbolDict->count()-symbols;
 }
 
 void lookupUnknownSymbols(const char *appname)
@@ -342,7 +348,7 @@ int main(int argc, char *argv[])
         line = 0;
         if (allocCount & 128)
         {
-           fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d", allocCount, entryDict->count());
+           fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d   ", allocCount, entryDict->count());
         }
      }
      else if (line2[0] == '-')
@@ -367,17 +373,25 @@ int main(int argc, char *argv[])
         line = 0;
      }
   }
-  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d\n", allocCount, entryDict->count());
-  printf("Total long term allocs: %d still allocated: %d\n", allocCount, entryDict->count());
+  leakedCount = entryDict->count();
+  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d   \n", allocCount, entryDict->count());
+  printf("Totals allocated: %d bytes in %d blocks.\n", totalBytesAlloced, allocCount);
   fprintf(stderr, "Collecting duplicates...\n");
   collectDupes();
   fprintf(stderr, "Sorting...\n");
   sortBlocks();
+  printf("Totals leaked: %d bytes in %d blocks.\n", totalBytesLeaked, leakedCount);
   fprintf(stderr, "Looking up symbols...\n");
   rewind(stream);
-  lookupSymbols(stream);
-  fprintf(stderr, "Looking up unknown symbols...\n");
-  lookupUnknownSymbols(argv[2]);
+  if (lookupSymbols(stream))
+  {
+     fprintf(stderr, "Looking up unknown symbols...\n");
+     lookupUnknownSymbols(argv[2]);
+  }
+  else
+  {
+     fprintf(stderr, "All symbols found...\n");
+  }
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
   fprintf(stderr, "Done.\n");
