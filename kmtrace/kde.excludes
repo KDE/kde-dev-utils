@@ -1,4 +1,5 @@
 # We don't care about initialisation done by X11.
+XLoadQueryFont
 _XInitKeysymDB
 IceRegisterForProtocolSetup
 KDE_IceRegisterForProtocolSetup
@@ -11,11 +12,19 @@ QApplication::create_xim
 # workaround for Qt 2.2.0 bug
 QFontDatabase::QFontDatabase
 QFontDatabase::charSets
+
+#QRexExp does caching(?)
+QRegExpEngine::QRegExpEngine
+QRegExpEngine::parseExpression
+
+QStyleSheet::defaultSheet
+
 QTimer::singleShot
 QTextCodec::codecForLocale
 # Yeah, yeah we know that this metaobject stuff is never free'ed.
 QMetaObject::new_meta
 QObject::initMetaObject
+QObject::staticMetaObject
 QString::sprintf
 QWidget::createTLExtra
 # static KDE stuff
