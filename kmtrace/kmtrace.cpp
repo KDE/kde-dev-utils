@@ -607,7 +607,11 @@ int main(int argc, char *argv[])
      fgets(line2, 1023, stream);
      line2[strlen(line2)-1] = 0;
      if (line2[0] == '=')
+     {
 	printf("%s\n", line2);
+        if( strcmp( line2, "= End" ) == 0 )
+           break;
+     }
      else if (line2[0] == '#')
      {
        QCString app(line2+1);
@@ -626,14 +630,6 @@ int main(int argc, char *argv[])
         line = 0;
      else if (line2[0] == '[')
         line = line + ' ' + line2;
-     else if (line2[0] == '/')
-     {
-        char *addr = index(line2,'[');
-        if (addr)
-        {
-           line = line + ' ' + addr;
-        }
-     }
      else if (line2[0] == '+')
      {
         allocCount++;
@@ -665,6 +661,14 @@ int main(int argc, char *argv[])
         line = line + ' ' + line2;
         parseLine(line, '+');
         line = 0;
+     }
+     else
+     {
+        char *addr = index(line2,'[');
+        if (addr)
+        {
+           line = line + ' ' + addr;
+        }
      }
   }
   leakedCount = count;
