@@ -51,6 +51,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setMenuAccelsEnabled(true);
 
     KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
+    KStdAction::saveAs(this, SLOT(slotSave()), actionCollection());
 }
 
 KUIViewerPart::~KUIViewerPart()

@@ -81,7 +81,6 @@ void KUIViewer::load(const KURL& url)
 void KUIViewer::setupActions()
 {
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-
     KStdAction::quit(kapp, SLOT(quit()), actionCollection());
 
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
