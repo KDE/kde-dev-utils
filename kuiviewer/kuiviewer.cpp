@@ -26,7 +26,7 @@
 #include <kiconloader.h>
 #include <klibloader.h>
 #include <klistview.h>
-#include <klocale.h>	
+#include <klocale.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kstatusbar.h>
@@ -42,7 +42,7 @@ KUIViewer::KUIViewer()
 
     // and a status bar
     statusBar()->show();
-  
+
 
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -68,7 +68,8 @@ KUIViewer::KUIViewer()
     {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
-        KMessageBox::error(this, i18n("Could not find our Part!"));
+	//FIXME improve message, which Part is this referring to?
+        KMessageBox::error(this, i18n("Unable to locate Part"));
         kapp->quit();
         // we return here, cause kapp->quit() only means "exit the
         // next time we enter the event loop...
@@ -93,7 +94,7 @@ void KUIViewer::load(const KURL& url)
 void KUIViewer::setupActions()
 {
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-    
+
     KStdAction::quit(kapp, SLOT(quit()), actionCollection());
 
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
