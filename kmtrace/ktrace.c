@@ -782,7 +782,7 @@ kuntrace()
 			tr_mallocs, tr_frees, tr_current_mallocs,
 			tr_logged_mallocs, tr_logged_frees,
 			tr_logged_mallocs - tr_logged_frees,
-			tr_failed_free_lookups / tr_frees,
+			tr_frees > 0 ? ( tr_failed_free_lookups / tr_frees ) : 0,
 			tr_malloc_collisions, tr_max_offset);
 #endif
 	fclose (mallstream);

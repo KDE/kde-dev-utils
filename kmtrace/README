@@ -39,6 +39,7 @@ Add ktrace.o to the LDADD line in your Makefile.am like:
 
 	kicker_LDADD = kicker.la /opt/kde/lib/libktrace.a
 
+Note that the static library is used.
 You can now activate malloc logging by starting yourApplication as:
 
 	MALLOC_TRACE=/tmp/ktrace.out yourApplication
