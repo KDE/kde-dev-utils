@@ -18,7 +18,7 @@
 #    Boston, MA 02111-1307, USA.
 
 AM_CPPFLAGS = -DQT_NO_ASCII_CAST -UQT_NO_COMPAT -O3
-LDADD = $(LIB_KDECORE) /usr/lib/libiberty.a 
+LDADD = $(LIB_KDECORE) -liberty
 INCLUDES = $(all_includes)
 
 bin_PROGRAMS = kmtrace demangle kmmatch
