@@ -2,19 +2,24 @@
 #include "kuiviewer_part.moc"
 
 #include <kaction.h>
-#include <kstdaction.h>
 #include <kapplication.h>
 #include <kdebug.h>
+#include <kdialogbase.h>
+#include <kiconloader.h>
 #include <kinstance.h>
 #include <kio/netaccess.h>
+#include <klistview.h>
 #include <kparts/genericfactory.h>
+#include <kstdaction.h>
+#include <qmetaobject.h>
 
-#include <qcursor.h>
 #include <qclipboard.h>
+#include <qcursor.h>
 #include <qfile.h>
 #include <qobjectlist.h>
 #include <qpixmap.h> 
 #include <qstylefactory.h>
+#include <qvariant.h>
 #include <qvbox.h>
 #include <qwidgetfactory.h>
 
@@ -50,7 +55,14 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setCurrentItem(0);
     m_style->setMenuAccelsEnabled(true);
 
-    KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
+    m_propsdlg = new KAction( i18n("&Properties"), QIconSet(BarIcon("properties")), 0,
+			      this, SLOT(slotShowProperties()),
+			      actionCollection(), "properties" );
+
+    m_copy = KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
+    
+    updateActions();
+
 // Commented out to fix warning (rich)
 // slot should probably be called saveAs() for consistency with
 // KParts::ReadWritePart BTW.
@@ -66,8 +78,11 @@ KAboutData *KUIViewerPart::createAboutData()
     // the non-i18n name here must be the same as the directory in
     // which the part's rc file is installed ('partrcdir' in the
     // Makefile)
-    KAboutData *aboutData = new KAboutData("kuiviewerpart", I18N_NOOP("KUIViewerPart"), "0.1");
+    KAboutData *aboutData = new KAboutData("kuiviewerpart", I18N_NOOP("KUIViewerPart"), "0.1",
+					   I18N_NOOP("Displays Designer's UI files."),
+					   KAboutData::License_LGPL );
     aboutData->addAuthor("Richard Moore", 0, "rich@kde.org");
+    aboutData->addAuthor("Ian Reinhart Geiser", 0, "geiseri@kde.org");
     return aboutData;
 }
 
@@ -78,11 +93,17 @@ bool KUIViewerPart::openFile()
     if ( !file.open(IO_ReadOnly) )
         return false;
 
+    if ( m_view )
+	delete m_view;
     m_view = QWidgetFactory::create( &file, 0, m_widget );
-    m_view->show();
-    
-    file.close();
 
+    file.close();
+    updateActions();
+
+    if ( !m_view )
+	return false;
+
+    m_view->show();
     return true;
 }
 
@@ -100,8 +121,27 @@ bool KUIViewerPart::openURL( const KURL& url)
 	return false;
 }
 
+void KUIViewerPart::updateActions()
+{
+    if ( !m_view.isNull() ) {
+	m_style->setEnabled( true );
+	m_propsdlg->setEnabled( /*true*/false );
+	m_copy->setEnabled( true );
+    }
+    else {
+	m_style->setEnabled( false );
+	m_propsdlg->setEnabled( false );
+	m_copy->setEnabled( false );
+    }
+}
+
 void KUIViewerPart::slotStyle(int)
 {
+    if ( m_view.isNull() ) {
+	updateActions();
+	return;
+    }
+
     QString style = m_style->currentText();
     kdDebug() << "Change style..." << endl;
     m_widget->hide();
@@ -110,7 +150,7 @@ void KUIViewerPart::slotStyle(int)
 
     QObjectList *l = m_widget->queryList( "QWidget" );
     for ( QObject *o = l->first(); o; o = l->next() )
-        ( (QWidget*)o )->setStyle( style );
+        ( static_cast<QWidget *>(o) )->setStyle( style );
     delete l;
 
     m_widget->show();
@@ -119,7 +159,48 @@ void KUIViewerPart::slotStyle(int)
 
 void KUIViewerPart::slotGrab()
 {
+    if ( m_view.isNull() ) {
+	updateActions();
+	return;
+    }
+
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setPixmap(QPixmap::grabWidget(m_widget));
 }
 
+void KUIViewerPart::slotShowProperties()
+{
+#if 0
+    if ( m_view.isNull() ) {
+	updateActions();
+	return;
+    }
+
+    QString caption( i18n("UI '%1' Properties").arg(m_view->name()) );
+    KDialogBase *dlg = new KDialogBase( m_widget, "ui_properties", true, caption, KDialogBase::Ok );
+    QVBox *box = dlg->addVBoxPage( i18n("&Properties") );
+
+    // Create List View
+    KListView *props = new KListView( box, "props_view" );
+    props->setResizeMode( QListView::LastColumn );
+    props->addColumn( i18n("Property"), 0 );
+    props->addColumn( i18n("Type"), 0 );
+    props->addColumn( i18n("Value") );
+
+    // Create List Items
+    QMetaObject *mo = m_view->metaObject();
+    for ( int i = 0; i < mo->numProperties(); i++ ) {
+
+	const QMetaProperty *p = mo->property(i);
+	QString n = QString( p->name() );
+	QString t = QString( p->type() );
+	QString v = m_view->property(p->name()).toString();
+
+	(void) new KListViewItem( props, n, t, v );
+    }
+
+    dlg->setMainWidget( props );
+    dlg->exec();
+    delete dlg;
+#endif
+}

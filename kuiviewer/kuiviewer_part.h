@@ -1,10 +1,10 @@
 #ifndef KUIVIEWERPART_H
 #define KUIVIEWERPART_H
 
+#include <qguardedptr.h>
 #include <kparts/part.h>
 
 class QWidget;
-class QPainter;
 class KURL;
 class QVBox;
 class KAboutData;
@@ -34,10 +34,14 @@ public:
     virtual ~KUIViewerPart();
 
     static KAboutData *createAboutData();
+
 public slots:
      bool openURL( const KURL& );
      void slotStyle(int);
      void slotGrab();
+     void slotShowProperties();
+
+     void updateActions();
 
 protected:
     /**
@@ -47,8 +51,10 @@ protected:
 
 private:
     QVBox *m_widget;
-    QWidget *m_view;
+    QGuardedPtr<QWidget> m_view;
     KListAction *m_style;
+    KAction *m_propsdlg;
+    KAction *m_copy;
 };
 
 #endif // KUIVIEWERPART_H

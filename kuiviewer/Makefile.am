@@ -64,3 +64,9 @@ quithumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 services_DATA = designerthumbnail.desktop
 servicesdir = $(kde_servicesdir)
 
+#########################################################################
+# UTILS SECTION
+#########################################################################
+.PHONY:	changes
+changes:
+	cvs2cl.pl --window 3600 -w --hide-filenames -I '.desktop'

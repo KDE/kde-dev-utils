@@ -4,11 +4,6 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 
-static const char *description =
-    I18N_NOOP("A KDE KPart Application");
-
-static const char *version = "v0.1";
-
 static KCmdLineOptions options[] =
 {
     { "+[URL]", I18N_NOOP( "Document to open." ), 0 },
@@ -17,8 +12,12 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about("kuiviewer", I18N_NOOP("KUIViewer"), version, description, KAboutData::License_GPL, "(C) 2001 Richard Moore", 0, 0, "rich@kde.org");
-    about.addAuthor( "Richard Moore", 0, "rich@kde.org" );
+    KAboutData about("kuiviewerpart", I18N_NOOP("KUIViewerPart"), "0.1",
+		     I18N_NOOP("Displays Designer's UI files."),
+		     KAboutData::License_LGPL );
+    about.addAuthor("Richard Moore", 0, "rich@kde.org");
+    about.addAuthor("Ian Reinhart Geiser", 0, "geiseri@kde.org");
+
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;
