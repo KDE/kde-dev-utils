@@ -5,6 +5,8 @@
 #include <qtextstream.h>
 #include <qsortedlist.h>
 #include <qfile.h>
+#include <qtl.h>
+#include <qvaluelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
@@ -51,8 +53,8 @@ QIntDict<char> *formatDict = 0;
 QSortedList<Entry> *entryList = 0;
 QStrList *excludes = 0;
 
-const char *unknown = "<unknown>";
-const char *excluded = "<excluded>";
+const char * const unknown = "<unknown>";
+const char * const excluded = "<excluded>";
 int allocCount = 0;
 int leakedCount = 0;
 int count = 0;
@@ -361,6 +363,159 @@ void dumpBlocks()
    }
 }
 
+struct TreeEntry
+{
+   int address;			// backtrace
+   int total_size;
+   int total_count;
+   typedef QValueList < TreeEntry > TreeList;
+   TreeList *subentries () const;
+   mutable TreeList *_subentries;
+   TreeEntry (int adr = 0, int size = 0, int count = 0, TreeList * sub = NULL );
+   bool operator == (const TreeEntry &) const;
+   bool operator < (const TreeEntry &) const;
+};
+
+typedef QValueList < TreeEntry > TreeList;
+
+inline TreeEntry::TreeEntry (int adr, int size, int count, TreeList * sub)
+ : address (adr), total_size (size), total_count (count), _subentries (sub)
+{
+}
+
+inline bool TreeEntry::operator == (const TreeEntry & r) const
+{				// this one is for QValueList
+   return address == r.address;
+}
+
+inline
+bool TreeEntry::operator < (const TreeEntry & r) const
+{				// this one is for qBubbleSort() ... yes, ugly hack
+   // the result is also reversed to get descending order
+   return total_size > r.total_size;
+}
+
+inline TreeList * TreeEntry::subentries () const
+{				// must be allocated only on-demand
+   if (_subentries == NULL)
+      _subentries = new TreeList;	// this leaks memory, but oh well
+   return _subentries;
+}
+
+TreeList * treeList = 0;
+
+void buildTree ()
+{
+   for (Entry * entry = entryList->first ();
+	entry != NULL; entry = entryList->next ())
+   {
+      if (!entry->total_size)
+	 continue;
+      TreeList * list = treeList;
+      int i;
+      for (i = 0; entry->backtrace[i]; ++i)
+	 ;			// find last (topmost) backtrace entry
+      for (--i; i >= 0; --i)
+      {
+	 TreeList::Iterator pos = list->find (entry->backtrace[i]);
+	 if (pos == list->end ())
+	 {
+	    list->prepend (TreeEntry (entry->backtrace[i], entry->total_size,
+				      entry->count));
+	    pos = list->find (entry->backtrace[i]);
+	 }
+	 else
+	    *pos = TreeEntry (entry->backtrace[i],
+			  entry->total_size + (*pos).total_size,
+			  entry->count + (*pos).total_count,
+			  (*pos)._subentries);
+	 list = (*pos).subentries ();
+      }
+   }
+}
+
+void processTree (TreeList * list, int threshold, int maxdepth, int depth)
+{
+   if (++depth > maxdepth)
+      return;
+   for (TreeList::Iterator it = list->begin (); it != list->end ();)
+   {
+      if ((*it).subentries ()->count () > 0)
+	 processTree ((*it).subentries (), threshold, maxdepth, depth);
+      if ((*it).total_size < threshold || depth > maxdepth)
+      {
+	 it = list->remove (it);
+	 continue;
+      }
+      ++it;
+   }
+   qBubbleSort (*list);
+}
+
+void
+dumpTree (const TreeEntry & entry, int level, char *indent, FILE * file)
+{
+   bool extra_ind = (entry.subentries ()->count () > 0);
+   if(extra_ind)
+      indent[level++] = '+';
+   indent[level] = '\0';
+   char savindent[2];
+   const char * str = lookupAddress (entry.address);
+   fprintf (file, "%s- %d/%d %s[0x%08x]\n", indent,
+	    entry.total_size, entry.total_count, str, entry.address);
+   if (level > 1)
+   {
+      savindent[0] = indent[level - 2];
+      savindent[1] = indent[level - 1];
+      if (indent[level - 2] == '+')
+	 indent[level - 2] = '|';
+      else if (indent[level - 2] == '\\')
+	 indent[level - 2] = ' ';
+   }
+   int pos = 0;
+   int last = entry.subentries ()->count() - 1;
+   for (TreeList::ConstIterator it = entry.subentries ()->begin ();
+	it != entry.subentries ()->end (); ++it)
+   {
+      if (pos == last)
+	 indent[level - 1] = '\\';
+      dumpTree ((*it), level, indent, file);
+      ++pos;
+   }
+   if (level > 1)
+   {
+      indent[level - 2] = savindent[0];
+      indent[level - 1] = savindent[1];
+   }
+   if (extra_ind)
+      --level;
+   indent[level] = '\0';
+}
+
+void dumpTree (FILE * file)
+{
+   char indent[1024];
+   indent[0] = '\0';
+   for (TreeList::ConstIterator it = treeList->begin ();
+	it != treeList->end (); ++it)
+      dumpTree (*it, 0, indent, file);
+}
+
+void createTree (const QCString & treefile, int threshold, int maxdepth)
+{
+   FILE * file = fopen (treefile, "w");
+   if (file == NULL)
+   {
+      fprintf (stderr, "Can't write tree file.\n");
+      return;
+   }
+   treeList = new TreeList;
+   buildTree ();
+   processTree (treeList, threshold, maxdepth, 0);
+   dumpTree (file);
+   fclose (file);
+}
+
 void readExcludeFile(const char *name)
 {
    FILE *stream = fopen(name, "r");
@@ -388,6 +543,14 @@ static KCmdLineOptions options[] =
   { "e", 0, 0 },
   { "exe <file>", "Executable to use for looking up unknown symbols.", 0},
   { "+<trace-log>", "Log file to investigate.", 0},
+  {"t", 0, 0},
+  {"tree <file>", "File to write allocations tree.", 0},
+  {"th", 0, 0},
+  {"treethreshold <value>",
+    "Don't print subtrees which allocated less than <value> memory.", 0},
+  {"td", 0, 0},
+  {"treedepth <value>",
+    "Don't print subtrees that are deeper than <value>.", 0},
   { 0, 0, 0 }
 };
 
@@ -520,6 +683,13 @@ int main(int argc, char *argv[])
   lookupUnknownSymbols(exe);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
+  QCString treeFile = args->getOption ("tree");
+  if (!treeFile.isEmpty ())
+  {
+      fprintf (stderr, "Creating allocation tree...\n");
+      createTree (treeFile, args->getOption ("treethreshold").toInt (),
+		  args->getOption ("treedepth").toInt ());
+  }
   fprintf(stderr, "Done.\n");
   return 0;
 }

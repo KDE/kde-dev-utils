@@ -88,6 +88,12 @@ circumstances. E.g. consider the following backtrace:
 
 The QXmlSimpleReader is obviously wrong here. 
 
+* You can use the --tree option to kmtrace to specify a file to print a tree
+of the allocations. You can also use --treedepth and --treethreshold options
+to hide subtrees that are deeper than the specified depth or allocated less
+than the given memory amount.
+
+
 Have fun.
 
 Waldo Bastian
