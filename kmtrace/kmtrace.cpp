@@ -191,7 +191,32 @@ int lookupSymbols(FILE *stream)
   while(!feof(stream))
   {
      fgets(line2, 1023, stream);
-     if (line2[0] == '/')
+     if (line2[0] == '=' )
+     {
+         if(strcmp(line2,"= End") == 0 )
+             break;
+     }
+     else if (line2[0] == '#')
+         ;
+     else if (line2[0] == '@')
+         ;
+     else if (line2[0] == '[')
+         ;
+     else if (line2[0] == '-')
+         ;
+     else if (line2[0] == '<')
+         ;
+     else if (line2[0] == '>')
+         ;
+     else if (line2[0] == '+')
+     {
+        i++;
+        if (i & 1024)
+        {
+           fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols", i, symbols, symbolDict->count());
+        }
+     }
+     else
      {
         char *addr = index(line2, '[');
         if (addr)
@@ -201,18 +226,14 @@ int lookupSymbols(FILE *stream)
            if (str == unknown)
            {
                *addr = 0;
-               char *str = qstrdup(rindex(line2, '/')+1);
+               char* str;
+               if( rindex(line2, '/') != NULL )
+                   str = qstrdup(rindex(line2, '/')+1);
+               else
+                   str = qstrdup(line2);
                symbolDict->replace(i_addr, str);
                symbols++;
            }
-        }
-     }
-     else if (line2[0] == '+')
-     {
-        i++;
-        if (i & 1024)
-        {
-           fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols", i, symbols, symbolDict->count());
         }
      }
   }
