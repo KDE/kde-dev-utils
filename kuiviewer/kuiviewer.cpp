@@ -30,22 +30,16 @@
 #include <qdockwindow.h>
 #include <qpixmap.h>
 
-#include <kkeydialog.h>
-#include <kconfig.h>
 #include <kurl.h>
-
-#include <kedittoolbar.h>
 
 #include <kaction.h>
 #include <kstdaction.h>
 
 #include <kiconloader.h>
 #include <klibloader.h>
-#include <klistview.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
-#include <kstatusbar.h>
 
 KUIViewer::KUIViewer()
     : KParts::MainWindow( 0L, "KUIViewer" )
@@ -87,11 +81,6 @@ KUIViewer::KUIViewer()
         // next time we enter the event loop...
         return;
     }
-
-    // apply the saved mainwindow settings, if any, and ask the mainwindow
-    // to automatically save settings if changed: window size, toolbar
-    // position, icon size, etc.
-    setAutoSaveSettings();
 }
 
 KUIViewer::~KUIViewer()
@@ -153,9 +142,19 @@ void KUIViewer::fileOpen()
     }
 }
 
-void KUIViewer::takeScreenshot(const QCString &filename){
+void KUIViewer::takeScreenshot(const QCString &filename, int w, int h){
     if(!m_part)
         return;
+    if(w!=-1 && h!=-1){
+        // resize widget to the desired size
+        m_part->widget()->setMinimumSize(w, h);
+        m_part->widget()->setMaximumSize(w, h);
+        m_part->widget()->repaint();
+        // resize app to be as large as desired size
+        adjustSize();
+        // Disable the saving of the size
+        setAutoSaveSettings(QString::fromLatin1("MainWindow"), false);
+    }
     QPixmap pixmap = QPixmap::grabWidget( m_part->widget() );
     pixmap.save( filename, "PNG" );
 }

@@ -67,8 +67,11 @@ public:
 
     /**
      * Take screenshot of current ui file
+     * @param filename to save image in
+     * @param h height of image
+     * @param w width of image
      */
-    void takeScreenshot(const QCString &filename);
+    void takeScreenshot(const QCString &filename, int h=-1, int w=-1);
 
 protected:
     /**

@@ -31,6 +31,10 @@ static KCmdLineOptions options[] =
     { "+[URL]", I18N_NOOP( "Document to open" ), 0 },
     { "s",0,0 },
     { "takescreenshot <filename>", I18N_NOOP( "Save screenshot to file and exit." ), 0 },
+    { "w",0,0 },
+    { "screenshotwidth <int>", I18N_NOOP( "Screenshot width." ), "-1" },
+    { "h",0,0 },
+    { "screenshotheight <int>", I18N_NOOP( "Sreenshot height." ), "-1" },
     KCmdLineLastOption
 };
 
@@ -69,7 +73,9 @@ int main(int argc, char **argv)
                 widget->load( args->url(i) );
             
                 if (args->isSet("takescreenshot")){
-                    widget->takeScreenshot(args->getOption("takescreenshot"));
+                    widget->takeScreenshot(args->getOption("takescreenshot"),
+                                    QString(args->getOption("screenshotwidth")).toInt(),
+                                    QString(args->getOption("screenshotheight")).toInt());
                     return 0;
                 }
                 widget->show();
