@@ -51,7 +51,10 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setMenuAccelsEnabled(true);
 
     KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
-    KStdAction::saveAs(this, SLOT(slotSave()), actionCollection());
+// Commented out to fix warning (rich)
+// slot should probably be called saveAs() for consistency with
+// KParts::ReadWritePart BTW.
+//    KStdAction::saveAs(this, SLOT(slotSave()), actionCollection());
 }
 
 KUIViewerPart::~KUIViewerPart()
@@ -116,6 +119,7 @@ void KUIViewerPart::slotStyle(int)
 
 void KUIViewerPart::slotGrab()
 {
-	QClipboard *clipboard = QApplication::clipboard();
-        clipboard->setPixmap(QPixmap::grabWidget(m_widget));
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setPixmap(QPixmap::grabWidget(m_widget));
 }
+
