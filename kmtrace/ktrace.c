@@ -50,8 +50,15 @@
 /* This is the most important parameter. It should be set to
  * two times the maximum number of mallocs the application
  * uses at a time. IIRC prime numbers are very good candidates
- * for this value. */
-#define TR_CACHE_SIZE 82849
+ * for this value.
+ * I added a list of some prime numbers for conveniance.
+ * 10007, 20011, 30013, 40031, 50033, 60037, 70039, 80051, 90053, 100057,
+ * 110059, 120067, 130069, 140071, 150077, 160079, 170081, 180097, 190121,
+ * 200131, 210139, 220141, 230143, 240151, 250153, 260171, 270191, 280199,
+ * 290201, 300221, 310223, 320237, 330241, 340261, 350281, 360287, 370373,
+ * 380377, 390389
+ */
+#define TR_CACHE_SIZE 80051
 
 /* The DELTA value is also a value for the maximum
  * number of iterations during a positive free/realloc
@@ -85,11 +92,19 @@
 
 #define TRACE_BUFFER_SIZE 512
 
+void kuntrace(void);
+
 static void tr_freehook __P ((__ptr_t, const __ptr_t));
 static __ptr_t tr_reallochook __P ((__ptr_t, __malloc_size_t,
 									const __ptr_t));
 static __ptr_t tr_mallochook __P ((__malloc_size_t, const __ptr_t));
-void kuntrace(void);
+/* Old hook values.  */
+static void (*tr_old_free_hook) __P ((__ptr_t ptr, const __ptr_t));
+static __ptr_t (*tr_old_malloc_hook) __P ((__malloc_size_t size,
+										   const __ptr_t));
+static __ptr_t (*tr_old_realloc_hook) __P ((__ptr_t ptr,
+											__malloc_size_t size,
+											const __ptr_t));
 
 static FILE* mallstream;
 static const char mallenv[]= "MALLOC_TRACE";
@@ -101,20 +116,13 @@ __ptr_t mallwatch;
 
 __libc_lock_define_initialized (static, lock);
 
-/* Old hook values.  */
-static void (*tr_old_free_hook) __P ((__ptr_t ptr, const __ptr_t));
-static __ptr_t (*tr_old_malloc_hook) __P ((__malloc_size_t size,
-										   const __ptr_t));
-static __ptr_t (*tr_old_realloc_hook) __P ((__ptr_t ptr,
-											__malloc_size_t size,
-											const __ptr_t));
 
 typedef struct
 {
 	__ptr_t ptr;
 	__malloc_size_t size;
 	int bt_size;
-	void* bt[TR_BT_SIZE + 1];
+	void** bt;
 } tr_entry;
 
 static int bt_size;
@@ -194,6 +202,7 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 			if (tr_cache[i].ptr == ptr)
 			{
 				tr_cache[i].ptr = NULL;
+				free(tr_cache[i].bt);
 				tr_cache_level--;
 				return;
 			}
@@ -242,8 +251,7 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 					{
 						tr_cache[j].size = tr_cache[i].size;
 						tr_cache[j].bt_size = tr_cache[i].bt_size;
-						memcpy(tr_cache[j].bt, tr_cache[i].bt,
-							   tr_cache[i].bt_size * sizeof(void*));
+						tr_cache[j].bt = tr_cache[i].bt;
 					}
 					else
 						tr_cache_level--;
@@ -309,8 +317,10 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 
 		tr_cache[i].ptr = ptr; 
 		tr_cache[i].size = size;
+		tr_cache[i].bt = (void**) malloc(TR_BT_SIZE * sizeof(void*));
 		tr_cache[i].bt_size = backtrace(
 			tr_cache[i].bt, TR_BT_SIZE);
+		realloc(tr_cache[i].bt, tr_cache[i].bt_size * sizeof(void*));
 		tr_cache_level++;
 
 		return;
@@ -329,6 +339,7 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 					(unsigned long int)
 					tr_cache[tr_cache_pos].size);
 			tr_cache[tr_cache_pos].ptr = NULL;
+			free(tr_cache[tr_cache_pos].bt);
 			tr_cache_level--;
 		}
 
@@ -346,21 +357,22 @@ tr_freehook (ptr, caller)
 	if (ptr == NULL)
 		return;
 
-	__libc_lock_lock (lock);
-	tr_log(caller, ptr, 0, 0, TR_FREE );
 #ifdef PROFILE
 	tr_frees++;
 	tr_current_mallocs--;
 #endif
-	__libc_lock_unlock (lock);
+
 	if (ptr == mallwatch)
 		tr_break ();
 	__libc_lock_lock (lock);
 	__free_hook = tr_old_free_hook;
+
 	if (tr_old_free_hook != NULL)
 		(*tr_old_free_hook) (ptr, caller);
 	else
-		free (ptr);
+		free(ptr);
+	tr_log(caller, ptr, 0, 0, TR_FREE);
+
 	__free_hook = tr_freehook;
 	__libc_lock_unlock (lock);
 }
@@ -375,13 +387,17 @@ tr_mallochook (size, caller)
 	__libc_lock_lock (lock);
 
 	__malloc_hook = tr_old_malloc_hook;
+	__realloc_hook = tr_old_realloc_hook;
+
 	if (tr_old_malloc_hook != NULL)
 		hdr = (__ptr_t) (*tr_old_malloc_hook) (size, caller);
 	else
-		hdr = (__ptr_t) malloc (size);
-	__malloc_hook = tr_mallochook;
-
+		hdr = (__ptr_t) malloc(size);
 	tr_log(caller, hdr, 0, size, TR_MALLOC);
+
+	__malloc_hook = tr_mallochook;
+	__realloc_hook = tr_reallochook;
+
 #ifdef PROFILE
 	tr_mallocs++;
 	tr_current_mallocs++;
@@ -418,11 +434,11 @@ tr_reallochook (ptr, size, caller)
 	else
 		hdr = (__ptr_t) realloc (ptr, size);
 
+	tr_log(caller, hdr, ptr, size, TR_REALLOC);
+
 	__free_hook = tr_freehook;
 	__malloc_hook = tr_mallochook;
 	__realloc_hook = tr_reallochook;
-
-	tr_log(caller, hdr, ptr, size, TR_REALLOC);
 
 #ifdef PROFILE
 	/* If ptr is 0 there was no previos malloc of this location */
@@ -536,6 +552,11 @@ kuntrace()
 	if (mallstream == NULL)
 		return;
 
+	/* restore hooks to original values */
+	__free_hook = tr_old_free_hook;
+	__malloc_hook = tr_old_malloc_hook;
+	__realloc_hook = tr_old_realloc_hook;
+
 	/* Flush cache. */
 	while (tr_cache_level)
 		tr_log(NULL, 0, 0, 0, TR_NONE);
@@ -556,11 +577,6 @@ kuntrace()
 #endif
 	fclose (mallstream);
 	mallstream = NULL;
-
-	/* restore hooks to original values */
-	__free_hook = tr_old_free_hook;
-	__malloc_hook = tr_old_malloc_hook;
-	__realloc_hook = tr_old_realloc_hook;
 }
 
 int fork()
@@ -581,4 +597,3 @@ int fork()
   }
   return result;
 }
-
