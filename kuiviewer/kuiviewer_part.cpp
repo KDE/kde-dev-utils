@@ -2,6 +2,7 @@
 #include "kuiviewer_part.moc"
 
 #include <kaction.h>
+#include <kstdaction.h>
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kinstance.h>
@@ -9,8 +10,10 @@
 #include <kparts/genericfactory.h>
 
 #include <qcursor.h>
+#include <qclipboard.h>
 #include <qfile.h>
-#include <qobjectlist.h> 
+#include <qobjectlist.h>
+#include <qpixmap.h> 
 #include <qstylefactory.h>
 #include <qvbox.h>
 #include <qwidgetfactory.h>
@@ -46,6 +49,8 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setToolTip(i18n("Set the current style to view."));
     m_style->setCurrentItem(0);
     m_style->setMenuAccelsEnabled(true);
+
+    KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
 }
 
 KUIViewerPart::~KUIViewerPart()
@@ -106,4 +111,10 @@ void KUIViewerPart::slotStyle(int)
 
     m_widget->show();
     QApplication::restoreOverrideCursor();
+}
+
+void KUIViewerPart::slotGrab()
+{
+	QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setPixmap(QPixmap::grabWidget(m_widget));
 }

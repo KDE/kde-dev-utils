@@ -37,6 +37,7 @@ public:
 public slots:
      bool openURL( const KURL& );
      void slotStyle(int);
+     void slotGrab();
 
 protected:
     /**
