@@ -12,7 +12,7 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about("kuiviewerpart", I18N_NOOP("KUIViewerPart"), "0.1",
+    KAboutData about("kuiviewer", I18N_NOOP("KUIViewer"), "0.1",
 		     I18N_NOOP("Displays Designer's UI files."),
 		     KAboutData::License_LGPL );
     about.addAuthor("Richard Moore", 0, "rich@kde.org");
