@@ -40,8 +40,8 @@ KUIViewer::KUIViewer()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadWritePart *>(factory->create(this,
-                                "kuiviewer_part", "KParts::ReadWritePart" ));
+        m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
+                                "kuiviewer_part", "KParts::ReadOnlyPart" ));
 
         if (m_part)
         {
@@ -80,7 +80,6 @@ void KUIViewer::load(const KURL& url)
 
 void KUIViewer::setupActions()
 {
-    KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
 
     KStdAction::quit(kapp, SLOT(quit()), actionCollection());
@@ -99,30 +98,13 @@ void KUIViewer::saveProperties(KConfig* /*config*/)
     // later when this app is restored
 }
 
-void KUIViewer::readProperties(KConfig* /*config*/)
+void KUIViewer::readProperties(KConfig* /*conf255ig*/)
 {
     // the 'config' object points to the session managed
     // config file.  this function is automatically called whenever
     // the app is being restored.  read in here whatever you wrote
     // in 'saveProperties'
 }
-
-void KUIViewer::fileNew()
-{
-    // this slot is called whenever the File->New menu is selected,
-    // the New shortcut is pressed (usually CTRL+N) or the New toolbar
-    // button is clicked
-
-    // About this function, the style guide (
-    // http://developer.kde.org/documentation/standards/kde/style/basics/index.html )
-    // says that it should open a new window if the document is _not_
-    // in its initial state.  This is what we do here..
-    if ( ! m_part->url().isEmpty() || m_part->isModified() )
-    {
-        (new KUIViewer)->show();
-    };
-}
-
 
 void KUIViewer::optionsShowToolbar()
 {
@@ -179,7 +161,7 @@ void KUIViewer::fileOpen()
         // http://developer.kde.org/documentation/standards/kde/style/basics/index.html )
         // says that it should open a new window if the document is _not_
         // in its initial state.  This is what we do here..
-        if ( m_part->url().isEmpty() && ! m_part->isModified() )
+        if ( m_part->url().isEmpty() )
         {
             // we open the file in this window...
             load( KURL( file_name ) );

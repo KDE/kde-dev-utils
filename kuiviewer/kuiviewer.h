@@ -52,7 +52,6 @@ protected:
     void readProperties(KConfig *);
 
 private slots:
-    void fileNew();
     void fileOpen();
     void optionsShowToolbar();
     void optionsShowStatusbar();
@@ -66,7 +65,7 @@ private:
     void setupActions();
 
 private:
-    KParts::ReadWritePart *m_part;
+    KParts::ReadOnlyPart *m_part;
 
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;

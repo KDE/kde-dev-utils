@@ -17,7 +17,7 @@ class KAboutData;
  * @author Richard Moore <rich@kde.org>
  * @version 0.1
  */
-class KUIViewerPart : public KParts::ReadWritePart
+class KUIViewerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
 public:
@@ -32,18 +32,6 @@ public:
      */
     virtual ~KUIViewerPart();
 
-    /**
-     * This is a virtual function inherited from KParts::ReadWritePart.
-     * A shell will use this to inform this Part if it should act
-     * read-only
-     */
-    virtual void setReadWrite(bool rw);
-
-    /**
-     * Reimplemented to disable and enable Save action
-     */
-    virtual void setModified(bool modified);
-
     static KAboutData *createAboutData();
 
 protected:
@@ -51,14 +39,6 @@ protected:
      * This must be implemented by each part
      */
     virtual bool openFile();
-
-    /**
-     * This must be implemented by each read-write part
-     */
-    virtual bool saveFile();
-
-protected slots:
-    void fileSaveAs();
 
 private:
     QVBox *m_widget;
