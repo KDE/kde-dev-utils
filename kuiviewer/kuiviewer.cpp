@@ -47,6 +47,8 @@ KUIViewer::KUIViewer()
     // setup our actions
     setupActions();
 
+    setMinimumSize(300, 200);
+
     // Bring up the gui
     setupGUI();
 
@@ -90,6 +92,7 @@ KUIViewer::~KUIViewer()
 void KUIViewer::load(const KURL& url)
 {
     m_part->openURL( url );
+    adjustSize();
 }
 
 void KUIViewer::setupActions()
