@@ -17,7 +17,7 @@
 #    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 #    Boston, MA 02111-1307, USA.
 
-AM_CPPFLAGS = -DQT_NO_ASCII_CAST -DQT_NO_COMPAT -O3
+AM_CPPFLAGS = -DQT_NO_ASCII_CAST -UQT_NO_COMPAT -O3
 LDADD = $(LIB_KDECORE) /usr/lib/libiberty.a 
 INCLUDES = $(all_includes)
 
