@@ -573,7 +573,7 @@ static KCmdLineOptions options[] =
   {"td", 0, 0},
   {"treedepth <value>",
     "Don't print subtrees that are deeper than <value>.", 0},
-  { 0, 0, 0 }
+  KCmdLineLastOption
 };
 
 int main(int argc, char *argv[])

@@ -29,7 +29,7 @@
 static KCmdLineOptions options[] = 
 {
     { "+command", I18N_NOOP("Specifies the command to run."), 0 },
-    { 0, 0, 0 }
+    KCmdLineLastOption
 };
 
 
