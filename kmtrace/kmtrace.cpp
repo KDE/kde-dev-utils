@@ -5,7 +5,8 @@
 #include <qsortedlist.h>
 #include <qfile.h>
 #include <stdlib.h>
-
+#include <ktempfile.h>
+#include <kinstance.h>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -29,11 +30,13 @@ extern char *cplus_demangle(const char *mangled, int options);
 struct Entry {
   int base;
   int size;
-  int age;
+  int signature;
+  int count;
+  int total_size;
   int backtrace[1];
 
-  bool operator==(const Entry &e) { return size == e.size; }
-  bool operator<(const Entry &e) { return size > e.size; }
+  bool operator==(const Entry &e) { return total_size == e.total_size; }
+  bool operator<(const Entry &e) { return total_size > e.total_size; }
 };
 
 QIntDict<Entry> *entryDict = 0;
@@ -44,48 +47,66 @@ QSortedList<Entry> *entryList = 0;
 const char *unknown = "<unknown>";
 int allocCount = 0;
 
-int fromHex(const QString &str);
-void parseLine(const QString &line, char operation);
+int fromHex(const char *str);
+void parseLine(const QCString &_line, char operation);
 void dumpBlocks();
 
-int fromHex(const QString &string)
+int fromHex(const char *str)
 {
-   const char *str = string.latin1();
    if (*str == '[') str++;
    str += 2; // SKip "0x"
    return strtol(str, NULL, 16);
 }
 
-// @ [address0][address1] .... [address] + base size
-void parseLine(const QString &line, char operation)
+// [address0][address1] .... [address] + base size
+void parseLine(const QCString &_line, char operation)
 {
-  QStringList cols = QStringList::split(' ', line);
-  if (cols.count() < 5) return;
-  if (cols[0] != "@") return;
+  char *line= (char *) _line.data();
+  const char *cols[100];
+  int i = 0;
+  cols[i++] = line;
+  while(*line)
+  {
+     if (*line == ' ')
+     {
+        *line = 0;
+        line++;
+        while (*line && (*line==' ')) line++;
+        if (*line) cols[i++] = line;
+     }
+     else line++;
+  }  
+  int cols_count = i;
+  if (cols_count > 81) fprintf(stderr, "Error cols_count = %d\n", cols_count);
+  if (cols_count < 4) return;
   switch (operation)
   {
    case '+':
    {
-     Entry *entry = (Entry *) malloc((cols.count()+1) *sizeof(int));
-     entry->base = fromHex(cols[cols.count()-2]);
-     entry->size = fromHex(cols[cols.count()-1]);
-     entry->age = allocCount;
-     for(int i = cols.count()-4; i > 0;i--)
+     Entry *entry = (Entry *) malloc((cols_count+3) *sizeof(int));
+     entry->base = fromHex(cols[cols_count-2]);
+     entry->size = fromHex(cols[cols_count-1]);
+     int signature = 0;
+     for(int i = cols_count-3; i--;)
      {
-       entry->backtrace[i-1] = fromHex(cols[i]);
+       signature += (entry->backtrace[i-1] = fromHex(cols[i]));
      }
-     entry->backtrace[cols.count()-4] = 0;
+     entry->signature = (signature / 4)+cols_count;
+     entry->count = 1;
+     entry->total_size = entry->size;
+     entry->backtrace[cols_count-4] = 0;
      if (entryDict->find(entry->base))
         fprintf(stderr, "Allocated twice: 0x%08x\n", entry->base);
      entryDict->replace(entry->base, entry);
    } break;
    case '-':
    {
-     int base = fromHex(cols[cols.count()-1]);
+     int base = fromHex(cols[cols_count-1]);
      Entry *entry = entryDict->take(base);
      if (!entry)
      {
-        fprintf(stderr, "Freeing unalloacted memory: 0x%08x\n", base);
+	if (base)
+           fprintf(stderr, "Freeing unalloacted memory: 0x%08x\n", base);
      }
      else
      {
@@ -113,24 +134,47 @@ void sortBlocks()
    entryList->sort();
 }
 
-void lookupSymbols(QTextStream &stream)
+void collectDupes()
+{
+   QIntDict<Entry> dupeDict;
+   QIntDictIterator<Entry> it(*entryDict);
+   for(;it.current();)
+   {
+      Entry *entry = it.current();
+      ++it;
+      Entry *entry2 = dupeDict.find(entry->signature);
+      if (entry2)
+      {
+         entry2->count++;
+         entry2->total_size += entry->size;
+         entryDict->remove(entry->base);
+      }
+      else
+      {
+         dupeDict.insert(entry->signature, entry);
+      }
+   }
+}
+
+void lookupSymbols(FILE *stream)
 {
   int i = 0;
   int symbols = 0;
-  while(!stream.atEnd())
+  char line2[1024]; 
+  while(!feof(stream))
   {
-     QString line2 = stream.readLine();
+     fgets(line2, 1023, stream);
      if (line2[0] == '/')
      {
-        int i = line2.findRev('[');
-        if (i>0)
+        char *addr = index(line2, '[');
+        if (addr)
         {
-           QString addr = line2.mid(i);
-           int i_addr = fromHex(addr);
+           long i_addr = fromHex(addr);
            const char* str = symbolDict->find(i_addr);
            if (str == unknown)
            {
-               char *str = qstrdup(line2.left(i).latin1());
+               *addr = 0;
+               char *str = qstrdup(line2);
                symbolDict->replace(i_addr, str);
                symbols++;
            }
@@ -146,6 +190,60 @@ void lookupSymbols(QTextStream &stream)
      }
   }
   fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols\n", i, symbols, symbolDict->count());
+}
+
+void lookupUnknownSymbols(const char *appname)
+{
+   KTempFile inputFile;
+   KTempFile outputFile;
+//   inputFile.setAutoDelete();
+//   outputFile.setAutoDelete();
+   FILE *fInputFile = inputFile.fstream();
+   QIntDict<char> oldDict = *symbolDict;
+   QIntDictIterator<char> it(oldDict);
+   for(;it.current(); ++it)
+   {
+      if (it.current() == unknown)
+      {
+         fprintf(fInputFile, "%08x\n", it.currentKey());
+      }
+   }
+   inputFile.close();
+   QCString command;
+   command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname, 
+	QFile::encodeName(inputFile.name()).data(),
+	QFile::encodeName(outputFile.name()).data());
+fprintf(stderr, "Executing '%s'\n", command.data());
+   system(command.data());
+   fInputFile = fopen(QFile::encodeName(outputFile.name()), "r");
+   if (!fInputFile)
+   {
+      fprintf(stderr, "Error opening temp file.\n");
+      return;
+   }
+   QIntDictIterator<char> it2(oldDict);
+   char buffer1[1024];
+   char buffer2[1024];
+   for(;it2.current(); ++it2)
+   {
+      if (feof(fInputFile))
+      {
+	fprintf(stderr, "Premature end of symbol output.\n");
+        fclose(fInputFile);
+        return;
+      }
+      if (it2.current() == unknown)
+      {
+         fgets(buffer1, 1023, fInputFile);
+         fgets(buffer2, 1023, fInputFile);
+         buffer1[strlen(buffer1)-1]=0;
+         buffer2[strlen(buffer2)-1]=0;
+         QCString symbol;
+         symbol.sprintf("%s(%s)", buffer2, buffer1);
+         symbolDict->insert(it2.currentKey(),qstrdup(symbol.data()));
+      }
+   }
+   fclose(fInputFile);
 }
 
 char *lookupAddress(int addr)
@@ -185,7 +283,7 @@ void dumpBlocks()
 {
    for(Entry *entry = entryList->first();entry; entry = entryList->next())
    {
-      printf("[%d bytes of unfreed memory at 0x%08x]", entry->size, entry->base);
+      printf("[%d bytes in %d blocks, 1st. block is %d bytes at 0x%08x] ", entry->total_size, entry->count, entry->size, entry->base);
       printf("\n");
       for(int i = 0; entry->backtrace[i]; i++)
       {
@@ -197,16 +295,16 @@ void dumpBlocks()
 
 int main(int argc, char *argv[])
 {
-  if (argc != 2)
+  if (argc != 3)
   {
-     fprintf(stderr, "Usage: kmtrace <mtrace-file>\n");
+     fprintf(stderr, "Usage: kmtrace <mtrace-file> <executable>\n");
      exit(1);
   }
-  QString mtrace_filename = QFile::decodeName(argv[1]);
-  QFile mtrace_file(mtrace_filename);
-  if (!mtrace_file.open(IO_ReadOnly))
+  KInstance instance("kmtrace");
+  FILE *stream = fopen(argv[1], "r");
+  if (!stream)
   {
-     fprintf(stderr, "Can't open %s\n", mtrace_filename.local8Bit().data());
+     fprintf(stderr, "Can't open %s\n", argv[1]);
      exit(1);
   }
 
@@ -215,28 +313,25 @@ int main(int argc, char *argv[])
   formatDict = new QIntDict<char>(9973);
   entryList = new QSortedList<Entry>;
  
-  QTextStream stream( &mtrace_file );
-
   fprintf(stderr, "Running\n");
-  QString line;
-  while(!stream.atEnd())
+  QCString line;
+  char line2[1024];
+  while(!feof(stream))
   {
-     QString line2 = stream.readLine();
+     fgets(line2, 1023, stream);
+     line2[strlen(line2)-1] = 0;
      if (line2[0] == '=') 
-	printf("%s\n", line2.latin1());
+	printf("%s\n", line2);
      else if (line2[0] == '@')
-        line = line2;
+        line = 0;
      else if (line2[0] == '[')
         line = line + ' ' + line2;
      else if (line2[0] == '/')
      {
-        int i = line2.findRev('[');
-        if (i>0)
+        char *addr = index(line2,'[');
+        if (addr)
         {
-           QString addr = line2.mid(i);
            line = line + ' ' + addr;
-//           char *str = qstrdup(line2.left(i).latin1());
-//           symbolDict->replace(fromHex(addr), str);
         }
      }
      else if (line2[0] == '+')
@@ -244,7 +339,7 @@ int main(int argc, char *argv[])
         allocCount++;
         line = line + ' ' + line2;
         parseLine(line, '+');
-        line = QString::null;
+        line = 0;
         if (allocCount & 128)
         {
            fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d", allocCount, entryDict->count());
@@ -254,13 +349,13 @@ int main(int argc, char *argv[])
      {
         line = line + ' ' + line2;
         parseLine(line, '-');
-        line = QString::null;
+        line = 0;
      }
      else if (line2[0] == '<')
      {
         line2[0] = '-';
         // First part of realloc (free)
-        QString reline = line + ' ' + line2;
+        QCString reline = line + ' ' + line2;
         parseLine(reline, '-');
      }
      else if (line2[0] == '>')
@@ -269,16 +364,20 @@ int main(int argc, char *argv[])
         // Second part of realloc (alloc)
         line = line + ' ' + line2;
         parseLine(line, '+');
-        line = QString::null;
+        line = 0;
      }
   }
   fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d", allocCount, entryDict->count());
-  printf("Number of unfree'ed blocks: %d\n", entryDict->count());
+  printf("Total long term allocs: %d still allocated: %d", allocCount, entryDict->count());
+  fprintf(stderr, "Collecting duplicates...\n");
+  collectDupes();
   fprintf(stderr, "Sorting...\n");
   sortBlocks();
   fprintf(stderr, "Looking up symbols...\n");
-  mtrace_file.reset();
+  rewind(stream);
   lookupSymbols(stream);
+  fprintf(stderr, "Looking up unknown symbols...\n");
+  lookupUnknownSymbols(argv[2]);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
   fprintf(stderr, "Done.\n");

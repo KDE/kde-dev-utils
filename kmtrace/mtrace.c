@@ -39,6 +39,7 @@
 #include <stdlib.h>
 
 #include <stdio-common/_itoa.h>
+#include <elf/ldsodefs.h>
 
 #ifdef USE_IN_LIBIO
 # include <libio/iolibio.h>
@@ -70,7 +71,8 @@ static __ptr_t (*tr_old_realloc_hook) __P ((__ptr_t ptr,
 					    const __ptr_t));
 
 #define TR_PIPELINE_SIZE	16
-#define TR_BT_SIZE		40
+#define TR_BT_SIZE		80
+#define TR_HASHTABLE_SIZE	9973
 
 #define TR_NONE		0
 #define TR_MALLOC	1
@@ -83,11 +85,13 @@ typedef struct {
    __ptr_t old;
    __malloc_size_t size;
    int bt_size;
-   void *bt[TR_BT_SIZE];
+   void *bt[TR_BT_SIZE+1];
 } tr_entry;
 
 static tr_entry tr_pipeline[TR_PIPELINE_SIZE];
 static int tr_pipeline_pos;
+static void *tr_hashtable[TR_HASHTABLE_SIZE];
+
 
 /* This function is called when the block being alloc'd, realloc'd, or
    freed has an address matching the variable "mallwatch".  In a debugger,
@@ -98,6 +102,36 @@ void tr_break __P ((void));
 void
 tr_break ()
 {
+}
+
+static void
+tr_backtrace(void **bt, int size)
+{
+  char buf[20];
+  int i;
+  Dl_info info;
+  for(i = 0; i < size; i++)
+  {
+     long hash = (((unsigned long)bt[i]) / 4) % TR_HASHTABLE_SIZE;
+     if ((tr_hashtable[hash]!= bt[i]) && _dl_addr(bt[i], &info) && info.dli_fname  && *info.dli_fname)
+     {
+        if (bt[i] >= (void *) info.dli_saddr)
+           sprintf(buf, "+%#lx", (unsigned long)(bt[i] - info.dli_saddr));
+        else
+           sprintf(buf, "-%#lx", (unsigned long)(info.dli_saddr - bt[i]));
+        fprintf(mallstream, "%s%s%s%s%s[%p]\n",
+		   info.dli_fname ?: "",
+		   info.dli_sname ? "(" : "",
+		   info.dli_sname ?: "",
+		   info.dli_sname ? buf : "",
+		   info.dli_sname ? ")" : "",
+		   bt[i]);
+	tr_hashtable[hash] = bt[i];
+     }
+     else {
+        fprintf(mallstream, "[%p]\n", bt[i]);
+     }
+  } 
 }
 
 static void
@@ -132,11 +166,13 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, in
   if (tr_pipeline[tr_pipeline_pos].op)
   {
       putc('@', mallstream);
-      putc(' ', mallstream);
-      fflush(mallstream);   
-      backtrace_symbols_fd(tr_pipeline[tr_pipeline_pos].bt, 
-			   tr_pipeline[tr_pipeline_pos].bt_size, 
-			   fileno(mallstream)); 
+      putc('\n', mallstream);
+      /* Generate backtrace... 
+       * We throw out the first frame (tr_mallochook)
+       * end the last one (_start)
+       */
+      tr_backtrace(&(tr_pipeline[tr_pipeline_pos].bt[1]), 
+		     tr_pipeline[tr_pipeline_pos].bt_size-2);
 	
       switch(tr_pipeline[tr_pipeline_pos].op)
       {
@@ -164,7 +200,7 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, in
   tr_pipeline[tr_pipeline_pos].old = old; 
   tr_pipeline[tr_pipeline_pos].size = size; 
   tr_pipeline[tr_pipeline_pos].bt_size = backtrace(
-	tr_pipeline[tr_pipeline_pos].bt, TR_BT_SIZE); 
+	tr_pipeline[tr_pipeline_pos].bt, TR_BT_SIZE);
   tr_pipeline_pos++;
   if (tr_pipeline_pos == TR_PIPELINE_SIZE)
      tr_pipeline_pos = 0;
@@ -318,6 +354,7 @@ mtrace ()
             tr_pipeline[tr_pipeline_pos].op = TR_NONE;
             tr_pipeline[tr_pipeline_pos].ptr = NULL;
           }
+          memset(tr_hashtable, 0, sizeof(void *)*TR_HASHTABLE_SIZE);
 #ifdef _LIBC
 	  if (!added_atexit_handler)
 	    {
