@@ -8,8 +8,8 @@ THIS PROGRAM DEPENDS ON GLIBC! It does not pretend to be portable.
 
 Howto use:
 
-Install the libktrace.so shared library, the ktrace.h header file and
-the kmtrace processing tool with:
+Install the libktrace.so shared library, the ktrace.h header file, the
+and kde.excludes file and the kmtrace processing tool with:
 
 	make install
 
@@ -49,6 +49,10 @@ You can process this log with:
 
         kmtrace /tmp/ktrace.out > ktrace.parsed
 
+By default the trace-output is stored in the current directory
+as "ktrace.out". kmtrace also searches it there, so you don't need
+to add any commandline options.  
+
 TIPS
 ====
 
@@ -69,7 +73,7 @@ this backtrace / leaked block is not shown in the output.
 
 In the file kde.exclude some example symbols are listed. Usage example:
 
-	kmtrace /tmp/malloc.trace --exclude kde.exclude > /tmp/malloc.parsed
+	kmtrace /tmp/malloc.trace > /tmp/malloc.parsed
 
 * Be aware that the reported symbols may not be accurate under all 
 circumstances. E.g. consider the following backtrace:
