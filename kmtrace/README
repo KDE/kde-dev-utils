@@ -35,9 +35,9 @@ Add as first statement in main():
 
 	ktrace();
 
-Add ktrace.o to the LDADD line in your Makefile.am like:
+Add ktrace_s.a to the LDADD line in your Makefile.am like:
 
-	kicker_LDADD = kicker.la /opt/kde/lib/libktrace.a
+	kicker_LDADD = kicker.la /opt/kde/lib/libktrace_s.a
 
 Note that the static library is used.
 You can now activate malloc logging by starting yourApplication as:
@@ -93,7 +93,7 @@ of the allocations. You can also use --treedepth and --treethreshold options
 to hide subtrees that are deeper than the specified depth or allocated less
 than the given memory amount.
 
-* The advantage of using libktrace.a (the static library) is that you can
+* The advantage of using libktrace_s.a (the static library) is that you can
 put calls to ktrace() and kuntrace() around a block of code that
 interests you. Only allocations and deallocations between the first call
 to ktrace() and the first call to kuntrace() will be logged.

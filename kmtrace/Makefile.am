@@ -33,8 +33,8 @@ match_LDFLAGS = $(all_libraries)
 
 bin_SCRIPTS = kminspector
 
-lib_LIBRARIES = libktrace.a
-libktrace_a_SOURCES = ktrace.c
+lib_LIBRARIES = libktrace_s.a
+libktrace_s_a_SOURCES = ktrace.c
 
 lib_LTLIBRARIES = libktrace.la
 libktrace_la_LDFLAGS = -version-info 1:0 
