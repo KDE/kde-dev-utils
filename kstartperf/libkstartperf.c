@@ -1,6 +1,6 @@
 /* vi: ts=8 sts=4 sw=4
  *
- * $Id: $
+ * $Id$
  *
  * libkstartperf.c: LD_PRELOAD library for startup time measurements.
  *
@@ -13,12 +13,12 @@
  * (C) 2000 Bill Soudan <soudan@kde.org>
  */
 
-#include <malloc.h>
-#include <unistd.h>
+#include <sys/time.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/time.h>
+#include <unistd.h>
 
 #include <X11/X.h>
 #include <X11/Xlib.h>
