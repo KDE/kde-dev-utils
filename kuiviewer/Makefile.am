@@ -32,7 +32,7 @@ xdg_apps_DATA =kuiviewer.desktop
 
 # this is where the shell's XML-GUI resource file goes
 shellrcdir   = $(kde_datadir)/kuiviewer
-shellrc_DATA = kuiviewer.rc
+shellrc_DATA = kuiviewerui.rc
 
 #########################################################################
 # KPART SECTION

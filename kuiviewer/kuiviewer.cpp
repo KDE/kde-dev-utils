@@ -1,9 +1,25 @@
 /*
- * kuiviewer.cpp
  *
- * Copyright (C) 2003  <rich@kde.org>
- * Copyright (C) 2003  <geiseri@kde.org>
- */
+ *  This file is part of the kuiviewer package
+ *  Copyright (c) 2003 Richard Moore <rich@kde.org>
+ *  Copyright (c) 2003 Ian Reinhart Geiser <geiseri@kde.org>
+ *  Copyright (c) 2004 Benjamin C. Meyer <ben+kuiviewer@meyerhome.net>
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Library General Public
+ *  License version 2 as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Library General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Library General Public License
+ *  along with this library; see the file COPYING.LIB.  If not, write to
+ *  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ *  Boston, MA 02111-1307, USA.
+ **/
+
 #include "kuiviewer.h"
 #include "kuiviewer.moc"
 #include "kuiviewer_part.h"
@@ -34,15 +50,11 @@
 KUIViewer::KUIViewer()
     : KParts::MainWindow( 0L, "KUIViewer" )
 {
-    // set the shell's ui resource file
-    setXMLFile("kuiviewer.rc");
-
-    // then, setup our actions
+    // setup our actions
     setupActions();
 
-    // and a status bar
-    statusBar()->show();
-
+    // Bring up the gui
+    setupGUI();
 
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -88,20 +100,13 @@ KUIViewer::~KUIViewer()
 
 void KUIViewer::load(const KURL& url)
 {
-	m_part->openURL( url );
+    m_part->openURL( url );
 }
 
 void KUIViewer::setupActions()
 {
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-
     KStdAction::quit(kapp, SLOT(quit()), actionCollection());
-
-    m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
-    m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
-
-    KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
-    KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
 }
 
 void KUIViewer::saveProperties(KConfig* /*config*/)
@@ -117,47 +122,6 @@ void KUIViewer::readProperties(KConfig* /*config*/)
     // config file.  this function is automatically called whenever
     // the app is being restored.  read in here whatever you wrote
     // in 'saveProperties'
-}
-
-void KUIViewer::optionsShowToolbar()
-{
-    // this is all very cut and paste code for showing/hiding the
-    // toolbar
-    if (m_toolbarAction->isChecked())
-        toolBar()->show();
-    else
-        toolBar()->hide();
-}
-
-void KUIViewer::optionsShowStatusbar()
-{
-    // this is all very cut and paste code for showing/hiding the
-    // statusbar
-    if (m_statusbarAction->isChecked())
-        statusBar()->show();
-    else
-        statusBar()->hide();
-}
-
-void KUIViewer::optionsConfigureKeys()
-{
-    KKeyDialog::configure(actionCollection(), 0, true);
-}
-
-void KUIViewer::optionsConfigureToolbars()
-{
-    saveMainWindowSettings(KGlobal::config(), autoSaveGroup());
-
-    // use the standard toolbar editor
-    KEditToolbar dlg(factory());
-    connect(&dlg, SIGNAL(newToolbarConfig()),
-            this, SLOT(applyNewToolbarConfig()));
-    dlg.exec();
-}
-
-void KUIViewer::applyNewToolbarConfig()
-{
-    applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
 }
 
 void KUIViewer::fileOpen()
@@ -189,5 +153,10 @@ void KUIViewer::fileOpen()
     }
 }
 
-
+void KUIViewer::takeScreenshot(const QCString &filename){
+    if(!m_part)
+        return;
+    QPixmap pixmap = QPixmap::grabWidget( m_part->widget() );
+    pixmap.save( filename, "PNG" );
+}
 
