@@ -385,15 +385,15 @@ tr_freehook (ptr, caller)
 {
 	if (ptr == NULL)
 		return;
+	if (ptr == mallwatch)
+		tr_break ();
 
+	__libc_lock_lock (lock);
 #ifdef PROFILE
 	tr_frees++;
 	tr_current_mallocs--;
 #endif
 
-	if (ptr == mallwatch)
-		tr_break ();
-	__libc_lock_lock (lock);
 	__free_hook = tr_old_free_hook;
 
 	if (tr_old_free_hook != NULL)
@@ -417,6 +417,7 @@ tr_mallochook (size, caller)
 
 	__malloc_hook = tr_old_malloc_hook;
 	__realloc_hook = tr_old_realloc_hook;
+	__free_hook = tr_old_free_hook;
 
 	if (tr_old_malloc_hook != NULL)
 		hdr = (__ptr_t) (*tr_old_malloc_hook) (size, caller);
@@ -429,6 +430,7 @@ tr_mallochook (size, caller)
 
 	__malloc_hook = tr_mallochook;
 	__realloc_hook = tr_reallochook;
+	__free_hook = tr_freehook;
 
 #ifdef PROFILE
 	tr_mallocs++;
