@@ -4,35 +4,78 @@ glibc versions only logs the return-address of the malloc/free call.
 The file mtrace.c in this directory logs a complete backtrace upon malloc/
 free.
 
+THIS PROGRAM DEPENDS ON GLIBC! It does not pretend to be portable.
+
 Howto use:
 
-Install the glibc source and replace glibc-2.1/malloc/mtrace.c. Compile
-mtrace.o.
+Install the ktrace.h header file and the kmtrace processing tool with:
+
+	make install
+
+Compile ktrace.o like this:
+	make ktrace.o
 
 Take the KDE application that you want to investigate and add
 
-	#include <mcheck.h>
+	#include <ktrace.h>
 
-Add as first staement in main():
+Add as first statement in main():
 
-	mtrace();
+	ktrace();
+
+Add ktrace.o to the LDADD line in your Makefile.am like:
+
+	kicker_LDADD = kicker.la /home1/bastian/bin/ktrace.o
 
 You can now activate malloc logging by starting yourApplication as:
 
 	MALLOC_TRACE=/tmp/malloc.trace yourApplication
 
-This will run incredibly slow and generate a huge log in /tmp/malloc.trace.
+This will generate a huge log in /tmp/malloc.trace.
 
 You can process this log with:
 
-	kmtrace /tmp/malloc.trace yourApplication > /tmp/malloc.parsed
+	kmtrace /tmp/malloc.trace --exe yourApplication > /tmp/malloc.parsed
+
+TIPS
+====
+
+* If you can't be bothered with the stuff that KApplication allocates for you
+you might want to put the ktrace() call after the KApplication constructor.
+This will lead to a lot of warnings like: 
+
+	Freeing unalloacted memory: 0x08056108
+
+Which are harmless, it just means that the mmeory was allocated before you
+turned the tracing on.
+
+* To filter out harmless allocations out of the output file you can specify
+with the --exclude option a file with symbols to exclude from output. If a 
+backtrace contains a symbol that starts with any of the symbols in this file, 
+this backtrace / leaked block is not shown in the output.
+
+In the file kde.exclude some example symbols are listed. Usage example:
+
+	kmtrace /tmp/malloc.trace --exclude kde.exclude > /tmp/malloc.parsed
+
+* Be aware that the reported symbols may not be accurate under all 
+circumstances. E.g. consider the following backtrace:
+
+   0x405879c1 /lib/libdl.so.2(dlerror+0x1b1)
+   0x405873b3 /lib/libdl.so.2(dlopen+0x33)
+   0x4053c0b2 /ext/kde2.0/lib/libkdecore.so.3(QXmlSimpleReader::reportParseErro
+   0x4053c74b /ext/kde2.0/lib/libkdecore.so.3(lt_dlexit+0x24b)
+   0x4053c894 /ext/kde2.0/lib/libkdecore.so.3(lt_dlexit+0x394)
+   0x4053dd49 /ext/kde2.0/lib/libkdecore.so.3(lt_dlopen+0x899)
+
+The QXmlSimpleReader is obviously wrong here. 
 
 Have fun.
 
-Cheers,
 Waldo Bastian
 bastian@kde.org
 
 kmtrace.cpp by Waldo Bastian <bastian@kde.org>
+ktrace.c by Waldo Bastian <bastian@kde.org> based on mtrace.c
 mtrace.c by Mike Haertel <mike@ai.mit.edu>
 mtrace.c patched by Andi Kleen <ak@suse.de>

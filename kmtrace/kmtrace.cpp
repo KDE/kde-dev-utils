@@ -1,12 +1,14 @@
 #include <qintdict.h>
 #include <stdio.h>
 #include <qstringlist.h>
+#include <qstrlist.h>
 #include <qtextstream.h>
 #include <qsortedlist.h>
 #include <qfile.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
+#include <kcmdlineargs.h>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -43,12 +45,18 @@ QIntDict<Entry> *entryDict = 0;
 QIntDict<char> *symbolDict = 0;
 QIntDict<char> *formatDict = 0;
 QSortedList<Entry> *entryList = 0;
+QStrList *excludes = 0;
 
 const char *unknown = "<unknown>";
+const char *excluded = "<excluded>";
 int allocCount = 0;
 int leakedCount = 0;
+int count = 0;
+int maxCount;
 int totalBytesAlloced = 0;
 int totalBytesLeaked = 0;
+int totalBytes = 0;
+int maxBytes;
 
 int fromHex(const char *str);
 void parseLine(const QCString &_line, char operation);
@@ -99,6 +107,12 @@ void parseLine(const QCString &_line, char operation)
      entry->total_size = entry->size;
      entry->backtrace[cols_count-4] = 0;
      totalBytesAlloced += entry->size;
+     totalBytes += entry->size;
+     count++;
+     if (totalBytes > maxBytes)
+        maxBytes = totalBytes;
+     if (count > maxCount)
+        maxCount = count;
      if (entryDict->find(entry->base))
         fprintf(stderr, "\rAllocated twice: 0x%08x                    \n", entry->base);
      entryDict->replace(entry->base, entry);
@@ -114,6 +128,8 @@ void parseLine(const QCString &_line, char operation)
      }
      else
      {
+        totalBytes -= entry->size;
+        count--;
         free(entry);
      }
    } break;
@@ -188,7 +204,7 @@ int lookupSymbols(FILE *stream)
      else if (line2[0] == '+')
      {
         i++;
-        if (i & 128)
+        if (i & 1024)
         {
            fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols", i, symbols, symbolDict->count());
         }
@@ -211,7 +227,7 @@ void lookupUnknownSymbols(const char *appname)
    {
       if (it.current() == unknown)
       {
-         fprintf(fInputFile, "%08x\n", it.currentKey());
+         fprintf(fInputFile, "%08lx\n", it.currentKey());
       }
    }
    inputFile.close();
@@ -252,7 +268,23 @@ fprintf(stderr, "Executing '%s'\n", command.data());
    fclose(fInputFile);
 }
 
-char *lookupAddress(int addr)
+int match(const char *s1, const char *s2)
+{
+  register int result;
+  while(true)
+  {
+    result = *s1 - *s2;
+    if (result)
+       return result;
+    s1++;
+    s2++;
+    if (!*s2) return 0;
+    if (!*s1) return -1;
+  }
+  return 0;
+}
+
+const char *lookupAddress(int addr)
 {
    char *str = formatDict->find(addr);
    if (str) return str;
@@ -264,53 +296,133 @@ fprintf(stderr, "Error!\n");
    }
    else
    {
-     int start = s.findRev('(');
+     int start = s.find('(');
      int end = s.findRev('+');
      if (end < 0)
         end = s.findRev(')');
      if ((start > 0) && (end > start))
      {
        QCString symbol = s.mid(start+1, end-start-1);
-       char *res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_ANSI);
+       char *res = 0;
+       if (symbol.find(')') == -1)
+          res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_ANSI);
        if (res)
        {
           symbol = res;
           free(res);
        }
-       s.replace(start+1, end-start-1, symbol.data());
+       res = (char *) symbol.data();
+       for(const char *it = excludes->first();it;it = excludes->next())
+       {
+          int i = match(res, it);
+          if (i == 0)
+          {
+             formatDict->insert(addr,excluded);
+             return excluded;
+          }
+       }
+       s.replace(start+1, end-start-1, symbol);
      }
    }
    str = qstrdup(s.data());
-   symbolDict->insert(addr,str);
+   formatDict->insert(addr,str);
    return str;
 }
 
 void dumpBlocks()
 {
+   int filterBytes = 0;
+   int filterCount = 0;
    for(Entry *entry = entryList->first();entry; entry = entryList->next())
    {
+      bool exclude = false;
+      for(int i = 0; entry->backtrace[i]; i++)
+      {
+         const char *str = lookupAddress(entry->backtrace[i]);
+         if (str == excluded) 
+         {
+            entry->total_size = 0;
+            continue;
+         }
+      }
+      if (!entry->total_size) continue;
+      filterBytes += entry->total_size;
+      filterCount++;
+   }
+   printf("Leaked memory after filtering: %d bytes in %d blocks.\n", filterBytes, filterCount);
+   for(Entry *entry = entryList->first();entry; entry = entryList->next())
+   {
+      if (!entry->total_size) continue;
       printf("[%d bytes in %d blocks, 1st. block is %d bytes at 0x%08x] ", entry->total_size, entry->count, entry->size, entry->base);
       printf("\n");
       for(int i = 0; entry->backtrace[i]; i++)
       {
-         char *str = lookupAddress(entry->backtrace[i]);
+         const char *str = lookupAddress(entry->backtrace[i]);
          printf("   0x%08x %s\n", entry->backtrace[i], str);
       }
    }
 }
 
+void readExcludeFile(const char *name)
+{
+   FILE *stream = fopen(name, "r");
+   if (!stream) 
+   {
+      fprintf(stderr, "Error: Can't open %s.\n", name);
+      exit(1);
+   }
+   char line[1024];
+   while(!feof(stream))
+   {
+      if (!fgets(line, 1023, stream)) break;
+      if ((line[0] == 0) || (line[0] == '#')) continue;
+      line[strlen(line)-1] = 0;
+      excludes->append(line);
+fprintf(stderr, "Surpressing traces containing '%s' in output.\n", line);
+   }
+   fclose(stream);
+   excludes->sort();
+}
+
+static KCmdLineOptions options[] =
+{
+  { "x", 0, 0 },
+  { "exclude <file>", "File containing symbols to exclude from output.", 0},
+  { "e", 0, 0 },
+  { "exe <file>", "Executable to use for looking up unknown symbols.", 0},
+  { "+<trace-log>", "Log file to investigate.", 0},
+  { 0, 0, 0 }
+};
+
 int main(int argc, char *argv[])
 {
-  if (argc != 3)
-  {
-     fprintf(stderr, "Usage: kmtrace <mtrace-file> <executable>\n");
-     exit(1);
-  }
   KInstance instance("kmtrace");
-  FILE *stream = fopen(argv[1], "r");
+
+  KCmdLineArgs::init(argc, argv, "kmtrace", "KDE Memory leak tracer.", "v1.0");
+
+  KCmdLineArgs::addCmdLineOptions(options);
+
+  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+  if (args->count() != 1)
+     KCmdLineArgs::usage();
+
+  const char *logfile = args->arg(0);
+  QCString exe = args->getOption("exe");
+  QCString exclude = args->getOption("exclude");
+
+  excludes = new QStrList;
+
+  if (!exclude.isEmpty())
+  {
+     fprintf(stderr, "Reading %s\n", exclude.data());
+     readExcludeFile(exclude);
+  }
+
+  FILE *stream = fopen(logfile, "r");
   if (!stream)
   {
-     fprintf(stderr, "Can't open %s\n", argv[1]);
+     fprintf(stderr, "Can't open %s\n", logfile);
      exit(1);
   }
 
@@ -373,9 +485,10 @@ int main(int argc, char *argv[])
         line = 0;
      }
   }
-  leakedCount = entryDict->count();
-  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d   \n", allocCount, entryDict->count());
+  leakedCount = count;
+  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d(%d)   \n", allocCount, leakedCount, entryDict->count());
   printf("Totals allocated: %d bytes in %d blocks.\n", totalBytesAlloced, allocCount);
+  printf("Maximum allocated: %d bytes / %d blocks.\n", maxBytes, maxCount);
   fprintf(stderr, "Collecting duplicates...\n");
   collectDupes();
   fprintf(stderr, "Sorting...\n");
@@ -385,8 +498,16 @@ int main(int argc, char *argv[])
   rewind(stream);
   if (lookupSymbols(stream))
   {
-     fprintf(stderr, "Looking up unknown symbols...\n");
-     lookupUnknownSymbols(argv[2]);
+     if (exe.isEmpty())
+     {
+        fprintf(stderr, "Use --exe option to resolve unknown symbols!\n");
+        printf("Use --exe option to resolve unknown symbols!\n");
+     }
+     else
+     {
+        fprintf(stderr, "Looking up unknown symbols...\n");
+        lookupUnknownSymbols(exe);
+     }
   }
   else
   {

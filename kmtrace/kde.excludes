@@ -1,0 +1,4 @@
+# We don't care about initialisation done by X11.
+_XInitKeysymDB
+# Yeah, yeah we know that this metaobject stuff is never free'ed.
+QMetaObject::new_meta

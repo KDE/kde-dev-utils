@@ -17,10 +17,16 @@
 #    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 #    Boston, MA 02111-1307, USA.
 
-AM_CPPFLAGS = -DQT_NO_ASCII_CAST -DQT_NO_COMPAT
+AM_CPPFLAGS = -DQT_NO_ASCII_CAST -DQT_NO_COMPAT -O3
+LDADD = $(LIB_KDECORE) /usr/lib/libiberty.a 
 INCLUDES = $(all_includes)
-LDFLAGS = $(QT_LDFLAGS) $(X_LDFLAGS)
 
-check_PROGRAMS = kmtrace
+bin_PROGRAMS = kmtrace
 kmtrace_SOURCES = kmtrace.cpp
-kmtrace_LDADD = $(LIB_KDECORE) /usr/lib/libiberty.a 
+kmtrace_LDFLAGS = $(QT_LDFLAGS) $(X_LDFLAGS)
+
+ktrace.o: ktrace.c
+	gcc -O3 -c ktrace.c -o ktrace.o
+
+
+include_HEADERS = ktrace.h
