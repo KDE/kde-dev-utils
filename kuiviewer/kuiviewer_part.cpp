@@ -1,11 +1,17 @@
 #include "kuiviewer_part.h"
 #include "kuiviewer_part.moc"
 
+#include <kaction.h>
+#include <kapplication.h>
+#include <kdebug.h>
 #include <kinstance.h>
-#include <kparts/genericfactory.h>
 #include <kio/netaccess.h>
+#include <kparts/genericfactory.h>
 
+#include <qcursor.h>
 #include <qfile.h>
+#include <qobjectlist.h> 
+#include <qstylefactory.h>
 #include <qvbox.h>
 #include <qwidgetfactory.h>
 
@@ -28,6 +34,18 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
 
     // set our XML-UI resource file
     setXMLFile("kuiviewer_part.rc");
+
+    m_style = new KListAction( i18n("Style"),
+                CTRL + Key_S,
+                this,
+                SLOT(slotStyle(int)),
+                actionCollection(),
+                "change_style");
+    m_style->setEditable(false);
+    m_style->setItems(QStyleFactory::keys());
+    m_style->setToolTip(i18n("Set the current style to view."));
+    m_style->setCurrentItem(0);
+    m_style->setMenuAccelsEnabled(true);
 }
 
 KUIViewerPart::~KUIViewerPart()
@@ -51,8 +69,8 @@ bool KUIViewerPart::openFile()
     if ( !file.open(IO_ReadOnly) )
         return false;
 
-    QWidget *view = QWidgetFactory::create( &file, 0, m_widget );
-    view->show();
+    m_view = QWidgetFactory::create( &file, 0, m_widget );
+    m_view->show();
     
     file.close();
 
@@ -71,4 +89,21 @@ bool KUIViewerPart::openURL( const KURL& url)
 	return openFile();
     else
 	return false;
+}
+
+void KUIViewerPart::slotStyle(int)
+{
+    QString style = m_style->currentText();
+    kdDebug() << "Change style..." << endl;
+    m_widget->hide();
+    QApplication::setOverrideCursor( WaitCursor );
+    m_widget->setStyle( style);
+
+    QObjectList *l = m_widget->queryList( "QWidget" );
+    for ( QObject *o = l->first(); o; o = l->next() )
+        ( (QWidget*)o )->setStyle( style );
+    delete l;
+
+    m_widget->show();
+    QApplication::restoreOverrideCursor();
 }

@@ -98,7 +98,7 @@ void KUIViewer::saveProperties(KConfig* /*config*/)
     // later when this app is restored
 }
 
-void KUIViewer::readProperties(KConfig* /*conf255ig*/)
+void KUIViewer::readProperties(KConfig* /*config*/)
 {
     // the 'config' object points to the session managed
     // config file.  this function is automatically called whenever

@@ -8,6 +8,7 @@ class QPainter;
 class KURL;
 class QVBox;
 class KAboutData;
+class KListAction;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -34,7 +35,8 @@ public:
 
     static KAboutData *createAboutData();
 public slots:
-	bool openURL( const KURL& );
+     bool openURL( const KURL& );
+     void slotStyle(int);
 
 protected:
     /**
@@ -44,6 +46,8 @@ protected:
 
 private:
     QVBox *m_widget;
+    QWidget *m_view;
+    KListAction *m_style;
 };
 
 #endif // KUIVIEWERPART_H
