@@ -222,8 +222,8 @@ void lookupUnknownSymbols(const char *appname)
 {
    KTempFile inputFile;
    KTempFile outputFile;
-//   inputFile.setAutoDelete();
-//   outputFile.setAutoDelete();
+   inputFile.setAutoDelete(true);
+   outputFile.setAutoDelete(true);
    FILE *fInputFile = inputFile.fstream();
    QIntDict<char> oldDict = *symbolDict;
    QIntDictIterator<char> it(oldDict);
