@@ -63,7 +63,7 @@ This will lead to a lot of warnings like:
 
 	Freeing unalloacted memory: 0x08056108
 
-Which are harmless, it just means that the mmeory was allocated before you
+Which are harmless, it just means that the memory was allocated before you
 turned the tracing on. Note that you cannot use this if you're using
 LD_PRELOAD to use ktrace.
 
