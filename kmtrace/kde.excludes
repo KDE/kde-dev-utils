@@ -28,6 +28,7 @@ QObject::staticMetaObject
 QString::sprintf
 QWidget::createTLExtra
 # static KDE stuff
+kdbgstream::flush
 KCmdLineArgs::addCmdLineOptions
 k_bindtextdomain
 _nl_find_domain
