@@ -26,6 +26,9 @@ extern "C" {
 #define DMGL_HP 	(1 << 12)       /* For the HP aCC compiler; same as ARM
                                            except for template arguments, etc. */
 #define DMGL_EDG	(1 << 13)
+#define DMGL_GNU_V3     (1 << 14)
+#define DMGL_GNAT       (1 << 15)
+
 
 extern char *cplus_demangle(const char *mangled, int options);
 }
@@ -196,7 +199,7 @@ int lookupSymbols(FILE *stream)
            if (str == unknown)
            {
                *addr = 0;
-               char *str = qstrdup(line2);
+               char *str = qstrdup(rindex(line2, '/')+1);
                symbolDict->replace(i_addr, str);
                symbols++;
            }
@@ -226,17 +229,13 @@ void lookupUnknownSymbols(const char *appname)
    QIntDictIterator<char> it(oldDict);
    for(;it.current(); ++it)
    {
-      if (it.current() == unknown)
-      {
-         fprintf(fInputFile, "%08lx\n", it.currentKey());
-      }
+       fprintf(fInputFile, "%08lx\n", it.currentKey());
    }
    inputFile.close();
    QCString command;
    command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname,
 	QFile::encodeName(inputFile.name()).data(),
 	QFile::encodeName(outputFile.name()).data());
-fprintf(stderr, "Executing '%s'\n", command.data());
    system(command.data());
    fInputFile = fopen(QFile::encodeName(outputFile.name()), "r");
    if (!fInputFile)
@@ -255,16 +254,14 @@ fprintf(stderr, "Executing '%s'\n", command.data());
         fclose(fInputFile);
         return;
       }
-      if (it2.current() == unknown)
-      {
-         if (!fgets(buffer1, 1023, fInputFile)) continue;
-         if (!fgets(buffer2, 1023, fInputFile)) continue;
-         buffer1[strlen(buffer1)-1]=0;
-         buffer2[strlen(buffer2)-1]=0;
-         QCString symbol;
-         symbol.sprintf("%s(%s)", buffer2, buffer1);
-         symbolDict->insert(it2.currentKey(),qstrdup(symbol.data()));
-      }
+      if (!fgets(buffer1, 1023, fInputFile)) continue;
+      if (!fgets(buffer2, 1023, fInputFile)) continue;
+      buffer1[strlen(buffer1)-1]=0;
+      buffer2[strlen(buffer2)-1]=0;
+      QCString symbol;
+      symbol.sprintf("%s(%s)", buffer2, buffer1);
+      if(*buffer1 != '?')
+          symbolDict->replace(it2.currentKey(),qstrdup(symbol.data()));
    }
    fclose(fInputFile);
 }
@@ -306,7 +303,8 @@ fprintf(stderr, "Error!\n");
        QCString symbol = s.mid(start+1, end-start-1);
        char *res = 0;
        if (symbol.find(')') == -1)
-          res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_ANSI);
+           res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
+
        if (res)
        {
           symbol = res;
@@ -517,23 +515,9 @@ int main(int argc, char *argv[])
   printf("Totals leaked: %d bytes in %d blocks.\n", totalBytesLeaked, leakedCount);
   fprintf(stderr, "Looking up symbols...\n");
   rewind(stream);
-  if (lookupSymbols(stream))
-  {
-     if (exe.isEmpty())
-     {
-        fprintf(stderr, "Use --exe option to resolve unknown symbols!\n");
-        printf("Use --exe option to resolve unknown symbols!\n");
-     }
-     else
-     {
-        fprintf(stderr, "Looking up unknown symbols...\n");
-        lookupUnknownSymbols(exe);
-     }
-  }
-  else
-  {
-     fprintf(stderr, "All symbols found...\n");
-  }
+  lookupSymbols(stream);
+  fprintf(stderr, "Looking up unknown symbols...\n");
+  lookupUnknownSymbols(exe);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
   fprintf(stderr, "Done.\n");
