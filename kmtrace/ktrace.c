@@ -667,8 +667,8 @@ release_libc_mem (void)
 {
 	/* Only call the free function if we still are running in mtrace
 	 * mode. */
-	if (mallstream != NULL)
-		__libc_freeres ();
+	/*if (mallstream != NULL)
+		__libc_freeres ();*/
 
 	kuntrace();
 }
