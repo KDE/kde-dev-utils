@@ -1,4 +1,4 @@
-INCLUDES = -I$(top_srcdir)/libltdl $(all_includes)
+INCLUDES = $(all_includes)
 
 lib_LTLIBRARIES = libkstartperf.la
 libkstartperf_la_LDFLAGS = $(all_libraries) -version-info 1:0 -no-undefined
