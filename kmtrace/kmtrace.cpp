@@ -88,7 +88,7 @@ void parseLine(const QCString &_line, char operation)
      else line++;
   }  
   int cols_count = i;
-  if (cols_count > 81) fprintf(stderr, "Error cols_count = %d\n", cols_count);
+  if (cols_count > 83) fprintf(stderr, "Error cols_count = %d\n", cols_count);
   if (cols_count < 4) return;
   switch (operation)
   {
