@@ -19,6 +19,11 @@ int main(int argc, char **argv)
    if (argc != 3)
    {
       fprintf(stderr, "Usage: match <map-file> <call-file>\n");
+      fprintf(stderr, "\n<map-file> is a file as output by 'nm'.\n");
+      fprintf(stderr, "<call-file> is a file that contains symbols, e.g. a list of all\n"
+                      "function calls made by a program.\n");
+      fprintf(stderr, "The program will print all symbols from <call-file> that are present\n"
+                      "in <map-file>, in the same order as they appear in <call-file>.\n");
       return 1;
    }
    
