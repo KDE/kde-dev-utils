@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Qt Designer Files
+Name[ar]=مصمِّم ملفات Qt
 Name[bg]=Файлове на дизайнера Qt
 Name[bs]=Qt Designer datoteke
 Name[ca]=Fitxers de Qt Designer
@@ -12,6 +13,7 @@ Name[de]=Qt-Designer Dateien
 Name[el]=Αρχεία Qt Designer
 Name[es]=Archivos de Qt Designer
 Name[et]=Qt Designeri failid
+Name[eu]=Qt Designer fitxategiak
 Name[fi]=Qt Designer -tiedostot
 Name[fr]=Fichiers Qt Designer
 Name[hi]=क्यू-टी डिजाइनर फ़ाइलें
