@@ -39,7 +39,7 @@ shellrc_DATA = kuiviewer_shell.rc
 #########################################################################
 # KPART SECTION
 #########################################################################
-kde_module_LTLIBRARIES = libkuiviewerpart.la
+kde_module_LTLIBRARIES = libkuiviewerpart.la quithumbnail.la
 
 # the Part's source, library search path, and link libraries
 libkuiviewerpart_la_SOURCES = kuiviewer_part.cpp
@@ -53,3 +53,14 @@ partdesktop_DATA = kuiviewer_part.desktop
 # this is where the part's XML-GUI resource file goes
 partrcdir   = $(kde_datadir)/kuiviewerpart
 partrc_DATA = kuiviewer_part.rc
+
+
+#########################################################################
+# THUMBNAIL SECTION
+#########################################################################
+quithumbnail_la_SOURCES = quicreator.cpp
+quithumbnail_la_LIBADD = $(LIB_KDECORE) -lqui
+quithumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
+services_DATA = designerthumbnail.desktop
+servicesdir = $(kde_servicesdir)
+
