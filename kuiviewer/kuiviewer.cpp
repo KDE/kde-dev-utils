@@ -153,7 +153,7 @@ void KUIViewer::fileOpen()
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     QString file_name =
-        KFileDialog::getOpenFileName( QString::null, QString::null, this );
+        KFileDialog::getOpenFileName( QString::null, "*.ui|User Interface Files\n*.UI|User Interface Files", this );
 
     if (file_name.isEmpty() == false)
     {
