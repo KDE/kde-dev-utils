@@ -36,8 +36,8 @@ bin_SCRIPTS = kminspector
 lib_LIBRARIES = libktrace_s.a
 libktrace_s_a_SOURCES = ktrace_s.c
 
-ktrace_s.c: ktrace.c
-	$(LN_S) $< $@
+ktrace_s.c: $(srcdir)/ktrace.c
+	$(LN_S) $(srcdir)/ktrace.c $@
 
 lib_LTLIBRARIES = libktrace.la
 libktrace_la_LDFLAGS = -avoid-version
