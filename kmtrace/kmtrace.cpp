@@ -256,8 +256,8 @@ fprintf(stderr, "Executing '%s'\n", command.data());
       }
       if (it2.current() == unknown)
       {
-         fgets(buffer1, 1023, fInputFile);
-         fgets(buffer2, 1023, fInputFile);
+         if (!fgets(buffer1, 1023, fInputFile)) continue;
+         if (!fgets(buffer2, 1023, fInputFile)) continue;
          buffer1[strlen(buffer1)-1]=0;
          buffer2[strlen(buffer2)-1]=0;
          QCString symbol;
