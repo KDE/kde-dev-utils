@@ -1,0 +1,20 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=KUIViewerPart
+Name[af]=KUIViewerDeel
+Name[de]=KUIViewer-Objekt
+Name[eo]=KUIViewer-Parto
+Name[es]=Parte
+Name[et]=KUIViewer komponent
+Name[id]=KUIViewerbagian
+Name[ko]=KUIViewer 부분
+Name[lt]=KUIViewerDalis
+Name[ro]=Componenta KUIViewer
+Name[sv]=KUIViewer-del
+Name[ven]=Tshipida
+Name[xh]=KUIViewerIqela
+Name[zu]=KUIViewerIngxenye
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+ServiceTypes=KParts/ReadOnlyPart,KParts/ReadWritePart
+X-KDE-Library=libkuiviewerpart
+Type=Service
