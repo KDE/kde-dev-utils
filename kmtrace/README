@@ -93,6 +93,11 @@ of the allocations. You can also use --treedepth and --treethreshold options
 to hide subtrees that are deeper than the specified depth or allocated less
 than the given memory amount.
 
+* The advantage of using libktrace.a (the static library) is that you can
+put calls to ktrace() and kuntrace() around a block of code that
+interests you. Only allocations and deallocations between the first call
+to ktrace() and the first call to kuntrace() will be logged.
+
 
 Have fun.
 
