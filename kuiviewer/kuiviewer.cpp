@@ -69,7 +69,7 @@ KUIViewer::KUIViewer()
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
 	//FIXME improve message, which Part is this referring to?
-        KMessageBox::error(this, i18n("Unable to locate Part"));
+        KMessageBox::error(this, i18n("Unable to locate Kuiviewer kpart."));
         kapp->quit();
         // we return here, cause kapp->quit() only means "exit the
         // next time we enter the event loop...
