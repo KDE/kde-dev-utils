@@ -12,6 +12,7 @@
 #include <kinstance.h>
 #include <kstandarddirs.h>
 #include <kcmdlineargs.h>
+#include <kprocess.h>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -257,8 +258,8 @@ void lookupUnknownSymbols(const char *appname)
    inputFile.close();
    QCString command;
    command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname,
-	QFile::encodeName(inputFile.name()).data(),
-	QFile::encodeName(outputFile.name()).data());
+	QFile::encodeName(KProcess::quote(inputFile.name())).data(),
+	QFile::encodeName(KProcess::quote(outputFile.name())).data());
    system(command.data());
    fInputFile = fopen(QFile::encodeName(outputFile.name()), "r");
    if (!fInputFile)
