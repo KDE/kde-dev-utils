@@ -31,6 +31,7 @@ libktrace_a_SOURCES = ktrace.c
 lib_LTLIBRARIES = libktrace.la
 libktrace_la_LDFLAGS = -version-info 1:0 
 libktrace_la_SOURCES = ksotrace.cpp ktrace.c
+libktrace_la_LIBADD = $(LIBDL)
 
 data_DATA = kde.excludes
 datadir = $(kde_datadir)/kmtrace
