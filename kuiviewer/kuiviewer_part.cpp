@@ -37,7 +37,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
 {
     // we need an instance
     setInstance( KUIViewerPartFactory::instance() );
-    
+
     KGlobal::locale()->insertCatalogue("kuiviewer");
 
     // this should be your custom internal widget
@@ -58,7 +58,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setEditable(false);
 
     kapp->config()->setGroup("General");
-    const QString currentStyle = kapp->config()->readEntry("widgetStyle", KStyle::defaultStyle());
+    const QString currentStyle = kapp->config()->readEntry("currentWidgetStyle", KStyle::defaultStyle());
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(styles);
@@ -172,7 +172,7 @@ void KUIViewerPart::slotStyle(int)
     QApplication::restoreOverrideCursor();
 
     kapp->config()->setGroup("General");
-    kapp->config()->writeEntry("widgetStyle", m_style->currentText());
+    kapp->config()->writeEntry("currentWidgetStyle", m_style->currentText());
     kapp->config()->sync();
 }
 
