@@ -3,6 +3,7 @@
 
 #include <kinstance.h>
 #include <kparts/genericfactory.h>
+#include <kio/netaccess.h>
 
 #include <qfile.h>
 #include <qvbox.h>
@@ -55,9 +56,19 @@ bool KUIViewerPart::openFile()
     
     file.close();
 
-    // just for fun, set the status bar
-    emit setStatusBarText( m_url.prettyURL() );
-
     return true;
 }
 
+bool KUIViewerPart::openURL( const KURL& url)
+{
+    // just for fun, set the status bar
+    emit setStatusBarText( url.prettyURL() );
+    emit setWindowCaption( url.prettyURL() );
+
+    m_url = url;
+    m_file = QString::null;
+    if (KIO::NetAccess::download(url, m_file))
+	return openFile();
+    else
+	return false;
+}

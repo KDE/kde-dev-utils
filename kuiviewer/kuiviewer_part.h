@@ -33,6 +33,8 @@ public:
     virtual ~KUIViewerPart();
 
     static KAboutData *createAboutData();
+public slots:
+	bool openURL( const KURL& );
 
 protected:
     /**

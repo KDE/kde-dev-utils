@@ -152,8 +152,8 @@ void KUIViewer::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    QString file_name =
-        KFileDialog::getOpenFileName( QString::null, "*.ui|User Interface Files\n*.UI|User Interface Files", this );
+    KURL file_name =
+        KFileDialog::getOpenURL( QString::null, "*.ui|User Interface Files\n*.UI|User Interface Files", this );
 
     if (file_name.isEmpty() == false)
     {
@@ -164,13 +164,13 @@ void KUIViewer::fileOpen()
         if ( m_part->url().isEmpty() )
         {
             // we open the file in this window...
-            load( KURL( file_name ) );
+            load( file_name );
         }
         else
         {
             // we open the file in a new window...
             KUIViewer* newWin = new KUIViewer;
-            newWin->load( KURL( file_name ) );
+            newWin->load( file_name  );
             newWin->show();
         }
     }
