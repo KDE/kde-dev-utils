@@ -28,13 +28,11 @@ kuiviewer_SOURCES = main.cpp kuiviewer.cpp
 kuiviewer_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 kuiviewer_LDADD   = $(LIB_KPARTS)
 
-# this is where the desktop file will go 
-shelldesktopdir   = $(kde_appsdir)/Utilities
-shelldesktop_DATA = kuiviewer.desktop
+xdg_apps_DATA =kuiviewer.desktop
 
 # this is where the shell's XML-GUI resource file goes
 shellrcdir   = $(kde_datadir)/kuiviewer
-shellrc_DATA = kuiviewer_shell.rc
+shellrc_DATA = kuiviewer.rc
 
 #########################################################################
 # KPART SECTION

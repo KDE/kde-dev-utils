@@ -9,6 +9,7 @@ class KURL;
 class QVBox;
 class KAboutData;
 class KListAction;
+class KListView;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -39,8 +40,6 @@ public slots:
      bool openURL( const KURL& );
      void slotStyle(int);
      void slotGrab();
-     void slotShowProperties();
-
      void updateActions();
 
 protected:
@@ -53,7 +52,6 @@ private:
     QVBox *m_widget;
     QGuardedPtr<QWidget> m_view;
     KListAction *m_style;
-    KAction *m_propsdlg;
     KAction *m_copy;
 };
 

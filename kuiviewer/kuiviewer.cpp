@@ -1,10 +1,18 @@
 /*
  * kuiviewer.cpp
  *
- * Copyright (C) 2001  <kurt@granroth.org>
+ * Copyright (C) 2003  <rich@kde.org>
+ * Copyright (C) 2003  <geiseri@kde.org>
  */
 #include "kuiviewer.h"
 #include "kuiviewer.moc"
+#include "kuiviewer_part.h"
+
+#include <kdebug.h>
+
+#include <qobjectlist.h>
+#include <qdockwindow.h>
+#include <qpixmap.h>
 
 #include <kkeydialog.h>
 #include <kconfig.h>
@@ -15,7 +23,10 @@
 #include <kaction.h>
 #include <kstdaction.h>
 
+#include <kiconloader.h>
 #include <klibloader.h>
+#include <klistview.h>
+#include <klocale.h>	
 #include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kstatusbar.h>
@@ -24,13 +35,14 @@ KUIViewer::KUIViewer()
     : KParts::MainWindow( 0L, "KUIViewer" )
 {
     // set the shell's ui resource file
-    setXMLFile("kuiviewer_shell.rc");
+    setXMLFile("kuiviewer.rc");
 
     // then, setup our actions
     setupActions();
 
     // and a status bar
     statusBar()->show();
+  
 
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -75,12 +87,13 @@ KUIViewer::~KUIViewer()
 
 void KUIViewer::load(const KURL& url)
 {
-    m_part->openURL( url );
+	m_part->openURL( url );
 }
 
 void KUIViewer::setupActions()
 {
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
+    
     KStdAction::quit(kapp, SLOT(quit()), actionCollection());
 
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
@@ -174,3 +187,6 @@ void KUIViewer::fileOpen()
         }
     }
 }
+
+
+

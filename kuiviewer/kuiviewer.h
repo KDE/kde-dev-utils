@@ -9,14 +9,17 @@
 #include <kparts/mainwindow.h>
 
 class KToggleAction;
+class KListView;
 
+class KParts::ReadOnlyPart;
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
  *
- * @short Application Shell
+ * @short KUI Viewer Shell
  * @author Richard Moore <rich@kde.org>
- * @version 0.1
+ * @author Ian Reinhart Geiser <geiser@kde.org>
+ * @version 1.0
  */
 class KUIViewer : public KParts::MainWindow
 {
@@ -66,7 +69,6 @@ private:
 
 private:
     KParts::ReadOnlyPart *m_part;
-
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
 };

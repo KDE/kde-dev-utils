@@ -24,6 +24,7 @@
 #include <qstylefactory.h>
 #include <qvariant.h>
 #include <qvbox.h>
+#include <qvariant.h>
 #include <qwidgetfactory.h>
 
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
@@ -54,9 +55,8 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
                 "change_style");
     m_style->setEditable(false);
 
-    KConfig cfg("kdeglobals");
-    cfg.setGroup("General");
-    const QString currentStyle = cfg.readEntry("widgetStyle", KStyle::defaultStyle());
+    kapp->config()->setGroup("General");
+    const QString currentStyle = kapp->config()->readEntry("widgetStyle", KStyle::defaultStyle());
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(styles);
@@ -73,10 +73,6 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     }
     m_style->setToolTip(i18n("Set the current style to view."));
     m_style->setMenuAccelsEnabled(true);
-
-    m_propsdlg = new KAction( i18n("&Properties"), QIconSet(BarIcon("properties")), 0,
-			      this, SLOT(slotShowProperties()),
-			      actionCollection(), "properties" );
 
     m_copy = KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
     
@@ -123,6 +119,7 @@ bool KUIViewerPart::openFile()
 	return false;
 
     m_view->show();
+    slotStyle(0);
     return true;
 }
 
@@ -144,12 +141,10 @@ void KUIViewerPart::updateActions()
 {
     if ( !m_view.isNull() ) {
 	m_style->setEnabled( true );
-	m_propsdlg->setEnabled( /*true*/false );
 	m_copy->setEnabled( true );
     }
     else {
 	m_style->setEnabled( false );
-	m_propsdlg->setEnabled( false );
 	m_copy->setEnabled( false );
     }
 }
@@ -174,6 +169,10 @@ void KUIViewerPart::slotStyle(int)
 
     m_widget->show();
     QApplication::restoreOverrideCursor();
+    
+    kapp->config()->setGroup("General");
+    kapp->config()->writeEntry("widgetStyle", m_style->currentText());
+    kapp->config()->sync();
 }
 
 void KUIViewerPart::slotGrab()
@@ -187,39 +186,3 @@ void KUIViewerPart::slotGrab()
     clipboard->setPixmap(QPixmap::grabWidget(m_widget));
 }
 
-void KUIViewerPart::slotShowProperties()
-{
-#if 0
-    if ( m_view.isNull() ) {
-	updateActions();
-	return;
-    }
-
-    QString caption( i18n("UI '%1' Properties").arg(m_view->name()) );
-    KDialogBase *dlg = new KDialogBase( m_widget, "ui_properties", true, caption, KDialogBase::Ok );
-    QVBox *box = dlg->addVBoxPage( i18n("&Properties") );
-
-    // Create List View
-    KListView *props = new KListView( box, "props_view" );
-    props->setResizeMode( QListView::LastColumn );
-    props->addColumn( i18n("Property"), 0 );
-    props->addColumn( i18n("Type"), 0 );
-    props->addColumn( i18n("Value") );
-
-    // Create List Items
-    QMetaObject *mo = m_view->metaObject();
-    for ( int i = 0; i < mo->numProperties(); i++ ) {
-
-	const QMetaProperty *p = mo->property(i);
-	QString n = QString( p->name() );
-	QString t = QString( p->type() );
-	QString v = m_view->property(p->name()).toString();
-
-	(void) new KListViewItem( props, n, t, v );
-    }
-
-    dlg->setMainWidget( props );
-    dlg->exec();
-    delete dlg;
-#endif
-}
