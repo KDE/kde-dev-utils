@@ -37,7 +37,9 @@
 
 #include <dlfcn.h>
 
+#undef _LIBC
 #include <stdio.h>
+#define _LIBC
 #include <string.h>
 #include <stdlib.h>
 #include <execinfo.h>
