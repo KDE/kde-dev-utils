@@ -23,7 +23,7 @@ INCLUDES = $(all_includes)
 
 bin_PROGRAMS = kmtrace
 kmtrace_SOURCES = kmtrace.cpp
-kmtrace_LDFLAGS = $(QT_LDFLAGS) $(X_LDFLAGS)
+kmtrace_LDFLAGS = $(all_libraries)
 
 ktrace.o: ktrace.c
 	gcc -O3 -c ktrace.c -o ktrace.o
