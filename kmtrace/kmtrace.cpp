@@ -367,8 +367,8 @@ int main(int argc, char *argv[])
         line = 0;
      }
   }
-  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d", allocCount, entryDict->count());
-  printf("Total long term allocs: %d still allocated: %d", allocCount, entryDict->count());
+  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d\n", allocCount, entryDict->count());
+  printf("Total long term allocs: %d still allocated: %d\n", allocCount, entryDict->count());
   fprintf(stderr, "Collecting duplicates...\n");
   collectDupes();
   fprintf(stderr, "Sorting...\n");

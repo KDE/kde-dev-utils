@@ -25,7 +25,7 @@ This will run incredibly slow and generate a huge log in /tmp/malloc.trace.
 
 You can process this log with:
 
-	kmtrace < /tmp/malloc.trace > /tmp/malloc.parsed
+	kmtrace /tmp/malloc.trace yourApplication > /tmp/malloc.parsed
 
 Have fun.
 
