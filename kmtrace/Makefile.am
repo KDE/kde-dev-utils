@@ -29,7 +29,7 @@ lib_LIBRARIES = libktrace.a
 libktrace_a_SOURCES = ktrace.c
 
 data_DATA = kde.excludes
-datadir = $(kde_datadir)/apps/kmtrace
+datadir = $(kde_datadir)/kmtrace
 
 include_HEADERS = ktrace.h
 
