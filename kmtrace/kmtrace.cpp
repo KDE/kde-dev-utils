@@ -29,6 +29,7 @@ extern char *cplus_demangle(const char *mangled, int options);
 struct Entry {
   int base;
   int size;
+  int age;
   int backtrace[1];
 
   bool operator==(const Entry &e) { return size == e.size; }
@@ -41,6 +42,7 @@ QIntDict<char> *formatDict = 0;
 QSortedList<Entry> *entryList = 0;
 
 const char *unknown = "<unknown>";
+int allocCount = 0;
 
 int fromHex(const QString &str);
 void parseLine(const QString &line, char operation);
@@ -64,9 +66,10 @@ void parseLine(const QString &line, char operation)
   {
    case '+':
    {
-     Entry *entry = (Entry *) malloc(cols.count() *sizeof(int));
+     Entry *entry = (Entry *) malloc((cols.count()+1) *sizeof(int));
      entry->base = fromHex(cols[cols.count()-2]);
      entry->size = fromHex(cols[cols.count()-1]);
+     entry->age = allocCount;
      for(int i = cols.count()-4; i > 0;i--)
      {
        entry->backtrace[i-1] = fromHex(cols[i]);
@@ -86,7 +89,6 @@ void parseLine(const QString &line, char operation)
      }
      else
      {
-//        printf("- %08x\n", base);
         free(entry);
      }
    } break;
@@ -215,8 +217,6 @@ int main(int argc, char *argv[])
  
   QTextStream stream( &mtrace_file );
 
-  int i = 0;
-
   fprintf(stderr, "Running\n");
   QString line;
   while(!stream.atEnd())
@@ -241,13 +241,13 @@ int main(int argc, char *argv[])
      }
      else if (line2[0] == '+')
      {
-        i++;
+        allocCount++;
         line = line + ' ' + line2;
         parseLine(line, '+');
         line = QString::null;
-        if (i & 128)
+        if (allocCount & 128)
         {
-           fprintf(stderr, "\rTotal allocations: %d still allocated: %d", i, entryDict->count());
+           fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d", allocCount, entryDict->count());
         }
      }
      else if (line2[0] == '-')
@@ -256,8 +256,23 @@ int main(int argc, char *argv[])
         parseLine(line, '-');
         line = QString::null;
      }
+     else if (line2[0] == '<')
+     {
+        line2[0] = '-';
+        // First part of realloc (free)
+        QString reline = line + ' ' + line2;
+        parseLine(reline, '-');
+     }
+     else if (line2[0] == '>')
+     {
+        line2[0] = '+';
+        // Second part of realloc (alloc)
+        line = line + ' ' + line2;
+        parseLine(line, '+');
+        line = QString::null;
+     }
   }
-  fprintf(stderr, "\rTotal allocations: %d still allocated: %d\n", i, entryDict->count());
+  fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d", allocCount, entryDict->count());
   printf("Number of unfree'ed blocks: %d\n", entryDict->count());
   fprintf(stderr, "Sorting...\n");
   sortBlocks();

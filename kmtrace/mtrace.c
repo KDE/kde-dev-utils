@@ -69,6 +69,26 @@ static __ptr_t (*tr_old_realloc_hook) __P ((__ptr_t ptr,
 					    __malloc_size_t size,
 					    const __ptr_t));
 
+#define TR_PIPELINE_SIZE	16
+#define TR_BT_SIZE		40
+
+#define TR_NONE		0
+#define TR_MALLOC	1
+#define TR_REALLOC	2
+#define TR_FREE		3
+
+typedef struct {
+   int op;
+   __ptr_t ptr;
+   __ptr_t old;
+   __malloc_size_t size;
+   int bt_size;
+   void *bt[TR_BT_SIZE];
+} tr_entry;
+
+static tr_entry tr_pipeline[TR_PIPELINE_SIZE];
+static int tr_pipeline_pos;
+
 /* This function is called when the block being alloc'd, realloc'd, or
    freed has an address matching the variable "mallwatch".  In a debugger,
    set "mallwatch" to the address of interest, then put a breakpoint on
@@ -82,22 +102,72 @@ tr_break ()
 
 static void
 inline
-tr_where (const __ptr_t caller)
+tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, int op)
 {
-  void *bt[30];
-  int n; 
-
-  if (_mtrace_file)
+  switch(op)
+  {
+    case TR_REALLOC:
+	break;
+    case TR_MALLOC:
+	break;
+    case TR_FREE:
     {
-      fprintf (mallstream, "@ %s:%d ", _mtrace_file, _mtrace_line);
-      _mtrace_file = NULL;
-    }
+      int i = tr_pipeline_pos;
+      do {
+	if (i) i--; else i = TR_PIPELINE_SIZE-1;
+        if (tr_pipeline[i].ptr == ptr)
+        {
+           if (tr_pipeline[i].op == TR_MALLOC)
+           {
+              tr_pipeline[i].op = TR_NONE;
+              tr_pipeline[i].ptr = NULL;
+              return;
+           }
+           break;
+        }
+      } while (i != tr_pipeline_pos);
+    }  
+  }
 
-  putc('@', mallstream);
-  putc(' ', mallstream);
-  fflush(mallstream);   
-  n = backtrace(bt, sizeof(bt)/sizeof(void *)); 
-  backtrace_symbols_fd(bt, n, fileno(mallstream)); 
+  if (tr_pipeline[tr_pipeline_pos].op)
+  {
+      putc('@', mallstream);
+      putc(' ', mallstream);
+      fflush(mallstream);   
+      backtrace_symbols_fd(tr_pipeline[tr_pipeline_pos].bt, 
+			   tr_pipeline[tr_pipeline_pos].bt_size, 
+			   fileno(mallstream)); 
+	
+      switch(tr_pipeline[tr_pipeline_pos].op)
+      {
+	case TR_MALLOC:
+	        fprintf (mallstream, "+ %p %#lx\n", 
+ 			tr_pipeline[tr_pipeline_pos].ptr, 
+			(unsigned long int) tr_pipeline[tr_pipeline_pos].size);
+		break;
+	case TR_FREE:
+	        fprintf (mallstream, "- %p\n", 
+ 			tr_pipeline[tr_pipeline_pos].ptr);
+		break;
+	case TR_REALLOC:
+	        fprintf (mallstream, "< %p\n", 
+ 			tr_pipeline[tr_pipeline_pos].old);
+	        fprintf (mallstream, "> %p %#lx\n", 
+ 			tr_pipeline[tr_pipeline_pos].ptr, 
+			(unsigned long int) tr_pipeline[tr_pipeline_pos].size);
+		break;
+      }
+  }
+
+  tr_pipeline[tr_pipeline_pos].op = op; 
+  tr_pipeline[tr_pipeline_pos].ptr = ptr; 
+  tr_pipeline[tr_pipeline_pos].old = old; 
+  tr_pipeline[tr_pipeline_pos].size = size; 
+  tr_pipeline[tr_pipeline_pos].bt_size = backtrace(
+	tr_pipeline[tr_pipeline_pos].bt, TR_BT_SIZE); 
+  tr_pipeline_pos++;
+  if (tr_pipeline_pos == TR_PIPELINE_SIZE)
+     tr_pipeline_pos = 0;
 }
 
 static void tr_freehook __P ((__ptr_t, const __ptr_t));
@@ -109,9 +179,7 @@ tr_freehook (ptr, caller)
   if (ptr == NULL)
     return;
   __libc_lock_lock (lock);
-  tr_where (caller);
-  /* Be sure to print it first.  */
-  fprintf (mallstream, "- %p\n", ptr);
+  tr_log(caller, ptr, 0, 0, TR_FREE );
   __libc_lock_unlock (lock);
   if (ptr == mallwatch)
     tr_break ();
@@ -142,10 +210,7 @@ tr_mallochook (size, caller)
     hdr = (__ptr_t) malloc (size);
   __malloc_hook = tr_mallochook;
 
-  tr_where(caller); 
-
-  /* We could be printing a NULL here; that's OK.  */
-  fprintf (mallstream, "+ %p %#lx\n", hdr, (unsigned long int) size);
+  tr_log(caller, hdr, 0, size, TR_MALLOC);
 
   __libc_lock_unlock (lock);
 
@@ -180,18 +245,7 @@ tr_reallochook (ptr, size, caller)
   __malloc_hook = tr_mallochook;
   __realloc_hook = tr_reallochook;
 
-  tr_where (caller);
-  if (hdr == NULL)
-    /* Failed realloc.  */
-    fprintf (mallstream, "! %p %#lx\n", ptr, (unsigned long int) size);
-  else if (ptr == NULL)
-    fprintf (mallstream, "+ %p %#lx\n", hdr, (unsigned long int) size);
-  else
-    {
-      fprintf (mallstream, "< %p\n", ptr);
-      tr_where (caller);
-      fprintf (mallstream, "> %p %#lx\n", hdr, (unsigned long int) size);
-    }
+  tr_log(caller, hdr, ptr, size, TR_REALLOC);
 
   __libc_lock_unlock (lock);
 
@@ -257,6 +311,13 @@ mtrace ()
 	  __malloc_hook = tr_mallochook;
 	  tr_old_realloc_hook = __realloc_hook;
 	  __realloc_hook = tr_reallochook;
+
+          tr_pipeline_pos = TR_PIPELINE_SIZE;
+          for(;tr_pipeline_pos--;) 
+	  {
+            tr_pipeline[tr_pipeline_pos].op = TR_NONE;
+            tr_pipeline[tr_pipeline_pos].ptr = NULL;
+          }
 #ifdef _LIBC
 	  if (!added_atexit_handler)
 	    {
