@@ -12,9 +12,6 @@ Install the ktrace.h header file and the kmtrace processing tool with:
 
 	make install
 
-Compile ktrace.o like this:
-	make ktrace.o
-
 Take the KDE application that you want to investigate and add
 
 	#include <ktrace.h>
@@ -25,7 +22,7 @@ Add as first statement in main():
 
 Add ktrace.o to the LDADD line in your Makefile.am like:
 
-	kicker_LDADD = kicker.la /home1/bastian/bin/ktrace.o
+	kicker_LDADD = kicker.la /opt/kde/lib/libktrace.a
 
 You can now activate malloc logging by starting yourApplication as:
 
