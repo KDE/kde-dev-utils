@@ -74,7 +74,7 @@ int fromHex(const char *str)
 void parseLine(const QCString &_line, char operation)
 {
   char *line= (char *) _line.data();
-  const char *cols[100];
+  const char *cols[200];
   int i = 0;
   cols[i++] = line;
   while(*line)
@@ -89,7 +89,7 @@ void parseLine(const QCString &_line, char operation)
      else line++;
   }
   int cols_count = i;
-  if (cols_count > 83) fprintf(stderr, "Error cols_count = %d\n", cols_count);
+  if (cols_count > 199) fprintf(stderr, "Error cols_count = %d\n", cols_count);
   if (cols_count < 4) return;
   switch (operation)
   {
