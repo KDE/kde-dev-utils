@@ -393,4 +393,23 @@ kuntrace ()
   __realloc_hook = tr_old_realloc_hook;
 }
 
+int fork()
+{
+  int result;
+  if (mallstream)
+     fflush(mallstream);
+  result = __fork();
+  if (result == 0)
+  {
+    if (mallstream)
+    {
+      fclose(mallstream);
+      __free_hook = tr_old_free_hook;
+      __malloc_hook = tr_old_malloc_hook;
+      __realloc_hook = tr_old_realloc_hook;
+    }
+  }
+  return result;
+}
+
 
