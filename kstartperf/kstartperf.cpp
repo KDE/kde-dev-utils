@@ -1,6 +1,6 @@
 /* vi: ts=8 sts=4 sw=4
  *
- * $Id: $
+ * $Id$
  *
  * This file is part of the KDE project, module kstartperf.
  * Copyright (C) 2000 Geert Jansen <jansen@kde.org> 
@@ -117,7 +117,6 @@ int main(int argc, char **argv)
 
     // And exec() the command
 
-    printf("cmd: %s\n", cmd);
     execl("/bin/sh", "sh", "-c", cmd, 0L);
 
     perror("execl()");

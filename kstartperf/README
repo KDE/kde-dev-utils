@@ -1,9 +1,9 @@
 
-** KStartPerf: startup time measurement for KDE apps **
+** kstartperf: startup time measurement for KDE apps **
 
 ** Usage: 
 
-KStartPerf measures startup time for KDE applications. Usage is simple:
+kstartperf measures startup time for KDE applications. Usage is simple:
 
     $ kstartperf konsole
 
@@ -12,8 +12,8 @@ will show you the startup time of konsole in milliseconds.
 
 ** How does it work?
 
-1. KStartPerf sets an environment variable (KSTARTPERF) to the current time. 
-2. KStartPerf executes the requested comand command with an LD_PRELOAD
+1. kstartperf sets an environment variable (KSTARTPERF) to the current time. 
+2. kstartperf executes the requested comand command with an LD_PRELOAD
    library which overrides XMapWindow.
 3. As soon as the app calls XMapWindow (this is the point where we assume
    that the app has "started up"), the overrided function gets called which
@@ -23,5 +23,9 @@ will show you the startup time of konsole in milliseconds.
 4. The overridden XMapWindow calls the original XMapWindow and everything
    else continues normally.
 
+** Notes
+
+The appliation that is being profiled, needs to be linked against kdecore.
+
 Geert Jansen <jansen@kde.org>, 
-19 July 2000
+20 July 2000
