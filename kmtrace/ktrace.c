@@ -25,19 +25,19 @@
    or (US mail) as Mike Haertel c/o Free Software Foundation.
 */
 
-#define _LIBC
 #define MALLOC_HOOKS
 #define _GNU_SOURCE
 
 #ifndef	_MALLOC_INTERNAL
 #define	_MALLOC_INTERNAL
+#include <pthread.h>
+#define _LIBC
 #include <malloc.h>
 #include <bits/libc-lock.h>
 #endif
 
-#include <dlfcn.h>
-
 #undef _LIBC
+#include <dlfcn.h>
 #include <stdio.h>
 #define _LIBC
 #include <string.h>
