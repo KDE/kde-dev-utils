@@ -436,13 +436,13 @@ void buildTree ()
 
 void processTree (TreeList * list, int threshold, int maxdepth, int depth)
 {
-   if (++depth > maxdepth)
+   if (++depth > maxdepth && maxdepth > 0) // maxdepth <= 0 means no limit
       return;
    for (TreeList::Iterator it = list->begin (); it != list->end ();)
    {
       if ((*it).subentries ()->count () > 0)
 	 processTree ((*it).subentries (), threshold, maxdepth, depth);
-      if ((*it).total_size < threshold || depth > maxdepth)
+      if ((*it).total_size < threshold || (depth > maxdepth && maxdepth > 0))
       {
 	 it = list->remove (it);
 	 continue;
