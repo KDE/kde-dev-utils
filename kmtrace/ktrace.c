@@ -50,6 +50,8 @@ static FILE *mallstream;
 static const char mallenv[]= "MALLOC_TRACE";
 static char malloc_trace_buffer[TRACE_BUFFER_SIZE];
 
+void kuntrace(void);
+
 /* Address to breakpoint on accesses to... */
 __ptr_t mallwatch;
 
@@ -97,7 +99,7 @@ tr_break ()
 {
 }
 
-static void
+static void inline
 tr_backtrace(void **bt, int size)
 {
   char buf[20];
@@ -127,8 +129,7 @@ tr_backtrace(void **bt, int size)
   } 
 }
 
-static void
-inline
+static void inline
 tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, int op)
 {
   switch(op)
@@ -297,6 +298,7 @@ release_libc_mem (void)
   /* Only call the free function if we still are running in mtrace mode.  */
   if (mallstream != NULL)
     __libc_freeres ();
+  kuntrace();
 }
 #endif
 
@@ -326,8 +328,6 @@ ktrace ()
 #else
   mallfile = getenv (mallenv);
 #endif
-  if(mallfile == NULL && getenv("KDE_NO_KMTRACE") == NULL)
-    mallfile = "ktrace.out";
   if (mallfile != NULL || mallwatch != NULL)
     {
       mallstream = fopen (mallfile != NULL ? mallfile : "/dev/null", "w");
@@ -369,8 +369,13 @@ ktrace ()
 void
 kuntrace ()
 {
+  int i;
   if (mallstream == NULL)
     return;
+
+  /* Flush pipeline. */
+  for(i = 0; i < TR_PIPELINE_SIZE;i++)
+     tr_log(NULL, 0, 0, 0, TR_NONE);
 
   fprintf (mallstream, "= End\n");
   fclose (mallstream);
