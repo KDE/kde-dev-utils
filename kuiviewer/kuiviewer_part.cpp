@@ -37,6 +37,8 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
 {
     // we need an instance
     setInstance( KUIViewerPartFactory::instance() );
+    
+    KGlobal::locale()->insertCatalogue("kuiviewer");
 
     // this should be your custom internal widget
     m_widget = new QVBox( parentWidget, widgetName );

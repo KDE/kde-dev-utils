@@ -68,7 +68,7 @@ KUIViewer::KUIViewer()
     {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
-        KMessageBox::error(this, "Could not find our Part!");
+        KMessageBox::error(this, i18n("Could not find our Part!"));
         kapp->quit();
         // we return here, cause kapp->quit() only means "exit the
         // next time we enter the event loop...
@@ -165,7 +165,7 @@ void KUIViewer::fileOpen()
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     KURL file_name =
-        KFileDialog::getOpenURL( QString::null, "*.ui|User Interface Files\n*.UI|User Interface Files", this );
+        KFileDialog::getOpenURL( QString::null, i18n("*.ui *.UI|User Interface Files"), this );
 
     if (file_name.isEmpty() == false)
     {
