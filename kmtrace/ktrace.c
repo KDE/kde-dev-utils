@@ -134,6 +134,8 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, in
 {
   switch(op)
   {
+    case TR_NONE:
+	break;
     case TR_REALLOC:
 	break;
     case TR_MALLOC:
@@ -170,6 +172,8 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, in
 	
       switch(tr_pipeline[tr_pipeline_pos].op)
       {
+        case TR_NONE:
+                break;
 	case TR_MALLOC:
 	        fprintf (mallstream, "+ %p %#lx\n", 
  			tr_pipeline[tr_pipeline_pos].ptr, 
@@ -186,6 +190,9 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, in
  			tr_pipeline[tr_pipeline_pos].ptr, 
 			(unsigned long int) tr_pipeline[tr_pipeline_pos].size);
 		break;
+        default:
+                fprintf(mallstream, "= !!MEMORY CORRUPTION!!\n");
+                break;
       }
   }
 
@@ -354,6 +361,7 @@ ktrace ()
             tr_pipeline[tr_pipeline_pos].op = TR_NONE;
             tr_pipeline[tr_pipeline_pos].ptr = NULL;
           }
+          tr_pipeline_pos = 0;
           memset(tr_hashtable, 0, sizeof(void *)*TR_HASHTABLE_SIZE);
 #ifdef _LIBC
 	  if (!added_atexit_handler)
