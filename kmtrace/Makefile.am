@@ -40,7 +40,7 @@ ktrace_s.c: ktrace.c
 	$(LN_S) $< $@
 
 lib_LTLIBRARIES = libktrace.la
-libktrace_la_LDFLAGS = -version-info 1:0 
+libktrace_la_LDFLAGS = -avoid-version
 libktrace_la_SOURCES = ksotrace.cpp ktrace.c
 libktrace_la_LIBADD = $(LIBDL)
 
