@@ -37,6 +37,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #ifdef USE_IN_LIBIO
 # include <libio/iolibio.h>
@@ -325,14 +326,21 @@ ktrace ()
 #else
   mallfile = getenv (mallenv);
 #endif
+  if(mallfile == NULL && getenv("KDE_NO_KMTRACE") == NULL)
+    mallfile = "ktrace.out";
   if (mallfile != NULL || mallwatch != NULL)
     {
       mallstream = fopen (mallfile != NULL ? mallfile : "/dev/null", "w");
       if (mallstream != NULL)
 	{
+          char buf[512];
+            
 	  /* Be sure it doesn't malloc its buffer!  */
 	  setvbuf (mallstream, malloc_trace_buffer, _IOFBF, TRACE_BUFFER_SIZE);
 	  fprintf (mallstream, "= Start\n");
+          memset(buf, 0, sizeof(buf));
+          readlink("/proc/self/exe", buf, sizeof(buf));
+          if(*buf)  fprintf (mallstream, "#%s\n", buf);
 	  tr_old_free_hook = __free_hook;
 	  __free_hook = tr_freehook;
 	  tr_old_malloc_hook = __malloc_hook;

@@ -378,7 +378,6 @@ void readExcludeFile(const char *name)
       if ((line[0] == 0) || (line[0] == '#')) continue;
       line[strlen(line)-1] = 0;
       excludes->append(line);
-fprintf(stderr, "Surpressing traces containing '%s' in output.\n", line);
    }
    fclose(stream);
    excludes->sort();
@@ -404,10 +403,13 @@ int main(int argc, char *argv[])
 
   KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-  if (args->count() != 1)
-     KCmdLineArgs::usage();
+  (void) args->count();
+  const char *logfile;
+  if(args->count())
+    logfile = args->arg(0);
+  else
+    logfile = "ktrace.out";
 
-  const char *logfile = args->arg(0);
   QCString exe = args->getOption("exe");
   QCString exclude;
 
@@ -415,10 +417,8 @@ int main(int argc, char *argv[])
 
   exclude = QFile::encodeName(locate("data", "kmtrace/kde.excludes"));
   if(!exclude.isEmpty())
-  {
-      fprintf(stderr, "found kde.excludes\n");
       readExcludeFile(exclude);
-  }
+
   exclude = args->getOption("exclude");
   if (!exclude.isEmpty())
   {
@@ -447,6 +447,20 @@ int main(int argc, char *argv[])
      line2[strlen(line2)-1] = 0;
      if (line2[0] == '=')
 	printf("%s\n", line2);
+     else if (line2[0] == '#')
+     {
+       QCString app(line2+1);
+       if(exe.isEmpty())
+       {
+         exe = app.stripWhiteSpace();
+         fprintf(stderr, "ktrace.out: malloc trace of %s\n", exe.data());
+       }
+       else if(!app.contains(exe.data()))
+       {
+         fprintf(stderr, "trace file was for application '%s', not '%s'\n", app.data(), exe.data());
+         exit(1);
+       }
+     }
      else if (line2[0] == '@')
         line = 0;
      else if (line2[0] == '[')
