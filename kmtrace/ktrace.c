@@ -99,7 +99,7 @@ tr_break ()
 {
 }
 
-static void inline
+static void __inline__
 tr_backtrace(void **bt, int size)
 {
   char buf[20];
@@ -129,7 +129,7 @@ tr_backtrace(void **bt, int size)
   } 
 }
 
-static void inline
+static void __inline__
 tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,  __malloc_size_t size, int op)
 {
   switch(op)

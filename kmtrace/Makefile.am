@@ -32,3 +32,4 @@ data_DATA = kde.excludes
 datadir = $(kde_datadir)/apps/kmtrace
 
 include_HEADERS = ktrace.h
+

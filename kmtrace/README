@@ -24,30 +24,18 @@ Add ktrace.o to the LDADD line in your Makefile.am like:
 
 	kicker_LDADD = kicker.la /opt/kde/lib/libktrace.a
 
-You can now activate malloc logging by starting yourApplication.
-The trace output will be stored in "ktrace.out" in the current
-working directory. if you want a different path, use: 
+You can now activate malloc logging by starting yourApplication as:
 
 	MALLOC_TRACE=/tmp/ktrace.out yourApplication
 
 This will generate a huge log in /tmp/ktrace.out.
 
-You can process this log by running
+You can process this log with:
 
-        kmtrace | less
-
-of if you stored ktrace.out in a different directory:
-
-	kmtrace /tmp/ktrace.out > /tmp/ktrace.parsed
+        kmtrace /tmp/ktrace.out > ktrace.parsed
 
 TIPS
 ====
-
-* if you want to turn of kmtrace debugging without recompile, do
-
-  export KDE_NO_KMTRACE=1
-
-  before recompiling your application. 
 
 * If you can't be bothered with the stuff that KApplication allocates for you
 you might want to put the ktrace() call after the KApplication constructor.
