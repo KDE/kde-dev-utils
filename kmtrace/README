@@ -8,9 +8,24 @@ THIS PROGRAM DEPENDS ON GLIBC! It does not pretend to be portable.
 
 Howto use:
 
-Install the ktrace.h header file and the kmtrace processing tool with:
+Install the libktrace.so shared library, the ktrace.h header file and
+the kmtrace processing tool with:
 
 	make install
+
+There are two ways to activate memory usage loggings by ktrace  :
+
+1) The LD_PRELOAD way
+
+This way, you can debug any application without having to recompile it,
+but you'll have to debug also the memory allocated by KApplication and
+friends.
+
+You can activate malloc logging by starting yourApplication as:
+
+	MALLOC_TRACE=/tmp/ktrace.out LD_PRELOAD=$KDEDIR/lib/libktrace.so yourApplication
+
+2) The manual way
 
 Take the KDE application that you want to investigate and add
 
@@ -44,7 +59,8 @@ This will lead to a lot of warnings like:
 	Freeing unalloacted memory: 0x08056108
 
 Which are harmless, it just means that the mmeory was allocated before you
-turned the tracing on.
+turned the tracing on. Note that you cannot use this if you're using
+LD_PRELOAD to use ktrace.
 
 * To filter out harmless allocations out of the output file you can specify
 with the --exclude option a file with symbols to exclude from output. If a 
