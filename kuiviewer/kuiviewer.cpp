@@ -140,7 +140,7 @@ void KUIViewer::optionsShowStatusbar()
 
 void KUIViewer::optionsConfigureKeys()
 {
-    KKeyDialog::configureKeys(actionCollection(), "kuiviewer_shell.rc");
+    KKeyDialog::configure(actionCollection(), 0, true);
 }
 
 void KUIViewer::optionsConfigureToolbars()
