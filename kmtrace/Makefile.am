@@ -25,6 +25,8 @@ bin_PROGRAMS = kmtrace
 kmtrace_SOURCES = kmtrace.cpp
 kmtrace_LDFLAGS = $(all_libraries)
 
+bin_SCRIPTS = kminspector
+
 lib_LIBRARIES = libktrace.a
 libktrace_a_SOURCES = ktrace.c
 

@@ -94,8 +94,28 @@
 
 #define TRACE_BUFFER_SIZE 512
 
+typedef struct
+{
+	__ptr_t ptr;
+	__malloc_size_t size;
+	int bt_size;
+	void** bt;
+} tr_entry;
+
+typedef struct CallerNode
+{
+	void* funcAdr;
+	unsigned long mallocs;
+	unsigned long mallocsSum;
+	unsigned int noCallees;
+	unsigned int maxCallees;
+	struct CallerNode** callees;
+} CallerNode;
+
 void ktrace(void);
 void kuntrace(void);
+
+static void addAllocationToTree(void);
 
 static void tr_freehook __P ((__ptr_t, const __ptr_t));
 static __ptr_t tr_reallochook __P ((__ptr_t, __malloc_size_t,
@@ -110,7 +130,6 @@ static __ptr_t (*tr_old_realloc_hook) __P ((__ptr_t ptr,
 											const __ptr_t));
 
 static FILE* mallstream;
-static const char mallenv[]= "MALLOC_TRACE";
 static char malloc_trace_buffer[TRACE_BUFFER_SIZE];
 
 
@@ -119,14 +138,6 @@ __ptr_t mallwatch;
 
 __libc_lock_define_initialized (static, lock)
 
-
-typedef struct
-{
-	__ptr_t ptr;
-	__malloc_size_t size;
-	int bt_size;
-	void** bt;
-} tr_entry;
 
 static int bt_size;
 static void *bt[TR_BT_SIZE + 1];
@@ -147,6 +158,11 @@ static unsigned long tr_flashes = 0;
 static unsigned long tr_failed_free_lookups = 0;
 static unsigned long tr_malloc_collisions = 0;
 #endif
+
+static CallerNode* CallTree = NULL;
+static char* mallTreeFile = NULL;
+static FILE* mallTreeStream = NULL;
+static long mallThreshold = 2000;
 
 /* This function is called when the block being alloc'd, realloc'd, or
  * freed has an address matching the variable "mallwatch".  In a
@@ -407,6 +423,9 @@ tr_mallochook (size, caller)
 	else
 		hdr = (__ptr_t) malloc(size);
 	tr_log(caller, hdr, 0, size, TR_MALLOC);
+	/* We only build the allocation tree if mallTreeFile has been set. */
+	if (mallTreeFile)
+		addAllocationToTree();
 
 	__malloc_hook = tr_mallochook;
 	__realloc_hook = tr_reallochook;
@@ -472,6 +491,168 @@ tr_reallochook (ptr, size, caller)
 	return hdr;
 }
 
+void
+addAllocationToTree(void)
+{
+	int bt_size;
+	int i, j;
+	void *bt[TR_BT_SIZE + 1];
+	CallerNode* cn = CallTree;
+	CallerNode** parent = &CallTree;
+	
+	bt_size = backtrace(bt, TR_BT_SIZE);
+	for (i = bt_size - 1; i >= 4; i--)
+	{
+		if (cn == NULL)
+		{
+			*parent = cn = (CallerNode*) malloc(sizeof(CallerNode));
+			cn->funcAdr = bt[i];
+			cn->mallocs = 0;
+			cn->noCallees = 0;
+			cn->maxCallees = 0;
+			cn->callees = NULL;
+		}
+		if (i == 4)
+			cn->mallocs++;
+		else
+		{
+			int knownCallee = 0;
+			for (j = 0; j < cn->noCallees; j++)
+				if (bt[i - 1] == cn->callees[j]->funcAdr)
+				{
+					parent = &cn->callees[j];
+					cn = cn->callees[j];
+					knownCallee = 1;
+					break;
+				}
+			if (!knownCallee)
+			{
+				if (cn->noCallees == cn->maxCallees)
+				{
+					/* Copy callees into new, larger array. */
+					CallerNode** tmp;
+					int newSize = 2 * cn->maxCallees;
+					if (newSize == 0)
+						newSize = 4;
+					tmp = (CallerNode**) malloc(newSize * sizeof(CallerNode*));
+					memcpy(tmp, cn->callees,
+						   cn->maxCallees * sizeof(CallerNode*));
+					if (cn->callees)
+						free(cn->callees);
+					cn->callees = tmp;
+					memset(&cn->callees[cn->maxCallees], 0,
+						   (newSize - cn->maxCallees) * sizeof(CallerNode*));
+					cn->maxCallees = newSize;
+				}
+				parent = &cn->callees[cn->noCallees++];
+				cn = 0;
+			}
+		}
+	}
+}
+
+static int
+removeBranchesBelowThreshold(CallerNode* root)
+{
+	int i;
+	int max;
+
+	if (!root)
+		return (0);
+	for (i = 0; i < root->noCallees; i++)
+	{
+		if (removeBranchesBelowThreshold(root->callees[i]))
+		{
+			free(root->callees[i]);
+			if (root->noCallees > 1)
+			{
+				root->callees[i] = root->callees[root->noCallees - 1];
+				root->callees[root->noCallees - 1] = 0;
+			}
+			else if (root->noCallees == 1)
+				root->callees[i] = 0;
+			
+			root->noCallees--;
+			i--;
+		}
+	}
+	if (root->noCallees == 0 && root->mallocs < 2000)
+		return (1);
+
+	return (0);
+}
+
+static void
+dumpCallTree(CallerNode* root, char* indentStr, int rawMode)
+{
+	int i;
+	Dl_info info;
+	char* newIndentStr;
+	size_t indDepth;
+
+	if (!root || !mallTreeStream)
+		return;
+
+	if (rawMode)
+	{
+		fprintf(mallTreeStream, "-");
+	}
+	else
+	{
+		newIndentStr = (char*) malloc(strlen(indentStr) + 2);
+		strcpy(newIndentStr, indentStr);
+		if (root->noCallees > 0)
+			strcat(newIndentStr, "+");
+		indDepth = strlen(newIndentStr);
+		fprintf(mallTreeStream, "%s- ", newIndentStr);
+	}
+
+	if (dladdr(root->funcAdr, &info) && info.dli_fname  && *info.dli_fname)
+	{
+		if (root->funcAdr >= (void *) info.dli_saddr)
+			sprintf(tr_offsetbuf, "+%#lx", (unsigned long)
+					(root->funcAdr - info.dli_saddr));
+		else
+			sprintf(tr_offsetbuf, "-%#lx", (unsigned long)
+					(info.dli_saddr - root->funcAdr));
+		fprintf(mallTreeStream, "%s%s%s%s%s[%p]",
+				info.dli_fname ?: "",
+				info.dli_sname ? "(" : "",
+				info.dli_sname ?: "",
+				info.dli_sname ? tr_offsetbuf : "",
+				info.dli_sname ? ")" : "",
+				root->funcAdr);
+	}
+	else
+	{
+		fprintf(mallTreeStream, "[%p]", root->funcAdr);
+	}
+	fprintf(mallTreeStream, ": %lu\n", root->mallocs);
+	if (indDepth > 1 && !rawMode)
+	{
+		if (newIndentStr[indDepth - 2] == '+')
+			newIndentStr[indDepth - 2] = '|';
+		else if (newIndentStr[indDepth - 2] == '\\')
+			newIndentStr[indDepth - 2] = ' ';
+	}
+
+	for (i = 0; i < root->noCallees; i++)
+	{
+		if (rawMode)
+			dumpCallTree(root->callees[i], "", 1);
+		else
+		{
+			if (i == root->noCallees - 1)
+				newIndentStr[indDepth - 1] = '\\';
+			dumpCallTree(root->callees[i], newIndentStr, rawMode);
+		}
+	}
+	if (rawMode)
+		fprintf(mallTreeStream, ".\n");
+	else
+		free(newIndentStr);
+	
+}
 
 #ifdef _LIBC
 extern void __libc_freeres (void);
@@ -492,9 +673,10 @@ release_libc_mem (void)
 #endif
 
 /* We enable tracing if either the environment variable MALLOC_TRACE
- * is set, or if the variable mallwatch has been patched to an address
- * that the debugging user wants us to stop on.  When patching
- * mallwatch, don't forget to set a breakpoint on tr_break! */
+ * or the variable MALLOC_TREE are set, or if the variable mallwatch
+ * has been patched to an address that the debugging user wants us to
+ * stop on.  When patching mallwatch, don't forget to set a breakpoint
+ * on tr_break! */
 void
 ktrace()
 {
@@ -511,11 +693,15 @@ ktrace()
 	/* When compiling the GNU libc we use the secure getenv function
 	 * which prevents the misuse in case of SUID or SGID enabled
      * programs.  */
-	mallfile = __secure_getenv (mallenv);
+	mallfile = __secure_getenv("MALLOC_TRACE");
+	mallTreeFile = __secure_getenv("MALLOC_TREE");
+	mallThreshold = atol(__secure_getenv("MALLOC_THRESHOLD"));
 #else
-	mallfile = getenv (mallenv);
+	mallfile = getenv("MALLOC_TRACE");
+	mallTreeFile = getenv("MALLOC_TREE");
+	mallThreshold = atol(getenv("MALLOC_THRESHOLD"));
 #endif
-	if (mallfile != NULL || mallwatch != NULL)
+	if (mallfile != NULL || mallTreeFile != NULL || mallwatch != NULL)
     {
 		mallstream = fopen (mallfile != NULL ? mallfile : "/dev/null", "w");
 		if (mallstream != NULL)
@@ -570,6 +756,17 @@ kuntrace()
 	__malloc_hook = tr_old_malloc_hook;
 	__realloc_hook = tr_old_realloc_hook;
 
+	if (removeBranchesBelowThreshold(CallTree))
+		CallTree = 0;
+	if (mallTreeFile)
+	{
+		if (mallTreeStream = fopen(mallTreeFile, "w"))
+		{
+			dumpCallTree(CallTree, "", 0);
+			fclose(mallTreeStream);
+		}
+	}
+
 	/* Flush cache. */
 	while (tr_cache_level)
 		tr_log(NULL, 0, 0, 0, TR_NONE);
@@ -610,3 +807,4 @@ int fork()
   }
   return result;
 }
+
