@@ -18,7 +18,7 @@ int main(int argc, char **argv)
    char buf[1024];
    if (argc != 3)
    {
-      fprintf(stderr, "Usage: match <map-file> <call-file>\n");
+      fprintf(stderr, "Usage: kmmatch <map-file> <call-file>\n");
       fprintf(stderr, "\n<map-file> is a file as output by 'nm'.\n");
       fprintf(stderr, "<call-file> is a file that contains symbols, e.g. a list of all\n"
                       "function calls made by a program.\n");
