@@ -1,19 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=KUIViewerPart
-Name[af]=KUIViewerDeel
-Name[de]=KUIViewer-Objekt
-Name[eo]=KUIViewer-Parto
-Name[es]=Parte
-Name[et]=KUIViewer komponent
-Name[id]=KUIViewerbagian
-Name[ko]=KUIViewer 부분
-Name[lt]=KUIViewerDalis
-Name[ro]=Componenta KUIViewer
-Name[sv]=KUIViewer-del
-Name[ven]=Tshipida
-Name[xh]=KUIViewerIqela
-Name[zu]=KUIViewerIngxenye
+Name[hi]=के-यूआई-व्यूअर-पार्ट
+Name[sv]=KUIviewer-del
+Name[ta]=KUIவியூவர் உறுப்பு
+Name[xx]=xxKUIViewerPartxx
 MimeType=application/x-designer;
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libkuiviewerpart
