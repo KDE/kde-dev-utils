@@ -19,7 +19,7 @@
 #include <qcursor.h>
 #include <qfile.h>
 #include <qobjectlist.h>
-#include <qpixmap.h> 
+#include <qpixmap.h>
 #include <qstyle.h>
 #include <qstylefactory.h>
 #include <qvariant.h>
@@ -74,8 +74,8 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setToolTip(i18n("Set the current style to view."));
     m_style->setMenuAccelsEnabled(true);
 
-    m_copy = KStdAction::copy(this, SLOT(slotGrab()), actionCollection()); 
-    
+    m_copy = KStdAction::copy(this, SLOT(slotGrab()), actionCollection());
+
     updateActions();
 
 // Commented out to fix warning (rich)
@@ -108,8 +108,7 @@ bool KUIViewerPart::openFile()
     if ( !file.open(IO_ReadOnly) )
         return false;
 
-    if ( m_view )
-	delete m_view;
+    delete m_view;
     m_view = QWidgetFactory::create( &file, 0, m_widget );
 
     file.close();
@@ -169,7 +168,7 @@ void KUIViewerPart::slotStyle(int)
 
     m_widget->show();
     QApplication::restoreOverrideCursor();
-    
+
     kapp->config()->setGroup("General");
     kapp->config()->writeEntry("widgetStyle", m_style->currentText());
     kapp->config()->sync();
