@@ -3,6 +3,7 @@
 
 #include <kaction.h>
 #include <kapplication.h>
+#include <kconfig.h>
 #include <kdebug.h>
 #include <kdialogbase.h>
 #include <kiconloader.h>
@@ -11,6 +12,7 @@
 #include <klistview.h>
 #include <kparts/genericfactory.h>
 #include <kstdaction.h>
+#include <kstyle.h>
 #include <qmetaobject.h>
 
 #include <qclipboard.h>
@@ -18,6 +20,7 @@
 #include <qfile.h>
 #include <qobjectlist.h>
 #include <qpixmap.h> 
+#include <qstyle.h>
 #include <qstylefactory.h>
 #include <qvariant.h>
 #include <qvbox.h>
@@ -50,9 +53,25 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
                 actionCollection(),
                 "change_style");
     m_style->setEditable(false);
-    m_style->setItems(QStyleFactory::keys());
-    m_style->setToolTip(i18n("Set the current style to view."));
+
+    KConfig cfg("kdeglobals");
+    cfg.setGroup("General");
+    const QString currentStyle = cfg.readEntry("widgetStyle", KStyle::defaultStyle());
+
+    const QStringList styles = QStyleFactory::keys();
+    m_style->setItems(styles);
     m_style->setCurrentItem(0);
+
+    QStringList::ConstIterator it = styles.begin();
+    QStringList::ConstIterator end = styles.end();
+    int idx = 0;
+    for (; it != end; ++it, ++idx) {
+        if (*it == currentStyle) {
+            m_style->setCurrentItem(idx);
+            break;
+        }
+    }
+    m_style->setToolTip(i18n("Set the current style to view."));
     m_style->setMenuAccelsEnabled(true);
 
     m_propsdlg = new KAction( i18n("&Properties"), QIconSet(BarIcon("properties")), 0,
