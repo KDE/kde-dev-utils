@@ -44,7 +44,7 @@ libktrace_la_LDFLAGS = -avoid-version
 libktrace_la_SOURCES = ksotrace.cpp ktrace.c
 libktrace_la_LIBADD = $(LIBDL)
 
-data_DATA = kde.excludes
-datadir = $(kde_datadir)/kmtrace
+exclude_DATA = kde.excludes
+excludedir = $(kde_datadir)/kmtrace
 
 include_HEADERS = ktrace.h
