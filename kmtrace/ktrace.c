@@ -47,18 +47,17 @@
 # define setvbuf(s, b, f, l) _IO_setvbuf (s, b, f, l)
 #endif
 
-/* This is the most important parameter. It should be set to
- * two times the maximum number of mallocs the application
- * uses at a time. IIRC prime numbers are very good candidates
- * for this value.
- * I added a list of some prime numbers for conveniance.
- * 10007, 20011, 30013, 40031, 50033, 60037, 70039, 80051, 90053, 100057,
- * 110059, 120067, 130069, 140071, 150077, 160079, 170081, 180097, 190121,
- * 200131, 210139, 220141, 230143, 240151, 250153, 260171, 270191, 280199,
- * 290201, 300221, 310223, 320237, 330241, 340261, 350281, 360287, 370373,
- * 380377, 390389
- */
-#define TR_CACHE_SIZE 80051
+/* This is the most important parameter. It should be set to two times
+ * the maximum number of mallocs the application uses at a time. Prime
+ * numbers are very good candidates for this value.  I added a list of
+ * some prime numbers for conveniance.
+ *
+ * 10007, 20011, 30013, 40031, 50033, 60037, 70039, 80051, 90053,
+ * 100057, 110059, 120067, 130069, 140071, 150077, 160079, 170081,
+ * 180097, 190121, 200131, 210139, 220141, 230143, 240151, 250153,
+ * 260171, 270191, 280199, 290201, 300221, 310223, 320237, 330241,
+ * 340261, 350281, 360287, 370373, 380377, 390389 */
+#define TR_CACHE_SIZE 100057
 
 /* The DELTA value is also a value for the maximum
  * number of iterations during a positive free/realloc
@@ -66,22 +65,24 @@
  * remainder! */
 #define DELTA 23
 
-/* The high and low mark control the flushing algorithm.
- * Whenever the hashtable reaches the high mark every
- * DELTAth entry is written to disk until the low
- * filling mark is reached. */
+/* The high and low mark control the flushing algorithm.  Whenever the
+ * hashtable reaches the high mark every DELTAth entry is written to
+ * disk until the low filling mark is reached. A hash table becomes
+ * very inefficient when it becomes filled to 50% or more. */
 #define TR_HIGH_MARK ((int) (TR_CACHE_SIZE * 0.5))
-#define TR_LOW_MARK ((int) ((TR_CACHE_SIZE * 0.5) - (TR_CACHE_SIZE / DELTA)))
+#define TR_LOW_MARK ((int) (TR_HIGH_MARK - (TR_CACHE_SIZE / DELTA)))
 
 /* Maximum call stack depth. No checking for overflows
  * is done. Adjust this value with care! */
-#define TR_BT_SIZE		60
+#define TR_BT_SIZE 100
 
 #define PROFILE 1
 
 /* The hash function. Since the smallest allocated block is probably
  * not smaller than 8 bytes we ignore the last 3 LSBs. */
-#define HASHFUNC(a) ((((unsigned long) a) >> 3) % TR_CACHE_SIZE)
+#define HASHFUNC(a) (((((unsigned long) a) << 1) ^ \
+                     (((unsigned long) a) >> 3)) % \
+                     TR_CACHE_SIZE)
 
 #define TR_HASHTABLE_SIZE	9973
 
@@ -131,6 +132,7 @@ static char tr_offsetbuf[20];
 static tr_entry tr_cache[TR_CACHE_SIZE];
 static int tr_cache_level;
 static int tr_cache_pos;
+static int tr_max_offset = 0;
 static void *tr_hashtable[TR_HASHTABLE_SIZE];
 #ifdef PROFILE
 static unsigned long tr_mallocs = 0;
@@ -191,12 +193,14 @@ static void __inline__
 tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 	   __malloc_size_t size, int op)
 {
-	int i, end;
+	int i, offset;
 
 	switch (op)
 	{
 	case TR_FREE:
-		i = end = HASHFUNC(ptr);
+		i = HASHFUNC(ptr);
+		if ((offset = (i + tr_max_offset + 1)) >= TR_CACHE_SIZE)
+			offset -= TR_CACHE_SIZE;
 		do
 		{
 			if (tr_cache[i].ptr == ptr)
@@ -211,7 +215,7 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 #ifdef PROFILE
 			tr_failed_free_lookups++;
 #endif
-		} while (i != end);
+		} while (i != offset);
 
 		/* We don't know this allocation, so it has been flushed to disk
 		 * already. So flush free as well. */
@@ -228,7 +232,9 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 		/* If old is 0 it's actually a malloc. */
 		if (old)
 		{
-			i = end = HASHFUNC(old);
+			i = HASHFUNC(old);
+ 			if ((offset = (i + tr_max_offset + 1)) >= TR_CACHE_SIZE)
+				offset -= TR_CACHE_SIZE;
 			do
 			{
 				if (tr_cache[i].ptr == old)
@@ -260,7 +266,8 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 				}
 				if (++i >= TR_CACHE_SIZE)
 					i = 0;
-			} while (i != end);
+			} while (i != offset);
+
 			fprintf(mallstream, "@\n");
 			bt_size = backtrace(bt, TR_BT_SIZE);
 			tr_backtrace(&(bt[1]), bt_size - 2);
@@ -276,29 +283,29 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 			/* The hash table becomes ineffective when the high mark has
 			 * been reached. We still need some more experience with
 			 * the low mark. It's unclear what reasonable values are. */
-			int pos = tr_cache_pos;
 #ifdef PROFILE
 			tr_flashes++;
 #endif
+			i = HASHFUNC(ptr);
 			do
 			{
-				if (tr_cache[pos].ptr)
+				if (tr_cache[i].ptr)
 				{
 #ifdef PROFILE
 					tr_logged_mallocs++;
 #endif
 					fprintf(mallstream, "@\n");
-					tr_backtrace(&(tr_cache[pos].bt[1]),
-								 tr_cache[pos].bt_size - 2);
+					tr_backtrace(&(tr_cache[i].bt[1]),
+								 tr_cache[i].bt_size - 2);
 					fprintf(mallstream, "+ %p %#lx\n",
-							tr_cache[pos].ptr, 
+							tr_cache[i].ptr, 
 							(unsigned long int)
-							tr_cache[pos].size);
-					tr_cache[pos].ptr = NULL;
+							tr_cache[i].size);
+					tr_cache[i].ptr = NULL;
 					tr_cache_level--;
 				}
-				if ((pos += DELTA) >= TR_CACHE_SIZE)
-					pos %= TR_CACHE_SIZE;
+				if ((i += DELTA) >= TR_CACHE_SIZE)
+					i -= TR_CACHE_SIZE;
 			} while (tr_cache_level > TR_LOW_MARK);
 		}
 
@@ -314,6 +321,10 @@ tr_log(const __ptr_t caller, __ptr_t ptr, __ptr_t old,
 			tr_malloc_collisions++;
 #endif
 		}
+		if ((offset = (i  - HASHFUNC(ptr))) < 0)
+			offset += TR_CACHE_SIZE;
+		if (offset > tr_max_offset)
+			tr_max_offset = offset;
 
 		tr_cache[i].ptr = ptr; 
 		tr_cache[i].size = size;
@@ -567,13 +578,13 @@ kuntrace()
 			"   Flashes:      %8ld\n"
 			"Mallocs:        %8ld   Frees:        %8ld   Leaks:        %8ld\n"
 			"Logged Mallocs: %8ld   Logged Frees: %8ld   Logged Leaks: %8ld\n"
-			"Avg. Free lookups: %ld  Malloc collisions: %ld\n",
+			"Avg. Free lookups: %ld  Malloc collisions: %ld  Max offset: %ld\n",
 			tr_max_mallocs, TR_CACHE_SIZE, tr_flashes,
 			tr_mallocs, tr_frees, tr_current_mallocs,
 			tr_logged_mallocs, tr_logged_frees,
 			tr_logged_mallocs - tr_logged_frees,
 			tr_failed_free_lookups / tr_frees,
-			tr_malloc_collisions);
+			tr_malloc_collisions, tr_max_offset);
 #endif
 	fclose (mallstream);
 	mallstream = NULL;
