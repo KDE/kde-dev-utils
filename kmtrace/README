@@ -1,0 +1,38 @@
+This is a KDE tool to assist with malloc debugging using glibc's "mtrace"
+functionality. Unfortunately the mtrace that is part of current (9/9/2000)
+glibc versions only logs the return-address of the malloc/free call.
+The file mtrace.c in this directory logs a complete backtrace upon malloc/
+free.
+
+Howto use:
+
+Install the glibc source and replace glibc-2.1/malloc/mtrace.c. Compile
+mtrace.o.
+
+Take the KDE application that you want to investigate and add
+
+	#include <mcheck.h>
+
+Add as first staement in main():
+
+	mtrace();
+
+You can now activate malloc logging by starting yourApplication as:
+
+	MALLOC_TRACE=/tmp/malloc.trace yourApplication
+
+This will run incredibly slow and generate a huge log in /tmp/malloc.trace.
+
+You can process this log with:
+
+	kmtrace < /tmp/malloc.trace > /tmp/malloc.parsed
+
+Have fun.
+
+Cheers,
+Waldo Bastian
+bastian@kde.org
+
+kmtrace.cpp by Waldo Bastian <bastian@kde.org>
+mtrace.c by Mike Haertel <mike@ai.mit.edu>
+mtrace.c patched by Andi Kleen <ak@suse.de>
