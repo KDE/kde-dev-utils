@@ -37,7 +37,7 @@ int main(int argc, char **argv)
       QString line = QString::fromLatin1(buf).stripWhiteSpace();
       QStringList split = QStringList::split(' ', line);
       if (split.count() <= 1)
-         return;
+         return 1;
          
       if (split[1] == "T")
       {
@@ -63,6 +63,6 @@ int main(int argc, char **argv)
       }
    }
    fclose(call_file);
- 
+   return 0; 
 }
 
