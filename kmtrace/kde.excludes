@@ -1,7 +1,10 @@
 # We don't care about initialisation done by X11.
 _XInitKeysymDB
 IceRegisterForProtocolSetup
+KDE_IceRegisterForProtocolSetup
 IceOpenConnection
+KDE_IceOpenConnection
+KDE_IceProtocolSetup
 #and we don't care about Xim memleaks
 qt_init_internal
 QApplication::create_xim
@@ -9,10 +12,12 @@ QApplication::create_xim
 QFontDatabase::QFontDatabase
 QFontDatabase::charSets
 QTimer::singleShot
+QTextCodec::codecForLocale
 # Yeah, yeah we know that this metaobject stuff is never free'ed.
 QMetaObject::new_meta
 QObject::initMetaObject
 QString::sprintf
+QWidget::createTLExtra
 # static KDE stuff
 KCmdLineArgs::addCmdLineOptions
 k_bindtextdomain
@@ -24,8 +29,11 @@ KGlobalSettings::menuFont
 KGlobalSettings::fixedFont
 KGlobalSettings::generalFont
 KGlobalSettings::toolBarFont
+KImageIOFactory::self
+objMap
 # Some C functions that allocate data for initialisation
 getpwuid
 adjtime
+getservbyname
 # nothing created by static objects can be a memory leak
 __static_initialization_and_destruction_0
