@@ -20,7 +20,7 @@ extern "C"
     {
         return new QUICreator;
     }
-};
+}
 
 
 bool QUICreator::create(const QString &path, int width, int height, QImage &

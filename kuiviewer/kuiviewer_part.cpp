@@ -28,7 +28,7 @@
 #include <qwidgetfactory.h>
 
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
-K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory );
+K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
                                   QObject *parent, const char *name,
