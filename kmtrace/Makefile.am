@@ -34,7 +34,10 @@ match_LDFLAGS = $(all_libraries)
 bin_SCRIPTS = kminspector
 
 lib_LIBRARIES = libktrace_s.a
-libktrace_s_a_SOURCES = ktrace.c
+libktrace_s_a_SOURCES = ktrace_s.c
+
+ktrace_s.c: ktrace.c
+	$(LN_S) $< $@
 
 lib_LTLIBRARIES = libktrace.la
 libktrace_la_LDFLAGS = -version-info 1:0 
@@ -45,4 +48,3 @@ data_DATA = kde.excludes
 datadir = $(kde_datadir)/kmtrace
 
 include_HEADERS = ktrace.h
-
