@@ -68,7 +68,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     QStringList::ConstIterator end = styles.end();
     int idx = 0;
     for (; it != end; ++it, ++idx) {
-        if (*it == currentStyle) {
+        if ((*it).lower() == currentStyle.lower()) {
             m_style->setCurrentItem(idx);
             break;
         }
