@@ -3,6 +3,7 @@
 #include <qstringlist.h>
 #include <qtextstream.h>
 #include <qsortedlist.h>
+#include <qfile.h>
 #include <stdlib.h>
 
 
@@ -38,6 +39,8 @@ QIntDict<Entry> *entryDict = 0;
 QIntDict<char> *symbolDict = 0;
 QIntDict<char> *formatDict = 0;
 QSortedList<Entry> *entryList = 0;
+
+const char *unknown = "<unknown>";
 
 int fromHex(const QString &str);
 void parseLine(const QString &line, char operation);
@@ -97,9 +100,50 @@ void sortBlocks()
    QIntDictIterator<Entry> it(*entryDict);
    for(;it.current(); ++it)
    {
-      entryList->append(it.current());
+      Entry *entry = it.current();
+      entryList->append(entry);
+      for(int i = 0; entry->backtrace[i]; i++)
+      {
+         if (!symbolDict->find(entry->backtrace[i]))
+             symbolDict->insert(entry->backtrace[i], unknown);
+      }
    }
    entryList->sort();
+}
+
+void lookupSymbols(QTextStream &stream)
+{
+  int i = 0;
+  int symbols = 0;
+  while(!stream.atEnd())
+  {
+     QString line2 = stream.readLine();
+     if (line2[0] == '/')
+     {
+        int i = line2.findRev('[');
+        if (i>0)
+        {
+           QString addr = line2.mid(i);
+           int i_addr = fromHex(addr);
+           const char* str = symbolDict->find(i_addr);
+           if (str == unknown)
+           {
+               char *str = qstrdup(line2.left(i).latin1());
+               symbolDict->replace(i_addr, str);
+               symbols++;
+           }
+        }
+     }
+     else if (line2[0] == '+')
+     {
+        i++;
+        if (i & 128)
+        {
+           fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols", i, symbols, symbolDict->count());
+        }
+     }
+  }
+  fprintf(stderr, "\rLooking up symbols: %d found %d of %d symbols\n", i, symbols, symbolDict->count());
 }
 
 char *lookupAddress(int addr)
@@ -109,7 +153,8 @@ char *lookupAddress(int addr)
    QCString s = symbolDict->find(addr);
    if (s.isEmpty())
    {
-     s = "<unknown>";
+fprintf(stderr, "Error!\n");
+     exit(1);
    }
    else
    {
@@ -150,13 +195,29 @@ void dumpBlocks()
 
 int main(int argc, char *argv[])
 {
+  if (argc != 2)
+  {
+     fprintf(stderr, "Usage: kmtrace <mtrace-file>\n");
+     exit(1);
+  }
+  QString mtrace_filename = QFile::decodeName(argv[1]);
+  QFile mtrace_file(mtrace_filename);
+  if (!mtrace_file.open(IO_ReadOnly))
+  {
+     fprintf(stderr, "Can't open %s\n", mtrace_filename.local8Bit().data());
+     exit(1);
+  }
+
   entryDict = new QIntDict<Entry>(9973);
   symbolDict = new QIntDict<char>(9973);
   formatDict = new QIntDict<char>(9973);
   entryList = new QSortedList<Entry>;
  
-  QTextIStream stream( stdin );
+  QTextStream stream( &mtrace_file );
 
+  int i = 0;
+
+  fprintf(stderr, "Running\n");
   QString line;
   while(!stream.atEnd())
   {
@@ -174,15 +235,20 @@ int main(int argc, char *argv[])
         {
            QString addr = line2.mid(i);
            line = line + ' ' + addr;
-           char *str = qstrdup(line2.left(i).latin1());
-           symbolDict->replace(fromHex(addr), str);
+//           char *str = qstrdup(line2.left(i).latin1());
+//           symbolDict->replace(fromHex(addr), str);
         }
      }
      else if (line2[0] == '+')
      {
+        i++;
         line = line + ' ' + line2;
         parseLine(line, '+');
         line = QString::null;
+        if (i & 128)
+        {
+           fprintf(stderr, "\rTotal allocations: %d still allocated: %d", i, entryDict->count());
+        }
      }
      else if (line2[0] == '-')
      {
@@ -191,10 +257,15 @@ int main(int argc, char *argv[])
         line = QString::null;
      }
   }
+  fprintf(stderr, "\rTotal allocations: %d still allocated: %d\n", i, entryDict->count());
   printf("Number of unfree'ed blocks: %d\n", entryDict->count());
   fprintf(stderr, "Sorting...\n");
   sortBlocks();
+  fprintf(stderr, "Looking up symbols...\n");
+  mtrace_file.reset();
+  lookupSymbols(stream);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
   fprintf(stderr, "Done.\n");
+  return 0;
 }  
