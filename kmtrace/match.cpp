@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kcmdlineargs.h>
 
 int main(int argc, char **argv)
