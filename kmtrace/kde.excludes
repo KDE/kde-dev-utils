@@ -12,6 +12,7 @@ QTimer::singleShot
 # Yeah, yeah we know that this metaobject stuff is never free'ed.
 QMetaObject::new_meta
 QObject::initMetaObject
+QString::sprintf
 # static KDE stuff
 KCmdLineArgs::addCmdLineOptions
 k_bindtextdomain
