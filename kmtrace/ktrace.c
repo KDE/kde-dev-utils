@@ -32,6 +32,7 @@
 #define	_MALLOC_INTERNAL
 #include <pthread.h>
 #define _LIBC
+#define NOT_IN_libc
 #include <malloc.h>
 #include <bits/libc-lock.h>
 #endif
