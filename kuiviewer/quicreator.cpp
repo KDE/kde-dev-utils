@@ -30,6 +30,8 @@
 
 #include "quicreator.h"
 
+#include <kdemacros.h>
+
 extern "C"
 {
     KDE_EXPORT ThumbCreator *new_creator()
