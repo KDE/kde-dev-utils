@@ -576,7 +576,7 @@ removeBranchesBelowThreshold(CallerNode* root)
 			i--;
 		}
 	}
-	if (root->noCallees == 0 && root->mallocs < 2000)
+	if (root->noCallees == 0 && root->mallocs < mallThreshold )
 		return (1);
 
 	return (0);
@@ -695,11 +695,13 @@ ktrace()
      * programs.  */
 	mallfile = __secure_getenv("MALLOC_TRACE");
 	mallTreeFile = __secure_getenv("MALLOC_TREE");
-	mallThreshold = atol(__secure_getenv("MALLOC_THRESHOLD"));
+	if( __secure_getenv("MALLOC_THRESHOLD") != NULL )
+	    mallThreshold = atol(__secure_getenv("MALLOC_THRESHOLD"));
 #else
 	mallfile = getenv("MALLOC_TRACE");
 	mallTreeFile = getenv("MALLOC_TREE");
-	mallThreshold = atol(getenv("MALLOC_THRESHOLD"));
+	if( getenv("MALLOC_THRESHOLD") != NULL )
+	    mallThreshold = atol(getenv("MALLOC_THRESHOLD"));
 #endif
 	if (mallfile != NULL || mallTreeFile != NULL || mallwatch != NULL)
     {
