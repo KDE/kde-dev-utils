@@ -15,7 +15,7 @@ WARNING:
 
 TODO:
 
- XEmacs and vi shortcuts to insert begin/end macros around a block
+ KDevelop, XEmacs and vi shortcuts to insert begin/end macros around a block
  of code (e.g. after selecting it) - this macro would also insert the
  int variable, and another shortcut for inserting the print macro.
 
