@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
+#include <kstddirs.h>
 #include <kcmdlineargs.h>
 
 extern "C" {
@@ -86,7 +87,7 @@ void parseLine(const QCString &_line, char operation)
         if (*line) cols[i++] = line;
      }
      else line++;
-  }  
+  }
   int cols_count = i;
   if (cols_count > 83) fprintf(stderr, "Error cols_count = %d\n", cols_count);
   if (cols_count < 4) return;
@@ -181,7 +182,7 @@ int lookupSymbols(FILE *stream)
 {
   int i = 0;
   int symbols = 0;
-  char line2[1024]; 
+  char line2[1024];
   while(!feof(stream))
   {
      fgets(line2, 1023, stream);
@@ -232,7 +233,7 @@ void lookupUnknownSymbols(const char *appname)
    }
    inputFile.close();
    QCString command;
-   command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname, 
+   command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname,
 	QFile::encodeName(inputFile.name()).data(),
 	QFile::encodeName(outputFile.name()).data());
 fprintf(stderr, "Executing '%s'\n", command.data());
@@ -335,11 +336,10 @@ void dumpBlocks()
    int filterCount = 0;
    for(Entry *entry = entryList->first();entry; entry = entryList->next())
    {
-      bool exclude = false;
       for(int i = 0; entry->backtrace[i]; i++)
       {
          const char *str = lookupAddress(entry->backtrace[i]);
-         if (str == excluded) 
+         if (str == excluded)
          {
             entry->total_size = 0;
             continue;
@@ -366,7 +366,7 @@ void dumpBlocks()
 void readExcludeFile(const char *name)
 {
    FILE *stream = fopen(name, "r");
-   if (!stream) 
+   if (!stream)
    {
       fprintf(stderr, "Error: Can't open %s.\n", name);
       exit(1);
@@ -409,10 +409,17 @@ int main(int argc, char *argv[])
 
   const char *logfile = args->arg(0);
   QCString exe = args->getOption("exe");
-  QCString exclude = args->getOption("exclude");
+  QCString exclude;
 
   excludes = new QStrList;
 
+  exclude = QFile::encodeName(locate("data", "kmtrace/kde.excludes"));
+  if(!exclude.isEmpty())
+  {
+      fprintf(stderr, "found kde.excludes\n");
+      readExcludeFile(exclude);
+  }
+  exclude = args->getOption("exclude");
   if (!exclude.isEmpty())
   {
      fprintf(stderr, "Reading %s\n", exclude.data());
@@ -430,7 +437,7 @@ int main(int argc, char *argv[])
   symbolDict = new QIntDict<char>(9973);
   formatDict = new QIntDict<char>(9973);
   entryList = new QSortedList<Entry>;
- 
+
   fprintf(stderr, "Running\n");
   QCString line;
   char line2[1024];
@@ -438,7 +445,7 @@ int main(int argc, char *argv[])
   {
      fgets(line2, 1023, stream);
      line2[strlen(line2)-1] = 0;
-     if (line2[0] == '=') 
+     if (line2[0] == '=')
 	printf("%s\n", line2);
      else if (line2[0] == '@')
         line = 0;
@@ -517,4 +524,4 @@ int main(int argc, char *argv[])
   dumpBlocks();
   fprintf(stderr, "Done.\n");
   return 0;
-}  
+}

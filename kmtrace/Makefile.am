@@ -28,4 +28,7 @@ kmtrace_LDFLAGS = $(all_libraries)
 lib_LIBRARIES = libktrace.a
 libktrace_a_SOURCES = ktrace.c
 
+data_DATA = kde.excludes
+datadir = $(kde_datadir)/apps/kmtrace
+
 include_HEADERS = ktrace.h

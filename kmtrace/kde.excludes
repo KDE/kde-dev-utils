@@ -1,4 +1,7 @@
 # We don't care about initialisation done by X11.
 _XInitKeysymDB
+#and we don't care about Xim memleaks
+qt_init_internal
+QApplication::create_xim
 # Yeah, yeah we know that this metaobject stuff is never free'ed.
 QMetaObject::new_meta
