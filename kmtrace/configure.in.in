@@ -2,10 +2,11 @@ dnl AC_OUTPUT( kmtrace/kminspector )
 
 case "$host" in
    *-gnu)
-      kde_compile_kmtrace=$GCC
-      if test ! -f /usr/lib/libiberty.a; then
-         kde_compile_kmtrace=no
-      fi
+      saved_LIBS="$LIBS"
+      LIBS="$LIBS -Wl,-Bstatic -liberty -Wl,-Bdynamic"
+      AC_TRY_LINK([], [], [kde_compile_kmtrace=$GCC], [kde_compile_kmtrace=no])
+      AC_SUBST(KMTRACE_LIBS, [$LIBS])
+      LIBS="$saved_LIBS"
       ;;
    *)
       kde_compile_kmtrace=no
