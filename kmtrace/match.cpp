@@ -1,12 +1,12 @@
-#include <qintdict.h>
+#include <q3intdict.h>
 #include <stdio.h>
 #include <qstringlist.h>
-#include <qstrlist.h>
+#include <q3strlist.h>
 #include <qtextstream.h>
-#include <qsortedlist.h>
+#include <q3sortedlist.h>
 #include <qfile.h>
-#include <qtl.h>
-#include <qvaluelist.h>
+#include <q3tl.h>
+#include <q3valuelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
    }
    
    int i = 1;
-   QDict<int> dict(20011);
+   Q3Dict<int> dict(20011);
 
    FILE *map_file = fopen(argv[1], "r");
    if (!map_file)

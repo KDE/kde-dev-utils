@@ -22,12 +22,12 @@
 #ifndef KUIVIEWERPART_H
 #define KUIVIEWERPART_H
 
-#include <qguardedptr.h>
+#include <qpointer.h>
 #include <kparts/part.h>
 
 class QWidget;
 class KURL;
-class QVBox;
+class Q3VBox;
 class KAboutData;
 class KListAction;
 class KListView;
@@ -70,8 +70,8 @@ protected:
     virtual bool openFile();
 
 private:
-    QVBox *m_widget;
-    QGuardedPtr<QWidget> m_view;
+    Q3VBox *m_widget;
+    QPointer<QWidget> m_view;
     KListAction *m_style;
     KAction *m_copy;
 };

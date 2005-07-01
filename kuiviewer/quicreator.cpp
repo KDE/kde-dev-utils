@@ -47,7 +47,7 @@ img)
 	if ( w )
 	{
 		QPixmap p = QPixmap::grabWidget(w);
-		img = p.convertToImage().smoothScale(width,height,QImage::ScaleMin);
+		img = p.convertToImage().smoothScale(width,height,Qt::KeepAspectRatio);
 		return true;
 	}
 	else

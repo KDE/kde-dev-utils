@@ -1,12 +1,14 @@
-#include <qintdict.h>
+#include <q3intdict.h>
+//Added by qt3to4:
+#include <Q3CString>
 #include <stdio.h>
 #include <qstringlist.h>
-#include <qstrlist.h>
+#include <q3strlist.h>
 #include <qtextstream.h>
-#include <qsortedlist.h>
+#include <q3sortedlist.h>
 #include <qfile.h>
-#include <qtl.h>
-#include <qvaluelist.h>
+#include <q3tl.h>
+#include <q3valuelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
@@ -43,7 +45,7 @@ int main(int argc, char **argv)
    while(!feof(stdin))
    {
       fgets(buf, 1024, stdin);
-      QCString line = buf;
+      Q3CString line = buf;
       line = line.stripWhiteSpace();
       char *res = cplus_demangle(line.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
       if (res)

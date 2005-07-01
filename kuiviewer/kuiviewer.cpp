@@ -26,9 +26,11 @@
 
 #include <kdebug.h>
 
-#include <qobjectlist.h>
-#include <qdockwindow.h>
+#include <qobject.h>
+#include <q3dockwindow.h>
 #include <qpixmap.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kurl.h>
 
@@ -145,7 +147,7 @@ void KUIViewer::fileOpen()
     }
 }
 
-void KUIViewer::takeScreenshot(const QCString &filename, int w, int h){
+void KUIViewer::takeScreenshot(const Q3CString &filename, int w, int h){
     if(!m_part)
         return;
     if(w!=-1 && h!=-1){
