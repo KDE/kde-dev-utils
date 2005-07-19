@@ -16,4 +16,3 @@ esac
 if test ! "x$kde_compile_kmtrace" = "xyes"; then
    DO_NOT_COMPILE="$DO_NOT_COMPILE kmtrace"
 fi
-
