@@ -43,7 +43,7 @@ QString libkstartperf()
 
     // Find the name of the .so file by reading the .la file
     QFile la(la_file);
-    if (la.open(IO_ReadOnly))
+    if (la.open(QIODevice::ReadOnly))
     {
 	QTextStream is(&la);
 	QString line;

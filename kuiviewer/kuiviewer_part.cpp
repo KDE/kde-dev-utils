@@ -39,12 +39,12 @@
 #include <qclipboard.h>
 #include <qcursor.h>
 #include <qfile.h>
-#include <qobjectlist.h>
+#include <qobject.h>
 #include <qpixmap.h>
 #include <qstyle.h>
 #include <qstylefactory.h>
 #include <qvariant.h>
-#include <qvbox.h>
+#include <q3vbox.h>
 #include <qvariant.h>
 #include <qwidgetfactory.h>
 
@@ -62,7 +62,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     KGlobal::locale()->insertCatalogue("kuiviewer");
 
     // this should be your custom internal widget
-    m_widget = new QVBox( parentWidget, widgetName );
+    m_widget = new Q3VBox( parentWidget, widgetName );
 
     // notify the part that this is our internal widget
     setWidget(m_widget);
@@ -71,7 +71,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     setXMLFile("kuiviewer_part.rc");
 
     m_style = new KListAction( i18n("Style"),
-                CTRL + Key_S,
+                Qt::CTRL + Qt::Key_S,
                 this,
                 SLOT(slotStyle(int)),
                 actionCollection(),
@@ -128,7 +128,7 @@ bool KUIViewerPart::openFile()
 {
     // m_file is always local so we can use QFile on it
     QFile file( m_file );
-    if ( !file.open(IO_ReadOnly) )
+    if ( !file.open(QIODevice::ReadOnly) )
         return false;
 
     delete m_view;

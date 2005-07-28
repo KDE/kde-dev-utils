@@ -29,6 +29,8 @@
 
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 class KToggleAction;
 class KListView;
@@ -71,7 +73,7 @@ public:
      * @param h height of image
      * @param w width of image
      */
-    void takeScreenshot(const QCString &filename, int h=-1, int w=-1);
+    void takeScreenshot(const Q3CString &filename, int h=-1, int w=-1);
 
 protected:
     /**
