@@ -46,7 +46,6 @@
 #include <qvariant.h>
 #include <q3vbox.h>
 #include <qvariant.h>
-#include <qwidgetfactory.h>
 
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
@@ -79,7 +78,8 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setEditable(false);
 
     kapp->config()->setGroup("General");
-    const QString currentStyle = kapp->config()->readEntry("currentWidgetStyle", KStyle::defaultStyle());
+#warning "QT4 : KStyle::defaultStyle() doesn't exist";
+    const QString currentStyle = kapp->config()->readEntry("currentWidgetStyle"/*, KStyle::defaultStyle()*/);
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(styles);
@@ -182,7 +182,7 @@ void KUIViewerPart::slotStyle(int)
     QStyle*  style     = QStyleFactory::create(styleName);
     kdDebug() << "Change style..." << endl;
     m_widget->hide();
-    QApplication::setOverrideCursor( WaitCursor );
+    QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);
 
     QObjectList *l = m_widget->queryList( "QWidget" );
