@@ -73,7 +73,7 @@ int fromHex(const char *str)
 {
    if (*str == '[') str++;
    str += 2; // SKip "0x"
-   return strtol(str, NULL, 16);
+   return strtoll(str, NULL, 16);
 }
 
 // [address0][address1] .... [address] + base size
