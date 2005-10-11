@@ -11,6 +11,7 @@ Exec=kuiviewer %i %m -caption "%c"
 Icon=kuiviewer
 Type=Application
 GenericName=Qt Designer UI File Viewer
+GenericName[br]=Ur gweler restr UI Ergrafer Qt
 GenericName[bs]=Preglednik Qt Designer UI datoteka
 GenericName[ca]=Visor de fitxer UI de Qt Designer
 GenericName[cs]=Prohlížeč UI souborů z Qt Designeru
