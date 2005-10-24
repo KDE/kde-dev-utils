@@ -46,14 +46,14 @@
 #include <qvariant.h>
 #include <q3vbox.h>
 #include <qvariant.h>
-
+#include <QWidgetFactory>
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
                                   QObject *parent, const char *name,
                                   const QStringList & /*args*/ )
-    : KParts::ReadOnlyPart(parent, name)
+    : KParts::ReadOnlyPart(parent)
 {
     // we need an instance
     setInstance( KUIViewerPartFactory::instance() );

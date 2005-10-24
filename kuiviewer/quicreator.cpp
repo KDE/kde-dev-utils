@@ -26,8 +26,7 @@
 
 #include <qpixmap.h>
 #include <qimage.h>
-#include <qwidgetfactory.h>
-
+#include <QWidgetFactory>
 #include "quicreator.h"
 
 #include <kdemacros.h>
