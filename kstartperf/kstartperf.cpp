@@ -82,7 +82,7 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions(options);
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-    KApplication *app = new KApplication(false, false);
+    KApplication *app = new KApplication(false);
 
     // Check arguments
 
