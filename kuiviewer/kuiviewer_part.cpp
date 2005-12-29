@@ -21,7 +21,6 @@
 
 #include "kuiviewer_part.h"
 #include "kuiviewer_part.moc"
-
 #include <kaction.h>
 #include <kapplication.h>
 #include <kconfig.h>
@@ -46,7 +45,6 @@
 #include <qvariant.h>
 #include <q3vbox.h>
 #include <qvariant.h>
-#include <QWidgetFactory>
 #include <kglobal.h>
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
@@ -154,7 +152,7 @@ bool KUIViewerPart::openURL( const KURL& url)
 
     m_url = url;
     m_file = QString::null;
-    if (KIO::NetAccess::download(url, m_file))
+    if (KIO::NetAccess::download(url, m_file,0L))
 	return openFile();
     else
 	return false;
@@ -186,10 +184,12 @@ void KUIViewerPart::slotStyle(int)
     QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);
 
-    QObjectList *l = m_widget->queryList( "QWidget" );
-    for ( QObject *o = l->first(); o; o = l->next() )
-        ( static_cast<QWidget *>(o) )->setStyle( style );
-    delete l;
+    QList<QObject *>l = m_widget->queryList( "QWidget" );
+	if (l.count()>0){
+		for (int i = 0; i < l.size(); ++i) {
+			( static_cast<QWidget *>(l.at(i)) )->setStyle( style );
+		}
+	}
 
     m_widget->show();
     QApplication::restoreOverrideCursor();

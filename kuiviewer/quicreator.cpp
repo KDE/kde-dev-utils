@@ -42,7 +42,7 @@ extern "C"
 bool QUICreator::create(const QString &path, int width, int height, QImage &
 img)
 {
-	QWidget *w = QWidgetFactory::create(path, 0, 0);
+	QWidget *w = QWidgetFactory::create(path, 0, 0,img);
 	if ( w )
 	{
 		QPixmap p = QPixmap::grabWidget(w);
