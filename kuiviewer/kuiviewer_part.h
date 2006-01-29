@@ -26,7 +26,7 @@
 #include <kparts/part.h>
 
 class QWidget;
-class KURL;
+class KUrl;
 class Q3VBox;
 class KAboutData;
 class KListAction;
@@ -58,7 +58,7 @@ public:
     static KAboutData *createAboutData();
 
 public slots:
-     bool openURL( const KURL& );
+     bool openURL( const KUrl& );
      void slotStyle(int);
      void slotGrab();
      void updateActions();

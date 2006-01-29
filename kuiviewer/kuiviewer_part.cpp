@@ -144,7 +144,7 @@ bool KUIViewerPart::openFile()
     return true;
 }
 
-bool KUIViewerPart::openURL( const KURL& url)
+bool KUIViewerPart::openURL( const KUrl& url)
 {
     // just for fun, set the status bar
     emit setStatusBarText( url.prettyURL() );

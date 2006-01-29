@@ -91,7 +91,7 @@ KUIViewer::~KUIViewer()
 {
 }
 
-void KUIViewer::load(const KURL& url)
+void KUIViewer::load(const KUrl& url)
 {
     m_part->openURL( url );
     adjustSize();
@@ -123,7 +123,7 @@ void KUIViewer::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    KURL file_name =
+    KUrl file_name =
         KFileDialog::getOpenURL( QString::null, i18n("*.ui *.UI|User Interface Files"), this );
 
     if (file_name.isEmpty() == false)
