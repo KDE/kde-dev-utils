@@ -46,6 +46,6 @@
  */
 #define PROFILE_METHOD_BEGIN(sym) extern int sym; QTime profile_dt##sym; profile_dt##sym.start();
 #define PROFILE_METHOD_END(sym) extern int sym; sym += profile_dt##sym.elapsed();
-#define PROFILE_METHOD_PRINT(sym, name) extern int sym; kdDebug() << name << " took " << sym << " milliseconds" << endl;
+#define PROFILE_METHOD_PRINT(sym, name) extern int sym; kDebug() << name << " took " << sym << " milliseconds" << endl;
 
 #endif // KPROFILE_METHOD_H

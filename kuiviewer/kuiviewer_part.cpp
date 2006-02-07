@@ -179,7 +179,7 @@ void KUIViewerPart::slotStyle(int)
 
     QString  styleName = m_style->currentText();
     QStyle*  style     = QStyleFactory::create(styleName);
-    kdDebug() << "Change style..." << endl;
+    kDebug() << "Change style..." << endl;
     m_widget->hide();
     QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);
