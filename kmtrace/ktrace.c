@@ -800,7 +800,8 @@ int fork()
   {
     if (mallstream)
     {
-      fclose(mallstream);
+      close(fileno(mallstream));
+      mallstream = NULL;
       __free_hook = tr_old_free_hook;
       __malloc_hook = tr_old_malloc_hook;
       __realloc_hook = tr_old_realloc_hook;
