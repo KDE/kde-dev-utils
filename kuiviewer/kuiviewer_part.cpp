@@ -29,7 +29,7 @@
 #include <kiconloader.h>
 #include <kinstance.h>
 #include <kio/netaccess.h>
-#include <klistview.h>
+#include <k3listview.h>
 #include <kparts/genericfactory.h>
 #include <kstdaction.h>
 #include <kstyle.h>

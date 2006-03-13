@@ -33,7 +33,7 @@
 #include <Q3CString>
 
 class KToggleAction;
-class KListView;
+class K3ListView;
 
 namespace KParts {
 class ReadOnlyPart;
