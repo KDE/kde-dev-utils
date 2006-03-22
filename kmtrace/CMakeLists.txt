@@ -11,7 +11,7 @@ kde4_automoc(${kmtrace_SRCS})
 
 kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
-target_link_libraries(kmtrace  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} )
 
 install_targets(/bin kmtrace )
 
@@ -24,7 +24,7 @@ kde4_automoc(${demangle_SRCS})
 
 kde4_add_executable(demangle ${demangle_SRCS})
 
-target_link_libraries(demangle  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} )
 
 install_targets(/bin demangle )
 
@@ -37,7 +37,7 @@ kde4_automoc(${kmmatch_SRCS})
 
 kde4_add_executable(kmmatch ${kmmatch_SRCS})
 
-target_link_libraries(kmmatch  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(kmmatch  ${KDE4_KDECORE_LIBS} )
 
 install_targets(/bin kmmatch )
 
@@ -50,7 +50,7 @@ kde4_automoc(${ktrace_LIB_SRCS})
 
 kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
-target_link_libraries(ktrace  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} )
 
 set_target_properties(ktrace PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install_targets(${LIB_INSTALL_DIR} ktrace )
