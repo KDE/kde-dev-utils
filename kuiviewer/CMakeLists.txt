@@ -28,7 +28,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kuiviewerpart )
 
 target_link_libraries(kuiviewerpart  ${KDE4_KDECORE_LIBS} kparts qui )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kuiviewerpart )
+install_targets(${PLUGIN_INSTALL_DIR} kuiviewerpart )
 
 
 ########### next target ###############
@@ -43,7 +43,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} quithumbnail )
 
 target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} qui )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 quithumbnail )
+install_targets(${PLUGIN_INSTALL_DIR} quithumbnail )
 
 
 ########### install files ###############
