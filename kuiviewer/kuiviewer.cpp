@@ -150,6 +150,7 @@ void KUIViewer::fileOpen()
 void KUIViewer::takeScreenshot(const Q3CString &filename, int w, int h){
     if(!m_part)
         return;
+    showMinimized();
     if(w!=-1 && h!=-1){
         // resize widget to the desired size
         m_part->widget()->setMinimumSize(w, h);
