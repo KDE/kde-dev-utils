@@ -11,7 +11,7 @@ kde4_automoc(${kmtrace_SRCS})
 
 kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
-target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} )
+target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} -liberty)
 
 install_targets(/bin kmtrace )
 
@@ -24,7 +24,7 @@ kde4_automoc(${demangle_SRCS})
 
 kde4_add_executable(demangle ${demangle_SRCS})
 
-target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} )
+target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} -liberty)
 
 install_targets(/bin demangle )
 

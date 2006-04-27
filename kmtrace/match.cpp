@@ -6,6 +6,7 @@
 #include <q3sortedlist.h>
 #include <qfile.h>
 #include <q3tl.h>
+#include <q3dict.h>
 #include <q3valuelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>

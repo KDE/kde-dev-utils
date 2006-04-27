@@ -68,7 +68,7 @@ int totalBytes = 0;
 int maxBytes;
 
 int fromHex(const char *str);
-void parseLine(const Q3CString &_line, char operation);
+void parseLine(const QString &_line, char operation);
 void dumpBlocks();
 
 int fromHex(const char *str)
@@ -79,7 +79,7 @@ int fromHex(const char *str)
 }
 
 // [address0][address1] .... [address] + base size
-void parseLine(const Q3CString &_line, char operation)
+void parseLine(const QString &_line, char operation)
 {
   char *line= (char *) _line.data();
   const char *cols[200];
@@ -582,7 +582,7 @@ int main(int argc, char *argv[])
 {
   KInstance instance("kmtrace");
 
-  KCmdLineArgs::init(argc, argv, "kmtrace", "KDE Memory leak tracer", "v1.0");
+  KCmdLineArgs::init(argc, argv, "kmtrace", "kmtrace", "KDE Memory leak tracer", "v1.0");
 
   KCmdLineArgs::addCmdLineOptions(options);
 
@@ -624,7 +624,7 @@ int main(int argc, char *argv[])
   entryList = new Q3SortedList<Entry>;
 
   fprintf(stderr, "Running\n");
-  Q3CString line;
+  QString line;
   char line2[1024];
   while(!feof(stream))
   {
@@ -651,7 +651,7 @@ int main(int argc, char *argv[])
        }
      }
      else if (line2[0] == '@')
-        line = 0;
+        line = QString();
      else if (line2[0] == '[')
         line = line + ' ' + line2;
      else if (line2[0] == '+')
@@ -659,7 +659,7 @@ int main(int argc, char *argv[])
         allocCount++;
         line = line + ' ' + line2;
         parseLine(line, '+');
-        line = 0;
+        line = QString();
         if (allocCount & 128)
         {
            fprintf(stderr, "\rTotal long term allocs: %d still allocated: %d   ", allocCount, entryDict->count());
@@ -669,13 +669,13 @@ int main(int argc, char *argv[])
      {
         line = line + ' ' + line2;
         parseLine(line, '-');
-        line = 0;
+        line = QString();
      }
      else if (line2[0] == '<')
      {
         line2[0] = '-';
         // First part of realloc (free)
-        Q3CString reline = line + ' ' + line2;
+        QString reline = line + ' ' + line2;
         parseLine(reline, '-');
      }
      else if (line2[0] == '>')
@@ -684,14 +684,14 @@ int main(int argc, char *argv[])
         // Second part of realloc (alloc)
         line = line + ' ' + line2;
         parseLine(line, '+');
-        line = 0;
+        line = QString();
      }
      else
      {
-        char *addr = index(line2,'[');
+        const char *addr = index(line2,'[');
         if (addr)
         {
-           line = line + ' ' + addr;
+           line = line + QChar(' ') + addr;
         }
      }
   }
