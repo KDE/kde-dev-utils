@@ -20,14 +20,12 @@
  *  Boston, MA 02110-1301, USA.
  **/
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <qpixmap.h>
 #include <qimage.h>
-#include <QWidgetFactory>
 #include "quicreator.h"
+#include <QFormBuilder>
 
 #include <kdemacros.h>
 
@@ -39,14 +37,18 @@ extern "C"
     }
 }
 
-bool QUICreator::create(const QString &path, int width, int height, QImage &
-img)
+bool QUICreator::create(const QString &path, int width, int height, QImage & img)
 {
-	QWidget *w = QWidgetFactory::create(path, 0, 0,img);
+	QFormBuilder builder;
+        QFile file(path);
+        if (!file.open(QFile::ReadOnly))
+		return false;
+        QWidget *w = builder.load(&file);
+        file.close();
 	if ( w )
 	{
 		QPixmap p = QPixmap::grabWidget(w);
-		img = p.convertToImage().smoothScale(width,height,Qt::KeepAspectRatio);
+		img = p.toImage().smoothScale(width,height,Qt::KeepAspectRatio);
 		return true;
 	}
 	else

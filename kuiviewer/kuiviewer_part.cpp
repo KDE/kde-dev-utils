@@ -46,6 +46,8 @@
 #include <q3vbox.h>
 #include <qvariant.h>
 #include <kglobal.h>
+#include <QFormBuilder>
+
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
@@ -68,7 +70,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     // set our XML-UI resource file
     setXMLFile("kuiviewer_part.rc");
 
-    m_style = new KListAction( i18n("Style"),
+    m_style = new KSelectAction( i18n("Style"),
                 Qt::CTRL + Qt::Key_S,
                 this,
                 SLOT(slotStyle(int)),
@@ -131,7 +133,8 @@ bool KUIViewerPart::openFile()
         return false;
 
     delete m_view;
-    m_view = QWidgetFactory::create( &file, 0, m_widget );
+    QFormBuilder builder;
+    m_view = builder.load(&file, m_widget);
 
     file.close();
     updateActions();

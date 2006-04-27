@@ -29,7 +29,7 @@ class QWidget;
 class KUrl;
 class Q3VBox;
 class KAboutData;
-class KListAction;
+class KSelectAction;
 class K3ListView;
 
 /**
@@ -72,7 +72,7 @@ protected:
 private:
     Q3VBox *m_widget;
     QPointer<QWidget> m_view;
-    KListAction *m_style;
+    KSelectAction *m_style;
     KAction *m_copy;
 };
 
