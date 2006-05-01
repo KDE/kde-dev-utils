@@ -3,7 +3,7 @@
  * $Id$
  *
  * This file is part of the KDE project, module kstartperf.
- * Copyright (C) 2000 Geert Jansen <jansen@kde.org> 
+ * Copyright (C) 2000 Geert Jansen <jansen@kde.org>
  *
  * You can freely redistribute this program under the "Artistic License".
  * See the file "LICENSE.readme" for the exact terms.
@@ -26,7 +26,7 @@
 #include <kstandarddirs.h>
 
 
-static KCmdLineOptions options[] = 
+static KCmdLineOptions options[] =
 {
     { "+command", I18N_NOOP("Specifies the command to run"), 0 },
     KCmdLineLastOption
@@ -54,7 +54,7 @@ QString libkstartperf()
             if (line.left(15) == "library_names='")
             {
 		lib = line.mid(15);
-                int pos = lib.find(" ");
+                int pos = lib.indexOf(' ');
                 if (pos > 0)
 		    lib = lib.left(pos);
 	    }
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 {
     KAboutData aboutData("kstartperf", I18N_NOOP("KStartPerf"),
 	    "1.0", I18N_NOOP("Measures start up time of a KDE application"),
-	    KAboutData::License_Artistic, 
+	    KAboutData::License_Artistic,
 	    "Copyright (c) 2000 Geert Jansen and libkmapnotify authors");
     aboutData.addAuthor("Geert Jansen", I18N_NOOP("Maintainer"),
 	    "jansen@kde.org", "http://www.stack.nl/~geertj/");
@@ -92,7 +92,7 @@ int main(int argc, char **argv)
 	fprintf(stderr, "usage: kstartperf command [arguments]\n");
 	exit(1);
     }
-    
+
     // Build command
 
     char cmd[1024];
