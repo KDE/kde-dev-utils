@@ -10,8 +10,6 @@ noinst_HEADERS = kuiviewer.h kuiviewer_part.h
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
 
-messages: rc.cpp
-	$(XGETTEXT) *.cpp -o $(podir)/kuiviewer.pot
 
 KDE_ICON = kuiviewer
 

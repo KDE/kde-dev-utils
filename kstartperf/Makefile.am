@@ -10,5 +10,3 @@ kstartperf_LDFLAGS = $(all_libraries)
 kstartperf_LDADD = $(LIB_KDECORE)
 kstartperf_SOURCES = kstartperf.cpp
 
-messages:
-	$(XGETTEXT) $(kstartperf_SOURCES) -o $(podir)/kstartperf.pot
