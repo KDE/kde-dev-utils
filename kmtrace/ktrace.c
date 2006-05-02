@@ -585,7 +585,7 @@ dumpCallTree(CallerNode* root, char* indentStr, int rawMode)
 	int i;
 	Dl_info info;
 	char* newIndentStr;
-	size_t indDepth;
+	size_t indDepth = 0;
 
 	if (!root || !mallTreeStream)
 		return;
