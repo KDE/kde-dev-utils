@@ -47,6 +47,7 @@
 #include <qvariant.h>
 #include <kglobal.h>
 #include <QFormBuilder>
+#include <kselectaction.h>
 
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
