@@ -26,7 +26,9 @@
 */
 
 #define MALLOC_HOOKS
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 #include <pthread.h>
 #include <malloc.h>
@@ -158,6 +160,8 @@ static CallerNode* CallTree = NULL;
 static char* mallTreeFile = NULL;
 static FILE* mallTreeStream = NULL;
 static long mallThreshold = 2000;
+
+extern __pid_t __fork (void);
 
 /* This function is called when the block being alloc'd, realloc'd, or
  * freed has an address matching the variable "mallwatch".  In a
@@ -584,7 +588,7 @@ dumpCallTree(CallerNode* root, char* indentStr, int rawMode)
 {
 	int i;
 	Dl_info info;
-	char* newIndentStr;
+	char* newIndentStr = 0;
 	size_t indDepth = 0;
 
 	if (!root || !mallTreeStream)

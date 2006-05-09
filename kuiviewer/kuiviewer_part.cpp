@@ -52,8 +52,8 @@
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
-KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
-                                  QObject *parent, const char *name,
+KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
+                                  QObject *parent, 
                                   const QStringList & /*args*/ )
     : KParts::ReadOnlyPart(parent)
 {
@@ -63,7 +63,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     KGlobal::locale()->insertCatalog("kuiviewer");
 
     // this should be your custom internal widget
-    m_widget = new Q3VBox( parentWidget, widgetName );
+    m_widget = new Q3VBox( parentWidget );
 
     // notify the part that this is our internal widget
     setWidget(m_widget);

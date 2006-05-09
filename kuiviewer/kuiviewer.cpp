@@ -63,10 +63,11 @@ KUIViewer::KUIViewer()
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
         m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
-                                "kuiviewer_part", "KParts::ReadOnlyPart" ));
+                                                     "KParts::ReadOnlyPart" ));
 
         if (m_part)
         {
+	    m_part->setObjectName( "kuiviewer_part" );
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
