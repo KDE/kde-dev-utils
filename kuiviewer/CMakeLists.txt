@@ -11,7 +11,7 @@ kde4_automoc(${kuiviewer_SRCS})
 
 kde4_add_executable(kuiviewer ${kuiviewer_SRCS})
 
-target_link_libraries(kuiviewer  ${KDE4_KDECORE_LIBS} kparts )
+target_link_libraries(kuiviewer  ${KDE4_KPARTS_LIBS}  )
 
 install_targets(/bin kuiviewer )
 
@@ -26,7 +26,7 @@ kde4_add_plugin(kuiviewerpart WITH_PREFIX ${kuiviewerpart_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kuiviewerpart )
 
-target_link_libraries(kuiviewerpart  ${KDE4_KDECORE_LIBS} kparts QtUiTools )
+target_link_libraries(kuiviewerpart  ${KDE4_KPARTS_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTDESIGNER_LIBRARY})
 
 install_targets(${PLUGIN_INSTALL_DIR} kuiviewerpart )
 
@@ -41,7 +41,7 @@ kde4_add_plugin(quithumbnail ${quithumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} quithumbnail )
 
-target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} QtUiTools QtXml )
+target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTDESIGNER_LIBRARY} )
 
 install_targets(${PLUGIN_INSTALL_DIR} quithumbnail )
 
