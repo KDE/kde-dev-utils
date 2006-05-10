@@ -1,66 +1,69 @@
 kde4_header()
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/kminspector.in.cmake ${CMAKE_CURRENT_BINARY_DIR}/kminspector )
+# Check if libiberty is available
+FIND_LIBRARY(LIBIBERTY_LIBRARY NAMES iberty)
+if (LIBIBERTY_LIBRARY)
+
+  include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/kminspector.in.cmake ${CMAKE_CURRENT_BINARY_DIR}/kminspector )
+
+  ########### kmtrace ###############
+
+  set(kmtrace_SRCS kmtrace.cpp )
+
+  kde4_automoc(${kmtrace_SRCS})
+
+  kde4_add_executable(kmtrace ${kmtrace_SRCS})
+
+  target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} -liberty)
+
+  install_targets(/bin kmtrace )
+
+  ########### demangle ###############
+
+  set(demangle_SRCS demangle.cpp )
+
+  kde4_automoc(${demangle_SRCS})
+
+  kde4_add_executable(demangle ${demangle_SRCS})
+
+  target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} -liberty)
+
+  install_targets(/bin demangle )
 
 
-########### next target ###############
+  ########### kmmatch ###############
 
-set(kmtrace_SRCS kmtrace.cpp )
+  set(kmmatch_SRCS match.cpp )
 
-kde4_automoc(${kmtrace_SRCS})
+  kde4_automoc(${kmmatch_SRCS})
 
-kde4_add_executable(kmtrace ${kmtrace_SRCS})
+  kde4_add_executable(kmmatch ${kmmatch_SRCS})
 
-target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} -liberty)
+  target_link_libraries(kmmatch  ${KDE4_KDECORE_LIBS} )
 
-install_targets(/bin kmtrace )
-
-
-########### next target ###############
-
-set(demangle_SRCS demangle.cpp )
-
-kde4_automoc(${demangle_SRCS})
-
-kde4_add_executable(demangle ${demangle_SRCS})
-
-target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} -liberty)
-
-install_targets(/bin demangle )
+  install_targets(/bin kmmatch )
 
 
-########### next target ###############
+  ########### ktrace ###############
 
-set(kmmatch_SRCS match.cpp )
+  set(ktrace_LIB_SRCS ksotrace.cpp ktrace.c )
 
-kde4_automoc(${kmmatch_SRCS})
+  kde4_automoc(${ktrace_LIB_SRCS})
 
-kde4_add_executable(kmmatch ${kmmatch_SRCS})
+  kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
-target_link_libraries(kmmatch  ${KDE4_KDECORE_LIBS} )
+  target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} )
 
-install_targets(/bin kmmatch )
+  set_target_properties(ktrace PROPERTIES VERSION 1.0.0 SOVERSION 1 )
+  install_targets(${LIB_INSTALL_DIR} ktrace )
 
+  ########### install files ###############
 
-########### next target ###############
+  install_files( ${DATA_INSTALL_DIR}/kmtrace FILES kde.excludes )
+  install_files( /include FILES ktrace.h )
 
-set(ktrace_LIB_SRCS ksotrace.cpp ktrace.c )
-
-kde4_automoc(${ktrace_LIB_SRCS})
-
-kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
-
-target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} )
-
-set_target_properties(ktrace PROPERTIES VERSION 1.0.0 SOVERSION 1 )
-install_targets(${LIB_INSTALL_DIR} ktrace )
-
-
-########### install files ###############
-
-install_files( ${DATA_INSTALL_DIR}/kmtrace FILES kde.excludes )
-install_files( /include FILES ktrace.h )
+endif (LIBIBERTY_LIBRARY)
 
 kde4_footer()
 
