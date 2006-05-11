@@ -1,7 +1,7 @@
 kde4_header()
 
 # Check if libiberty is available
-FIND_LIBRARY(LIBIBERTY_LIBRARY NAMES iberty)
+find_library(LIBIBERTY_LIBRARY NAMES iberty)
 if (LIBIBERTY_LIBRARY)
 
   include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
