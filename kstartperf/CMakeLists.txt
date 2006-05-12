@@ -1,4 +1,3 @@
-kde4_header()
 
 
 
@@ -34,7 +33,6 @@ install_targets(/bin kstartperf )
 ########### install files ###############
 
 
-kde4_footer()
 
 
 
