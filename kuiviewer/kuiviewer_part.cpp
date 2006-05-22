@@ -151,8 +151,8 @@ bool KUIViewerPart::openFile()
 bool KUIViewerPart::openURL( const KUrl& url)
 {
     // just for fun, set the status bar
-    emit setStatusBarText( url.prettyURL() );
-    emit setWindowCaption( url.prettyURL() );
+    emit setStatusBarText( url.prettyUrl() );
+    emit setWindowCaption( url.prettyUrl() );
 
     m_url = url;
     m_file = QString::null;
