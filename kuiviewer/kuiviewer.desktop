@@ -45,6 +45,7 @@ GenericName[tg]=Намоишгари UI-файлҳо Qt Designer
 GenericName[tr]=Qt Designer UI Dosya Görüntüleyici
 GenericName[uk]=Переглядач UI-файлів Qt Designer
 GenericName[zh_CN]=Qt 设计师 UI 文件查看器
+GenericName[zh_TW]=Qt Designer UI 檔案檢視器
 MimeType=application/x-designer;
 Terminal=false
 X-DCOP-ServiceType=Multi
