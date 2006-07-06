@@ -16,7 +16,7 @@ if (LIBIBERTY_LIBRARY)
 
   target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} -liberty)
 
-  install_targets(/bin kmtrace )
+install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
 
   ########### demangle ###############
 
@@ -28,7 +28,7 @@ if (LIBIBERTY_LIBRARY)
 
   target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} -liberty)
 
-  install_targets(/bin demangle )
+install(TARGETS demangle  DESTINATION ${BIN_INSTALL_DIR} )
 
 
   ########### kmmatch ###############
@@ -41,7 +41,7 @@ if (LIBIBERTY_LIBRARY)
 
   target_link_libraries(kmmatch  ${KDE4_KDECORE_LIBS} )
 
-  install_targets(/bin kmmatch )
+install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
 
 
   ########### ktrace ###############
@@ -55,11 +55,11 @@ if (LIBIBERTY_LIBRARY)
   target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} )
 
   set_target_properties(ktrace PROPERTIES VERSION 1.0.0 SOVERSION 1 )
-  install_targets(${LIB_INSTALL_DIR} ktrace )
+install(TARGETS ktrace  DESTINATION ${LIB_INSTALL_DIR} )
 
   ########### install files ###############
 
-  install_files( ${DATA_INSTALL_DIR}/kmtrace FILES kde.excludes )
+install( FILES kde.excludes  DESTINATION  ${DATA_INSTALL_DIR}/kmtrace )
   install_files( /include FILES ktrace.h )
 
 endif (LIBIBERTY_LIBRARY)

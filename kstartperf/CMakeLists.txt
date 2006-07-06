@@ -13,7 +13,7 @@ kde4_add_library(kstartperf SHARED ${kstartperf_LIB_SRCS})
 target_link_libraries(kstartperf  ${KDE4_KDECORE_LIBS} )
 
 set_target_properties(kstartperf PROPERTIES VERSION 1.0.0 SOVERSION 1 )
-install_targets(${LIB_INSTALL_DIR} kstartperf )
+install(TARGETS kstartperf  DESTINATION ${LIB_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -29,7 +29,7 @@ set_target_properties(kstartperf_bin PROPERTIES OUTPUT_NAME kstartperf)
 
 target_link_libraries(kstartperf_bin  ${KDE4_KDECORE_LIBS} kstartperf)
 
-install_targets(/bin kstartperf_bin )
+install(TARGETS kstartperf_bin  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### install files ###############

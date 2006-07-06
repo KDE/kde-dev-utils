@@ -12,7 +12,7 @@ kde4_add_executable(kuiviewer ${kuiviewer_SRCS})
 
 target_link_libraries(kuiviewer  ${KDE4_KPARTS_LIBS}  )
 
-install_targets(/bin kuiviewer )
+install(TARGETS kuiviewer  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -27,7 +27,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kuiviewerpart )
 
 target_link_libraries(kuiviewerpart  ${KDE4_KPARTS_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTDESIGNER_LIBRARY})
 
-install_targets(${PLUGIN_INSTALL_DIR} kuiviewerpart )
+install(TARGETS kuiviewerpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -42,16 +42,16 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} quithumbnail )
 
 target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTDESIGNER_LIBRARY} )
 
-install_targets(${PLUGIN_INSTALL_DIR} quithumbnail )
+install(TARGETS quithumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES kuiviewer.desktop )
-install_files( ${SERVICES_INSTALL_DIR} FILES kuiviewer_part.desktop )
-install_files( ${DATA_INSTALL_DIR}/kuiviewerpart FILES kuiviewer_part.rc )
-install_files( ${DATA_INSTALL_DIR}/kuiviewer FILES kuiviewerui.rc )
-install_files( ${SERVICES_INSTALL_DIR} FILES designerthumbnail.desktop )
+install( FILES kuiviewer.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES kuiviewer_part.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES kuiviewer_part.rc  DESTINATION  ${DATA_INSTALL_DIR}/kuiviewerpart )
+install( FILES kuiviewerui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kuiviewer )
+install( FILES designerthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 
