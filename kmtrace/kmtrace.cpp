@@ -600,7 +600,7 @@ int main(int argc, char *argv[])
 
   excludes = new Q3StrList;
 
-  exclude = QFile::encodeName(locate("data", "kmtrace/kde.excludes"));
+  exclude = QFile::encodeName(KStandardDirs::locate("data", "kmtrace/kde.excludes"));
   if(!exclude.isEmpty())
       readExcludeFile(exclude);
 
