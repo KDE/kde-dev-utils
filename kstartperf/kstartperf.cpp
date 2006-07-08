@@ -36,7 +36,7 @@ static KCmdLineOptions options[] =
 QString libkstartperf()
 {
     QString lib = QString::null;
-    QString la_file = locate("lib", "libkstartperf.la");
+    QString la_file = KStandardDirs::locate("lib", "libkstartperf.la");
 
     if (la_file.isEmpty())
 	return lib;
@@ -64,7 +64,7 @@ QString libkstartperf()
     }
 
     // Look up the actual .so file.
-    lib = locate("lib", lib);
+    lib = KStandardDirs::locate("lib", lib);
     return lib;
 }
 
