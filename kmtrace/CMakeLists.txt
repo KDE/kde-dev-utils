@@ -1,4 +1,4 @@
-
+project(kmtrace)
 # Check if libiberty is available
 find_library(LIBIBERTY_LIBRARY NAMES iberty)
 if (LIBIBERTY_LIBRARY)
