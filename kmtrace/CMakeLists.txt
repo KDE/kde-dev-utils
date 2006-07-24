@@ -14,7 +14,7 @@ if (LIBIBERTY_LIBRARY)
 
   kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
-  target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} -liberty)
+  target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} ${LIBIBERTY_LIBRARY})
 
 install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -26,7 +26,7 @@ install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
 
   kde4_add_executable(demangle ${demangle_SRCS})
 
-  target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} -liberty)
+  target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} ${LIBIBERTY_LIBRARY})
 
 install(TARGETS demangle  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -60,7 +60,7 @@ install(TARGETS ktrace  DESTINATION ${LIB_INSTALL_DIR} )
   ########### install files ###############
 
 install( FILES kde.excludes  DESTINATION  ${DATA_INSTALL_DIR}/kmtrace )
-  install_files( /include FILES ktrace.h )
+  install( FILES ktrace.h DESTINATION ${INCLUDE_INSTALL_DIR} )
 
 endif (LIBIBERTY_LIBRARY)
 
