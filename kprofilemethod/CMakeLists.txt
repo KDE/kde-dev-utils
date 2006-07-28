@@ -4,7 +4,7 @@
 
 ########### install files ###############
 
-install_files( /include FILES kprofilemethod.h )
+install( FILES kprofilemethod.h DESTINATION ${INCLUDE_INSTALL_DIR})
 
 
 
