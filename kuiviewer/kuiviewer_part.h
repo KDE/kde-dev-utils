@@ -27,7 +27,7 @@
 
 class QWidget;
 class KUrl;
-class Q3VBox;
+class KVBox;
 class KAboutData;
 class KSelectAction;
 class K3ListView;
@@ -69,7 +69,7 @@ protected:
     virtual bool openFile();
 
 private:
-    Q3VBox *m_widget;
+    KVBox *m_widget;
     QPointer<QWidget> m_view;
     KSelectAction *m_style;
     KAction *m_copy;

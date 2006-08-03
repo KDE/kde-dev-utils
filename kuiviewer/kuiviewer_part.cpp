@@ -43,7 +43,7 @@
 #include <qstyle.h>
 #include <qstylefactory.h>
 #include <qvariant.h>
-#include <q3vbox.h>
+#include <kvbox.h>
 #include <qvariant.h>
 #include <kglobal.h>
 #include <QFormBuilder>
@@ -63,7 +63,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     KGlobal::locale()->insertCatalog("kuiviewer");
 
     // this should be your custom internal widget
-    m_widget = new Q3VBox( parentWidget );
+    m_widget = new KVBox( parentWidget );
 
     // notify the part that this is our internal widget
     setWidget(m_widget);
@@ -88,7 +88,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     QStringList::ConstIterator end = styles.end();
     int idx = 0;
     for (; it != end; ++it, ++idx) {
-        if ((*it).lower() == currentStyle.lower()) {
+        if ((*it).toLower() == currentStyle.toLower()) {
             m_style->setCurrentItem(idx);
             break;
         }
