@@ -641,7 +641,7 @@ int main(int argc, char *argv[])
        Q3CString app(line2+1);
        if(exe.isEmpty())
        {
-         exe = app.stripWhiteSpace();
+         exe = app.trimmed();
          fprintf(stderr, "ktrace.out: malloc trace of %s\n", exe.data());
        }
        else if(!app.contains(exe.data()))

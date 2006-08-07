@@ -40,7 +40,7 @@ int main(int argc, char **argv)
    while(!feof(map_file))
    {
       fgets(buf, 1024, map_file);
-      QString line = QString::fromLatin1(buf).stripWhiteSpace();
+      QString line = QString::fromLatin1(buf).trimmed();
       QStringList split = QStringList::split(' ', line);
       if (split.count() <= 1)
          return 1;
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
    while(!feof(call_file))
    {
       fgets(buf, 1024, call_file);
-      QString line = QString::fromLatin1(buf).stripWhiteSpace();
+      QString line = QString::fromLatin1(buf).trimmed();
       if (dict.find(line))
       {
          qWarning("%s", line.latin1());
