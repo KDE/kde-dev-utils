@@ -5,7 +5,7 @@ if (LIBIBERTY_LIBRARY)
 
   include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/kminspector.in.cmake ${CMAKE_CURRENT_BINARY_DIR}/kminspector )
-
+  INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/kminspector DESTINATION ${BIN_INSTALL_DIR})
   ########### kmtrace ###############
 
   set(kmtrace_SRCS kmtrace.cpp )
