@@ -23,9 +23,7 @@
 #ifndef KUIVIEWER_H
 #define KUIVIEWER_H
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
