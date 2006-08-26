@@ -10,7 +10,7 @@ kde4_automoc(${kstartperf_LIB_SRCS})
 
 kde4_add_library(kstartperf SHARED ${kstartperf_LIB_SRCS})
 
-target_link_libraries(kstartperf  ${KDE4_KDECORE_LIBS} )
+target_link_libraries(kstartperf dl)
 
 set_target_properties(kstartperf PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install(TARGETS kstartperf  DESTINATION ${LIB_INSTALL_DIR} )

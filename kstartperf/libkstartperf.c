@@ -23,7 +23,7 @@
 #include <X11/X.h>
 #include <X11/Xlib.h>
 
-#include <ltdl.h>
+#include <dlfcn.h>
 
 
 /* Prototypes */
@@ -64,11 +64,11 @@ int XMapRaised(Display * d, Window w)
 
 void KDE_InterceptXMapRequest(Display * d, Window w)
 {
-    lt_dlhandle handle;
+    void* handle;
 
-    handle = lt_dlopen("libX11.so");
+    handle = dlopen("libX11.so", RTLD_LAZY);
     if (handle == 0L)
-	handle = lt_dlopen("libX11.so.6");
+	handle = dlopen("libX11.so.6", RTLD_LAZY);
 
     if (handle == 0L)
     {
@@ -76,14 +76,14 @@ void KDE_InterceptXMapRequest(Display * d, Window w)
 	exit(1);
     }
 
-    KDE_RealXMapWindow = (KDE_XMapRequestSignature)lt_dlsym(handle, "XMapWindow");
+    KDE_RealXMapWindow = (KDE_XMapRequestSignature)dlsym(handle, "XMapWindow");
     if (KDE_RealXMapWindow == 0L)
     {
 	fprintf(stderr, "kstartperf: Could not find symbol XMapWindow in libX11\n");
 	exit(1);
     }
 
-    KDE_RealXMapRaised = (KDE_XMapRequestSignature)lt_dlsym(handle, "XMapRaised");
+    KDE_RealXMapRaised = (KDE_XMapRequestSignature)dlsym(handle, "XMapRaised");
     if (KDE_RealXMapRaised == 0L)
     {
 	fprintf(stderr, "kstartperf: Could not find symbol XMapRaised in libX11\n");
