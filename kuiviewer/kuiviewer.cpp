@@ -94,7 +94,7 @@ KUIViewer::~KUIViewer()
 
 void KUIViewer::load(const KUrl& url)
 {
-    m_part->openURL( url );
+    m_part->openUrl( url );
     adjustSize();
 }
 
