@@ -344,7 +344,7 @@ tr_log(const void* caller, void* ptr, void* old,
 		tr_cache[i].bt = (void**) malloc(TR_BT_SIZE * sizeof(void*));
 		tr_cache[i].bt_size = backtrace(
 			tr_cache[i].bt, TR_BT_SIZE);
-		realloc(tr_cache[i].bt, tr_cache[i].bt_size * sizeof(void*));
+		tr_cache[i].bt = realloc(tr_cache[i].bt, tr_cache[i].bt_size * sizeof(void*));
 		tr_cache_level++;
 
 		return;
