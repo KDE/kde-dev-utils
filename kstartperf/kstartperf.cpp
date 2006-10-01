@@ -35,7 +35,7 @@ static KCmdLineOptions options[] =
 
 QString libkstartperf()
 {
-    QString lib = QString();
+    QString lib;
     QString la_file = KStandardDirs::locate("lib", "libkstartperf.la");
 
     if (la_file.isEmpty())
