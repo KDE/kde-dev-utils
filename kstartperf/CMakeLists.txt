@@ -22,7 +22,7 @@ set(kstartperf_bin_SRCS kstartperf.cpp )
 
 kde4_automoc(${kstartperf_bin_SRCS})
 
-kde4_add_executable(kstartperf_bin ${kstartperf_bin_SRCS})
+kde4_add_executable(kstartperf_bin NOGUI ${kstartperf_bin_SRCS})
 
 set_target_properties(kstartperf_bin PROPERTIES OUTPUT_NAME kstartperf)
 
