@@ -10,7 +10,7 @@
 #include <q3tl.h>
 #include <q3valuelist.h>
 #include <stdlib.h>
-#include <ktempfile.h>
+#include <ktemporaryfile.h>
 #include <kinstance.h>
 #include <kstandarddirs.h>
 #include <kcmdlineargs.h>
@@ -246,24 +246,26 @@ int lookupSymbols(FILE *stream)
 
 void lookupUnknownSymbols(const char *appname)
 {
-   KTempFile inputFile;
-   KTempFile outputFile;
-   inputFile.setAutoDelete(true);
-   outputFile.setAutoDelete(true);
-   FILE *fInputFile = inputFile.fstream();
+   KTemporaryFile inputFile;
+   KTemporaryFile outputFile;
+   inputFile.open();
+   outputFile.open();
+   QTextStream str ( &inputFile );
    Q3IntDict<char> oldDict = *symbolDict;
    Q3IntDictIterator<char> it(oldDict);
    for(;it.current(); ++it)
    {
-       fprintf(fInputFile, "%08lx\n", it.currentKey());
+       QString temp;
+       temp.sprintf("%08lx\n", it.currentKey());
+       str << temp;
    }
-   inputFile.close();
+   str.flush();
    Q3CString command;
    command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname,
-	QFile::encodeName(KProcess::quote(inputFile.name())).data(),
-	QFile::encodeName(KProcess::quote(outputFile.name())).data());
+	QFile::encodeName(KProcess::quote(inputFile.fileName())).data(),
+	QFile::encodeName(KProcess::quote(outputFile.fileName())).data());
    system(command.data());
-   fInputFile = fopen(QFile::encodeName(outputFile.name()), "r");
+   FILE *fInputFile = fopen(QFile::encodeName(outputFile.fileName()), "r");
    if (!fInputFile)
    {
       fprintf(stderr, "Error opening temp file.\n");
