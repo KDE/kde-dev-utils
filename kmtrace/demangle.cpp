@@ -10,7 +10,7 @@
 #include <q3tl.h>
 #include <q3valuelist.h>
 #include <stdlib.h>
-#include <ktempfile.h>
+#include <ktemporaryfile.h>
 #include <kinstance.h>
 #include <kstandarddirs.h>
 #include <kcmdlineargs.h>
