@@ -10,7 +10,7 @@ if (LIBIBERTY_LIBRARY)
 
   set(kmtrace_SRCS kmtrace.cpp )
 
-  kde4_automoc(kmtrace ${kmtrace_SRCS})
+  kde4_automoc(${kmtrace_SRCS})
 
   kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
@@ -22,7 +22,7 @@ install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
 
   set(demangle_SRCS demangle.cpp )
 
-  kde4_automoc(demangle ${demangle_SRCS})
+  kde4_automoc(${demangle_SRCS})
 
   kde4_add_executable(demangle ${demangle_SRCS})
 
@@ -35,7 +35,7 @@ install(TARGETS demangle  DESTINATION ${BIN_INSTALL_DIR} )
 
   set(kmmatch_SRCS match.cpp )
 
-  kde4_automoc(kmmatch ${kmmatch_SRCS})
+  kde4_automoc(${kmmatch_SRCS})
 
   kde4_add_executable(kmmatch ${kmmatch_SRCS})
 
@@ -48,7 +48,7 @@ install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
 
   set(ktrace_LIB_SRCS ksotrace.cpp ktrace.c )
 
-  kde4_automoc(ktrace ${ktrace_LIB_SRCS})
+  kde4_automoc(${ktrace_LIB_SRCS})
 
   kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
