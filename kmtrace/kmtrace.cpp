@@ -1,6 +1,5 @@
 #include <q3intdict.h>
 //Added by qt3to4:
-#include <Q3CString>
 #include <stdio.h>
 #include <qstringlist.h>
 #include <q3strlist.h>
@@ -9,6 +8,7 @@
 #include <qfile.h>
 #include <q3tl.h>
 #include <q3valuelist.h>
+#include <Q3CString>
 #include <stdlib.h>
 #include <ktemporaryfile.h>
 #include <kinstance.h>
@@ -314,7 +314,7 @@ const char *lookupAddress(int addr)
 {
    char *str = formatDict->find(addr);
    if (str) return str;
-   Q3CString s = symbolDict->find(addr);
+   QByteArray s = symbolDict->find(addr);
    if (s.isEmpty())
    {
 fprintf(stderr, "Error!\n");
@@ -328,7 +328,7 @@ fprintf(stderr, "Error!\n");
         end = s.findRev(')');
      if ((start > 0) && (end > start))
      {
-       Q3CString symbol = s.mid(start+1, end-start-1);
+       QByteArray symbol = s.mid(start+1, end-start-1);
        char *res = 0;
        if (symbol.find(')') == -1)
            res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
@@ -597,8 +597,8 @@ int main(int argc, char *argv[])
   else
     logfile = "ktrace.out";
 
-  Q3CString exe = args->getOption("exe");
-  Q3CString exclude;
+  QByteArray exe = args->getOption("exe");
+  QByteArray exclude;
 
   excludes = new Q3StrList;
 
@@ -640,7 +640,7 @@ int main(int argc, char *argv[])
      }
      else if (line2[0] == '#')
      {
-       Q3CString app(line2+1);
+       QByteArray app(line2+1);
        if(exe.isEmpty())
        {
          exe = app.trimmed();
@@ -713,7 +713,7 @@ int main(int argc, char *argv[])
   lookupUnknownSymbols(exe);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
-  Q3CString treeFile = args->getOption ("tree");
+  QByteArray treeFile = args->getOption ("tree");
   if (!treeFile.isEmpty ())
   {
       fprintf (stderr, "Creating allocation tree...\n");
