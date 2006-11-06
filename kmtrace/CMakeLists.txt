@@ -52,7 +52,7 @@ install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
 
   kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
-  target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} )
+  target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} dl )
 
   set_target_properties(ktrace PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install(TARGETS ktrace  DESTINATION ${LIB_INSTALL_DIR} )
