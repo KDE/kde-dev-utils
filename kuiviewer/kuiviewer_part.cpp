@@ -77,7 +77,9 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     m_style->setEditable(false);
 
     KGlobal::config()->setGroup("General");
+#ifdef __GNUC__
 #warning "QT4 : KStyle::defaultStyle() doesn't exist";
+#endif
     const QString currentStyle = KGlobal::config()->readEntry("currentWidgetStyle"/*, KStyle::defaultStyle()*/);
 
     const QStringList styles = QStyleFactory::keys();
