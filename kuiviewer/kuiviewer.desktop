@@ -10,6 +10,6 @@ GenericName[fr]=Afficheur de fichiers UI de QT Designer
 GenericName[x-test]=xxQt Designer UI File Viewerxx
 MimeType=application/x-designer;
 Terminal=false
-X-DCOP-ServiceType=Multi
+X-DBUS-StartupType=Multi
 Categories=Qt;KDE;Development;
 InitialPreference=10
