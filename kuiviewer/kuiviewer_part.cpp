@@ -73,7 +73,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
 
     m_style = new KSelectAction( i18n("Style"), actionCollection(), "change_style");
     connect(m_style, SIGNAL(triggered(int)), SLOT(slotStyle(int)));
-    m_style->setShortcut(Qt::CTRL + Qt::Key_S);
+    m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
     KGlobal::config()->setGroup("General");
