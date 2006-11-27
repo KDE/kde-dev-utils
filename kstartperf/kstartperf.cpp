@@ -18,11 +18,12 @@
 #include <qstring.h>
 #include <qtextstream.h>
 #include <qfile.h>
+#include <QCoreApplication>
 
-#include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
+#include <kinstance.h>
 #include <kstandarddirs.h>
 
 
@@ -82,7 +83,8 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions(options);
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-    KApplication *app = new KApplication(false);
+    KInstance instance( &aboutData );
+    QCoreApplication app( *KCmdLineArgs::qt_argc(), *KCmdLineArgs::qt_argv() );
 
     // Check arguments
 
