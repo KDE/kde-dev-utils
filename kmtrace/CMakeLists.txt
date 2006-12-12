@@ -14,7 +14,7 @@ if (LIBIBERTY_LIBRARY)
 
   kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
-  target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} ${LIBIBERTY_LIBRARY})
+  target_link_libraries(kmtrace  ${KDE4_KDECORE_LIBS} ${LIBIBERTY_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS})
 
 install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -26,7 +26,7 @@ install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
 
   kde4_add_executable(demangle ${demangle_SRCS})
 
-  target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} ${LIBIBERTY_LIBRARY})
+  target_link_libraries(demangle  ${KDE4_KDECORE_LIBS} ${LIBIBERTY_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS})
 
 install(TARGETS demangle  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -39,7 +39,7 @@ install(TARGETS demangle  DESTINATION ${BIN_INSTALL_DIR} )
 
   kde4_add_executable(kmmatch ${kmmatch_SRCS})
 
-  target_link_libraries(kmmatch  ${KDE4_KDECORE_LIBS} )
+  target_link_libraries(kmmatch  ${KDE4_KDECORE_LIBS} ${KDE4_KDE3SUPPORT_LIBS})
 
 install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -52,7 +52,7 @@ install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
 
   kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
-  target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} dl )
+  target_link_libraries(ktrace  ${KDE4_KDECORE_LIBS} dl ${KDE4_KDE3SUPPORT_LIBS} )
 
   set_target_properties(ktrace PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install(TARGETS ktrace  DESTINATION ${LIB_INSTALL_DIR} )
