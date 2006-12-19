@@ -35,7 +35,7 @@
 #include <kurl.h>
 
 #include <kaction.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 
 #include <kiconloader.h>
 #include <klibloader.h>
@@ -100,8 +100,8 @@ void KUIViewer::load(const KUrl& url)
 
 void KUIViewer::setupActions()
 {
-    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-    KStdAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardAction::open(this, SLOT(fileOpen()), actionCollection());
+    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
 }
 
 void KUIViewer::saveProperties(KConfig* /*config*/)

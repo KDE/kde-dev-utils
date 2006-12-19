@@ -31,7 +31,7 @@
 #include <kio/netaccess.h>
 #include <k3listview.h>
 #include <kparts/genericfactory.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kstyle.h>
 #include <qmetaobject.h>
 
@@ -98,14 +98,14 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     m_style->setToolTip(i18n("Set the current style to view."));
     m_style->setMenuAccelsEnabled(true);
 
-    m_copy = KStdAction::copy(this, SLOT(slotGrab()), actionCollection());
+    m_copy = KStandardAction::copy(this, SLOT(slotGrab()), actionCollection());
 
     updateActions();
 
 // Commented out to fix warning (rich)
 // slot should probably be called saveAs() for consistency with
 // KParts::ReadWritePart BTW.
-//    KStdAction::saveAs(this, SLOT(slotSave()), actionCollection());
+//    KStandardAction::saveAs(this, SLOT(slotSave()), actionCollection());
 }
 
 KUIViewerPart::~KUIViewerPart()
