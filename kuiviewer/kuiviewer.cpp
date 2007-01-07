@@ -35,6 +35,7 @@
 #include <kurl.h>
 
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kstandardaction.h>
 
 #include <kiconloader.h>
