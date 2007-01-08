@@ -22,6 +22,7 @@
 #include "kuiviewer_part.h"
 #include "kuiviewer_part.moc"
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
@@ -53,7 +54,7 @@ typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
-                                  QObject *parent, 
+                                  QObject *parent,
                                   const QStringList & /*args*/ )
     : KParts::ReadOnlyPart(parent)
 {
@@ -71,7 +72,8 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     // set our XML-UI resource file
     setXMLFile("kuiviewer_part.rc");
 
-    m_style = new KSelectAction( i18n("Style"), actionCollection(), "change_style");
+    m_style = actionCollection()->add<KSelectAction>("change_style");
+    m_style->setText(i18n("Style"));
     connect(m_style, SIGNAL(triggered(int)), SLOT(slotStyle(int)));
     m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
