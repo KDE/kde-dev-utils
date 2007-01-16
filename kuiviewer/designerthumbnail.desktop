@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Qt Designer Files
+Name[el]=Αρχεία Qt Designer
 Name[fr]=Fichiers Qt Designer
 Name[x-test]=xxQt Designer Filesxx
 ServiceTypes=ThumbCreator

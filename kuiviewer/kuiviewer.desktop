@@ -6,6 +6,7 @@ Exec=kuiviewer -caption "%c"
 Icon=kuiviewer
 Type=Application
 GenericName=Qt Designer UI File Viewer
+GenericName[el]=Προβολέας αρχείων Qt Designer UI
 GenericName[fr]=Afficheur de fichiers UI de QT Designer
 GenericName[x-test]=xxQt Designer UI File Viewerxx
 MimeType=application/x-designer;
