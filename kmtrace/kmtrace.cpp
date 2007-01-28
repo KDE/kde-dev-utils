@@ -11,7 +11,7 @@
 #include <Q3CString>
 #include <stdlib.h>
 #include <ktemporaryfile.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kstandarddirs.h>
 #include <kcmdlineargs.h>
 #include <kprocess.h>
@@ -582,7 +582,7 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char *argv[])
 {
-  KInstance instance("kmtrace");
+  KComponentData componentData("kmtrace");
 
   KCmdLineArgs::init(argc, argv, "kmtrace", "kmtrace", "KDE Memory leak tracer", "v1.0");
 

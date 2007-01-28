@@ -23,7 +23,7 @@
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kstandarddirs.h>
 
 
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions(options);
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-    KInstance instance( &aboutData );
+    KComponentData componentData( &aboutData );
     QCoreApplication app( *KCmdLineArgs::qt_argc(), *KCmdLineArgs::qt_argv() );
 
     // Check arguments
