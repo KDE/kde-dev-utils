@@ -28,7 +28,7 @@
 #include <kdebug.h>
 #include <kdialog.h>
 #include <kiconloader.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kio/netaccess.h>
 #include <k3listview.h>
 #include <kparts/genericfactory.h>
@@ -59,7 +59,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     : KParts::ReadOnlyPart(parent)
 {
     // we need an instance
-    setInstance( KUIViewerPartFactory::instance() );
+    setComponentData( KUIViewerPartFactory::componentData() );
 
     KGlobal::locale()->insertCatalog("kuiviewer");
 
