@@ -73,20 +73,6 @@ public:
      */
     void takeScreenshot(const Q3CString &filename, int h=-1, int w=-1);
 
-protected:
-    /**
-     * This method is called when it is time for the app to save its
-     * properties for session management purposes.
-     */
-    void saveProperties(KConfigGroup &);
-
-    /**
-     * This method is called when this app is restored.  The KConfig
-     * object points to the session management config file that was saved
-     * with @ref saveProperties
-     */
-    void readProperties(const KConfigGroup &);
-
 private slots:
     void fileOpen();
 
