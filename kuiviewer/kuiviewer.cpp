@@ -45,8 +45,9 @@
 #include <kfiledialog.h>
 
 KUIViewer::KUIViewer()
-    : KParts::MainWindow( 0L, "KUIViewer" )
+    : KParts::MainWindow()
 {
+    setObjectName( "KUIViewer" );
     // setup our actions
     setupActions();
 
@@ -103,21 +104,6 @@ void KUIViewer::setupActions()
 {
     KStandardAction::open(this, SLOT(fileOpen()), actionCollection());
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-}
-
-void KUIViewer::saveProperties(KConfig* /*config*/)
-{
-    // the 'config' object points to the session managed
-    // config file.  anything you write here will be available
-    // later when this app is restored
-}
-
-void KUIViewer::readProperties(KConfig* /*config*/)
-{
-    // the 'config' object points to the session managed
-    // config file.  this function is automatically called whenever
-    // the app is being restored.  read in here whatever you wrote
-    // in 'saveProperties'
 }
 
 void KUIViewer::fileOpen()
