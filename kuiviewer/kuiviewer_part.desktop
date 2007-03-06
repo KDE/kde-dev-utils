@@ -1,6 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=KUIViewerPart
+Name[sv]=KUIviewer-del
+Name[ta]=KUIவியூவர் உறுப்பு
 Name[x-test]=xxKUIViewerPartxx
 MimeType=application/x-designer;
 ServiceTypes=KParts/ReadOnlyPart
