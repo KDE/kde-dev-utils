@@ -130,7 +130,7 @@ KAboutData *KUIViewerPart::createAboutData()
 bool KUIViewerPart::openFile()
 {
     // m_file is always local so we can use QFile on it
-    QFile file( m_file );
+    QFile file( localFilePath() );
     if ( !file.open(QIODevice::ReadOnly) )
         return false;
 
@@ -155,12 +155,15 @@ bool KUIViewerPart::openURL( const KUrl& url)
     emit setStatusBarText( url.prettyUrl() );
     emit setWindowCaption( url.prettyUrl() );
 
-    m_url = url;
-    m_file = QString::null;
-    if (KIO::NetAccess::download(url, m_file,0L))
+    setUrl(url);
+    setLocalFilePath( QString() );
+    QString filePath;
+    if (KIO::NetAccess::download(this->url(), filePath, 0L)) {
+        setLocalFilePath( filePath );
 	return openFile();
-    else
-	return false;
+    }
+
+    return false;
 }
 
 void KUIViewerPart::updateActions()
