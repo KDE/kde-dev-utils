@@ -40,7 +40,7 @@ kde4_add_plugin(quithumbnail ${quithumbnail_PART_SRCS})
 
 
 
-target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTDESIGNER_LIBRARY} )
+target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDESIGNER_LIBRARY} )
 
 install(TARGETS quithumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
