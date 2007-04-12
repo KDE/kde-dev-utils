@@ -20,8 +20,6 @@
  *  Boston, MA 02110-1301, USA.
  **/
 
-#include <config.h>
-
 #include <qpixmap.h>
 #include <qimage.h>
 #include "quicreator.h"
