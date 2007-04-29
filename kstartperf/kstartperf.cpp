@@ -30,6 +30,7 @@
 static KCmdLineOptions options[] =
 {
     { "+command", I18N_NOOP("Specifies the command to run"), 0 },
+    { "!+[args]" , I18N_NOOP("Arguments to 'command'") , 0 },
     KCmdLineLastOption
 };
 
@@ -40,7 +41,12 @@ QString libkstartperf()
     QString la_file = KStandardDirs::locate("lib", "libkstartperf.la");
 
     if (la_file.isEmpty())
+    {
+        // if no '.la' file could be found, fallback to a search for the .so file
+        // in the standard KDE directories
+        lib = KStandardDirs::locate("lib","libkstartperf.so");
 	return lib;
+    }
 
     // Find the name of the .so file by reading the .la file
     QFile la(la_file);
