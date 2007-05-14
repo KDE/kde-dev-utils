@@ -30,7 +30,6 @@
 #include <kiconloader.h>
 #include <kcomponentdata.h>
 #include <kio/netaccess.h>
-#include <k3listview.h>
 #include <kparts/genericfactory.h>
 #include <kstandardaction.h>
 #include <kstyle.h>

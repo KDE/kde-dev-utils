@@ -26,11 +26,8 @@
 
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 class KToggleAction;
-class K3ListView;
 
 namespace KParts {
 class ReadOnlyPart;
@@ -70,7 +67,7 @@ public:
      * @param h height of image
      * @param w width of image
      */
-    void takeScreenshot(const Q3CString &filename, int h=-1, int w=-1);
+    void takeScreenshot(const QByteArray &filename, int h=-1, int w=-1);
 
 private slots:
     void fileOpen();
