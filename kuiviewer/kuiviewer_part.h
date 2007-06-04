@@ -30,7 +30,6 @@ class KUrl;
 class KVBox;
 class KAboutData;
 class KSelectAction;
-class K3ListView;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
