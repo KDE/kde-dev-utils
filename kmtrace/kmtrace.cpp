@@ -14,7 +14,7 @@
 #include <kcomponentdata.h>
 #include <kstandarddirs.h>
 #include <kcmdlineargs.h>
-#include <k3process.h>
+#include <kshell.h>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -262,8 +262,8 @@ void lookupUnknownSymbols(const char *appname)
    str.flush();
    Q3CString command;
    command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname,
-	QFile::encodeName(K3Process::quote(inputFile.fileName())).data(),
-	QFile::encodeName(K3Process::quote(outputFile.fileName())).data());
+	QFile::encodeName(KShell::quoteArg(inputFile.fileName())).data(),
+	QFile::encodeName(KShell::quoteArg(outputFile.fileName())).data());
    system(command.data());
    FILE *fInputFile = fopen(QFile::encodeName(outputFile.fileName()), "r");
    if (!fInputFile)
