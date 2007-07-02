@@ -527,7 +527,7 @@ void dumpTree (FILE * file)
       dumpTree (*it, 0, indent, file);
 }
 
-void createTree (const Q3CString & treefile, int threshold, int maxdepth)
+void createTree (const QString & treefile, int threshold, int maxdepth)
 {
    FILE * file = fopen (treefile, "w");
    if (file == NULL)
@@ -600,7 +600,7 @@ int main(int argc, char *argv[])
   (void) args->count();
   const char *logfile;
   if(args->count())
-    logfile = args->arg(0);
+    logfile = args->arg(0).toLocal8Bit();
   else
     logfile = "ktrace.out";
 
@@ -613,7 +613,7 @@ int main(int argc, char *argv[])
   if(!exclude.isEmpty())
       readExcludeFile(exclude);
 
-  exclude = args->getOption("exclude");
+  exclude = args->getOption("exclude").toLocal8Bit().data();
   if (!exclude.isEmpty())
   {
      fprintf(stderr, "Reading %s\n", exclude.data());
