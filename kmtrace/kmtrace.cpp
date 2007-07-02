@@ -529,7 +529,7 @@ void dumpTree (FILE * file)
 
 void createTree (const QString & treefile, int threshold, int maxdepth)
 {
-   FILE * file = fopen (treefile, "w");
+   FILE * file = fopen (treefile.toLocal8Bit(), "w");
    if (file == NULL)
    {
       fprintf (stderr, "Can't write tree file.\n");
@@ -653,7 +653,7 @@ int main(int argc, char *argv[])
          exe = app.trimmed();
          fprintf(stderr, "ktrace.out: malloc trace of %s\n", exe.data());
        }
-       else if(!app.contains(exe.data()))
+       else if(!app.contains(exe.toLocal8Bit().data()))
        {
          fprintf(stderr, "trace file was for application '%s', not '%s'\n", app.data(), exe.data());
          exit(1);
@@ -717,7 +717,7 @@ int main(int argc, char *argv[])
   rewind(stream);
   lookupSymbols(stream);
   fprintf(stderr, "Looking up unknown symbols...\n");
-  lookupUnknownSymbols(exe);
+  lookupUnknownSymbols(exe.toLocal8Bit());
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
   QString treeFile = args->getOption ("tree");
