@@ -118,11 +118,11 @@ KAboutData *KUIViewerPart::createAboutData()
     // the non-i18n name here must be the same as the directory in
     // which the part's rc file is installed ('partrcdir' in the
     // Makefile)
-    KAboutData *aboutData = new KAboutData("kuiviewerpart", I18N_NOOP("KUIViewerPart"), "0.1",
-					   I18N_NOOP("Displays Designer's UI files"),
+    KAboutData *aboutData = new KAboutData("kuiviewerpart", 0, ki18n("KUIViewerPart"), "0.1",
+					   ki18n("Displays Designer's UI files"),
 					   KAboutData::License_LGPL );
-    aboutData->addAuthor("Richard Moore", 0, "rich@kde.org");
-    aboutData->addAuthor("Ian Reinhart Geiser", 0, "geiseri@kde.org");
+    aboutData->addAuthor(ki18n("Richard Moore"), KLocalizedString(), "rich@kde.org");
+    aboutData->addAuthor(ki18n("Ian Reinhart Geiser"), KLocalizedString(), "geiseri@kde.org");
     return aboutData;
 }
 

@@ -562,29 +562,36 @@ void readExcludeFile(const char *name)
    excludes->sort();
 }
 
-static KCmdLineOptions options[] =
-{
-  { "x", 0, 0 },
-  { "exclude <file>", "File containing symbols to exclude from output", 0},
-  { "e", 0, 0 },
-  { "exe <file>", "Executable to use for looking up unknown symbols", 0},
-  { "+<trace-log>", "Log file to investigate", 0},
-  {"t", 0, 0},
-  {"tree <file>", "File to write allocations tree", 0},
-  {"th", 0, 0},
-  {"treethreshold <value>",
-    "Don't print subtrees which allocated less than <value> memory", 0},
-  {"td", 0, 0},
-  {"treedepth <value>",
-    "Don't print subtrees that are deeper than <value>", 0},
-  KCmdLineLastOption
-};
-
 int main(int argc, char *argv[])
 {
   KComponentData componentData("kmtrace");
 
-  KCmdLineArgs::init(argc, argv, "kmtrace", "kmtrace", "KDE Memory leak tracer", "v1.0");
+  KCmdLineArgs::init(argc, argv, "kmtrace", 0, ki18n("kmtrace"), "v1.0", ki18n("KDE Memory leak tracer"));
+
+
+  KCmdLineOptions options;
+
+  options.add("x");
+
+  options.add("exclude <file>", ki18n("File containing symbols to exclude from output"));
+
+  options.add("e");
+
+  options.add("exe <file>", ki18n("Executable to use for looking up unknown symbols"));
+
+  options.add("+<trace-log>", ki18n("Log file to investigate"));
+
+  options.add("t");
+
+  options.add("tree <file>", ki18n("File to write allocations tree"));
+
+  options.add("th");
+
+  options.add("treethreshold <value>", ki18n("Don't print subtrees which allocated less than <value> memory"));
+
+  options.add("td");
+
+  options.add("treedepth <value>", ki18n("Don't print subtrees that are deeper than <value>"));
 
   KCmdLineArgs::addCmdLineOptions(options);
 
@@ -597,7 +604,7 @@ int main(int argc, char *argv[])
   else
     logfile = "ktrace.out";
 
-  QByteArray exe = args->getOption("exe");
+  QString exe = args->getOption("exe");
   QByteArray exclude;
 
   excludes = new Q3StrList;
@@ -713,7 +720,7 @@ int main(int argc, char *argv[])
   lookupUnknownSymbols(exe);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
-  QByteArray treeFile = args->getOption ("tree");
+  QString treeFile = args->getOption ("tree");
   if (!treeFile.isEmpty ())
   {
       fprintf (stderr, "Creating allocation tree...\n");

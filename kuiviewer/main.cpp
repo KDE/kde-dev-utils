@@ -26,29 +26,26 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 
-static KCmdLineOptions options[] =
-{
-    { "+[URL]", I18N_NOOP( "Document to open" ), 0 },
-    { "s",0,0 },
-    { "takescreenshot <filename>", I18N_NOOP( "Save screenshot to file and exit" ), 0 },
-    { "w",0,0 },
-    { "screenshotwidth <int>", I18N_NOOP( "Screenshot width" ), "-1" },
-    { "h",0,0 },
-    { "screenshotheight <int>", I18N_NOOP( "Screenshot height" ), "-1" },
-    KCmdLineLastOption
-};
-
 int main(int argc, char **argv)
 {
-    KAboutData about("kuiviewer", I18N_NOOP("KUIViewer"), "0.1",
-		     I18N_NOOP("Displays Designer's UI files"),
+    KAboutData about("kuiviewer", 0, ki18n("KUIViewer"), "0.1",
+		     ki18n("Displays Designer's UI files"),
 		     KAboutData::License_LGPL );
-    about.addAuthor("Richard Moore", 0, "rich@kde.org");
-    about.addAuthor("Ian Reinhart Geiser", 0, "geiseri@kde.org");
+    about.addAuthor(ki18n("Richard Moore"), KLocalizedString(), "rich@kde.org");
+    about.addAuthor(ki18n("Ian Reinhart Geiser"), KLocalizedString(), "geiseri@kde.org");
     // Screenshot capability
-    about.addAuthor("Benjamin C. Meyer", 0, "ben+kuiviewer@meyerhome.net");
+    about.addAuthor(ki18n("Benjamin C. Meyer"), KLocalizedString(), "ben+kuiviewer@meyerhome.net");
 
     KCmdLineArgs::init(argc, argv, &about);
+
+    KCmdLineOptions options;
+    options.add("+[URL]", ki18n( "Document to open" ));
+    options.add("s");
+    options.add("takescreenshot <filename>", ki18n( "Save screenshot to file and exit" ));
+    options.add("w");
+    options.add("screenshotwidth <int>", ki18n( "Screenshot width" ), "-1");
+    options.add("h");
+    options.add("screenshotheight <int>", ki18n( "Screenshot height" ), "-1");
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;
 
@@ -73,9 +70,9 @@ int main(int argc, char **argv)
                 widget->load( args->url(i) );
             
                 if (args->isSet("takescreenshot")){
-                    widget->takeScreenshot(args->getOption("takescreenshot"),
-                                    QString(args->getOption("screenshotwidth")).toInt(),
-                                    QString(args->getOption("screenshotheight")).toInt());
+                    widget->takeScreenshot(args->getOption("takescreenshot").toLocal8Bit(),
+                                    args->getOption("screenshotwidth").toInt(),
+                                    args->getOption("screenshotheight").toInt());
                     return 0;
                 }
                 widget->show();

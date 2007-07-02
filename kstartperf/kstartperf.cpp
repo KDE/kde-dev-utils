@@ -27,13 +27,6 @@
 #include <kstandarddirs.h>
 
 
-static KCmdLineOptions options[] =
-{
-    { "+command", I18N_NOOP("Specifies the command to run"), 0 },
-    { "!+[args]" , I18N_NOOP("Arguments to 'command'") , 0 },
-    KCmdLineLastOption
-};
-
 
 QString libkstartperf()
 {
@@ -78,14 +71,18 @@ QString libkstartperf()
 
 int main(int argc, char **argv)
 {
-    KAboutData aboutData("kstartperf", I18N_NOOP("KStartPerf"),
-	    "1.0", I18N_NOOP("Measures start up time of a KDE application"),
+    KAboutData aboutData("kstartperf", 0, ki18n("KStartPerf"),
+	    "1.0", ki18n("Measures start up time of a KDE application"),
 	    KAboutData::License_Artistic,
-	    "Copyright (c) 2000 Geert Jansen and libkmapnotify authors");
-    aboutData.addAuthor("Geert Jansen", I18N_NOOP("Maintainer"),
+	    ki18n("Copyright (c) 2000 Geert Jansen and libkmapnotify authors"));
+    aboutData.addAuthor(ki18n("Geert Jansen"), ki18n("Maintainer"),
 	    "jansen@kde.org", "http://www.stack.nl/~geertj/");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
+
+    KCmdLineOptions options;
+    options.add("+command", ki18n("Specifies the command to run"));
+    options.add("!+[args]", ki18n("Arguments to 'command'"));
     KCmdLineArgs::addCmdLineOptions(options);
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
@@ -104,11 +101,11 @@ int main(int argc, char **argv)
     // Build command
 
     char cmd[1024];
-    sprintf(cmd, "LD_PRELOAD=%s %s", qPrintable( libkstartperf() ), args->arg(0));
+    sprintf(cmd, "LD_PRELOAD=%s %s", qPrintable( libkstartperf() ), args->arg(0).toLocal8Bit());
     for (int i=1; i<args->count(); i++)
     {
 	strcat(cmd, " ");
-	strcat(cmd, args->arg(i));
+	strcat(cmd, args->arg(i).toLocal8Bit());
     }
 
     // Put the current time in the environment variable `KSTARTPERF'
