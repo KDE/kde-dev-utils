@@ -6,7 +6,6 @@ project(kstartperf)
 
 set(kstartperf_LIB_SRCS libkstartperf.c )
 
-kde4_automoc(${kstartperf_LIB_SRCS})
 
 kde4_add_library(kstartperf SHARED ${kstartperf_LIB_SRCS})
 
@@ -20,7 +19,6 @@ install(TARGETS kstartperf  DESTINATION ${LIB_INSTALL_DIR} )
 
 set(kstartperf_bin_SRCS kstartperf.cpp )
 
-kde4_automoc(${kstartperf_bin_SRCS})
 
 kde4_add_executable(kstartperf_bin NOGUI ${kstartperf_bin_SRCS})
 

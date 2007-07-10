@@ -6,7 +6,6 @@ project(kuiviewer)
 
 set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
 
-kde4_automoc(${kuiviewer_SRCS})
 
 kde4_add_executable(kuiviewer ${kuiviewer_SRCS})
 
@@ -19,7 +18,6 @@ install(TARGETS kuiviewer  DESTINATION ${BIN_INSTALL_DIR} )
 
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
-kde4_automoc(${kuiviewerpart_PART_SRCS})
 
 kde4_add_plugin(kuiviewerpart WITH_PREFIX ${kuiviewerpart_PART_SRCS})
 
@@ -34,7 +32,6 @@ install(TARGETS kuiviewerpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(quithumbnail_PART_SRCS quicreator.cpp )
 
-kde4_automoc(${quithumbnail_PART_SRCS})
 
 kde4_add_plugin(quithumbnail ${quithumbnail_PART_SRCS})
 
