@@ -27,7 +27,7 @@
 class QUICreator : public ThumbCreator
 {
 public:
-    QUICreator() {};
+    QUICreator() {}
     virtual bool create(const QString &path, int, int, QImage &img);
     virtual Flags flags() const;
 };
