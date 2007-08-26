@@ -587,11 +587,11 @@ int main(int argc, char *argv[])
 
   options.add("th");
 
-  options.add("treethreshold <value>", ki18n("Don't print subtrees which allocated less than <value> memory"));
+  options.add("treethreshold <value>", ki18n("Do not print subtrees which allocated less than <value> memory"));
 
   options.add("td");
 
-  options.add("treedepth <value>", ki18n("Don't print subtrees that are deeper than <value>"));
+  options.add("treedepth <value>", ki18n("Do not print subtrees that are deeper than <value>"));
 
   KCmdLineArgs::addCmdLineOptions(options);
 
