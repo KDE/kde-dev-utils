@@ -44,7 +44,6 @@
 #include <qstylefactory.h>
 #include <qvariant.h>
 #include <kvbox.h>
-#include <qvariant.h>
 #include <kglobal.h>
 #include <QFormBuilder>
 #include <kselectaction.h>

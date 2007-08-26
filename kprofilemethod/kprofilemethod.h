@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef KPROFILE_METHOD_H
-#define KPROFILE_METHOD_H
+#ifndef KPROFILEMETHOD_H
+#define KPROFILEMETHOD_H
 
 #include <qdatetime.h>
 #include <kdebug.h>
@@ -48,4 +48,4 @@
 #define PROFILE_METHOD_END(sym) extern int sym; sym += profile_dt##sym.elapsed();
 #define PROFILE_METHOD_PRINT(sym, name) extern int sym; kDebug() << name << " took " << sym << " milliseconds" << endl;
 
-#endif // KPROFILE_METHOD_H
+#endif // KPROFILEMETHOD_H
