@@ -19,7 +19,8 @@
 #ifndef KPROFILEMETHOD_H
 #define KPROFILEMETHOD_H
 
-#include <qdatetime.h>
+#include <QtCore/QDateTime>
+
 #include <kdebug.h>
 
 /**
