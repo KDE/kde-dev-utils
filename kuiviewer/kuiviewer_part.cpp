@@ -76,11 +76,10 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
-    KGlobal::config()->setGroup("General");
 #ifdef __GNUC__
 #warning "QT4 : KStyle::defaultStyle() doesn't exist";
 #endif
-    const QString currentStyle = KConfigGroup(KGlobal::config(), KGlobal::config()->group()).readEntry("currentWidgetStyle"/*, KStyle::defaultStyle()*/);
+    const QString currentStyle = KConfigGroup(KGlobal::config(), "General").readEntry("currentWidgetStyle"/*, KStyle::defaultStyle()*/);
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(styles);
@@ -200,8 +199,7 @@ void KUIViewerPart::slotStyle(int)
     m_widget->show();
     QApplication::restoreOverrideCursor();
 
-    KGlobal::config()->setGroup("General");
-    KConfigGroup(KGlobal::config(), KGlobal::config()->group()).writeEntry("currentWidgetStyle", m_style->currentText());
+    KConfigGroup(KGlobal::config(), "General").writeEntry("currentWidgetStyle", m_style->currentText());
     KGlobal::config()->sync();
 }
 
