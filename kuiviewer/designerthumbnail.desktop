@@ -44,6 +44,6 @@ Name[x-test]=xxQt Designer Filesxx
 Name[zh_CN]=Qt 设计师文件
 Name[zh_TW]=Qt Designer 檔案
 ServiceTypes=ThumbCreator
-MimeTypes=application/x-designer
+MimeTypes=application/x-designer;
 X-KDE-Library=quithumbnail
 CacheThumbnail=true
