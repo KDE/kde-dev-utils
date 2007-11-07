@@ -76,10 +76,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
-#ifdef __GNUC__
-#warning "QT4 : KStyle::defaultStyle() doesn't exist";
-#endif
-    const QString currentStyle = KConfigGroup(KGlobal::config(), "General").readEntry("currentWidgetStyle"/*, KStyle::defaultStyle()*/);
+    const QString currentStyle = KConfigGroup(KGlobal::config(), "General").readEntry("currentWidgetStyle", KStyle::defaultStyle());
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(styles);
