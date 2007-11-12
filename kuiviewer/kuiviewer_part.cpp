@@ -196,7 +196,8 @@ void KUIViewerPart::slotStyle(int)
     m_widget->show();
     QApplication::restoreOverrideCursor();
 
-    KConfigGroup(KGlobal::config(), "General").writeEntry("currentWidgetStyle", m_style->currentText());
+    KConfigGroup cg(KGlobal::config(), "General");
+    cg.writeEntry("currentWidgetStyle", m_style->currentText());
     KGlobal::config()->sync();
 }
 
