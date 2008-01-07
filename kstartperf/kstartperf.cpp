@@ -101,7 +101,8 @@ int main(int argc, char **argv)
     // Build command
 
     char cmd[1024];
-    sprintf(cmd, "LD_PRELOAD=%s %s", qPrintable( libkstartperf() ), args->arg(0).toLocal8Bit());
+    snprintf(cmd, sizeof(cmd), "LD_PRELOAD=%s %s", 
+             qPrintable( libkstartperf() ), qPrintable(args->arg(0)));
     for (int i=1; i<args->count(); i++)
     {
 	strcat(cmd, " ");
