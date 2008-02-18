@@ -51,7 +51,7 @@ install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
   target_link_libraries(ktrace   dl ${KDE4_KDE3SUPPORT_LIBS} )
 
   set_target_properties(ktrace PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-install(TARGETS ktrace  DESTINATION ${LIB_INSTALL_DIR} )
+install(TARGETS ktrace  DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
   ########### install files ###############
 
