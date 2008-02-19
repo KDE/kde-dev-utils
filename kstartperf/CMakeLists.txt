@@ -12,7 +12,7 @@ kde4_add_library(kstartperf SHARED ${kstartperf_LIB_SRCS})
 target_link_libraries(kstartperf dl)
 
 set_target_properties(kstartperf PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-install(TARGETS kstartperf  DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS kstartperf ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
