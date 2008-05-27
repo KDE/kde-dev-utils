@@ -11,7 +11,7 @@ kde4_add_executable(kuiviewer ${kuiviewer_SRCS})
 
 target_link_libraries(kuiviewer  ${KDE4_KPARTS_LIBS}  )
 
-install(TARGETS kuiviewer  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS kuiviewer  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############

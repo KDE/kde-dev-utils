@@ -27,4 +27,4 @@ set_target_properties(kstartperf_bin PROPERTIES OUTPUT_NAME kstartperf)
 
 target_link_libraries(kstartperf_bin  ${KDE4_KDECORE_LIBS} kstartperf)
 
-install(TARGETS kstartperf_bin  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS kstartperf_bin  ${INSTALL_TARGETS_DEFAULT_ARGS} )
