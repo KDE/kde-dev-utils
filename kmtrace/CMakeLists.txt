@@ -56,6 +56,6 @@ install(TARGETS ktrace ${INSTALL_TARGETS_DEFAULT_ARGS} )
   ########### install files ###############
 
 install( FILES kde.excludes  DESTINATION  ${DATA_INSTALL_DIR}/kmtrace )
-  install( FILES ktrace.h DESTINATION ${INCLUDE_INSTALL_DIR} )
+  install( FILES ktrace.h DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel )
 
 endif (LIBIBERTY_LIBRARY)

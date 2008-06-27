@@ -1,1 +1,1 @@
-install( FILES kprofilemethod.h DESTINATION ${INCLUDE_INSTALL_DIR})
+install( FILES kprofilemethod.h DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
