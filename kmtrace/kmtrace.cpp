@@ -286,7 +286,7 @@ void lookupUnknownSymbols(const char *appname)
       if (!fgets(buffer2, 1023, fInputFile)) continue;
       buffer1[strlen(buffer1)-1]=0;
       buffer2[strlen(buffer2)-1]=0;
-      Q3CString symbol;
+      Q3CString symbol(sizeof(buffer1) + sizeof(buffer2) + 3);
       symbol.sprintf("%s(%s)", buffer2, buffer1);
       if(*buffer1 != '?')
           symbolDict->replace(it2.currentKey(),qstrdup(symbol.data()));
