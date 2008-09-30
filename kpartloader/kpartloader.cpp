@@ -28,6 +28,7 @@
 #include <kicon.h>
 
 KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
+    : m_part(0)
 {
     setXMLFile("kpartloaderui.rc");
 
