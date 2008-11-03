@@ -8,50 +8,50 @@ if (LIBIBERTY_LIBRARY)
   INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/kminspector DESTINATION ${BIN_INSTALL_DIR})
   ########### kmtrace ###############
 
-  set(kmtrace_SRCS kmtrace.cpp )
+  set(kmtrace_SRCS kmtrace.cpp)
 
 
   kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
   target_link_libraries(kmtrace   ${LIBIBERTY_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS})
 
-install(TARGETS kmtrace  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS kmtrace ${INSTALL_TARGETS_DEFAULT_ARGS})
 
   ########### demangle ###############
 
-  set(demangle_SRCS demangle.cpp )
+  set(demangle_SRCS demangle.cpp)
 
 
   kde4_add_executable(demangle ${demangle_SRCS})
 
   target_link_libraries(demangle   ${LIBIBERTY_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS})
 
-install(TARGETS demangle  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS demangle ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 
   ########### kmmatch ###############
 
-  set(kmmatch_SRCS match.cpp )
+  set(kmmatch_SRCS match.cpp)
 
 
   kde4_add_executable(kmmatch ${kmmatch_SRCS})
 
   target_link_libraries(kmmatch   ${KDE4_KDE3SUPPORT_LIBS})
 
-install(TARGETS kmmatch  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS kmmatch ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 
   ########### ktrace ###############
 
-  set(ktrace_LIB_SRCS ksotrace.cpp ktrace.c )
+  set(ktrace_LIB_SRCS ksotrace.cpp ktrace.c)
 
 
   kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
-  target_link_libraries(ktrace   dl ${KDE4_KDE3SUPPORT_LIBS} )
+  target_link_libraries(ktrace   dl ${KDE4_KDE3SUPPORT_LIBS})
 
-  set_target_properties(ktrace PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-install(TARGETS ktrace ${INSTALL_TARGETS_DEFAULT_ARGS} )
+  set_target_properties(ktrace PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION})
+install(TARGETS ktrace ${INSTALL_TARGETS_DEFAULT_ARGS})
 
   ########### install files ###############
 
