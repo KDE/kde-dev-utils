@@ -26,13 +26,16 @@
 #include <kpluginfactory.h>
 #include <kpluginloader.h>
 #include <kicon.h>
+#include <kapplication.h>
+#include <kcmdlineargs.h>
+
 
 KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
     : m_part(0)
 {
     setXMLFile("kpartloaderui.rc");
 
-    KAction * paQuit = new KAction( KIcon("application-exit"), "&Quit", this );
+    KAction * paQuit = new KAction( KIcon("application-exit"), i18n("&Quit"), this );
     actionCollection()->addAction( "file_quit", paQuit );
     connect(paQuit, SIGNAL(triggered()), this, SLOT(close()));
 
@@ -58,9 +61,6 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
 KPartLoaderWindow::~KPartLoaderWindow()
 {
 }
-
-#include <kapplication.h>
-#include <kcmdlineargs.h>
 
 int main( int argc, char **argv )
 {
