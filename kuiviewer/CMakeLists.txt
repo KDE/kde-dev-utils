@@ -6,6 +6,7 @@ project(kuiviewer)
 
 set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
 
+kde4_add_app_icon(kuiviewer_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kuiviewer.png")
 
 kde4_add_executable(kuiviewer ${kuiviewer_SRCS})
 
