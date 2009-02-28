@@ -45,7 +45,7 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
         // Create the part
         m_part = factory->create<KParts::ReadOnlyPart>(this, this);
     } else {
-        KMessageBox::error(this, i18n("No part named %1 found!", partLib));
+        KMessageBox::error(this, i18n("No part named %1 found.", partLib));
     }
 
     if (m_part) {
