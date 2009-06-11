@@ -186,12 +186,10 @@ void KUIViewerPart::slotStyle(int)
     QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);
 
-    QList<QObject *>l = m_widget->queryList( "QWidget" );
-	if (l.count()>0){
-		for (int i = 0; i < l.size(); ++i) {
-			( static_cast<QWidget *>(l.at(i)) )->setStyle( style );
-		}
-	}
+    QList<QWidget *>l = m_widget->findChildren<QWidget*>();
+    for (int i = 0; i < l.size(); ++i) {
+        l.at(i)->setStyle( style );
+    }
 
     m_widget->show();
     QApplication::restoreOverrideCursor();

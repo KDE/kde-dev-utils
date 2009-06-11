@@ -46,7 +46,7 @@ bool QUICreator::create(const QString &path, int width, int height, QImage & img
 	if ( w )
 	{
 		QPixmap p = QPixmap::grabWidget(w);
-		img = p.toImage().smoothScale(width,height,Qt::KeepAspectRatio);
+		img = p.toImage().scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		return true;
 	}
 	else
