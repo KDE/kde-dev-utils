@@ -322,15 +322,15 @@ fprintf(stderr, "Error!\n");
    }
    else
    {
-     int start = s.find('(');
-     int end = s.findRev('+');
+     int start = s.indexOf('(');
+     int end = s.lastIndexOf('+');
      if (end < 0)
-        end = s.findRev(')');
+        end = s.lastIndexOf(')');
      if ((start > 0) && (end > start))
      {
        QByteArray symbol = s.mid(start+1, end-start-1);
        char *res = 0;
-       if (symbol.find(')') == -1)
+       if (symbol.indexOf(')') == -1)
            res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
 
        if (res)
@@ -394,7 +394,7 @@ struct TreeEntry
    int address;			// backtrace
    int total_size;
    int total_count;
-   typedef Q3ValueList < TreeEntry > TreeList;
+   typedef QList < TreeEntry > TreeList;
    TreeList *subentries () const;
    mutable TreeList *_subentries;
    TreeEntry (int adr = 0, int size = 0, int count = 0, TreeList * sub = NULL );
@@ -402,7 +402,7 @@ struct TreeEntry
    bool operator < (const TreeEntry &) const;
 };
 
-typedef Q3ValueList < TreeEntry > TreeList;
+typedef QList < TreeEntry > TreeList;
 
 inline TreeEntry::TreeEntry (int adr, int size, int count, TreeList * sub)
  : address (adr), total_size (size), total_count (count), _subentries (sub)
@@ -443,12 +443,12 @@ void buildTree ()
 	 ;			// find last (topmost) backtrace entry
       for (--i; i >= 0; --i)
       {
-	 TreeList::Iterator pos = list->find (entry->backtrace[i]);
+	 TreeList::Iterator pos = qFind(list->begin(), list->end(), entry->backtrace[i]);
 	 if (pos == list->end ())
 	 {
 	    list->prepend (TreeEntry (entry->backtrace[i], entry->total_size,
 				      entry->count));
-	    pos = list->find (entry->backtrace[i]);
+	    pos = list->begin();
 	 }
 	 else
 	    *pos = TreeEntry (entry->backtrace[i],
@@ -470,7 +470,7 @@ void processTree (TreeList * list, int threshold, int maxdepth, int depth)
 	 processTree ((*it).subentries (), threshold, maxdepth, depth);
       if ((*it).total_size < threshold || (depth > maxdepth && maxdepth > 0))
       {
-	 it = list->remove (it);
+	 it = list->erase(it);
 	 continue;
       }
       ++it;
@@ -500,8 +500,8 @@ dumpTree (const TreeEntry & entry, int level, char *indent, FILE * file)
    }
    int pos = 0;
    int last = entry.subentries ()->count() - 1;
-   for (TreeList::ConstIterator it = entry.subentries ()->begin ();
-	it != entry.subentries ()->end (); ++it)
+   for (TreeList::ConstIterator it = entry.subentries ()->constBegin ();
+	it != entry.subentries ()->constEnd (); ++it)
    {
       if (pos == last)
 	 indent[level - 1] = '\\';
@@ -522,8 +522,8 @@ void dumpTree (FILE * file)
 {
    char indent[1024];
    indent[0] = '\0';
-   for (TreeList::ConstIterator it = treeList->begin ();
-	it != treeList->end (); ++it)
+   for (TreeList::ConstIterator it = treeList->constBegin ();
+	it != treeList->constEnd (); ++it)
       dumpTree (*it, 0, indent, file);
 }
 

@@ -27,7 +27,7 @@ int main(int argc, char **argv)
                       "in <map-file>, in the same order as they appear in <call-file>.\n");
       return 1;
    }
-   
+
    int i = 1;
    Q3Dict<int> dict(20011);
 
@@ -41,34 +41,34 @@ int main(int argc, char **argv)
    {
       fgets(buf, 1024, map_file);
       QString line = QString::fromLatin1(buf).trimmed();
-      QStringList split = QStringList::split(' ', line);
+      const QStringList split = line.split(' ', QString::SkipEmptyParts);
       if (split.count() <= 1)
          return 1;
-         
+
       if (split[1] == "T")
       {
-         dict.insert(split[2], &i);  
+         dict.insert(split[2], &i);
       }
    }
    fclose(map_file);
-   
+
    FILE *call_file = fopen(argv[2], "r");
    if (!call_file)
    {
       fprintf(stderr, "Error opening '%s'\n", argv[2]);
       return 1;
    }
-   
+
    while(!feof(call_file))
    {
       fgets(buf, 1024, call_file);
       QString line = QString::fromLatin1(buf).trimmed();
       if (dict.find(line))
       {
-         qWarning("%s", line.latin1());
+         qWarning("%s", qPrintable(line));
       }
    }
    fclose(call_file);
-   return 0; 
+   return 0;
 }
 
