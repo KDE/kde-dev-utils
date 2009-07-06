@@ -47,13 +47,13 @@
 QString libkstartperf()
 {
     QString lib;
-    QString la_file = KStandardDirs::locate("lib", "libkstartperf.la");
+    QString la_file = KStandardDirs::locate("module", "kstartperf.la");
 
     if (la_file.isEmpty())
     {
         // if no '.la' file could be found, fallback to a search for the .so file
         // in the standard KDE directories
-        lib = KStandardDirs::locate("lib","libkstartperf.so");
+        lib = KStandardDirs::locate("module","kstartperf.so");
 	return lib;
     }
 
@@ -80,7 +80,7 @@ QString libkstartperf()
     }
 
     // Look up the actual .so file.
-    lib = KStandardDirs::locate("lib", lib);
+    lib = KStandardDirs::locate("module", lib);
     return lib;
 }
 
