@@ -9,7 +9,7 @@ set(kstartperf_LIB_SRCS libkstartperf.c )
 
 kde4_add_plugin(kstartperf ${kstartperf_LIB_SRCS})
 
-target_link_libraries(kstartperf dl)
+target_link_libraries(kstartperf ${CMAKE_DL_LIBS})
 
 install(TARGETS kstartperf DESTINATION ${PLUGIN_INSTALL_DIR} )
 
