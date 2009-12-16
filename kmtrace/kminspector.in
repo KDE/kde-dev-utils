@@ -2,7 +2,7 @@
 
 export MALLOC_TREE=kminspector.tree
 export MALLOC_THRESHOLD=2000
-export LD_PRELOAD=@kde_libraries@/libktrace.so
+export LD_PRELOAD=@kde_libraries@/kmtrace/libktrace.so
 
 $*
 

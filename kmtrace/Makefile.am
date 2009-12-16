@@ -33,13 +33,15 @@ kmmatch_LDFLAGS = $(all_libraries)
 
 bin_SCRIPTS = kminspector
 
-lib_LIBRARIES = libktrace_s.a
+kmtracelibdir = $(libdir)/kmtrace
+
+kmtracelib_LIBRARIES = libktrace_s.a
 libktrace_s_a_SOURCES = ktrace_s.c
 
 ktrace_s.c: $(srcdir)/ktrace.c
 	$(LN_S) $(srcdir)/ktrace.c $@
 
-lib_LTLIBRARIES = libktrace.la
+kmtracelib_LTLIBRARIES = libktrace.la
 libktrace_la_LDFLAGS = -avoid-version
 libktrace_la_SOURCES = ksotrace.cpp ktrace.c
 libktrace_la_LIBADD = $(LIBDL)

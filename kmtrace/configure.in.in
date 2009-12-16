@@ -1,7 +1,7 @@
 dnl AC_OUTPUT( kmtrace/kminspector )
 
 case "$host" in
-   *-gnu)
+   *-gnu*)
       saved_LIBS="$LIBS"
       LIBS="$LIBS -Wl,-Bstatic -liberty -Wl,-Bdynamic"
       AC_TRY_LINK([], [], [kde_compile_kmtrace=$GCC], [kde_compile_kmtrace=no])
