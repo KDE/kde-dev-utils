@@ -2,6 +2,7 @@
 Name=KUIViewer
 Name[br]=KUIViewer
 Name[ca]=KUIViewer
+Name[ca@valencia]=KUIViewer
 Name[cs]=KUIViewer
 Name[cy]=KUIGwelydd
 Name[da]=KUIViewer
@@ -54,6 +55,7 @@ Type=Application
 GenericName=Qt Designer UI File Viewer
 GenericName[br]=Ur gweler restr UI Ergrafer Qt
 GenericName[ca]=Visor de fitxer UI de Qt Designer
+GenericName[ca@valencia]=Visor de fitxer UI de Qt Designer
 GenericName[cs]=Prohlížeč UI souborů z Qt Designeru
 GenericName[cy]=Gwelydd Ffeiliau UI Qt Designer
 GenericName[da]=Qt Designer UI filviser
