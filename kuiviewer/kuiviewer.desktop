@@ -56,6 +56,7 @@ Exec=kuiviewer -caption "%c"
 Icon=kuiviewer
 Type=Application
 GenericName=Qt Designer UI File Viewer
+GenericName[bg]=Преглед на файлове на Qt Designer
 GenericName[br]=Ur gweler restr UI Ergrafer Qt
 GenericName[ca]=Visor de fitxer UI de Qt Designer
 GenericName[ca@valencia]=Visor de fitxer UI de Qt Designer
