@@ -19,11 +19,11 @@
 #ifndef KPROFILE_METHOD_H
 #define KPROFILE_METHOD_H
 
-#include <qdatetime.h>
+#include <tqdatetime.h>
 #include <kdebug.h>
 
 /**
- * Those macros help profiling using QTime.
+ * Those macros help profiling using TQTime.
  * They allow to sum up the time taken by a given bit of code
  * in a method called several times.
  * This way one can find out which low-level method used by a high-level
@@ -44,7 +44,7 @@
  *   PROFILE_METHOD_PRINT( pr_theMethod, "theMethod" );
  *
  */
-#define PROFILE_METHOD_BEGIN(sym) extern int sym; QTime profile_dt##sym; profile_dt##sym.start();
+#define PROFILE_METHOD_BEGIN(sym) extern int sym; TQTime profile_dt##sym; profile_dt##sym.start();
 #define PROFILE_METHOD_END(sym) extern int sym; sym += profile_dt##sym.elapsed();
 #define PROFILE_METHOD_PRINT(sym, name) extern int sym; kdDebug() << name << " took " << sym << " milliseconds" << endl;
 

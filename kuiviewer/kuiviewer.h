@@ -71,7 +71,7 @@ public:
      * @param h height of image
      * @param w width of image
      */
-    void takeScreenshot(const QCString &filename, int h=-1, int w=-1);
+    void takeScreenshot(const TQCString &filename, int h=-1, int w=-1);
 
 protected:
     /**

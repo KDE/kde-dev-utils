@@ -24,9 +24,9 @@
 #include <config.h>
 #endif
 
-#include <qpixmap.h>
-#include <qimage.h>
-#include <qwidgetfactory.h>
+#include <tqpixmap.h>
+#include <tqimage.h>
+#include <tqwidgetfactory.h>
 
 #include "quicreator.h"
 
@@ -40,14 +40,14 @@ extern "C"
     }
 }
 
-bool QUICreator::create(const QString &path, int width, int height, QImage &
+bool QUICreator::create(const TQString &path, int width, int height, TQImage &
 img)
 {
-	QWidget *w = QWidgetFactory::create(path, 0, 0);
+	TQWidget *w = TQWidgetFactory::create(path, 0, 0);
 	if ( w )
 	{
-		QPixmap p = QPixmap::grabWidget(w);
-		img = p.convertToImage().smoothScale(width,height,QImage::ScaleMin);
+		TQPixmap p = TQPixmap::grabWidget(w);
+		img = p.convertToImage().smoothScale(width,height,TQImage::ScaleMin);
 		return true;
 	}
 	else

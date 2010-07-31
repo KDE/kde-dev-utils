@@ -15,9 +15,9 @@
 #include <errno.h>
 #include <sys/time.h>
 
-#include <qstring.h>
-#include <qtextstream.h>
-#include <qfile.h>
+#include <tqstring.h>
+#include <tqtextstream.h>
+#include <tqfile.h>
 
 #include <kapplication.h>
 #include <kaboutdata.h>
@@ -33,20 +33,20 @@ static KCmdLineOptions options[] =
 };
 
 
-QString libkstartperf()
+TQString libkstartperf()
 {
-    QString lib = QString::null;
-    QString la_file = locate("lib", "libkstartperf.la");
+    TQString lib = TQString::null;
+    TQString la_file = locate("lib", "libkstartperf.la");
 
     if (la_file.isEmpty())
 	return lib;
 
     // Find the name of the .so file by reading the .la file
-    QFile la(la_file);
+    TQFile la(la_file);
     if (la.open(IO_ReadOnly))
     {
-	QTextStream is(&la);
-	QString line;
+	TQTextStream is(&la);
+	TQString line;
 
 	while (!is.atEnd())
         {

@@ -1,12 +1,12 @@
-#include <qintdict.h>
+#include <tqintdict.h>
 #include <stdio.h>
-#include <qstringlist.h>
-#include <qstrlist.h>
-#include <qtextstream.h>
-#include <qsortedlist.h>
-#include <qfile.h>
-#include <qtl.h>
-#include <qvaluelist.h>
+#include <tqstringlist.h>
+#include <tqstrlist.h>
+#include <tqtextstream.h>
+#include <tqsortedlist.h>
+#include <tqfile.h>
+#include <tqtl.h>
+#include <tqvaluelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
@@ -48,11 +48,11 @@ struct Entry {
   bool operator<(const Entry &e) { return total_size > e.total_size; }
 };
 
-QIntDict<Entry> *entryDict = 0;
-QIntDict<char> *symbolDict = 0;
-QIntDict<char> *formatDict = 0;
-QSortedList<Entry> *entryList = 0;
-QStrList *excludes = 0;
+TQIntDict<Entry> *entryDict = 0;
+TQIntDict<char> *symbolDict = 0;
+TQIntDict<char> *formatDict = 0;
+TQSortedList<Entry> *entryList = 0;
+TQStrList *excludes = 0;
 
 const char * const unknown = "<unknown>";
 const char * const excluded = "<excluded>";
@@ -66,7 +66,7 @@ int totalBytes = 0;
 int maxBytes;
 
 int fromHex(const char *str);
-void parseLine(const QCString &_line, char operation);
+void parseLine(const TQCString &_line, char operation);
 void dumpBlocks();
 
 int fromHex(const char *str)
@@ -77,7 +77,7 @@ int fromHex(const char *str)
 }
 
 // [address0][address1] .... [address] + base size
-void parseLine(const QCString &_line, char operation)
+void parseLine(const TQCString &_line, char operation)
 {
   char *line= (char *) _line.data();
   const char *cols[200];
@@ -147,7 +147,7 @@ void parseLine(const QCString &_line, char operation)
 
 void sortBlocks()
 {
-   QIntDictIterator<Entry> it(*entryDict);
+   TQIntDictIterator<Entry> it(*entryDict);
    for(;it.current(); ++it)
    {
       Entry *entry = it.current();
@@ -164,8 +164,8 @@ void sortBlocks()
 
 void collectDupes()
 {
-   QIntDict<Entry> dupeDict;
-   QIntDictIterator<Entry> it(*entryDict);
+   TQIntDict<Entry> dupeDict;
+   TQIntDictIterator<Entry> it(*entryDict);
    for(;it.current();)
    {
       Entry *entry = it.current();
@@ -249,25 +249,25 @@ void lookupUnknownSymbols(const char *appname)
    inputFile.setAutoDelete(true);
    outputFile.setAutoDelete(true);
    FILE *fInputFile = inputFile.fstream();
-   QIntDict<char> oldDict = *symbolDict;
-   QIntDictIterator<char> it(oldDict);
+   TQIntDict<char> oldDict = *symbolDict;
+   TQIntDictIterator<char> it(oldDict);
    for(;it.current(); ++it)
    {
        fprintf(fInputFile, "%08lx\n", it.currentKey());
    }
    inputFile.close();
-   QCString command;
+   TQCString command;
    command.sprintf("addr2line -e %s -f -C -s < %s > %s", appname,
-	QFile::encodeName(KProcess::quote(inputFile.name())).data(),
-	QFile::encodeName(KProcess::quote(outputFile.name())).data());
+	TQFile::encodeName(KProcess::quote(inputFile.name())).data(),
+	TQFile::encodeName(KProcess::quote(outputFile.name())).data());
    system(command.data());
-   fInputFile = fopen(QFile::encodeName(outputFile.name()), "r");
+   fInputFile = fopen(TQFile::encodeName(outputFile.name()), "r");
    if (!fInputFile)
    {
       fprintf(stderr, "Error opening temp file.\n");
       return;
    }
-   QIntDictIterator<char> it2(oldDict);
+   TQIntDictIterator<char> it2(oldDict);
    char buffer1[1024];
    char buffer2[1024];
    for(;it2.current(); ++it2)
@@ -282,7 +282,7 @@ void lookupUnknownSymbols(const char *appname)
       if (!fgets(buffer2, 1023, fInputFile)) continue;
       buffer1[strlen(buffer1)-1]=0;
       buffer2[strlen(buffer2)-1]=0;
-      QCString symbol;
+      TQCString symbol;
       symbol.sprintf("%s(%s)", buffer2, buffer1);
       if(*buffer1 != '?')
           symbolDict->replace(it2.currentKey(),qstrdup(symbol.data()));
@@ -310,7 +310,7 @@ const char *lookupAddress(int addr)
 {
    char *str = formatDict->find(addr);
    if (str) return str;
-   QCString s = symbolDict->find(addr);
+   TQCString s = symbolDict->find(addr);
    if (s.isEmpty())
    {
 fprintf(stderr, "Error!\n");
@@ -324,7 +324,7 @@ fprintf(stderr, "Error!\n");
         end = s.findRev(')');
      if ((start > 0) && (end > start))
      {
-       QCString symbol = s.mid(start+1, end-start-1);
+       TQCString symbol = s.mid(start+1, end-start-1);
        char *res = 0;
        if (symbol.find(')') == -1)
            res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
@@ -390,7 +390,7 @@ struct TreeEntry
    int address;			// backtrace
    int total_size;
    int total_count;
-   typedef QValueList < TreeEntry > TreeList;
+   typedef TQValueList < TreeEntry > TreeList;
    TreeList *subentries () const;
    mutable TreeList *_subentries;
    TreeEntry (int adr = 0, int size = 0, int count = 0, TreeList * sub = NULL );
@@ -398,7 +398,7 @@ struct TreeEntry
    bool operator < (const TreeEntry &) const;
 };
 
-typedef QValueList < TreeEntry > TreeList;
+typedef TQValueList < TreeEntry > TreeList;
 
 inline TreeEntry::TreeEntry (int adr, int size, int count, TreeList * sub)
  : address (adr), total_size (size), total_count (count), _subentries (sub)
@@ -523,7 +523,7 @@ void dumpTree (FILE * file)
       dumpTree (*it, 0, indent, file);
 }
 
-void createTree (const QCString & treefile, int threshold, int maxdepth)
+void createTree (const TQCString & treefile, int threshold, int maxdepth)
 {
    FILE * file = fopen (treefile, "w");
    if (file == NULL)
@@ -593,12 +593,12 @@ int main(int argc, char *argv[])
   else
     logfile = "ktrace.out";
 
-  QCString exe = args->getOption("exe");
-  QCString exclude;
+  TQCString exe = args->getOption("exe");
+  TQCString exclude;
 
   excludes = new QStrList;
 
-  exclude = QFile::encodeName(locate("data", "kmtrace/kde.excludes"));
+  exclude = TQFile::encodeName(locate("data", "kmtrace/kde.excludes"));
   if(!exclude.isEmpty())
       readExcludeFile(exclude);
 
@@ -616,13 +616,13 @@ int main(int argc, char *argv[])
      exit(1);
   }
 
-  entryDict = new QIntDict<Entry>(9973);
-  symbolDict = new QIntDict<char>(9973);
-  formatDict = new QIntDict<char>(9973);
-  entryList = new QSortedList<Entry>;
+  entryDict = new TQIntDict<Entry>(9973);
+  symbolDict = new TQIntDict<char>(9973);
+  formatDict = new TQIntDict<char>(9973);
+  entryList = new TQSortedList<Entry>;
 
   fprintf(stderr, "Running\n");
-  QCString line;
+  TQCString line;
   char line2[1024];
   while(!feof(stream))
   {
@@ -636,7 +636,7 @@ int main(int argc, char *argv[])
      }
      else if (line2[0] == '#')
      {
-       QCString app(line2+1);
+       TQCString app(line2+1);
        if(exe.isEmpty())
        {
          exe = app.stripWhiteSpace();
@@ -673,7 +673,7 @@ int main(int argc, char *argv[])
      {
         line2[0] = '-';
         // First part of realloc (free)
-        QCString reline = line + ' ' + line2;
+        TQCString reline = line + ' ' + line2;
         parseLine(reline, '-');
      }
      else if (line2[0] == '>')
@@ -709,7 +709,7 @@ int main(int argc, char *argv[])
   lookupUnknownSymbols(exe);
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
-  QCString treeFile = args->getOption ("tree");
+  TQCString treeFile = args->getOption ("tree");
   if (!treeFile.isEmpty ())
   {
       fprintf (stderr, "Creating allocation tree...\n");

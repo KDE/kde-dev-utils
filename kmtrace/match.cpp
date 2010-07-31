@@ -1,12 +1,12 @@
-#include <qintdict.h>
+#include <tqintdict.h>
 #include <stdio.h>
-#include <qstringlist.h>
-#include <qstrlist.h>
-#include <qtextstream.h>
-#include <qsortedlist.h>
-#include <qfile.h>
-#include <qtl.h>
-#include <qvaluelist.h>
+#include <tqstringlist.h>
+#include <tqstrlist.h>
+#include <tqtextstream.h>
+#include <tqsortedlist.h>
+#include <tqfile.h>
+#include <tqtl.h>
+#include <tqvaluelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
    }
    
    int i = 1;
-   QDict<int> dict(20011);
+   TQDict<int> dict(20011);
 
    FILE *map_file = fopen(argv[1], "r");
    if (!map_file)
@@ -39,8 +39,8 @@ int main(int argc, char **argv)
    while(!feof(map_file))
    {
       fgets(buf, 1024, map_file);
-      QString line = QString::fromLatin1(buf).stripWhiteSpace();
-      QStringList split = QStringList::split(' ', line);
+      TQString line = TQString::fromLatin1(buf).stripWhiteSpace();
+      TQStringList split = TQStringList::split(' ', line);
       if (split.count() <= 1)
          return 1;
          
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
    while(!feof(call_file))
    {
       fgets(buf, 1024, call_file);
-      QString line = QString::fromLatin1(buf).stripWhiteSpace();
+      TQString line = TQString::fromLatin1(buf).stripWhiteSpace();
       if (dict.find(line))
       {
          qWarning("%s", line.latin1());

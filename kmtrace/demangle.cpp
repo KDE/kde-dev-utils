@@ -1,12 +1,12 @@
-#include <qintdict.h>
+#include <tqintdict.h>
 #include <stdio.h>
-#include <qstringlist.h>
-#include <qstrlist.h>
-#include <qtextstream.h>
-#include <qsortedlist.h>
-#include <qfile.h>
-#include <qtl.h>
-#include <qvaluelist.h>
+#include <tqstringlist.h>
+#include <tqstrlist.h>
+#include <tqtextstream.h>
+#include <tqsortedlist.h>
+#include <tqfile.h>
+#include <tqtl.h>
+#include <tqvaluelist.h>
 #include <stdlib.h>
 #include <ktempfile.h>
 #include <kinstance.h>
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
    while(!feof(stdin))
    {
       fgets(buf, 1024, stdin);
-      QCString line = buf;
+      TQCString line = buf;
       line = line.stripWhiteSpace();
       char *res = cplus_demangle(line.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
       if (res)

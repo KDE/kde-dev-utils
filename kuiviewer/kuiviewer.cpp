@@ -26,9 +26,9 @@
 
 #include <kdebug.h>
 
-#include <qobjectlist.h>
-#include <qdockwindow.h>
-#include <qpixmap.h>
+#include <tqobjectlist.h>
+#include <tqdockwindow.h>
+#include <tqpixmap.h>
 
 #include <kurl.h>
 
@@ -97,8 +97,8 @@ void KUIViewer::load(const KURL& url)
 
 void KUIViewer::setupActions()
 {
-    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-    KStdAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStdAction::open(this, TQT_SLOT(fileOpen()), actionCollection());
+    KStdAction::quit(kapp, TQT_SLOT(quit()), actionCollection());
 }
 
 void KUIViewer::saveProperties(KConfig* /*config*/)
@@ -122,7 +122,7 @@ void KUIViewer::fileOpen()
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     KURL file_name =
-        KFileDialog::getOpenURL( QString::null, i18n("*.ui *.UI|User Interface Files"), this );
+        KFileDialog::getOpenURL( TQString::null, i18n("*.ui *.UI|User Interface Files"), this );
 
     if (file_name.isEmpty() == false)
     {
@@ -145,7 +145,7 @@ void KUIViewer::fileOpen()
     }
 }
 
-void KUIViewer::takeScreenshot(const QCString &filename, int w, int h){
+void KUIViewer::takeScreenshot(const TQCString &filename, int w, int h){
     if(!m_part)
         return;
     showMinimized();
@@ -157,9 +157,9 @@ void KUIViewer::takeScreenshot(const QCString &filename, int w, int h){
         // resize app to be as large as desired size
         adjustSize();
         // Disable the saving of the size
-        setAutoSaveSettings(QString::fromLatin1("MainWindow"), false);
+        setAutoSaveSettings(TQString::fromLatin1("MainWindow"), false);
     }
-    QPixmap pixmap = QPixmap::grabWidget( m_part->widget() );
+    TQPixmap pixmap = TQPixmap::grabWidget( m_part->widget() );
     pixmap.save( filename, "PNG" );
 }
 

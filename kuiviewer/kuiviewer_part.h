@@ -22,7 +22,7 @@
 #ifndef KUIVIEWERPART_H
 #define KUIVIEWERPART_H
 
-#include <qguardedptr.h>
+#include <tqguardedptr.h>
 #include <kparts/part.h>
 
 class QWidget;
@@ -47,8 +47,8 @@ public:
     /**
      * Default constructor
      */
-    KUIViewerPart(QWidget *parentWidget, const char *widgetName,
-                    QObject *parent, const char *name, const QStringList &args);
+    KUIViewerPart(TQWidget *parentWidget, const char *widgetName,
+                    TQObject *parent, const char *name, const TQStringList &args);
 
     /**
      * Destructor
@@ -70,8 +70,8 @@ protected:
     virtual bool openFile();
 
 private:
-    QVBox *m_widget;
-    QGuardedPtr<QWidget> m_view;
+    TQVBox *m_widget;
+    TQGuardedPtr<TQWidget> m_view;
     KListAction *m_style;
     KAction *m_copy;
 };

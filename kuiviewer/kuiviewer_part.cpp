@@ -34,26 +34,26 @@
 #include <kparts/genericfactory.h>
 #include <kstdaction.h>
 #include <kstyle.h>
-#include <qmetaobject.h>
+#include <tqmetaobject.h>
 
-#include <qclipboard.h>
-#include <qcursor.h>
-#include <qfile.h>
-#include <qobjectlist.h>
-#include <qpixmap.h>
-#include <qstyle.h>
-#include <qstylefactory.h>
-#include <qvariant.h>
-#include <qvbox.h>
-#include <qvariant.h>
-#include <qwidgetfactory.h>
+#include <tqclipboard.h>
+#include <tqcursor.h>
+#include <tqfile.h>
+#include <tqobjectlist.h>
+#include <tqpixmap.h>
+#include <tqstyle.h>
+#include <tqstylefactory.h>
+#include <tqvariant.h>
+#include <tqvbox.h>
+#include <tqvariant.h>
+#include <tqwidgetfactory.h>
 
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
-KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
-                                  QObject *parent, const char *name,
-                                  const QStringList & /*args*/ )
+KUIViewerPart::KUIViewerPart( TQWidget *parentWidget, const char *widgetName,
+                                  TQObject *parent, const char *name,
+                                  const TQStringList & /*args*/ )
     : KParts::ReadOnlyPart(parent, name)
 {
     // we need an instance
@@ -62,7 +62,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     KGlobal::locale()->insertCatalogue("kuiviewer");
 
     // this should be your custom internal widget
-    m_widget = new QVBox( parentWidget, widgetName );
+    m_widget = new TQVBox( parentWidget, widgetName );
 
     // notify the part that this is our internal widget
     setWidget(m_widget);
@@ -73,20 +73,20 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style = new KListAction( i18n("Style"),
                 CTRL + Key_S,
                 this,
-                SLOT(slotStyle(int)),
+                TQT_SLOT(slotStyle(int)),
                 actionCollection(),
                 "change_style");
     m_style->setEditable(false);
 
     kapp->config()->setGroup("General");
-    const QString currentStyle = kapp->config()->readEntry("currentWidgetStyle", KStyle::defaultStyle());
+    const TQString currentStyle = kapp->config()->readEntry("currentWidgetStyle", KStyle::defaultStyle());
 
-    const QStringList styles = QStyleFactory::keys();
+    const TQStringList styles = TQStyleFactory::keys();
     m_style->setItems(styles);
     m_style->setCurrentItem(0);
 
-    QStringList::ConstIterator it = styles.begin();
-    QStringList::ConstIterator end = styles.end();
+    TQStringList::ConstIterator it = styles.begin();
+    TQStringList::ConstIterator end = styles.end();
     int idx = 0;
     for (; it != end; ++it, ++idx) {
         if ((*it).lower() == currentStyle.lower()) {
@@ -97,14 +97,14 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget, const char *widgetName,
     m_style->setToolTip(i18n("Set the current style to view."));
     m_style->setMenuAccelsEnabled(true);
 
-    m_copy = KStdAction::copy(this, SLOT(slotGrab()), actionCollection());
+    m_copy = KStdAction::copy(this, TQT_SLOT(slotGrab()), actionCollection());
 
     updateActions();
 
 // Commented out to fix warning (rich)
 // slot should probably be called saveAs() for consistency with
 // KParts::ReadWritePart BTW.
-//    KStdAction::saveAs(this, SLOT(slotSave()), actionCollection());
+//    KStdAction::saveAs(this, TQT_SLOT(slotSave()), actionCollection());
 }
 
 KUIViewerPart::~KUIViewerPart()
@@ -126,13 +126,13 @@ KAboutData *KUIViewerPart::createAboutData()
 
 bool KUIViewerPart::openFile()
 {
-    // m_file is always local so we can use QFile on it
-    QFile file( m_file );
+    // m_file is always local so we can use TQFile on it
+    TQFile file( m_file );
     if ( !file.open(IO_ReadOnly) )
         return false;
 
     delete m_view;
-    m_view = QWidgetFactory::create( &file, 0, m_widget );
+    m_view = TQWidgetFactory::create( &file, 0, m_widget );
 
     file.close();
     updateActions();
@@ -152,7 +152,7 @@ bool KUIViewerPart::openURL( const KURL& url)
     emit setWindowCaption( url.prettyURL() );
 
     m_url = url;
-    m_file = QString::null;
+    m_file = TQString::null;
     if (KIO::NetAccess::download(url, m_file))
 	return openFile();
     else
@@ -178,20 +178,20 @@ void KUIViewerPart::slotStyle(int)
 	return;
     }
 
-    QString  styleName = m_style->currentText();
-    QStyle*  style     = QStyleFactory::create(styleName);
+    TQString  styleName = m_style->currentText();
+    TQStyle*  style     = TQStyleFactory::create(styleName);
     kdDebug() << "Change style..." << endl;
     m_widget->hide();
-    QApplication::setOverrideCursor( WaitCursor );
+    TQApplication::setOverrideCursor( WaitCursor );
     m_widget->setStyle( style);
 
-    QObjectList *l = m_widget->queryList( "QWidget" );
-    for ( QObject *o = l->first(); o; o = l->next() )
-        ( static_cast<QWidget *>(o) )->setStyle( style );
+    TQObjectList *l = m_widget->queryList( "TQWidget" );
+    for ( TQObject *o = l->first(); o; o = l->next() )
+        ( static_cast<TQWidget *>(o) )->setStyle( style );
     delete l;
 
     m_widget->show();
-    QApplication::restoreOverrideCursor();
+    TQApplication::restoreOverrideCursor();
 
     kapp->config()->setGroup("General");
     kapp->config()->writeEntry("currentWidgetStyle", m_style->currentText());
@@ -205,7 +205,7 @@ void KUIViewerPart::slotGrab()
 	return;
     }
 
-    QClipboard *clipboard = QApplication::clipboard();
-    clipboard->setPixmap(QPixmap::grabWidget(m_widget));
+    QClipboard *clipboard = TQApplication::clipboard();
+    clipboard->setPixmap(TQPixmap::grabWidget(m_widget));
 }
 

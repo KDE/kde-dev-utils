@@ -74,8 +74,8 @@ int main(int argc, char **argv)
             
                 if (args->isSet("takescreenshot")){
                     widget->takeScreenshot(args->getOption("takescreenshot"),
-                                    QString(args->getOption("screenshotwidth")).toInt(),
-                                    QString(args->getOption("screenshotheight")).toInt());
+                                    TQString(args->getOption("screenshotwidth")).toInt(),
+                                    TQString(args->getOption("screenshotheight")).toInt());
                     return 0;
                 }
                 widget->show();
