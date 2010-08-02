@@ -596,7 +596,7 @@ int main(int argc, char *argv[])
   TQCString exe = args->getOption("exe");
   TQCString exclude;
 
-  excludes = new QStrList;
+  excludes = new TQStrList;
 
   exclude = TQFile::encodeName(locate("data", "kmtrace/kde.excludes"));
   if(!exclude.isEmpty())

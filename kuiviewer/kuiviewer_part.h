@@ -25,9 +25,9 @@
 #include <tqguardedptr.h>
 #include <kparts/part.h>
 
-class QWidget;
+class TQWidget;
 class KURL;
-class QVBox;
+class TQVBox;
 class KAboutData;
 class KListAction;
 class KListView;
