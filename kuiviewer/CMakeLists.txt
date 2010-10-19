@@ -45,7 +45,7 @@ install(TARGETS quithumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES kuiviewer.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( PROGRAMS kuiviewer.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 install( FILES kuiviewer_part.rc  DESTINATION  ${DATA_INSTALL_DIR}/kuiviewerpart )
 install( FILES kuiviewerui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kuiviewer )
