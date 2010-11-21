@@ -49,7 +49,7 @@
 #include <kselectaction.h>
 
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
-K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
+K_EXPORT_COMPONENT_FACTORY( kuiviewerpart, KUIViewerPartFactory )
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
                                   QObject *parent,

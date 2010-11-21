@@ -20,7 +20,7 @@ install(TARGETS kuiviewer  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
 
-kde4_add_plugin(kuiviewerpart WITH_PREFIX ${kuiviewerpart_PART_SRCS})
+kde4_add_plugin(kuiviewerpart ${kuiviewerpart_PART_SRCS})
 
 
 
