@@ -21,37 +21,30 @@
 
 #include "kuiviewer_part.h"
 #include "kuiviewer_part.moc"
-#include <kaction.h>
-#include <kactioncollection.h>
-#include <kapplication.h>
-#include <kconfig.h>
-#include <kdebug.h>
-#include <kdialog.h>
-#include <kiconloader.h>
-#include <kcomponentdata.h>
-#include <kio/netaccess.h>
-#include <klocale.h>
-#include <kaboutdata.h>
-#include <kpluginfactory.h>
-#include <kstandardaction.h>
-#include <kstyle.h>
-#include <qmetaobject.h>
 
-#include <qclipboard.h>
-#include <qcursor.h>
-#include <qfile.h>
-#include <qobject.h>
-#include <qpixmap.h>
-#include <qstyle.h>
-#include <qstylefactory.h>
-#include <qvariant.h>
-#include <kvbox.h>
-#include <kglobal.h>
-#include <QFormBuilder>
-#include <kselectaction.h>
+// KDE
+#include <KActionCollection>
+#include <KSelectAction>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KIO/NetAccess>
+#include <KLocale>
+#include <KAboutData>
+#include <KPluginFactory>
+#include <KStyle>
+#include <KVBox>
+#include <KDebug>
+// Qt
+#include <QtDesigner/QFormBuilder>
+#include <QtGui/QApplication>
+#include <QtGui/QClipboard>
+#include <QtGui/QStyleFactory>
+#include <QtCore/QFile>
+
 
 K_PLUGIN_FACTORY( KUIViewerPartFactory, registerPlugin<KUIViewerPart>(); )
 K_EXPORT_PLUGIN( KUIViewerPartFactory("kuiviewerpart", "kuiviewer") )
+
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
                               QObject *parent,

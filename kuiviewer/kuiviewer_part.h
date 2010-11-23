@@ -22,8 +22,10 @@
 #ifndef KUIVIEWERPART_H
 #define KUIVIEWERPART_H
 
-#include <qpointer.h>
-#include <kparts/part.h>
+// KDE
+#include <KParts/ReadOnlyPart>
+// Qt
+#include <QtCore/QPointer>
 
 class QWidget;
 class KUrl;
