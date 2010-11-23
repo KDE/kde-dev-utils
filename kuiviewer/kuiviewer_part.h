@@ -47,7 +47,7 @@ public:
     /**
      * Default constructor
      */
-    KUIViewerPart(QWidget *parentWidget, QObject *parent, const QStringList &args);
+    KUIViewerPart(QWidget *parentWidget, QObject *parent, const QVariantList &args);
 
     /**
      * Destructor

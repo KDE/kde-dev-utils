@@ -30,7 +30,9 @@
 #include <kiconloader.h>
 #include <kcomponentdata.h>
 #include <kio/netaccess.h>
-#include <kparts/genericfactory.h>
+#include <klocale.h>
+#include <kaboutdata.h>
+#include <kpluginfactory.h>
 #include <kstandardaction.h>
 #include <kstyle.h>
 #include <qmetaobject.h>
@@ -48,18 +50,16 @@
 #include <QFormBuilder>
 #include <kselectaction.h>
 
-typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
-K_EXPORT_COMPONENT_FACTORY( kuiviewerpart, KUIViewerPartFactory )
+K_PLUGIN_FACTORY( KUIViewerPartFactory, registerPlugin<KUIViewerPart>(); )
+K_EXPORT_PLUGIN( KUIViewerPartFactory("kuiviewerpart", "kuiviewer") )
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
-                                  QObject *parent,
-                                  const QStringList & /*args*/ )
+                              QObject *parent,
+                              const QVariantList &/*args*/ )
     : KParts::ReadOnlyPart(parent)
 {
     // we need an instance
     setComponentData( KUIViewerPartFactory::componentData() );
-
-    KGlobal::locale()->insertCatalog("kuiviewer");
 
     // this should be your custom internal widget
     m_widget = new KVBox( parentWidget );
