@@ -56,8 +56,6 @@ public:
      */
     virtual ~KUIViewerPart();
 
-    static KAboutData *createAboutData();
-
 public slots:
      bool openURL( const KUrl& );
      void slotStyle(int);
