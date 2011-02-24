@@ -185,7 +185,7 @@ void KUIViewerPart::slotStyle(int)
     TQApplication::setOverrideCursor( WaitCursor );
     m_widget->setStyle( style);
 
-    TQObjectList *l = m_widget->queryList( "TQWidget" );
+    TQObjectList *l = m_widget->queryList( TQWIDGET_OBJECT_NAME_STRING );
     for ( TQObject *o = l->first(); o; o = l->next() )
         ( static_cast<TQWidget *>(o) )->setStyle( style );
     delete l;
