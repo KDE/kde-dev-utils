@@ -49,6 +49,7 @@ class ReadOnlyPart;
 class KUIViewer : public KParts::MainWindow
 {
     Q_OBJECT
+  TQ_OBJECT
 public:
     /**
      * Default Constructor

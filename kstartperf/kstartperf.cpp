@@ -35,7 +35,7 @@ static KCmdLineOptions options[] =
 
 TQString libkstartperf()
 {
-    TQString lib = TQString::null;
+    TQString lib = TQString();
     TQString la_file = locate("lib", "libkstartperf.la");
 
     if (la_file.isEmpty())
@@ -54,7 +54,7 @@ TQString libkstartperf()
             if (line.left(15) == "library_names='")
             {
 		lib = line.mid(15);
-                int pos = lib.find(" ");
+                int pos = lib.tqfind(" ");
                 if (pos > 0)
 		    lib = lib.left(pos);
 	    }

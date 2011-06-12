@@ -43,12 +43,13 @@ class KListView;
 class KUIViewerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
+  TQ_OBJECT
 public:
     /**
      * Default constructor
      */
-    KUIViewerPart(TQWidget *parentWidget, const char *widgetName,
-                    TQObject *parent, const char *name, const TQStringList &args);
+    KUIViewerPart(TQWidget *tqparentWidget, const char *widgetName,
+                    TQObject *tqparent, const char *name, const TQStringList &args);
 
     /**
      * Destructor

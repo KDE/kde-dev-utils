@@ -39,7 +39,7 @@ int main(int argc, char **argv)
    while(!feof(map_file))
    {
       fgets(buf, 1024, map_file);
-      TQString line = TQString::fromLatin1(buf).stripWhiteSpace();
+      TQString line = TQString::tqfromLatin1(buf).stripWhiteSpace();
       TQStringList split = TQStringList::split(' ', line);
       if (split.count() <= 1)
          return 1;
@@ -61,8 +61,8 @@ int main(int argc, char **argv)
    while(!feof(call_file))
    {
       fgets(buf, 1024, call_file);
-      TQString line = TQString::fromLatin1(buf).stripWhiteSpace();
-      if (dict.find(line))
+      TQString line = TQString::tqfromLatin1(buf).stripWhiteSpace();
+      if (dict.tqfind(line))
       {
          qWarning("%s", line.latin1());
       }

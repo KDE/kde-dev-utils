@@ -47,7 +47,7 @@ img)
 	if ( w )
 	{
 		TQPixmap p = TQPixmap::grabWidget(w);
-		img = p.convertToImage().smoothScale(width,height,TQImage::ScaleMin);
+		img = p.convertToImage().smoothScale(width,height,TQ_ScaleMin);
 		return true;
 	}
 	else

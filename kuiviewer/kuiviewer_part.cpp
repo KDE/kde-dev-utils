@@ -51,10 +51,10 @@
 typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
-KUIViewerPart::KUIViewerPart( TQWidget *parentWidget, const char *widgetName,
-                                  TQObject *parent, const char *name,
+KUIViewerPart::KUIViewerPart( TQWidget *tqparentWidget, const char *widgetName,
+                                  TQObject *tqparent, const char *name,
                                   const TQStringList & /*args*/ )
-    : KParts::ReadOnlyPart(parent, name)
+    : KParts::ReadOnlyPart(tqparent, name)
 {
     // we need an instance
     setInstance( KUIViewerPartFactory::instance() );
@@ -62,7 +62,7 @@ KUIViewerPart::KUIViewerPart( TQWidget *parentWidget, const char *widgetName,
     KGlobal::locale()->insertCatalogue("kuiviewer");
 
     // this should be your custom internal widget
-    m_widget = new TQVBox( parentWidget, widgetName );
+    m_widget = new TQVBox( tqparentWidget, widgetName );
 
     // notify the part that this is our internal widget
     setWidget(m_widget);
@@ -72,7 +72,7 @@ KUIViewerPart::KUIViewerPart( TQWidget *parentWidget, const char *widgetName,
 
     m_style = new KListAction( i18n("Style"),
                 CTRL + Key_S,
-                this,
+                TQT_TQOBJECT(this),
                 TQT_SLOT(slotStyle(int)),
                 actionCollection(),
                 "change_style");
@@ -152,7 +152,7 @@ bool KUIViewerPart::openURL( const KURL& url)
     emit setWindowCaption( url.prettyURL() );
 
     m_url = url;
-    m_file = TQString::null;
+    m_file = TQString();
     if (KIO::NetAccess::download(url, m_file))
 	return openFile();
     else
@@ -187,7 +187,7 @@ void KUIViewerPart::slotStyle(int)
 
     TQObjectList *l = m_widget->queryList( TQWIDGET_OBJECT_NAME_STRING );
     for ( TQObject *o = l->first(); o; o = l->next() )
-        ( static_cast<TQWidget *>(o) )->setStyle( style );
+        ( TQT_TQWIDGET(o) )->setStyle( style );
     delete l;
 
     m_widget->show();
@@ -205,7 +205,7 @@ void KUIViewerPart::slotGrab()
 	return;
     }
 
-    QClipboard *clipboard = TQApplication::clipboard();
+    TQClipboard *clipboard = TQApplication::tqclipboard();
     clipboard->setPixmap(TQPixmap::grabWidget(m_widget));
 }
 

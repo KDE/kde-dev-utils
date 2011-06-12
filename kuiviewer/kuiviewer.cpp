@@ -60,7 +60,7 @@ KUIViewer::KUIViewer()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
+        m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(TQT_TQOBJECT(this),
                                 "kuiviewer_part", "KParts::ReadOnlyPart" ));
 
         if (m_part)
@@ -97,8 +97,8 @@ void KUIViewer::load(const KURL& url)
 
 void KUIViewer::setupActions()
 {
-    KStdAction::open(this, TQT_SLOT(fileOpen()), actionCollection());
-    KStdAction::quit(kapp, TQT_SLOT(quit()), actionCollection());
+    KStdAction::open(TQT_TQOBJECT(this), TQT_SLOT(fileOpen()), actionCollection());
+    KStdAction::quit(TQT_TQOBJECT(kapp), TQT_SLOT(quit()), actionCollection());
 }
 
 void KUIViewer::saveProperties(KConfig* /*config*/)
@@ -122,7 +122,7 @@ void KUIViewer::fileOpen()
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     KURL file_name =
-        KFileDialog::getOpenURL( TQString::null, i18n("*.ui *.UI|User Interface Files"), this );
+        KFileDialog::getOpenURL( TQString(), i18n("*.ui *.UI|User Interface Files"), this );
 
     if (file_name.isEmpty() == false)
     {
@@ -153,11 +153,11 @@ void KUIViewer::takeScreenshot(const TQCString &filename, int w, int h){
         // resize widget to the desired size
         m_part->widget()->setMinimumSize(w, h);
         m_part->widget()->setMaximumSize(w, h);
-        m_part->widget()->repaint();
+        m_part->widget()->tqrepaint();
         // resize app to be as large as desired size
         adjustSize();
         // Disable the saving of the size
-        setAutoSaveSettings(TQString::fromLatin1("MainWindow"), false);
+        setAutoSaveSettings(TQString::tqfromLatin1("MainWindow"), false);
     }
     TQPixmap pixmap = TQPixmap::grabWidget( m_part->widget() );
     pixmap.save( filename, "PNG" );
