@@ -48,7 +48,7 @@ public:
     /**
      * Default constructor
      */
-    KUIViewerPart(TQWidget *tqparentWidget, const char *widgetName,
+    KUIViewerPart(TQWidget *parentWidget, const char *widgetName,
                     TQObject *tqparent, const char *name, const TQStringList &args);
 
     /**
