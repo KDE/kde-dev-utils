@@ -120,9 +120,9 @@ void parseLine(const TQCString &_line, char operation)
         maxBytes = totalBytes;
      if (count > maxCount)
         maxCount = count;
-     if (entryDict->tqfind(entry->base))
+     if (entryDict->find(entry->base))
         fprintf(stderr, "\rAllocated twice: 0x%08x                    \n", entry->base);
-     entryDict->tqreplace(entry->base, entry);
+     entryDict->replace(entry->base, entry);
    } break;
    case '-':
    {
@@ -155,7 +155,7 @@ void sortBlocks()
       entryList->append(entry);
       for(int i = 0; entry->backtrace[i]; i++)
       {
-         if (!symbolDict->tqfind(entry->backtrace[i]))
+         if (!symbolDict->find(entry->backtrace[i]))
              symbolDict->insert(entry->backtrace[i], unknown);
       }
    }
@@ -170,7 +170,7 @@ void collectDupes()
    {
       Entry *entry = it.current();
       ++it;
-      Entry *entry2 = dupeDict.tqfind(entry->signature);
+      Entry *entry2 = dupeDict.find(entry->signature);
       if (entry2)
       {
          entry2->count++;
@@ -223,7 +223,7 @@ int lookupSymbols(FILE *stream)
         if (addr)
         {
            long i_addr = fromHex(addr);
-           const char* str = symbolDict->tqfind(i_addr);
+           const char* str = symbolDict->find(i_addr);
            if (str == unknown)
            {
                *addr = 0;
@@ -232,7 +232,7 @@ int lookupSymbols(FILE *stream)
                    str = qstrdup(rindex(line2, '/')+1);
                else
                    str = qstrdup(line2);
-               symbolDict->tqreplace(i_addr, str);
+               symbolDict->replace(i_addr, str);
                symbols++;
            }
         }
@@ -285,7 +285,7 @@ void lookupUnknownSymbols(const char *appname)
       TQCString symbol;
       symbol.sprintf("%s(%s)", buffer2, buffer1);
       if(*buffer1 != '?')
-          symbolDict->tqreplace(it2.currentKey(),qstrdup(symbol.data()));
+          symbolDict->replace(it2.currentKey(),qstrdup(symbol.data()));
    }
    fclose(fInputFile);
 }
@@ -308,9 +308,9 @@ int match(const char *s1, const char *s2)
 
 const char *lookupAddress(int addr)
 {
-   char *str = formatDict->tqfind(addr);
+   char *str = formatDict->find(addr);
    if (str) return str;
-   TQCString s = symbolDict->tqfind(addr);
+   TQCString s = symbolDict->find(addr);
    if (s.isEmpty())
    {
 fprintf(stderr, "Error!\n");
@@ -318,15 +318,15 @@ fprintf(stderr, "Error!\n");
    }
    else
    {
-     int start = s.tqfind('(');
-     int end = s.tqfindRev('+');
+     int start = s.find('(');
+     int end = s.findRev('+');
      if (end < 0)
-        end = s.tqfindRev(')');
+        end = s.findRev(')');
      if ((start > 0) && (end > start))
      {
        TQCString symbol = s.mid(start+1, end-start-1);
        char *res = 0;
-       if (symbol.tqfind(')') == -1)
+       if (symbol.find(')') == -1)
            res = cplus_demangle(symbol.data(), DMGL_PARAMS | DMGL_AUTO | DMGL_ANSI );
 
        if (res)
@@ -344,7 +344,7 @@ fprintf(stderr, "Error!\n");
              return excluded;
           }
        }
-       s.tqreplace(start+1, end-start-1, symbol);
+       s.replace(start+1, end-start-1, symbol);
      }
    }
    str = qstrdup(s.data());
@@ -439,12 +439,12 @@ void buildTree ()
 	 ;			// find last (topmost) backtrace entry
       for (--i; i >= 0; --i)
       {
-	 TreeList::Iterator pos = list->tqfind (entry->backtrace[i]);
+	 TreeList::Iterator pos = list->find (entry->backtrace[i]);
 	 if (pos == list->end ())
 	 {
 	    list->prepend (TreeEntry (entry->backtrace[i], entry->total_size,
 				      entry->count));
-	    pos = list->tqfind (entry->backtrace[i]);
+	    pos = list->find (entry->backtrace[i]);
 	 }
 	 else
 	    *pos = TreeEntry (entry->backtrace[i],
@@ -642,7 +642,7 @@ int main(int argc, char *argv[])
          exe = app.stripWhiteSpace();
          fprintf(stderr, "ktrace.out: malloc trace of %s\n", exe.data());
        }
-       else if(!app.tqcontains(exe.data()))
+       else if(!app.contains(exe.data()))
        {
          fprintf(stderr, "trace file was for application '%s', not '%s'\n", app.data(), exe.data());
          exit(1);

@@ -62,7 +62,7 @@ int main(int argc, char **argv)
    {
       fgets(buf, 1024, call_file);
       TQString line = TQString::tqfromLatin1(buf).stripWhiteSpace();
-      if (dict.tqfind(line))
+      if (dict.find(line))
       {
          qWarning("%s", line.latin1());
       }

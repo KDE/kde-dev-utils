@@ -54,7 +54,7 @@ TQString libkstartperf()
             if (line.left(15) == "library_names='")
             {
 		lib = line.mid(15);
-                int pos = lib.tqfind(" ");
+                int pos = lib.find(" ");
                 if (pos > 0)
 		    lib = lib.left(pos);
 	    }
