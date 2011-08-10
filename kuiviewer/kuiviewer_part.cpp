@@ -52,9 +52,9 @@ typedef KParts::GenericFactory<KUIViewerPart> KUIViewerPartFactory;
 K_EXPORT_COMPONENT_FACTORY( libkuiviewerpart, KUIViewerPartFactory )
 
 KUIViewerPart::KUIViewerPart( TQWidget *parentWidget, const char *widgetName,
-                                  TQObject *tqparent, const char *name,
+                                  TQObject *parent, const char *name,
                                   const TQStringList & /*args*/ )
-    : KParts::ReadOnlyPart(tqparent, name)
+    : KParts::ReadOnlyPart(parent, name)
 {
     // we need an instance
     setInstance( KUIViewerPartFactory::instance() );

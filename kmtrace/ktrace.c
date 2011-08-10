@@ -495,14 +495,14 @@ addAllocationToTree(void)
 	int i, j;
 	void *bt[TR_BT_SIZE + 1];
 	CallerNode* cn = CallTree;
-	CallerNode** tqparent = &CallTree;
+	CallerNode** parent = &CallTree;
 	
 	bt_size = backtrace(bt, TR_BT_SIZE);
 	for (i = bt_size - 1; i >= 4; i--)
 	{
 		if (cn == NULL)
 		{
-			*tqparent = cn = (CallerNode*) malloc(sizeof(CallerNode));
+			*parent = cn = (CallerNode*) malloc(sizeof(CallerNode));
 			cn->funcAdr = bt[i];
 			cn->mallocs = 0;
 			cn->noCallees = 0;
@@ -517,7 +517,7 @@ addAllocationToTree(void)
 			for (j = 0; j < cn->noCallees; j++)
 				if (bt[i - 1] == cn->callees[j]->funcAdr)
 				{
-					tqparent = &cn->callees[j];
+					parent = &cn->callees[j];
 					cn = cn->callees[j];
 					knownCallee = 1;
 					break;
@@ -541,7 +541,7 @@ addAllocationToTree(void)
 						   (newSize - cn->maxCallees) * sizeof(CallerNode*));
 					cn->maxCallees = newSize;
 				}
-				tqparent = &cn->callees[cn->noCallees++];
+				parent = &cn->callees[cn->noCallees++];
 				cn = 0;
 			}
 		}
