@@ -25,7 +25,7 @@ bin_PROGRAMS = kuiviewer
 
 # the application source, library search path, and link libraries
 kuiviewer_SOURCES = main.cpp kuiviewer.cpp
-kuiviewer_LDFLAGS = $(KDE_RPATH) $(all_libraries)
+kuiviewer_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
 kuiviewer_LDADD   = $(LIB_KPARTS)
 
 xdg_apps_DATA =kuiviewer.desktop
