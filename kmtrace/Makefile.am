@@ -42,7 +42,7 @@ ktrace_s.c: $(srcdir)/ktrace.c
 	$(LN_S) $(srcdir)/ktrace.c $@
 
 kmtracelib_LTLIBRARIES = libktrace.la
-libktrace_la_LDFLAGS = $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -avoid-version
+libktrace_la_LDFLAGS = -avoid-version
 libktrace_la_SOURCES = ksotrace.cpp ktrace.c
 libktrace_la_LIBADD = $(LIBDL)
 
