@@ -23,13 +23,13 @@ INCLUDES = $(all_includes)
 
 bin_PROGRAMS = kmtrace demangle kmmatch
 kmtrace_SOURCES = kmtrace.cpp
-kmtrace_LDFLAGS = $(all_libraries)
+kmtrace_LDFLAGS = $(all_libraries) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
 
 demangle_SOURCES = demangle.cpp
-demangle_LDFLAGS = $(all_libraries)
+demangle_LDFLAGS = $(all_libraries) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
 
 kmmatch_SOURCES = match.cpp
-kmmatch_LDFLAGS = $(all_libraries)
+kmmatch_LDFLAGS = $(all_libraries) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
 
 bin_SCRIPTS = kminspector
 
@@ -42,7 +42,7 @@ ktrace_s.c: $(srcdir)/ktrace.c
 	$(LN_S) $(srcdir)/ktrace.c $@
 
 kmtracelib_LTLIBRARIES = libktrace.la
-libktrace_la_LDFLAGS = -avoid-version
+libktrace_la_LDFLAGS = $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -avoid-version
 libktrace_la_SOURCES = ksotrace.cpp ktrace.c
 libktrace_la_LIBADD = $(LIBDL)
 
