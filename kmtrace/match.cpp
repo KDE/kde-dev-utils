@@ -1,18 +1,10 @@
-#include <q3intdict.h>
+// Qt
+#include <QStringList>
+#include <QHash>
+// C++
 #include <stdio.h>
-#include <qstringlist.h>
-#include <q3strlist.h>
-#include <qtextstream.h>
-#include <q3sortedlist.h>
-#include <qfile.h>
-#include <q3tl.h>
-#include <q3dict.h>
-#include <q3valuelist.h>
 #include <stdlib.h>
-#include <ktemporaryfile.h>
-#include <kcomponentdata.h>
-#include <kstandarddirs.h>
-#include <kcmdlineargs.h>
+
 
 int main(int argc, char **argv)
 {
@@ -29,7 +21,8 @@ int main(int argc, char **argv)
    }
 
    int i = 1;
-   Q3Dict<int> dict(20011);
+   QHash<QString,int> dict;
+   dict.reserve(20011);
 
    FILE *map_file = fopen(argv[1], "r");
    if (!map_file)
@@ -41,13 +34,13 @@ int main(int argc, char **argv)
    {
       fgets(buf, 1024, map_file);
       QString line = QString::fromLatin1(buf).trimmed();
-      const QStringList split = line.split(' ', QString::SkipEmptyParts);
+      const QStringList split = line.split(QLatin1Char(' '), QString::SkipEmptyParts);
       if (split.count() <= 1)
          return 1;
 
-      if (split[1] == "T")
+      if (split.at(1) == QLatin1String("T"))
       {
-         dict.insert(split[2], &i);
+         dict.insert(split.value(2), i);
       }
    }
    fclose(map_file);
@@ -63,7 +56,7 @@ int main(int argc, char **argv)
    {
       fgets(buf, 1024, call_file);
       QString line = QString::fromLatin1(buf).trimmed();
-      if (dict.find(line))
+      if (dict.contains(line))
       {
          qWarning("%s", qPrintable(line));
       }

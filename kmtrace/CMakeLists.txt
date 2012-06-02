@@ -36,7 +36,7 @@ install(TARGETS demangle ${INSTALL_TARGETS_DEFAULT_ARGS})
 
   kde4_add_executable(kmmatch ${kmmatch_SRCS})
 
-  target_link_libraries(kmmatch   ${KDE4_KDE3SUPPORT_LIBS})
+  target_link_libraries(kmmatch   ${QT_QTCORE_LIBRARY})
 
 install(TARGETS kmmatch ${INSTALL_TARGETS_DEFAULT_ARGS})
 
