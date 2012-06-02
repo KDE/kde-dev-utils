@@ -24,7 +24,7 @@ install(TARGETS kmtrace ${INSTALL_TARGETS_DEFAULT_ARGS})
 
   kde4_add_executable(demangle ${demangle_SRCS})
 
-  target_link_libraries(demangle   ${LIBIBERTY_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS})
+  target_link_libraries(demangle   ${LIBIBERTY_LIBRARY} ${QT_QTCORE_LIBRARY})
 
 install(TARGETS demangle ${INSTALL_TARGETS_DEFAULT_ARGS})
 

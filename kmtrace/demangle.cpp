@@ -1,18 +1,8 @@
-#include <q3intdict.h>
-//Added by qt3to4:
+// Qt
+#include <QByteArray>
+// C++
 #include <stdio.h>
-#include <qstringlist.h>
-#include <q3strlist.h>
-#include <qtextstream.h>
-#include <q3sortedlist.h>
-#include <qfile.h>
-#include <q3tl.h>
-#include <q3valuelist.h>
 #include <stdlib.h>
-#include <ktemporaryfile.h>
-#include <kcomponentdata.h>
-#include <kstandarddirs.h>
-#include <kcmdlineargs.h>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -37,7 +27,7 @@ extern char *cplus_demangle(const char *mangled, int options);
 }
 
 
-int main(int argc, char **argv)
+int main(int /*argc*/, char **/*argv*/)
 {
    char buf[1024];
 
