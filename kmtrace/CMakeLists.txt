@@ -48,7 +48,7 @@ install(TARGETS kmmatch ${INSTALL_TARGETS_DEFAULT_ARGS})
 
   kde4_add_library(ktrace SHARED ${ktrace_LIB_SRCS})
 
-  target_link_libraries(ktrace   dl ${KDE4_KDE3SUPPORT_LIBS})
+  target_link_libraries(ktrace   dl)
 
   set_target_properties(ktrace PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION})
 install(TARGETS ktrace ${INSTALL_TARGETS_DEFAULT_ARGS})
