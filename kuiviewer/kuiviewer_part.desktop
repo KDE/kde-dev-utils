@@ -54,6 +54,7 @@ Name[uk]=KUIViewerPart
 Name[x-test]=xxKUIViewerPartxx
 Name[zh_CN]=KUIViewerPart
 Name[zh_TW]=KUIViewerPart
+Icon=kuiviewer
 MimeType=application/x-designer;
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=kuiviewerpart

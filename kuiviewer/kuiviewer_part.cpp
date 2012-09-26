@@ -74,7 +74,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     m_style = actionCollection()->add<KSelectAction>("change_style");
     m_style->setText(i18n("Style"));
     connect(m_style, SIGNAL(triggered(int)), SLOT(slotStyle(int)));
-    m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+    //m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
     const QString currentStyle = KConfigGroup(KGlobal::config(), "General").readEntry("currentWidgetStyle", KStyle::defaultStyle());
@@ -96,6 +96,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     m_style->setMenuAccelsEnabled(true);
 
     m_copy = KStandardAction::copy(this, SLOT(slotGrab()), actionCollection());
+    m_copy->setText(i18n("Copy as Image"));
 
     updateActions();
 

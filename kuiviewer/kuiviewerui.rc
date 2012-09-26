@@ -1,8 +1,11 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 <kpartgui name="shell" version="1">
 <MenuBar>
- <Menu name="file"><Text>&amp;File</Text></Menu>
- <Menu name="edit"><Text>&amp;Edit</Text></Menu>
- <Menu name="view"><Text>&amp;View</Text></Menu>
+ <Menu name="file"><text>&amp;File</text>
+ </Menu>
+ <Menu name="edit" noMerge="1"><text>&amp;Edit</text>
+ </Menu>
+ <Menu name="view" noMerge="1"><text>&amp;View</text>
+ </Menu>
 </MenuBar>
 </kpartgui>
