@@ -1,7 +1,15 @@
 project(kstartperf)
 
+find_package(KDE4 REQUIRED)
+include(KDE4Defaults)
+include(MacroLibrary)
+include(CheckIncludeFile)
+include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
 
 
+# By default in kde3 kstartpref was not compiled, but well, if it compiles...
+check_include_file(ltdl.h HAVE_LTDL_H)
+if(HAVE_LTDL_H AND NOT APPLE AND NOT WIN32)
 ########### next target ###############
 
 set(kstartperf_LIB_SRCS libkstartperf.c )
@@ -27,3 +35,4 @@ set_target_properties(kstartperf_bin PROPERTIES OUTPUT_NAME kstartperf)
 target_link_libraries(kstartperf_bin  ${KDE4_KDECORE_LIBS})
 
 install(TARGETS kstartperf_bin  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+endif()
