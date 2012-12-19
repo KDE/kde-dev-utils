@@ -1,7 +1,26 @@
 project(kmtrace)
+# search packages used by KDE
+find_package(KDE4 REQUIRED)
+include(KDE4Defaults)
+include(MacroLibrary)
+include(CheckIncludeFile)
+include(CheckIncludeFileCXX)
+include(CheckLibraryExists)
+include(CheckCSourceCompiles)
+
+check_c_source_compiles("
+#include <stdlib.h>
+
+int main() {
+#ifndef __GLIBC__
+  choke me
+#endif
+  return 0;
+}" LIBC_IS_GLIBC)
+
 # Check if libiberty is available
 find_library(LIBIBERTY_LIBRARY NAMES iberty)
-if (LIBIBERTY_LIBRARY)
+if (LIBIBERTY_LIBRARY AND LIBC_IS_GLIBC)
 
   include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/kminspector.cmake ${CMAKE_CURRENT_BINARY_DIR}/kminspector )
@@ -58,4 +77,6 @@ install(TARGETS ktrace ${INSTALL_TARGETS_DEFAULT_ARGS})
 install( FILES kde.excludes  DESTINATION  ${DATA_INSTALL_DIR}/kmtrace )
   install( FILES ktrace.h DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel )
 
-endif (LIBIBERTY_LIBRARY)
+add_subdirectory( doc )
+
+endif ()
