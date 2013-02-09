@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.6)
+add_subdirectory(kmtrace)
+add_subdirectory(kpartloader)
+add_subdirectory(kprofilemethod)
+add_subdirectory(kstartperf)
+add_subdirectory(kuiviewer)
