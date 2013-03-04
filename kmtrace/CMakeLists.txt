@@ -32,7 +32,7 @@ if (LIBIBERTY_LIBRARY AND LIBC_IS_GLIBC)
 
   kde4_add_executable(kmtrace ${kmtrace_SRCS})
 
-  target_link_libraries(kmtrace   ${LIBIBERTY_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS})
+  target_link_libraries(kmtrace ${LIBIBERTY_LIBRARY} ${KDE4_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS kmtrace ${INSTALL_TARGETS_DEFAULT_ARGS})
 
