@@ -37,7 +37,7 @@ find_package(KF5 REQUIRED
 
 set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
 
-file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kuiviewer.png")
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kuiviewer.png")
 ecm_add_app_icon(kuiviewer_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kuiviewer ${kuiviewer_SRCS})
@@ -82,4 +82,10 @@ install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${
 install( FILES kuiviewer_part.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewerpart )
 install( FILES kuiviewerui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewer )
 
-ecm_install_icons( ${KDE_INSTALL_ICONDIR} )
+ecm_install_icons(ICONS
+    16-apps-kuiviewer.png
+    32-apps-kuiviewer.png
+    48-apps-kuiviewer.png
+    DESTINATION ${KDE_INSTALL_ICONDIR}
+    THEME hicolor
+)
