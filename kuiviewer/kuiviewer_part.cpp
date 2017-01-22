@@ -20,26 +20,26 @@
  **/
 
 #include "kuiviewer_part.h"
-#include "kuiviewer_part.moc"
 
-// KDE
+// Frameworks
 #include <KActionCollection>
 #include <KSelectAction>
 #include <KConfig>
 #include <KConfigGroup>
-#include <KIO/NetAccess>
-#include <KLocale>
+#include <KSharedConfig>
+#include <KLocalizedString>
 #include <KAboutData>
 #include <KPluginFactory>
-#include <KStyle>
-#include <KVBox>
-#include <KDebug>
+#include <k4style.h>
+#include <KIO/NetAccess>
 // Qt
-#include <QtDesigner/QFormBuilder>
-#include <QtGui/QApplication>
-#include <QtGui/QClipboard>
-#include <QtGui/QStyleFactory>
-#include <QtCore/QFile>
+#include <QApplication>
+#include <QClipboard>
+#include <QDebug>
+#include <QFile>
+#include <QFormBuilder>
+#include <QStyleFactory>
+#include <QVBoxLayout>
 
 
 K_PLUGIN_FACTORY( KUIViewerPartFactory, registerPlugin<KUIViewerPart>(); )
@@ -48,7 +48,7 @@ K_EXPORT_PLUGIN( KUIViewerPartFactory(
                        0, ki18n("KUIViewerPart"),
                        "0.1",
                        ki18n("Displays Designer's UI files"),
-                       KAboutData::License_LGPL).
+                       KAboutLicense::LGPL).
                     addAuthor(ki18n("Richard Moore"), KLocalizedString(), "rich@kde.org").
                     addAuthor(ki18n("Ian Reinhart Geiser"), KLocalizedString(), "geiseri@kde.org").
                     setProgramIconName(QLatin1String( "kuiviewer" )).
@@ -60,13 +60,17 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     : KParts::ReadOnlyPart(parent)
 {
     // we need an instance
-    setComponentData( KUIViewerPartFactory::componentData() );
+    //setComponentData( KUIViewerPartFactory::componentData() );
 
     // this should be your custom internal widget
-    m_widget = new KVBox( parentWidget );
+    m_widget = new QWidget( parentWidget );
+    QVBoxLayout *widgetVBoxLayout = new QVBoxLayout(m_widget);
+    widgetVBoxLayout->setMargin(0);
 
     // notify the part that this is our internal widget
     setWidget(m_widget);
+
+    setComponentName(QStringLiteral("kuiviewerpart"), QString());
 
     // set our XML-UI resource file
     setXMLFile("kuiviewer_part.rc");
@@ -77,7 +81,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     //m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
-    const QString currentStyle = KConfigGroup(KGlobal::config(), "General").readEntry("currentWidgetStyle", KStyle::defaultStyle());
+    const QString currentStyle = KConfigGroup(KSharedConfig::openConfig(), "General").readEntry("currentWidgetStyle", K4Style::defaultStyle());
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(styles);
@@ -132,11 +136,11 @@ bool KUIViewerPart::openFile()
     return true;
 }
 
-bool KUIViewerPart::openURL( const KUrl& url)
+bool KUIViewerPart::openURL( const QUrl &url)
 {
     // just for fun, set the status bar
-    emit setStatusBarText( url.prettyUrl() );
-    emit setWindowCaption( url.prettyUrl() );
+    emit setStatusBarText( url.toDisplayString() );
+    emit setWindowCaption( url.toDisplayString() );
 
     setUrl(url);
     setLocalFilePath( QString() );
@@ -170,7 +174,7 @@ void KUIViewerPart::slotStyle(int)
 
     QString  styleName = m_style->currentText();
     QStyle*  style     = QStyleFactory::create(styleName);
-    kDebug() << "Change style..." << endl;
+    qDebug() << "Change style..." << endl;
     m_widget->hide();
     QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);
@@ -183,9 +187,10 @@ void KUIViewerPart::slotStyle(int)
     m_widget->show();
     QApplication::restoreOverrideCursor();
 
-    KConfigGroup cg(KGlobal::config(), "General");
+    KSharedConfig::Ptr cfg = KSharedConfig::openConfig();
+    KConfigGroup cg(cfg, "General");
     cg.writeEntry("currentWidgetStyle", m_style->currentText());
-    KGlobal::config()->sync();
+    cfg->sync();
 }
 
 void KUIViewerPart::slotGrab()
@@ -199,3 +204,4 @@ void KUIViewerPart::slotGrab()
     clipboard->setPixmap(QPixmap::grabWidget(m_widget));
 }
 
+#include "kuiviewer_part.moc"

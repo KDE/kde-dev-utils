@@ -20,16 +20,15 @@
  *  Boston, MA 02110-1301, USA.
  **/
 
-#include <qpixmap.h>
-#include <qimage.h>
 #include "quicreator.h"
-#include <QFormBuilder>
-
-#include <kdemacros.h>
+#include <QPixmap>
+#include <QImage>
+#include <QtDesigner/QFormBuilder>
+#include <QWidget>
 
 extern "C"
 {
-    KDE_EXPORT ThumbCreator *new_creator()
+    Q_DECL_EXPORT ThumbCreator *new_creator()
     {
         return new QUICreator;
     }
@@ -45,7 +44,7 @@ bool QUICreator::create(const QString &path, int width, int height, QImage & img
         file.close();
 	if ( w )
 	{
-		QPixmap p = QPixmap::grabWidget(w);
+		QPixmap p = w->grab();
 		img = p.toImage().scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		return true;
 	}

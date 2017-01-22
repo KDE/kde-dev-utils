@@ -1,4 +1,4 @@
-/*  This file is part of the KDE libraries
+/*  This file is part of the KDE project
  *  Copyright 2008  David Faure  <faure@kde.org>
  *
  *  This library is free software; you can redistribute it and/or modify
@@ -19,23 +19,26 @@
  */
 
 #include "kpartloader.h"
-#include <kaction.h>
-#include <kactioncollection.h>
-#include <klocale.h>
+
+#include <QAction>
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+#include <QIcon>
+#include <KAboutData>
+#include <KActionCollection>
+#include <KLocalizedString>
+#include <KPluginFactory>
+#include <KPluginLoader>
 #include <kmessagebox.h>
-#include <kpluginfactory.h>
-#include <kpluginloader.h>
-#include <kicon.h>
-#include <kapplication.h>
-#include <kcmdlineargs.h>
 
 
 KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
     : m_part(0)
 {
-    setXMLFile("kpartloaderui.rc");
+    setXMLFile(QStringLiteral("kpartloaderui.rc"));
 
-    KAction * paQuit = new KAction( KIcon("application-exit"), i18n("&Quit"), this );
+    QAction * paQuit = new QAction( QIcon::fromTheme(QStringLiteral("application-exit")), i18n("&Quit"), this );
     actionCollection()->addAction( "file_quit", paQuit );
     connect(paQuit, SIGNAL(triggered()), this, SLOT(close()));
 
@@ -64,23 +67,30 @@ KPartLoaderWindow::~KPartLoaderWindow()
 
 int main( int argc, char **argv )
 {
-    KCmdLineOptions options;
-    options.add("+part", ki18n("Name of the part to load, e.g. dolphinpart"));
+    QApplication app(argc, argv);
+    const char version[] = "v 1.1";
 
-    const char version[] = "v 1.0";
-    KLocalizedString description = ki18n("This is a test application for KParts.");
+    KLocalizedString::setApplicationDomain("kpartloader");
 
-    KCmdLineArgs::init(argc, argv, "kpartloader", 0, ki18n("kpartloader"), version, description);
-    KCmdLineArgs::addCmdLineOptions( options ); // Add my own options.
-    KApplication app;
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    if ( args->count() == 1 )
+    KAboutData aboutData(QLatin1String("kpartloader"), i18n("kpartloader"), QLatin1String(version));
+    aboutData.setShortDescription(i18n("This is a test application for KParts."));
+    KAboutData::setApplicationData(aboutData);
+
+    QCommandLineParser parser;
+    aboutData.setupCommandLine(&parser);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.addPositionalArgument(QLatin1String("part"), i18n("Name of the part to load, e.g. dolphinpart"));
+
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
+
+    const QStringList args = parser.positionalArguments();
+    if ( args.count() == 1 )
     {
-        KPartLoaderWindow *shell = new KPartLoaderWindow(args->arg(0));
+        KPartLoaderWindow *shell = new KPartLoaderWindow(args.at(0));
         shell->show();
         return app.exec();
     }
     return -1;
 }
-
-#include "kpartloader.moc"

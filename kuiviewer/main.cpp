@@ -21,33 +21,43 @@
  **/
 
 #include "kuiviewer.h"
-#include <kapplication.h>
-#include <kaboutdata.h>
-#include <kcmdlineargs.h>
-#include <klocale.h>
+
+#include <QApplication>
+#include <QUrl>
+#include <KAboutData>
+#include <KLocalizedString>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+#include <kprofilemethod.h>
 
 int main(int argc, char **argv)
 {
-    KAboutData about("kuiviewer", 0, ki18n("KUIViewer"), "0.1",
-		     ki18n("Displays Designer's UI files"),
-		     KAboutData::License_LGPL );
-    about.addAuthor(ki18n("Richard Moore"), KLocalizedString(), "rich@kde.org");
-    about.addAuthor(ki18n("Ian Reinhart Geiser"), KLocalizedString(), "geiseri@kde.org");
+    QApplication app(argc, argv);
+
+    KLocalizedString::setApplicationDomain("kuiviewer");
+
+    KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"), QStringLiteral("0.2"),
+		     i18n("Displays Designer's UI files"),
+		     KAboutLicense::LGPL );
+    about.addAuthor(i18n("Richard Moore"), QString(), "rich@kde.org");
+    about.addAuthor(i18n("Ian Reinhart Geiser"), QString(), "geiseri@kde.org");
     // Screenshot capability
-    about.addAuthor(ki18n("Benjamin C. Meyer"), KLocalizedString(), "ben+kuiviewer@meyerhome.net");
+    about.addAuthor(i18n("Benjamin C. Meyer"), QString(), "ben+kuiviewer@meyerhome.net");
 
-    KCmdLineArgs::init(argc, argv, &about);
+    KAboutData::setApplicationData(about);
 
-    KCmdLineOptions options;
-    options.add("+[URL]", ki18n( "Document to open" ));
-    options.add("s");
-    options.add("takescreenshot <filename>", ki18n( "Save screenshot to file and exit" ));
-    options.add("w");
-    options.add("screenshotwidth <int>", ki18n( "Screenshot width" ), "-1");
-    options.add("h");
-    options.add("screenshotheight <int>", ki18n( "Screenshot height" ), "-1");
-    KCmdLineArgs::addCmdLineOptions( options );
-    KApplication app;
+    QCommandLineParser parser;
+    parser.addVersionOption();
+    parser.addHelpOption();
+    about.setupCommandLine(&parser);
+
+    parser.addPositionalArgument(QLatin1String("[URL]"), i18n( "Document to open" ));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("s") << QLatin1String("takescreenshot"), i18n( "Save screenshot to file and exit" ), QLatin1String("filename")));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("w") << QLatin1String("screenshotwidth"), i18n( "Screenshot width" ), QLatin1String("int"), QLatin1String("-1")));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("h") << QLatin1String("screenshotheight"), i18n( "Screenshot height" ), QLatin1String("int"), QLatin1String("-1")));
+
+    parser.process(app);
+    about.processCommandLine(&parser);
 
     // see if we are starting with session management
     if (app.isSessionRestored())
@@ -55,9 +65,8 @@ int main(int argc, char **argv)
     else
     {
         // no session.. just start up normally
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        if ( args->count() == 0 )
+        if ( parser.positionalArguments().count() == 0 )
         {
             KUIViewer *widget = new KUIViewer;
             widget->show();
@@ -65,20 +74,20 @@ int main(int argc, char **argv)
         else
         {
             int i = 0;
-            for (; i < args->count(); i++ ) {
+            for (; i < parser.positionalArguments().count(); i++ ) {
                 KUIViewer *widget = new KUIViewer;
-                widget->load( args->url(i) );
+                widget->load( QUrl::fromUserInput(parser.positionalArguments().at(i)) );
             
-                if (args->isSet("takescreenshot")){
-                    widget->takeScreenshot(args->getOption("takescreenshot").toLocal8Bit(),
-                                    args->getOption("screenshotwidth").toInt(),
-                                    args->getOption("screenshotheight").toInt());
+                if (parser.isSet("takescreenshot")){
+                    widget->takeScreenshot(parser.value("takescreenshot").toLocal8Bit(),
+                                    parser.value("screenshotwidth").toInt(),
+                                    parser.value("screenshotheight").toInt());
                     return 0;
                 }
                 widget->show();
             }
         }
-        args->clear();
+        
     }
 
     return app.exec();

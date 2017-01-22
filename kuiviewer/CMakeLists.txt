@@ -1,22 +1,50 @@
+cmake_minimum_required(VERSION 2.8.12)
+
 project(kuiviewer)
 
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-include(MacroLibrary)
-include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
+find_package(ECM 1.7 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+
+set(QT_MIN_VERSION "5.5.0")
+
+include(FeatureSummary)
+include(ECMInstallIcons)
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(ECMAddAppIcon)
+
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
+    COMPONENTS
+    Core
+    Designer
+    UiTools
+)
+
+find_package(KF5 REQUIRED
+    COMPONENTS
+    CoreAddons
+    KIO
+    I18n
+    Parts
+    WidgetsAddons
+    KDELibs4Support
+)
 
 ########### next target ###############
 
 set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
 
-kde4_add_app_icon(kuiviewer_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kuiviewer.png")
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kuiviewer.png")
+ecm_add_app_icon(kuiviewer_SRCS ICONS ${ICONS_SRCS})
 
-kde4_add_executable(kuiviewer ${kuiviewer_SRCS})
+add_executable(kuiviewer ${kuiviewer_SRCS})
 
-target_link_libraries(kuiviewer  ${KDE4_KPARTS_LIBS}  )
+target_link_libraries(kuiviewer  KF5::Parts  )
 
-install(TARGETS kuiviewer  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
@@ -24,13 +52,13 @@ install(TARGETS kuiviewer  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
 
-kde4_add_plugin(kuiviewerpart ${kuiviewerpart_PART_SRCS})
+add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
 
 
 
-target_link_libraries(kuiviewerpart  ${KDE4_KPARTS_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTDESIGNER_LIBRARY})
+target_link_libraries(kuiviewerpart  KF5::Parts KF5::KDELibs4Support Qt5::Designer Qt5::UiTools)
 
-install(TARGETS kuiviewerpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 
 ########### next target ###############
@@ -38,20 +66,20 @@ install(TARGETS kuiviewerpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 set(quithumbnail_PART_SRCS quicreator.cpp )
 
 
-kde4_add_plugin(quithumbnail ${quithumbnail_PART_SRCS})
+add_library(quithumbnail MODULE ${quithumbnail_PART_SRCS})
 
 
 
-target_link_libraries(quithumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDESIGNER_LIBRARY} )
+target_link_libraries(quithumbnail  KF5::KDELibs4Support KF5::KIOCore Qt5::Designer Qt5::UiTools Qt5::Xml Qt5::Gui )
 
-install(TARGETS quithumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 
 ########### install files ###############
 
-install( PROGRAMS kuiviewer.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
-install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
-install( FILES kuiviewer_part.rc  DESTINATION  ${DATA_INSTALL_DIR}/kuiviewerpart )
-install( FILES kuiviewerui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kuiviewer )
+install( PROGRAMS kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
+install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
+install( FILES kuiviewer_part.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewerpart )
+install( FILES kuiviewerui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewer )
 
-kde4_install_icons( ${ICON_INSTALL_DIR}   )
+ecm_install_icons( ${KDE_INSTALL_ICONDIR} )

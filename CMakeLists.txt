@@ -1,7 +1,6 @@
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
+cmake_minimum_required(VERSION 2.8.12)
 
-add_subdirectory(kmtrace)
+# add_subdirectory(kmtrace)
 add_subdirectory(kpartloader)
 add_subdirectory(kprofilemethod)
 add_subdirectory(kstartperf)

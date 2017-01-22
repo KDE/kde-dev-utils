@@ -1,8 +1,9 @@
 project(kprofilemethod)
+cmake_minimum_required(VERSION 2.8.12)
 
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-include(MacroLibrary)
-include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
+find_package(ECM 1.7 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+include(KDEInstallDirs)
+include(KDECMakeSettings)
 
-install( FILES kprofilemethod.h DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+install( FILES kprofilemethod.h DESTINATION ${KDE_INSTALL_INCLUDEDIR} COMPONENT Devel)

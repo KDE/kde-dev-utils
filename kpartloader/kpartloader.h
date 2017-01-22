@@ -22,6 +22,7 @@
 #define KPARTLOADER_H
 
 #include <kparts/mainwindow.h>
+#include <kparts/readonlypart.h>
 
 class KPartLoaderWindow : public KParts::MainWindow
 {

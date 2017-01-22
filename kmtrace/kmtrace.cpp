@@ -11,10 +11,12 @@
 #include <Q3CString>
 #include <stdlib.h>
 #include <ktemporaryfile.h>
-#include <kcomponentdata.h>
 #include <kstandarddirs.h>
-#include <kcmdlineargs.h>
+
 #include <kshell.h>
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -564,47 +566,43 @@ void readExcludeFile(const char *name)
 
 int main(int argc, char *argv[])
 {
-  KComponentData componentData("kmtrace");
+  QApplication app(argc, argv);
 
-  KCmdLineArgs::init(argc, argv, "kmtrace", 0, ki18n("kmtrace"), "v1.0", ki18n("KDE Memory leak tracer"));
+  KAboutData aboutData( QLatin1String("kmtrace"), i18n("kmtrace"), QLatin1String("v1.0"));
+  aboutData.setShortDescription(i18n("KDE Memory leak tracer"));
+  QCommandLineParser parser;
+  KAboutData::setApplicationData(aboutData);
+  parser.addVersionOption();
+  parser.addHelpOption();
+  aboutData.setupCommandLine(&parser);
+
+  parser.addOption(QCommandLineOption(QStringList() << QLatin1String("x") << QLatin1String("exclude"), i18n("File containing symbols to exclude from output"), QLatin1String("file")));
 
 
-  KCmdLineOptions options;
+  parser.addOption(QCommandLineOption(QStringList() << QLatin1String("e") << QLatin1String("exe"), i18n("Executable to use for looking up unknown symbols"), QLatin1String("file")));
 
-  options.add("x");
+  parser.addPositionalArgument(QLatin1String("<trace-log>"), i18n("Log file to investigate"));
 
-  options.add("exclude <file>", ki18n("File containing symbols to exclude from output"));
 
-  options.add("e");
+  parser.addOption(QCommandLineOption(QStringList() << QLatin1String("t") << QLatin1String("tree"), i18n("File to write allocations tree"), QLatin1String("file")));
 
-  options.add("exe <file>", ki18n("Executable to use for looking up unknown symbols"));
 
-  options.add("+<trace-log>", ki18n("Log file to investigate"));
+  parser.addOption(QCommandLineOption(QStringList() << QLatin1String("th") << QLatin1String("treethreshold"), i18n("Do not print subtrees which allocated less than <value> memory"), QLatin1String("value")));
 
-  options.add("t");
 
-  options.add("tree <file>", ki18n("File to write allocations tree"));
+  parser.addOption(QCommandLineOption(QStringList() << QLatin1String("td") << QLatin1String("treedepth"), i18n("Do not print subtrees that are deeper than <value>"), QLatin1String("value")));
 
-  options.add("th");
+  parser.process(app);
+  aboutData.processCommandLine(&parser);
 
-  options.add("treethreshold <value>", ki18n("Do not print subtrees which allocated less than <value> memory"));
-
-  options.add("td");
-
-  options.add("treedepth <value>", ki18n("Do not print subtrees that are deeper than <value>"));
-
-  KCmdLineArgs::addCmdLineOptions(options);
-
-  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-
-  (void) args->count();
+  (void) parser.positionalArguments().count();
   const char *logfile;
-  if(args->count())
+  if(parser.positionalArguments().count())
     logfile = args->arg(0).toLocal8Bit();
   else
     logfile = "ktrace.out";
 
-  QString exe = args->getOption("exe");
+  QString exe = parser.value("exe");
   QByteArray exclude;
 
   excludes = new Q3StrList;
@@ -613,7 +611,7 @@ int main(int argc, char *argv[])
   if(!exclude.isEmpty())
       readExcludeFile(exclude);
 
-  exclude = args->getOption("exclude").toLocal8Bit().data();
+  exclude = parser.value("exclude").toLocal8Bit().data();
   if (!exclude.isEmpty())
   {
      fprintf(stderr, "Reading %s\n", exclude.data());
@@ -720,12 +718,12 @@ int main(int argc, char *argv[])
   lookupUnknownSymbols(exe.toLocal8Bit());
   fprintf(stderr, "Printing...\n");
   dumpBlocks();
-  QString treeFile = args->getOption ("tree");
+  QString treeFile = parser.value ("tree");
   if (!treeFile.isEmpty ())
   {
       fprintf (stderr, "Creating allocation tree...\n");
-      createTree (treeFile, args->getOption ("treethreshold").toInt (),
-		  args->getOption ("treedepth").toInt ());
+      createTree (treeFile, parser.value ("treethreshold").toInt (),
+		  parser.value ("treedepth").toInt ());
   }
   fprintf(stderr, "Done.\n");
   return 0;

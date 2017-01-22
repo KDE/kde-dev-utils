@@ -28,11 +28,10 @@
 #include <QtCore/QPointer>
 
 class QWidget;
-class KUrl;
-class KVBox;
+class QUrl;
+
 class KAboutData;
 class KSelectAction;
-class KAction;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -57,7 +56,7 @@ public:
     virtual ~KUIViewerPart();
 
 public slots:
-     bool openURL( const KUrl& );
+     bool openURL( const QUrl& );
      void slotStyle(int);
      void slotGrab();
      void updateActions();
@@ -69,10 +68,10 @@ protected:
     virtual bool openFile();
 
 private:
-    KVBox *m_widget;
+    QWidget *m_widget;
     QPointer<QWidget> m_view;
     KSelectAction *m_style;
-    KAction *m_copy;
+    QAction *m_copy;
 };
 
 #endif // KUIVIEWERPART_H

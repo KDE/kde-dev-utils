@@ -24,7 +24,6 @@
 #define KUIVIEWER_H
 
 
-#include <kapplication.h>
 #include <kparts/mainwindow.h>
 
 class KToggleAction;
@@ -59,7 +58,7 @@ public:
     /**
      * Use this method to load whatever file/URL you have
      */
-    void load(const KUrl& url);
+    void load(const QUrl &url);
 
     /**
      * Take screenshot of current ui file

@@ -19,9 +19,8 @@
 #ifndef KPROFILEMETHOD_H
 #define KPROFILEMETHOD_H
 
-#include <QtCore/QDateTime>
-
-#include <kdebug.h>
+#include <QTime>
+#include <QDebug>
 
 /**
  * Those macros help profiling using QTime.
@@ -47,6 +46,6 @@
  */
 #define PROFILE_METHOD_BEGIN(sym) extern int sym; QTime profile_dt##sym; profile_dt##sym.start();
 #define PROFILE_METHOD_END(sym) extern int sym; sym += profile_dt##sym.elapsed();
-#define PROFILE_METHOD_PRINT(sym, name) extern int sym; kDebug() << name << " took " << sym << " milliseconds" << endl;
+#define PROFILE_METHOD_PRINT(sym, name) extern int sym; qDebug() << name << " took " << sym << " milliseconds" << endl;
 
 #endif // KPROFILEMETHOD_H

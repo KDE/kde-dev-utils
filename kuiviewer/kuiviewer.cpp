@@ -21,25 +21,24 @@
  **/
 
 #include "kuiviewer.h"
-#include "kuiviewer.moc"
 #include "kuiviewer_part.h"
 
-#include <kdebug.h>
+#include <QObject>
+#include <QPixmap>
 
-#include <qobject.h>
-#include <qpixmap.h>
+#include <QUrl>
 
-#include <kurl.h>
+#include <QApplication>
+#include <QAction>
+#include <QFileDialog>
 
-#include <kaction.h>
 #include <kactioncollection.h>
 #include <kstandardaction.h>
+#include <KPluginFactory>
+#include <KPluginLoader>
 
-#include <kiconloader.h>
-#include <klibloader.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kmessagebox.h>
-#include <kfiledialog.h>
 
 KUIViewer::KUIViewer()
     : KParts::MainWindow()
@@ -79,7 +78,7 @@ KUIViewer::KUIViewer()
         // itself can't do anything useful
 	//FIXME improve message, which Part is this referring to?
         KMessageBox::error(this, i18n("Unable to locate Kuiviewer kpart."));
-        kapp->quit();
+        QApplication::quit();
         // we return here, cause kapp->quit() only means "exit the
         // next time we enter the event loop...
         return;
@@ -90,7 +89,7 @@ KUIViewer::~KUIViewer()
 {
 }
 
-void KUIViewer::load(const KUrl& url)
+void KUIViewer::load(const QUrl &url)
 {
     m_part->openUrl( url );
     adjustSize();
@@ -99,7 +98,7 @@ void KUIViewer::load(const KUrl& url)
 void KUIViewer::setupActions()
 {
     KStandardAction::open(this, SLOT(fileOpen()), actionCollection());
-    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardAction::quit(this, SLOT(close()), actionCollection());
 }
 
 void KUIViewer::fileOpen()
@@ -107,8 +106,8 @@ void KUIViewer::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    KUrl file_name =
-        KFileDialog::getOpenUrl( KUrl(), i18n("*.ui *.UI|User Interface Files"), this );
+    QUrl file_name =
+        QFileDialog::getOpenFileUrl( this, QString(), QUrl(), i18n("*.ui *.UI|User Interface Files") );
 
     if (file_name.isEmpty() == false)
     {
