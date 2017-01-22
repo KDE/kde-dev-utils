@@ -77,7 +77,7 @@ install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 ########### install files ###############
 
-install( PROGRAMS kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
+install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
 install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES kuiviewer_part.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewerpart )
 install( FILES kuiviewerui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewer )
