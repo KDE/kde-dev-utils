@@ -28,7 +28,6 @@
 #include <KLocalizedString>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
-#include <kprofilemethod.h>
 
 int main(int argc, char **argv)
 {
