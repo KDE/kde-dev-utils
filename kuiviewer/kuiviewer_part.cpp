@@ -43,16 +43,6 @@
 
 
 K_PLUGIN_FACTORY( KUIViewerPartFactory, registerPlugin<KUIViewerPart>(); )
-K_EXPORT_PLUGIN( KUIViewerPartFactory(
-                    KAboutData("kuiviewerpart",
-                       0, ki18n("KUIViewerPart"),
-                       "0.1",
-                       ki18n("Displays Designer's UI files"),
-                       KAboutLicense::LGPL).
-                    addAuthor(ki18n("Richard Moore"), KLocalizedString(), "rich@kde.org").
-                    addAuthor(ki18n("Ian Reinhart Geiser"), KLocalizedString(), "geiseri@kde.org").
-                    setProgramIconName(QLatin1String( "kuiviewer" )).
-                    setCatalogName( "kuiviewer" )))
 
 KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
                               QObject *parent,
@@ -60,7 +50,14 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     : KParts::ReadOnlyPart(parent)
 {
     // we need an instance
-    //setComponentData( KUIViewerPartFactory::componentData() );
+    KAboutData about(QStringLiteral("kuiviewerpart"),
+        i18n("KUIViewerPart"),
+        QStringLiteral("0.1"),
+        i18n("Displays Designer's UI files"),
+        KAboutLicense::LGPL);
+    about.addAuthor(i18n("Richard Moore"), QString(), "rich@kde.org");
+    about.addAuthor(i18n("Ian Reinhart Geiser"), QString(), "geiseri@kde.org");
+    setComponentData(about);
 
     // this should be your custom internal widget
     m_widget = new QWidget( parentWidget );
