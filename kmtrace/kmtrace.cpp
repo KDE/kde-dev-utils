@@ -10,13 +10,13 @@
 #include <q3valuelist.h>
 #include <Q3CString>
 #include <stdlib.h>
-#include <ktemporaryfile.h>
-#include <kstandarddirs.h>
+#include <QTemporaryFile>
 
 #include <kshell.h>
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+#include <QStandardPaths>
 
 extern "C" {
 /* Options passed to cplus_demangle (in 2nd parameter). */
@@ -248,8 +248,8 @@ int lookupSymbols(FILE *stream)
 
 void lookupUnknownSymbols(const char *appname)
 {
-   KTemporaryFile inputFile;
-   KTemporaryFile outputFile;
+   QTemporaryFile inputFile;
+   QTemporaryFile outputFile;
    inputFile.open();
    outputFile.open();
    QTextStream str ( &inputFile );
@@ -607,7 +607,7 @@ int main(int argc, char *argv[])
 
   excludes = new Q3StrList;
 
-  exclude = QFile::encodeName(KStandardDirs::locate("data", "kmtrace/kde.excludes"));
+  exclude = QFile::encodeName(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kmtrace/kde.excludes"));
   if(!exclude.isEmpty())
       readExcludeFile(exclude);
 
