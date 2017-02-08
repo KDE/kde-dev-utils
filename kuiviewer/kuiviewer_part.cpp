@@ -30,7 +30,6 @@
 #include <KLocalizedString>
 #include <KAboutData>
 #include <KPluginFactory>
-#include <k4style.h>
 #include <KIO/NetAccess>
 // Qt
 #include <QApplication>
@@ -38,6 +37,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QFormBuilder>
+#include <QStyle>
 #include <QStyleFactory>
 #include <QVBoxLayout>
 
@@ -78,22 +78,28 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     //m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
-    const QString currentStyle = KConfigGroup(KSharedConfig::openConfig(), "General").readEntry("currentWidgetStyle", K4Style::defaultStyle());
+    m_styleFromConfig = KConfigGroup(KSharedConfig::openConfig(), "General").readEntry("currentWidgetStyle", QString());
 
     const QStringList styles = QStyleFactory::keys();
-    m_style->setItems(styles);
+    m_style->setItems(QStringList(i18nc("Default style", "Default")) + styles);
     m_style->setCurrentItem(0);
 
-    QStringList::ConstIterator it = styles.begin();
-    QStringList::ConstIterator end = styles.end();
-    int idx = 0;
-    for (; it != end; ++it, ++idx) {
-        if ((*it).toLower() == currentStyle.toLower()) {
-            m_style->setCurrentItem(idx);
-            break;
+    // empty or incorrect value  means the default value of currentWidgetStyle,
+    // which leads to the Default option.
+    if (!m_styleFromConfig.isEmpty()) {
+        QStringList::ConstIterator it = styles.begin();
+        QStringList::ConstIterator end = styles.end();
+
+        // Skip the default item
+        int idx = 1;
+        for (; it != end; ++it, ++idx) {
+            if ((*it).toLower() == m_styleFromConfig.toLower()) {
+                m_style->setCurrentItem(idx);
+                break;
+            }
         }
     }
-    m_style->setToolTip(i18n("Set the current style to view."));
+    m_style->setToolTip(i18n("Set the style used for the view."));
     m_style->setMenuAccelsEnabled(true);
 
     m_copy = KStandardAction::copy(this, SLOT(slotGrab()), actionCollection());
@@ -171,7 +177,7 @@ void KUIViewerPart::slotStyle(int)
 
     QString  styleName = m_style->currentText();
     QStyle*  style     = QStyleFactory::create(styleName);
-    qDebug() << "Change style..." << endl;
+    qDebug() << "Change style: " << styleName;
     m_widget->hide();
     QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);
@@ -184,10 +190,19 @@ void KUIViewerPart::slotStyle(int)
     m_widget->show();
     QApplication::restoreOverrideCursor();
 
-    KSharedConfig::Ptr cfg = KSharedConfig::openConfig();
-    KConfigGroup cg(cfg, "General");
-    cg.writeEntry("currentWidgetStyle", m_style->currentText());
-    cfg->sync();
+    /* the style changed, update the configuration */
+    if (m_styleFromConfig != styleName) {
+        KSharedConfig::Ptr cfg = KSharedConfig::openConfig();
+        KConfigGroup cg(cfg, "General");
+        if (m_style->currentItem() > 0) {
+            /* A style different from the default */
+            cg.writeEntry("currentWidgetStyle", styleName);
+        } else {
+            /* default style: remove the entry */
+            cg.deleteEntry("currentWidgetStyle");
+        }
+        cfg->sync();
+    }
 }
 
 void KUIViewerPart::slotGrab()

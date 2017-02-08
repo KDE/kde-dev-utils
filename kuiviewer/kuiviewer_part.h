@@ -72,6 +72,7 @@ private:
     QPointer<QWidget> m_view;
     KSelectAction *m_style;
     QAction *m_copy;
+    QString m_styleFromConfig;
 };
 
 #endif // KUIVIEWERPART_H
