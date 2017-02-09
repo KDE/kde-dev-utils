@@ -26,11 +26,11 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
 find_package(KF5 REQUIRED
     COMPONENTS
     CoreAddons
+    JobWidgets
     KIO
     I18n
     Parts
     WidgetsAddons
-    KDELibs4Support
 )
 
 ########### next target ###############
@@ -56,7 +56,7 @@ add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
 
 
 
-target_link_libraries(kuiviewerpart  KF5::Parts KF5::KDELibs4Support Qt5::Designer Qt5::UiTools)
+target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
 
 install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
@@ -70,7 +70,8 @@ add_library(quithumbnail MODULE ${quithumbnail_PART_SRCS})
 
 
 
-target_link_libraries(quithumbnail  KF5::KDELibs4Support KF5::KIOCore Qt5::Designer Qt5::UiTools Qt5::Xml Qt5::Gui )
+target_link_libraries(quithumbnail KF5::KIOCore KF5::KIOFileWidgets KF5::KIOWidgets KF5::KIONTLM
+                                   Qt5::Designer Qt5::UiTools Qt5::Xml Qt5::Gui )
 
 install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 

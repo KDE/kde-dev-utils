@@ -30,7 +30,9 @@
 #include <KLocalizedString>
 #include <KAboutData>
 #include <KPluginFactory>
-#include <KIO/NetAccess>
+#include <KIO/Job>
+#include <kjobwidgets.h>
+#include <KMessageBox>
 // Qt
 #include <QApplication>
 #include <QClipboard>
@@ -39,6 +41,7 @@
 #include <QFormBuilder>
 #include <QStyle>
 #include <QStyleFactory>
+#include <QTemporaryFile>
 #include <QVBoxLayout>
 
 
@@ -147,12 +150,20 @@ bool KUIViewerPart::openURL( const QUrl &url)
 
     setUrl(url);
     setLocalFilePath( QString() );
-    QString filePath;
-    if (KIO::NetAccess::download(this->url(), filePath, 0L)) {
-        setLocalFilePath( filePath );
-	return openFile();
-    }
+    QTemporaryFile tmpFile;
+    const QUrl tmpFileUrl = QUrl::fromLocalFile(tmpFile.fileName());
 
+    if (tmpFile.open()) {
+        KIO::FileCopyJob *job = KIO::file_copy(this->url(), tmpFileUrl);
+        KJobWidgets::setWindow(job, QApplication::activeWindow());
+
+        if (job->exec()) {
+            setLocalFilePath( tmpFile.fileName() );
+	    return openFile();
+        }
+    } else {
+        KMessageBox::sorry(nullptr, tmpFile.errorString());
+    }
     return false;
 }
 
