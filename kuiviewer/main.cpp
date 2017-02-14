@@ -38,10 +38,10 @@ int main(int argc, char **argv)
     KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"), QStringLiteral("0.2"),
 		     i18n("Displays Designer's UI files"),
 		     KAboutLicense::LGPL );
-    about.addAuthor(i18n("Richard Moore"), QString(), "rich@kde.org");
-    about.addAuthor(i18n("Ian Reinhart Geiser"), QString(), "geiseri@kde.org");
+    about.addAuthor(i18n("Richard Moore"), i18n("Original author"), "rich@kde.org");
+    about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), "geiseri@kde.org");
     // Screenshot capability
-    about.addAuthor(i18n("Benjamin C. Meyer"), QString(), "ben+kuiviewer@meyerhome.net");
+    about.addAuthor(i18n("Benjamin C. Meyer"), i18n("Screenshot capability"), "ben+kuiviewer@meyerhome.net");
 
     KAboutData::setApplicationData(about);
 
