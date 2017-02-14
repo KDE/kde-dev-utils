@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kuiviewer_part" version="5">
+<kpartgui name="kuiviewer_part" version="5" translationDomain="kuiviewer">
 <MenuBar>
  <Menu name="file"><Text>&amp;File</Text>
   <Action name="file_save_as"/>
