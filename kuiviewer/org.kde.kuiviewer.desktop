@@ -115,6 +115,7 @@ GenericName[uk]=Переглядач UI-файлів Qt Designer
 GenericName[x-test]=xxQt Designer UI File Viewerxx
 GenericName[zh_CN]=Qt 设计师 UI 文件查看器
 GenericName[zh_TW]=Qt Designer UI 檔案檢視器
+GenericName=A quick viewer for Qt Designer UI File
 MimeType=application/x-designer;
 Terminal=false
 X-DBUS-StartupType=Multi
