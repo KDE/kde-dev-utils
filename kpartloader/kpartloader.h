@@ -31,6 +31,9 @@ public:
   KPartLoaderWindow(const QString& partLib);
   virtual ~KPartLoaderWindow();
 
+private slots:
+  void aboutKPart();
+
 private:
   KParts::ReadOnlyPart *m_part;
 };

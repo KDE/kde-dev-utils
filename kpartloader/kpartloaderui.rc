@@ -4,6 +4,10 @@
  <Menu name="file"><text>&amp;File</text>
   <Action name="file_quit"/>
  </Menu>
+ <Menu name="help">
+  <text>&amp;Help</text>
+  <Action name="help_about_kpart" append="about_merge"/>
+ </Menu>
  <Merge/>
 </MenuBar>
 </kpartgui>

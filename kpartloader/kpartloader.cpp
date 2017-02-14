@@ -30,6 +30,7 @@
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <KPluginLoader>
+#include <KAboutApplicationDialog>
 #include <kmessagebox.h>
 
 
@@ -38,9 +39,13 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
 {
     setXMLFile(QStringLiteral("kpartloaderui.rc"));
 
-    QAction * paQuit = new QAction( QIcon::fromTheme(QStringLiteral("application-exit")), i18n("&Quit"), this );
-    actionCollection()->addAction( "file_quit", paQuit );
-    connect(paQuit, SIGNAL(triggered()), this, SLOT(close()));
+    QAction * a = new QAction( QIcon::fromTheme(QStringLiteral("application-exit")), i18n("&Quit"), this );
+    actionCollection()->addAction( "file_quit", a );
+    connect(a, SIGNAL(triggered()), this, SLOT(close()));
+
+    a = actionCollection()->addAction(QStringLiteral("help_about_kpart"));
+    a->setText(i18n("&About KPart..."));
+    connect(a, SIGNAL(triggered()), this, SLOT(aboutKPart()));
 
     KPluginLoader loader(partLib);
     KPluginFactory* factory = loader.factory();
@@ -63,6 +68,12 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
 
 KPartLoaderWindow::~KPartLoaderWindow()
 {
+}
+
+void KPartLoaderWindow::aboutKPart()
+{
+    KAboutApplicationDialog dlg(m_part->componentData(), this);
+    dlg.exec();
 }
 
 int main( int argc, char **argv )
