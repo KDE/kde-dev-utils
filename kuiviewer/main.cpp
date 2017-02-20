@@ -23,6 +23,7 @@
 #include "kuiviewer.h"
 
 #include <QApplication>
+#include <QDir>
 #include <QUrl>
 #include <KAboutData>
 #include <KLocalizedString>
@@ -75,7 +76,7 @@ int main(int argc, char **argv)
             int i = 0;
             for (; i < parser.positionalArguments().count(); i++ ) {
                 KUIViewer *widget = new KUIViewer;
-                widget->load( QUrl::fromUserInput(parser.positionalArguments().at(i)) );
+                widget->load( QUrl::fromUserInput(parser.positionalArguments().at(i), QDir::currentPath()) );
             
                 if (parser.isSet("takescreenshot")){
                     widget->takeScreenshot(parser.value("takescreenshot").toLocal8Bit(),
