@@ -20,7 +20,7 @@
  *  Boston, MA 02110-1301, USA.
  **/
 #ifndef UICREATOR_H
-#define UICREATOR_H 
+#define UICREATOR_H
 
 #include <kio/thumbcreator.h>
 
