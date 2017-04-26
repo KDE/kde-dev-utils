@@ -1,19 +1,9 @@
-cmake_minimum_required(VERSION 2.8.12)
-
 project(kuiviewer)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
-find_package(ECM 1.7 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
-
 set(QT_MIN_VERSION "5.5.0")
 
-include(FeatureSummary)
-include(ECMInstallIcons)
-include(KDEInstallDirs)
-include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
