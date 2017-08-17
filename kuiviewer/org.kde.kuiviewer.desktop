@@ -142,6 +142,5 @@ Comment[uk]=Швидкий засіб перегляду для файлів UI 
 Comment[x-test]=xxA quick viewer for Qt Designer UI Filexx
 MimeType=application/x-designer;
 Terminal=false
-X-DBUS-StartupType=Multi
 Categories=Qt;KDE;Development;
 InitialPreference=10
