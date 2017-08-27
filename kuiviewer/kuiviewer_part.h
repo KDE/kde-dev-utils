@@ -22,15 +22,11 @@
 #ifndef KUIVIEWERPART_H
 #define KUIVIEWERPART_H
 
-// KDE
+// KF
 #include <KParts/ReadOnlyPart>
 // Qt
-#include <QtCore/QPointer>
+#include <QPointer>
 
-class QWidget;
-class QUrl;
-
-class KAboutData;
 class KSelectAction;
 
 /**

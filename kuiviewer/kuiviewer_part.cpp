@@ -23,7 +23,7 @@
 
 #include "kuiviewer_part.h"
 
-// Frameworks
+// KF
 #include <KActionCollection>
 #include <KSelectAction>
 #include <KConfig>
@@ -32,6 +32,7 @@
 #include <KLocalizedString>
 #include <KAboutData>
 #include <KPluginFactory>
+
 // Qt
 #include <QApplication>
 #include <QClipboard>

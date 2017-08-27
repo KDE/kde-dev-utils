@@ -20,18 +20,21 @@
 
 #include "kpartloader.h"
 
-#include <QAction>
-#include <QApplication>
-#include <QCommandLineParser>
-#include <QCommandLineOption>
-#include <QIcon>
+// KF
 #include <KAboutData>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <KPluginLoader>
 #include <KAboutApplicationDialog>
-#include <kmessagebox.h>
+#include <KMessageBox>
+
+// Qt
+#include <QAction>
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+#include <QIcon>
 
 
 KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)

@@ -21,8 +21,9 @@
 #ifndef KPARTLOADER_H
 #define KPARTLOADER_H
 
-#include <kparts/mainwindow.h>
-#include <kparts/readonlypart.h>
+// KF
+#include <KParts/MainWindow>
+#include <KParts/ReadOnlyPart>
 
 class KPartLoaderWindow : public KParts::MainWindow
 {

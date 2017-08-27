@@ -22,11 +22,13 @@
 
 #include "kuiviewer.h"
 
+// KF
+#include <KAboutData>
+#include <KLocalizedString>
+// Qt
 #include <QApplication>
 #include <QDir>
 #include <QUrl>
-#include <KAboutData>
-#include <KLocalizedString>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 

@@ -22,7 +22,7 @@
 #ifndef UICREATOR_H
 #define UICREATOR_H
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class QUICreator : public ThumbCreator
 {

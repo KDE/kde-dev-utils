@@ -21,9 +21,11 @@
  **/
 
 #include "quicreator.h"
+
+// Qt
 #include <QPixmap>
 #include <QImage>
-#include <QtDesigner/QFormBuilder>
+#include <QFormBuilder>
 #include <QWidget>
 
 extern "C"

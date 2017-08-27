@@ -23,22 +23,22 @@
 #include "kuiviewer.h"
 #include "kuiviewer_part.h"
 
+// KF
+#include <KActionCollection>
+#include <KStandardAction>
+#include <KPluginFactory>
+#include <KPluginLoader>
+#include <KLocalizedString>
+#include <KMessageBox>
+
+// Qt
 #include <QObject>
 #include <QPixmap>
-
 #include <QUrl>
-
 #include <QApplication>
 #include <QAction>
 #include <QFileDialog>
 
-#include <kactioncollection.h>
-#include <kstandardaction.h>
-#include <KPluginFactory>
-#include <KPluginLoader>
-
-#include <KLocalizedString>
-#include <kmessagebox.h>
 
 KUIViewer::KUIViewer()
     : KParts::MainWindow()

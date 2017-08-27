@@ -23,8 +23,8 @@
 #ifndef KUIVIEWER_H
 #define KUIVIEWER_H
 
-
-#include <kparts/mainwindow.h>
+// KF
+#include <KParts/MainWindow>
 
 class KToggleAction;
 
