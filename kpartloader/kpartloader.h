@@ -31,7 +31,7 @@ public:
   KPartLoaderWindow(const QString& partLib);
   ~KPartLoaderWindow() override;
 
-private slots:
+private Q_SLOTS:
   void aboutKPart();
 
 private:

@@ -55,7 +55,7 @@ public:
      */
     ~KUIViewerPart() override;
 
-public slots:
+public Q_SLOTS:
      void slotStyle(int);
      void slotGrab();
      void updateActions();

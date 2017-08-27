@@ -68,7 +68,7 @@ public:
      */
     void takeScreenshot(const QByteArray &filename, int h=-1, int w=-1);
 
-private slots:
+private Q_SLOTS:
     void fileOpen();
 
 private:
