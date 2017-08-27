@@ -23,6 +23,8 @@
 
 #include "kuiviewer_part.h"
 
+#include <kuiviewer_part_debug.h>
+
 // KF
 #include <KActionCollection>
 #include <KSelectAction>
@@ -36,7 +38,6 @@
 // Qt
 #include <QApplication>
 #include <QClipboard>
-#include <QDebug>
 #include <QFile>
 #include <QFormBuilder>
 #include <QStyle>
@@ -160,7 +161,7 @@ void KUIViewerPart::slotStyle(int)
 
     QString  styleName = m_style->currentText();
     QStyle*  style     = QStyleFactory::create(styleName);
-    qDebug() << "Change style: " << styleName;
+    qCDebug(KUIVIEWERPART) << "Change style: " << styleName;
     m_widget->hide();
     QApplication::setOverrideCursor( Qt::WaitCursor );
     m_widget->setStyle( style);

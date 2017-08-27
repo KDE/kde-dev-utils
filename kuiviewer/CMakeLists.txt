@@ -47,10 +47,13 @@ install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
+ecm_qt_declare_logging_category(kuiviewerpart_PART_SRCS
+    HEADER kuiviewer_part_debug.h
+    IDENTIFIER KUIVIEWERPART
+    CATEGORY_NAME "kuiviewerpart"
+)
 
 add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
-
-
 
 target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
 
