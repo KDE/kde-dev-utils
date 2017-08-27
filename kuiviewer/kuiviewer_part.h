@@ -56,7 +56,6 @@ public:
     virtual ~KUIViewerPart();
 
 public slots:
-     bool openURL( const QUrl& );
      void slotStyle(int);
      void slotGrab();
      void updateActions();

@@ -16,11 +16,9 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
 find_package(KF5 REQUIRED
     COMPONENTS
     CoreAddons
-    JobWidgets
     KIO
     I18n
     Parts
-    WidgetsAddons
 )
 
 ########### next target ###############
