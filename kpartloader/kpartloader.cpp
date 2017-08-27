@@ -35,7 +35,7 @@
 
 
 KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
-    : m_part(0)
+    : m_part(nullptr)
 {
     setXMLFile(QStringLiteral("kpartloaderui.rc"));
 
