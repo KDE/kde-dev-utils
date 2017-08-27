@@ -1,7 +1,5 @@
 project(kuiviewer)
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
-
 set(QT_MIN_VERSION "5.5.0")
 
 include(ECMAddAppIcon)
@@ -19,6 +17,16 @@ find_package(KF5 REQUIRED
     KIO
     I18n
     Parts
+)
+
+add_definitions(
+    -DQT_DEPRECATED_WARNINGS
+    -DQT_DISABLE_DEPRECATED_BEFORE=0x050500
+    -DQT_NO_SIGNALS_SLOTS_KEYWORDS
+    -DQT_NO_URL_CAST_FROM_STRING
+    -DQT_STRICT_ITERATORS
+    -DQT_USE_FAST_CONCATENATION
+    -DQT_USE_FAST_OPERATOR_PLUS
 )
 
 ########### next target ###############
