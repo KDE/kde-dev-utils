@@ -55,13 +55,13 @@ install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 set(quithumbnail_PART_SRCS quicreator.cpp )
 
-
 add_library(quithumbnail MODULE ${quithumbnail_PART_SRCS})
 
-
-
-target_link_libraries(quithumbnail KF5::KIOCore KF5::KIOFileWidgets KF5::KIOWidgets KF5::KIONTLM
-                                   Qt5::Designer Qt5::UiTools Qt5::Xml Qt5::Gui )
+target_link_libraries(quithumbnail
+    KF5::KIOWidgets
+    Qt5::Designer
+    Qt5::UiTools
+)
 
 install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
