@@ -68,8 +68,6 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
     // notify the part that this is our internal widget
     setWidget(m_widget);
 
-    setComponentName(QStringLiteral("kuiviewerpart"), QString());
-
     // set our XML-UI resource file
     setXMLFile("kuiviewer_part.rc");
 
