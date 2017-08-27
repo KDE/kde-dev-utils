@@ -53,7 +53,7 @@ public:
     /**
      * Destructor
      */
-    virtual ~KUIViewerPart();
+    ~KUIViewerPart() override;
 
 public slots:
      void slotStyle(int);
@@ -64,7 +64,7 @@ protected:
     /**
      * This must be implemented by each part
      */
-    virtual bool openFile();
+    bool openFile() override;
 
 private:
     QWidget *m_widget;

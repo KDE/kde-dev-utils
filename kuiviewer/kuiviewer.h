@@ -53,7 +53,7 @@ public:
     /**
      * Default Destructor
      */
-    virtual ~KUIViewer();
+    ~KUIViewer() override;
 
     /**
      * Use this method to load whatever file/URL you have

@@ -29,7 +29,7 @@ class KPartLoaderWindow : public KParts::MainWindow
   Q_OBJECT
 public:
   KPartLoaderWindow(const QString& partLib);
-  virtual ~KPartLoaderWindow();
+  ~KPartLoaderWindow() override;
 
 private slots:
   void aboutKPart();
