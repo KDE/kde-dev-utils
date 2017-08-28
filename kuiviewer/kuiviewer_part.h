@@ -40,11 +40,12 @@ class KSelectAction;
 class KUIViewerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
+
 public:
     /**
      * Default constructor
      */
-    KUIViewerPart(QWidget *parentWidget, QObject *parent, const QVariantList &args);
+    KUIViewerPart(QWidget* parentWidget, QObject* parent, const QVariantList& args);
 
     /**
      * Destructor
@@ -52,9 +53,9 @@ public:
     ~KUIViewerPart() override;
 
 public Q_SLOTS:
-     void slotStyle(int);
-     void slotGrab();
-     void updateActions();
+    void slotStyle(int);
+    void slotGrab();
+    void updateActions();
 
 protected:
     /**
@@ -63,10 +64,10 @@ protected:
     bool openFile() override;
 
 private:
-    QWidget *m_widget;
+    QWidget* m_widget;
     QPointer<QWidget> m_view;
-    KSelectAction *m_style;
-    QAction *m_copy;
+    KSelectAction* m_style;
+    QAction* m_copy;
     QString m_styleFromConfig;
 };
 

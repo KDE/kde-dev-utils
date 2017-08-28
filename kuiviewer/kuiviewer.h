@@ -28,7 +28,8 @@
 
 class KToggleAction;
 
-namespace KParts {
+namespace KParts
+{
 class ReadOnlyPart;
 }
 
@@ -44,6 +45,7 @@ class ReadOnlyPart;
 class KUIViewer : public KParts::MainWindow
 {
     Q_OBJECT
+
 public:
     /**
      * Default Constructor
@@ -58,7 +60,7 @@ public:
     /**
      * Use this method to load whatever file/URL you have
      */
-    void load(const QUrl &url);
+    void load(const QUrl& url);
 
     /**
      * Take screenshot of current ui file
@@ -66,7 +68,7 @@ public:
      * @param h height of image
      * @param w width of image
      */
-    void takeScreenshot(const QByteArray &filename, int h=-1, int w=-1);
+    void takeScreenshot(const QByteArray& filename, int h = -1, int w = -1);
 
 private Q_SLOTS:
     void fileOpen();
@@ -75,9 +77,9 @@ private:
     void setupActions();
 
 private:
-    KParts::ReadOnlyPart *m_part;
-    KToggleAction *m_toolbarAction;
-    KToggleAction *m_statusbarAction;
+    KParts::ReadOnlyPart* m_part;
+    KToggleAction* m_toolbarAction;
+    KToggleAction* m_statusbarAction;
 };
 
 #endif // KUIVIEWER_H

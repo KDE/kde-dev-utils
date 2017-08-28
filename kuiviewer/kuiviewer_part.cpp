@@ -45,26 +45,26 @@
 #include <QVBoxLayout>
 
 
-K_PLUGIN_FACTORY( KUIViewerPartFactory, registerPlugin<KUIViewerPart>(); )
+K_PLUGIN_FACTORY(KUIViewerPartFactory, registerPlugin<KUIViewerPart>();)
 
-KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
-                              QObject *parent,
-                              const QVariantList &/*args*/ )
+KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
+                             QObject* parent,
+                             const QVariantList& /*args*/)
     : KParts::ReadOnlyPart(parent)
 {
     // we need an instance
     KAboutData about(QStringLiteral("kuiviewerpart"),
-        i18n("KUIViewerPart"),
-        QStringLiteral("0.2"),
-        i18n("Displays Designer's UI files"),
-        KAboutLicense::LGPL);
+                     i18n("KUIViewerPart"),
+                     QStringLiteral("0.2"),
+                     i18n("Displays Designer's UI files"),
+                     KAboutLicense::LGPL);
     about.addAuthor(i18n("Richard Moore"), i18n("Original author"), "rich@kde.org");
     about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), "geiseri@kde.org");
     setComponentData(about);
 
     // this should be your custom internal widget
-    m_widget = new QWidget( parentWidget );
-    QVBoxLayout *widgetVBoxLayout = new QVBoxLayout(m_widget);
+    m_widget = new QWidget(parentWidget);
+    QVBoxLayout* widgetVBoxLayout = new QVBoxLayout(m_widget);
     widgetVBoxLayout->setMargin(0);
 
     // notify the part that this is our internal widget
@@ -100,6 +100,7 @@ KUIViewerPart::KUIViewerPart( QWidget *parentWidget,
             }
         }
     }
+
     m_style->setToolTip(i18n("Set the style used for the view."));
     m_style->setMenuAccelsEnabled(true);
 
@@ -121,7 +122,7 @@ KUIViewerPart::~KUIViewerPart()
 static QStringList designerPluginPaths()
 {
     QStringList paths;
-    const QStringList &libraryPaths = QApplication::libraryPaths();
+    const QStringList& libraryPaths = QApplication::libraryPaths();
     for (const auto& path : libraryPaths) {
         paths.append(path + QLatin1String("/designer"));
     }
@@ -131,9 +132,10 @@ static QStringList designerPluginPaths()
 bool KUIViewerPart::openFile()
 {
     // m_file is always local so we can use QFile on it
-    QFile file( localFilePath() );
-    if ( !file.open(QIODevice::ReadOnly) )
+    QFile file(localFilePath());
+    if (!file.open(QIODevice::ReadOnly)) {
         return false;
+    }
 
     delete m_view;
     QFormBuilder builder;
@@ -143,43 +145,42 @@ bool KUIViewerPart::openFile()
     file.close();
     updateActions();
 
-    if ( !m_view )
-	return false;
+    if (!m_view) {
+        return false;
+    }
 
     m_view->show();
     slotStyle(0);
+
     return true;
 }
 
 void KUIViewerPart::updateActions()
 {
-    if ( !m_view.isNull() ) {
-	m_style->setEnabled( true );
-	m_copy->setEnabled( true );
-    }
-    else {
-	m_style->setEnabled( false );
-	m_copy->setEnabled( false );
-    }
+    const bool hasView = !m_view.isNull();
+
+    m_style->setEnabled(hasView);
+    m_copy->setEnabled(hasView);
 }
 
 void KUIViewerPart::slotStyle(int)
 {
-    if ( m_view.isNull() ) {
-	updateActions();
-	return;
+    if (m_view.isNull()) {
+        updateActions();
+        return;
     }
 
-    QString  styleName = m_style->currentText();
-    QStyle*  style     = QStyleFactory::create(styleName);
+    const QString styleName = m_style->currentText();
+    QStyle* style = QStyleFactory::create(styleName);
     qCDebug(KUIVIEWERPART) << "Change style: " << styleName;
-    m_widget->hide();
-    QApplication::setOverrideCursor( Qt::WaitCursor );
-    m_widget->setStyle( style);
 
-    QList<QWidget *>l = m_widget->findChildren<QWidget*>();
+    m_widget->hide();
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    m_widget->setStyle(style);
+
+    const QList<QWidget*> l = m_widget->findChildren<QWidget*>();
     for (int i = 0; i < l.size(); ++i) {
-        l.at(i)->setStyle( style );
+        l.at(i)->setStyle(style);
     }
 
     m_widget->show();
@@ -202,12 +203,12 @@ void KUIViewerPart::slotStyle(int)
 
 void KUIViewerPart::slotGrab()
 {
-    if ( m_view.isNull() ) {
-	updateActions();
-	return;
+    if (m_view.isNull()) {
+        updateActions();
+        return;
     }
 
-    QClipboard *clipboard = QApplication::clipboard();
+    QClipboard* clipboard = QApplication::clipboard();
     clipboard->setPixmap(QPixmap::grabWidget(m_widget));
 }
 

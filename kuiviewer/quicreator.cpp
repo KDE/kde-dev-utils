@@ -31,38 +31,44 @@
 
 extern "C"
 {
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new QUICreator;
-    }
+
+Q_DECL_EXPORT ThumbCreator* new_creator()
+{
+    return new QUICreator;
 }
 
-bool QUICreator::create(const QString &path, int width, int height, QImage & img)
+}
+
+bool QUICreator::create(const QString& path, int width, int height, QImage& img)
 {
-	QStringList designerPluginPaths;
-	const QStringList &libraryPaths = QCoreApplication::libraryPaths();
-	for (const auto& path : libraryPaths) {
-		designerPluginPaths.append(path + QLatin1String("/designer"));
-	}
-	QFormBuilder builder;
-	builder.setPluginPath(designerPluginPaths);
-        QFile file(path);
-        if (!file.open(QFile::ReadOnly))
-		return false;
-        QWidget *w = builder.load(&file);
-        file.close();
-	if ( w )
-	{
-		QPixmap p = w->grab();
-		img = p.toImage().scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-		return true;
-	}
-	else
-		return false;
+    QStringList designerPluginPaths;
+    const QStringList& libraryPaths = QCoreApplication::libraryPaths();
+    for (const auto& path : libraryPaths) {
+        designerPluginPaths.append(path + QLatin1String("/designer"));
+    }
+    QFormBuilder builder;
+    builder.setPluginPath(designerPluginPaths);
+
+    QFile file(path);
+    if (!file.open(QFile::ReadOnly)) {
+        return false;
+    }
+
+    QWidget* w = builder.load(&file);
+    file.close();
+
+    if (!w) {
+        return false;
+    }
+
+    const QPixmap p = w->grab();
+    img = p.toImage().scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    return true;
 }
 
 ThumbCreator::Flags QUICreator::flags() const
 {
-    return static_cast<Flags>(DrawFrame);
+    return DrawFrame;
 }
 

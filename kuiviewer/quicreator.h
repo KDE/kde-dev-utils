@@ -28,7 +28,8 @@ class QUICreator : public ThumbCreator
 {
 public:
     QUICreator() {}
-    bool create(const QString &path, int, int, QImage &img) override;
+
+    bool create(const QString& path, int, int, QImage& img) override;
     Flags flags() const override;
 };
 

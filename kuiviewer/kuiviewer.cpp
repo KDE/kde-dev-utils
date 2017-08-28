@@ -43,7 +43,8 @@
 KUIViewer::KUIViewer()
     : KParts::MainWindow()
 {
-    setObjectName( "KUIViewer" );
+    setObjectName("KUIViewer");
+
     // setup our actions
     setupActions();
 
@@ -56,27 +57,23 @@ KUIViewer::KUIViewer()
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
     KPluginFactory* factory = KPluginLoader("kuiviewerpart").factory();
-    if (factory)
-    {
+    if (factory) {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
         m_part = factory->create<KParts::ReadOnlyPart>(this);
 
-        if (m_part)
-        {
-	    m_part->setObjectName( "kuiviewer_part" );
+        if (m_part) {
+            m_part->setObjectName("kuiviewer_part");
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
         }
-    }
-    else
-    {
+    } else {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
-	//FIXME improve message, which Part is this referring to?
+        //FIXME improve message, which Part is this referring to?
         KMessageBox::error(this, i18n("Unable to locate Kuiviewer kpart."));
         QApplication::quit();
         // we return here, cause kapp->quit() only means "exit the
@@ -89,9 +86,9 @@ KUIViewer::~KUIViewer()
 {
 }
 
-void KUIViewer::load(const QUrl &url)
+void KUIViewer::load(const QUrl& url)
 {
-    m_part->openUrl( url );
+    m_part->openUrl(url);
     adjustSize();
 }
 
@@ -107,34 +104,34 @@ void KUIViewer::fileOpen()
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     QUrl file_name =
-        QFileDialog::getOpenFileUrl( this, QString(), QUrl(), i18n("*.ui *.UI|User Interface Files") );
+        QFileDialog::getOpenFileUrl(this, QString(), QUrl(), i18n("*.ui *.UI|User Interface Files"));
 
-    if (file_name.isEmpty() == false)
-    {
+    if (!file_name.isEmpty()) {
         // About this function, the style guide (
         // http://developer.kde.org/documentation/standards/kde/style/basics/index.html )
         // says that it should open a new window if the document is _not_
         // in its initial state.  This is what we do here..
-        if ( m_part->url().isEmpty() )
-        {
+        if (m_part->url().isEmpty()) {
             // we open the file in this window...
-            load( file_name );
-        }
-        else
-        {
+            load(file_name);
+        } else {
             // we open the file in a new window...
             KUIViewer* newWin = new KUIViewer;
-            newWin->load( file_name  );
+            newWin->load(file_name);
             newWin->show();
         }
     }
 }
 
-void KUIViewer::takeScreenshot(const QByteArray &filename, int w, int h){
-    if(!m_part)
+void KUIViewer::takeScreenshot(const QByteArray& filename, int w, int h)
+{
+    if (!m_part) {
         return;
+    }
+
     showMinimized();
-    if(w!=-1 && h!=-1){
+
+    if (w != -1 && h != -1) {
         // resize widget to the desired size
         m_part->widget()->setMinimumSize(w, h);
         m_part->widget()->setMaximumSize(w, h);
@@ -142,9 +139,9 @@ void KUIViewer::takeScreenshot(const QByteArray &filename, int w, int h){
         // resize app to be as large as desired size
         adjustSize();
         // Disable the saving of the size
-        setAutoSaveSettings(QString::fromLatin1("MainWindow"), false);
+        setAutoSaveSettings(QStringLiteral("MainWindow"), false);
     }
-    QPixmap pixmap = QPixmap::grabWidget( m_part->widget() );
-    pixmap.save( filename, "PNG" );
-}
 
+    QPixmap pixmap = QPixmap::grabWidget(m_part->widget());
+    pixmap.save(filename, "PNG");
+}
