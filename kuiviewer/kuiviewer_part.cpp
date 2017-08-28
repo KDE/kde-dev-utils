@@ -122,6 +122,16 @@ KUIViewerPart::~KUIViewerPart()
 {
 }
 
+static QStringList designerPluginPaths()
+{
+    QStringList paths;
+    const QStringList &libraryPaths = QApplication::libraryPaths();
+    for (const auto& path : libraryPaths) {
+        paths.append(path + QLatin1String("/designer"));
+    }
+    return paths;
+}
+
 bool KUIViewerPart::openFile()
 {
     // m_file is always local so we can use QFile on it
@@ -131,6 +141,7 @@ bool KUIViewerPart::openFile()
 
     delete m_view;
     QFormBuilder builder;
+    builder.setPluginPath(designerPluginPaths());
     m_view = builder.load(&file, m_widget);
 
     file.close();

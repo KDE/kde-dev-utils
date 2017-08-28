@@ -25,6 +25,7 @@
 #include <QImage>
 #include <QtDesigner/QFormBuilder>
 #include <QWidget>
+#include <QCoreApplication>
 
 extern "C"
 {
@@ -36,7 +37,13 @@ extern "C"
 
 bool QUICreator::create(const QString &path, int width, int height, QImage & img)
 {
+	QStringList designerPluginPaths;
+	const QStringList &libraryPaths = QCoreApplication::libraryPaths();
+	for (const auto& path : libraryPaths) {
+		designerPluginPaths.append(path + QLatin1String("/designer"));
+	}
 	QFormBuilder builder;
+	builder.setPluginPath(designerPluginPaths);
         QFile file(path);
         if (!file.open(QFile::ReadOnly))
 		return false;
