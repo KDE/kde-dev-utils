@@ -86,6 +86,9 @@ ecm_install_icons(ICONS
     16-apps-kuiviewer.png
     32-apps-kuiviewer.png
     48-apps-kuiviewer.png
+    64-apps-kuiviewer.png
+    128-apps-kuiviewer.png
+    sc-apps-kuiviewer.svg
     DESTINATION ${KDE_INSTALL_ICONDIR}
     THEME hicolor
 )
