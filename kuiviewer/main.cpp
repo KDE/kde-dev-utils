@@ -57,8 +57,10 @@ int main(int argc, char** argv)
     const QString screenshotWidthOptionKey(QStringLiteral("screenshotwidth"));
     const QString screenshotHeightOptionKey(QStringLiteral("screenshotheight"));
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("s") << takeScreenshotOptionKey, i18n("Save screenshot to file and exit"), QLatin1String("filename")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("w") << screenshotWidthOptionKey, i18n("Screenshot width"), QLatin1String("int"), QLatin1String("-1")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("h") << screenshotHeightOptionKey, i18n("Screenshot height"), QLatin1String("int"), QLatin1String("-1")));
+    parser.addOption(QCommandLineOption({QStringLiteral("sw"), screenshotWidthOptionKey},
+                                        i18n("Screenshot width"), QLatin1String("int"), QLatin1String("-1")));
+    parser.addOption(QCommandLineOption({QStringLiteral("sh"), screenshotHeightOptionKey},
+                                        i18n("Screenshot height"), QLatin1String("int"), QLatin1String("-1")));
 
     parser.process(app);
     about.processCommandLine(&parser);
