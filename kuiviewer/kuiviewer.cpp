@@ -1,5 +1,4 @@
 /*
- *
  *  This file is part of the kuiviewer package
  *  Copyright (c) 2003 Richard Moore <rich@kde.org>
  *  Copyright (c) 2003 Ian Reinhart Geiser <geiseri@kde.org>
@@ -18,7 +17,7 @@
  *  along with this library; see the file COPYING.LIB.  If not, write to
  *  the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  *  Boston, MA 02110-1301, USA.
- **/
+ */
 
 #include "kuiviewer.h"
 #include "kuiviewer_part.h"
