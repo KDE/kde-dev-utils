@@ -68,7 +68,7 @@ public:
      * @param h height of image
      * @param w width of image
      */
-    void takeScreenshot(const QByteArray& filename, int h = -1, int w = -1);
+    void takeScreenshot(const QString& filename, int h = -1, int w = -1);
 
 private Q_SLOTS:
     void fileOpen();

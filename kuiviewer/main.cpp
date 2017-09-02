@@ -41,10 +41,10 @@ int main(int argc, char** argv)
     KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"), QStringLiteral("0.2"),
                      i18n("Displays Designer's UI files"),
                      KAboutLicense::LGPL);
-    about.addAuthor(i18n("Richard Moore"), i18n("Original author"), "rich@kde.org");
-    about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), "geiseri@kde.org");
+    about.addAuthor(i18n("Richard Moore"), i18n("Original author"), QStringLiteral("rich@kde.org"));
+    about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), QStringLiteral("geiseri@kde.org"));
     // Screenshot capability
-    about.addAuthor(i18n("Benjamin C. Meyer"), i18n("Screenshot capability"), "ben+kuiviewer@meyerhome.net");
+    about.addAuthor(i18n("Benjamin C. Meyer"), i18n("Screenshot capability"), QStringLiteral("ben+kuiviewer@meyerhome.net"));
 
     KAboutData::setApplicationData(about);
 
@@ -54,9 +54,12 @@ int main(int argc, char** argv)
     about.setupCommandLine(&parser);
 
     parser.addPositionalArgument(QLatin1String("[URL]"), i18n("Document to open"));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("s") << QLatin1String("takescreenshot"), i18n("Save screenshot to file and exit"), QLatin1String("filename")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("w") << QLatin1String("screenshotwidth"), i18n("Screenshot width"), QLatin1String("int"), QLatin1String("-1")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("h") << QLatin1String("screenshotheight"), i18n("Screenshot height"), QLatin1String("int"), QLatin1String("-1")));
+    const QString takeScreenshotOptionKey(QStringLiteral("takescreenshot"));
+    const QString screenshotWidthOptionKey(QStringLiteral("screenshotwidth"));
+    const QString screenshotHeightOptionKey(QStringLiteral("screenshotheight"));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("s") << takeScreenshotOptionKey, i18n("Save screenshot to file and exit"), QLatin1String("filename")));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("w") << screenshotWidthOptionKey, i18n("Screenshot width"), QLatin1String("int"), QLatin1String("-1")));
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("h") << screenshotHeightOptionKey, i18n("Screenshot height"), QLatin1String("int"), QLatin1String("-1")));
 
     parser.process(app);
     about.processCommandLine(&parser);
@@ -76,10 +79,10 @@ int main(int argc, char** argv)
                 KUIViewer* widget = new KUIViewer;
                 widget->load(QUrl::fromUserInput(parser.positionalArguments().at(i), QDir::currentPath()));
 
-                if (parser.isSet("takescreenshot")) {
-                    widget->takeScreenshot(parser.value("takescreenshot").toLocal8Bit(),
-                                           parser.value("screenshotwidth").toInt(),
-                                           parser.value("screenshotheight").toInt());
+                if (parser.isSet(takeScreenshotOptionKey)) {
+                    widget->takeScreenshot(parser.value(takeScreenshotOptionKey),
+                                           parser.value(screenshotWidthOptionKey).toInt(),
+                                           parser.value(screenshotHeightOptionKey).toInt());
                     return 0;
                 }
                 widget->show();

@@ -58,8 +58,8 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
                      QStringLiteral("0.2"),
                      i18n("Displays Designer's UI files"),
                      KAboutLicense::LGPL);
-    about.addAuthor(i18n("Richard Moore"), i18n("Original author"), "rich@kde.org");
-    about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), "geiseri@kde.org");
+    about.addAuthor(i18n("Richard Moore"), i18n("Original author"), QStringLiteral("rich@kde.org"));
+    about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), QStringLiteral("geiseri@kde.org"));
     setComponentData(about);
 
     // this should be your custom internal widget
@@ -71,9 +71,9 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
     setWidget(m_widget);
 
     // set our XML-UI resource file
-    setXMLFile("kuiviewer_part.rc");
+    setXMLFile(QStringLiteral("kuiviewer_part.rc"));
 
-    m_style = actionCollection()->add<KSelectAction>("change_style");
+    m_style = actionCollection()->add<KSelectAction>(QStringLiteral("change_style"));
     m_style->setText(i18n("Style"));
     connect(m_style, SIGNAL(triggered(int)), SLOT(slotStyle(int)));
     //m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));

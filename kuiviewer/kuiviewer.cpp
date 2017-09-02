@@ -43,7 +43,7 @@
 KUIViewer::KUIViewer()
     : KParts::MainWindow()
 {
-    setObjectName("KUIViewer");
+    setObjectName(QStringLiteral("KUIViewer"));
 
     // setup our actions
     setupActions();
@@ -56,14 +56,14 @@ KUIViewer::KUIViewer()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-    KPluginFactory* factory = KPluginLoader("kuiviewerpart").factory();
+    KPluginFactory* factory = KPluginLoader(QStringLiteral("kuiviewerpart")).factory();
     if (factory) {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
         m_part = factory->create<KParts::ReadOnlyPart>(this);
 
         if (m_part) {
-            m_part->setObjectName("kuiviewer_part");
+            m_part->setObjectName(QStringLiteral("kuiviewer_part"));
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
@@ -123,7 +123,7 @@ void KUIViewer::fileOpen()
     }
 }
 
-void KUIViewer::takeScreenshot(const QByteArray& filename, int w, int h)
+void KUIViewer::takeScreenshot(const QString& filename, int w, int h)
 {
     if (!m_part) {
         return;
