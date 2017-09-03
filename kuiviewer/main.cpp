@@ -71,25 +71,22 @@ int main(int argc, char** argv)
     } else {
         // no session.. just start up normally
 
-        if (parser.positionalArguments().isEmpty()) {
+        const auto positionalArguments = parser.positionalArguments();
+        if (positionalArguments.isEmpty()) {
             KUIViewer* widget = new KUIViewer;
             widget->show();
         } else {
-            int i = 0;
-            for (; i < parser.positionalArguments().count(); i++) {
-                KUIViewer* widget = new KUIViewer;
-                widget->load(QUrl::fromUserInput(parser.positionalArguments().at(i), QDir::currentPath()));
+            KUIViewer* widget = new KUIViewer;
+            widget->load(QUrl::fromUserInput(positionalArguments.at(0), QDir::currentPath()));
 
-                if (parser.isSet(takeScreenshotOptionKey)) {
-                    widget->takeScreenshot(parser.value(takeScreenshotOptionKey),
-                                           parser.value(screenshotWidthOptionKey).toInt(),
-                                           parser.value(screenshotHeightOptionKey).toInt());
-                    return 0;
-                }
-                widget->show();
+            if (parser.isSet(takeScreenshotOptionKey)) {
+                widget->takeScreenshot(parser.value(takeScreenshotOptionKey),
+                                       parser.value(screenshotWidthOptionKey).toInt(),
+                                       parser.value(screenshotHeightOptionKey).toInt());
+                return 0;
             }
+            widget->show();
         }
-
     }
 
     return app.exec();
