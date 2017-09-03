@@ -74,7 +74,8 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
 
     m_style = actionCollection()->add<KSelectAction>(QStringLiteral("change_style"));
     m_style->setText(i18n("Style"));
-    connect(m_style, SIGNAL(triggered(int)), SLOT(slotStyle(int)));
+    connect(m_style, static_cast<void(KSelectAction::*)(int)>(&KSelectAction::triggered),
+            this, &KUIViewerPart::slotStyle);
     //m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
@@ -103,7 +104,7 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
     m_style->setToolTip(i18n("Set the style used for the view."));
     m_style->setMenuAccelsEnabled(true);
 
-    m_copy = KStandardAction::copy(this, SLOT(slotGrab()), actionCollection());
+    m_copy = KStandardAction::copy(this, &KUIViewerPart::slotGrab, actionCollection());
     m_copy->setText(i18n("Copy as Image"));
 
     updateActions();

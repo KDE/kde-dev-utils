@@ -93,8 +93,8 @@ void KUIViewer::load(const QUrl& url)
 
 void KUIViewer::setupActions()
 {
-    KStandardAction::open(this, SLOT(fileOpen()), actionCollection());
-    KStandardAction::quit(this, SLOT(close()), actionCollection());
+    KStandardAction::open(this, &KUIViewer::fileOpen, actionCollection());
+    KStandardAction::quit(this, &KUIViewer::close, actionCollection());
 }
 
 void KUIViewer::fileOpen()
