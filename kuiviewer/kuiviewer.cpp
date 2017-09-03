@@ -141,6 +141,6 @@ void KUIViewer::takeScreenshot(const QString& filename, int w, int h)
         setAutoSaveSettings(QStringLiteral("MainWindow"), false);
     }
 
-    QPixmap pixmap = QPixmap::grabWidget(m_part->widget());
+    const QPixmap pixmap = m_part->widget()->grab();
     pixmap.save(filename, "PNG");
 }

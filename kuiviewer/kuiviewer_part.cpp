@@ -208,8 +208,8 @@ void KUIViewerPart::slotGrab()
         return;
     }
 
-    QClipboard* clipboard = QApplication::clipboard();
-    clipboard->setPixmap(QPixmap::grabWidget(m_widget));
+    const QPixmap pixmap = m_widget->grab();
+    QApplication::clipboard()->setPixmap(pixmap);
 }
 
 #include "kuiviewer_part.moc"
