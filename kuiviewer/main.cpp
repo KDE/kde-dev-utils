@@ -76,16 +76,24 @@ int main(int argc, char** argv)
             KUIViewer* widget = new KUIViewer;
             widget->show();
         } else {
+            const bool takeScreenshot = parser.isSet(takeScreenshotOptionKey);
             KUIViewer* widget = new KUIViewer;
+            // show before loading, so widget geometries will be properly updated when requested
+            // TODO: investigate how to do this properly with perhaps showevents & Co.?
+            if (takeScreenshot) {
+                widget->showMinimized();
+            } else {
+                widget->show();
+            }
+
             widget->load(QUrl::fromUserInput(positionalArguments.at(0), QDir::currentPath()));
 
-            if (parser.isSet(takeScreenshotOptionKey)) {
+            if (takeScreenshot) {
                 widget->takeScreenshot(parser.value(takeScreenshotOptionKey),
                                        parser.value(screenshotWidthOptionKey).toInt(),
                                        parser.value(screenshotHeightOptionKey).toInt());
                 return 0;
             }
-            widget->show();
         }
     }
 

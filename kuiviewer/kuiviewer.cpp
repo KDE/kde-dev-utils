@@ -21,6 +21,7 @@
 
 #include "kuiviewer.h"
 #include "kuiviewer_part.h"
+#include "kuiviewer_part_interface.h"
 
 // KF
 #include <KActionCollection>
@@ -124,23 +125,16 @@ void KUIViewer::fileOpen()
 
 void KUIViewer::takeScreenshot(const QString& filename, int w, int h)
 {
-    if (!m_part) {
+    auto uiviewerInterface = qobject_cast<KUIViewerPartInterface*>(m_part);
+    if (!uiviewerInterface) {
         return;
     }
 
-    showMinimized();
-
     if (w != -1 && h != -1) {
         // resize widget to the desired size
-        m_part->widget()->setMinimumSize(w, h);
-        m_part->widget()->setMaximumSize(w, h);
-        m_part->widget()->repaint();
-        // resize app to be as large as desired size
-        adjustSize();
-        // Disable the saving of the size
-        setAutoSaveSettings(QStringLiteral("MainWindow"), false);
+        uiviewerInterface->setWidgetSize(QSize(w, h));
     }
 
-    const QPixmap pixmap = m_part->widget()->grab();
+    const QPixmap pixmap = uiviewerInterface->renderWidgetAsPixmap();
     pixmap.save(filename, "PNG");
 }

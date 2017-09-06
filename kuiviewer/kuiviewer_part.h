@@ -2,6 +2,7 @@
  *  This file is part of the kuiviewer package
  *  Copyright (c) 2003 Richard Moore <rich@kde.org>
  *  Copyright (c) 2003 Ian Reinhart Geiser <geiseri@kde.org>
+ *  Copyright (c) 2017 Friedrich W. H. Kossebau <kossebau@kde.org>
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Library General Public
@@ -21,12 +22,17 @@
 #ifndef KUIVIEWERPART_H
 #define KUIVIEWERPART_H
 
+#include "kuiviewer_part_interface.h"
+
 // KF
 #include <KParts/ReadOnlyPart>
 // Qt
 #include <QPointer>
+#include <QSize>
 
 class KSelectAction;
+class QMdiArea;
+class QMdiSubWindow;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -36,9 +42,10 @@ class KSelectAction;
  * @author Richard Moore <rich@kde.org>
  * @version 0.1
  */
-class KUIViewerPart : public KParts::ReadOnlyPart
+class KUIViewerPart : public KParts::ReadOnlyPart, public KUIViewerPartInterface
 {
     Q_OBJECT
+    Q_INTERFACES(KUIViewerPartInterface)
 
 public:
     /**
@@ -56,6 +63,10 @@ public Q_SLOTS:
     void slotGrab();
     void updateActions();
 
+public:
+    void setWidgetSize(const QSize& size) override;
+    QPixmap renderWidgetAsPixmap() const override;
+
 protected:
     /**
      * This must be implemented by each part
@@ -63,7 +74,11 @@ protected:
     bool openFile() override;
 
 private:
-    QWidget* m_widget;
+    void restyleView(const QString& styleName);
+
+private:
+    QMdiArea* m_widget;
+    QMdiSubWindow* m_subWindow;
     QPointer<QWidget> m_view;
     KSelectAction* m_style;
     QAction* m_copy;
