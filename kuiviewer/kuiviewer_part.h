@@ -28,6 +28,7 @@
 #include <KParts/ReadOnlyPart>
 // Qt
 #include <QPointer>
+#include <QPoint>
 #include <QSize>
 
 class KSelectAction;
@@ -68,10 +69,9 @@ public:
     QPixmap renderWidgetAsPixmap() const override;
 
 protected:
-    /**
-     * This must be implemented by each part
-     */
     bool openFile() override;
+
+    bool closeUrl() override;
 
 private:
     void restyleView(const QString& styleName);
@@ -83,6 +83,10 @@ private:
     KSelectAction* m_style;
     QAction* m_copy;
     QString m_styleFromConfig;
+
+    QUrl m_previousUrl;
+    QPoint m_previousScrollPosition;
+    QSize m_previousSize;
 };
 
 #endif // KUIVIEWERPART_H

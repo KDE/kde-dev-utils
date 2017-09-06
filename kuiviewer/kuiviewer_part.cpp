@@ -141,6 +141,11 @@ bool KUIViewerPart::openFile()
 
     if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
         qCDebug(KUIVIEWERPART) << "Could not open UI file: " << file.errorString();
+        if (m_previousUrl != url()) {
+            // drop previous view state
+            m_previousScrollPosition = QPoint();
+            m_previousSize = QSize();
+        }
         return false;
     }
 
@@ -159,6 +164,11 @@ bool KUIViewerPart::openFile()
 
     if (!m_view) {
         qCDebug(KUIVIEWERPART) << "Could not load UI file: " << builder.errorString();
+        if (m_previousUrl != url()) {
+            // drop previous view state
+            m_previousScrollPosition = QPoint();
+            m_previousSize = QSize();
+        }
         return false;
     }
 
@@ -189,7 +199,33 @@ bool KUIViewerPart::openFile()
     m_widget->setActiveSubWindow(m_subWindow);
     m_subWindow->setEnabled(true);
 
+    // restore view state if reload
+    if (url() == m_previousUrl) {
+        qCDebug(KUIVIEWERPART) << "Restoring previous view state";
+        m_subWindow->move(m_previousScrollPosition);
+        if (m_previousSize.isValid()) {
+            m_subWindow->resize(m_previousSize);
+        }
+    }
+
     return true;
+}
+
+bool KUIViewerPart::closeUrl()
+{
+    // store view state if file could be loaded
+    // otherwise keep old in case same url will get reloaded again and then successfully
+    if (m_subWindow) {
+        m_previousScrollPosition = m_subWindow->pos();
+        m_previousSize = m_subWindow->size();
+    }
+    // store last used url
+    const auto activeUrl = url();
+    if (activeUrl.isValid()) {
+        m_previousUrl = activeUrl;
+    }
+
+    return ReadOnlyPart::closeUrl();
 }
 
 void KUIViewerPart::updateActions()
