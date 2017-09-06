@@ -45,6 +45,8 @@
 #include <QScrollArea>
 #include <QMdiArea>
 #include <QMdiSubWindow>
+#include <QMimeDatabase>
+#include <QBuffer>
 
 
 K_PLUGIN_FACTORY(KUIViewerPartFactory, registerPlugin<KUIViewerPart>();)
@@ -139,8 +141,41 @@ bool KUIViewerPart::openFile()
     // m_file is always local so we can use QFile on it
     QFile file(localFilePath());
 
-    if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qCDebug(KUIVIEWERPART) << "Could not open UI file: " << file.errorString();
+    return loadUiFile(&file);
+}
+
+bool KUIViewerPart::doOpenStream(const QString& mimeType)
+{
+    auto mime = QMimeDatabase().mimeTypeForName(mimeType);
+    if (!mime.inherits(QStringLiteral("application/x-designer"))) {
+        return false;
+    }
+
+    m_streamedData.clear();
+
+    return true;
+}
+
+bool KUIViewerPart::doWriteStream(const QByteArray& data)
+{
+    m_streamedData.append(data);
+    return true;
+}
+
+bool KUIViewerPart::doCloseStream()
+{
+    QBuffer buffer(&m_streamedData);
+
+    const auto success = loadUiFile(&buffer);
+    m_streamedData.clear();
+
+    return success;
+}
+
+bool KUIViewerPart::loadUiFile(QIODevice* device)
+{
+    if (!device->open(QIODevice::ReadOnly|QIODevice::Text)) {
+        qCDebug(KUIVIEWERPART) << "Could not open UI file: " << device->errorString();
         if (m_previousUrl != url()) {
             // drop previous view state
             m_previousScrollPosition = QPoint();
@@ -158,7 +193,7 @@ bool KUIViewerPart::openFile()
 
     QFormBuilder builder;
     builder.setPluginPath(designerPluginPaths());
-    m_view = builder.load(&file, nullptr);
+    m_view = builder.load(device, nullptr);
 
     updateActions();
 
@@ -224,6 +259,8 @@ bool KUIViewerPart::closeUrl()
     if (activeUrl.isValid()) {
         m_previousUrl = activeUrl;
     }
+
+    m_streamedData.clear();
 
     return ReadOnlyPart::closeUrl();
 }

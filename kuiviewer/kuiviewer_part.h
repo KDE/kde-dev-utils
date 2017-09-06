@@ -28,10 +28,12 @@
 #include <KParts/ReadOnlyPart>
 // Qt
 #include <QPointer>
+#include <QByteArray>
 #include <QPoint>
 #include <QSize>
 
 class KSelectAction;
+class QIODevice;
 class QMdiArea;
 class QMdiSubWindow;
 
@@ -71,9 +73,14 @@ public:
 protected:
     bool openFile() override;
 
+    bool doOpenStream(const QString& mimeType) override;
+    bool doWriteStream(const QByteArray& data) override;
+    bool doCloseStream() override;
+
     bool closeUrl() override;
 
 private:
+    bool loadUiFile(QIODevice* device);
     void restyleView(const QString& styleName);
 
 private:
@@ -83,6 +90,8 @@ private:
     KSelectAction* m_style;
     QAction* m_copy;
     QString m_styleFromConfig;
+
+    QByteArray m_streamedData;
 
     QUrl m_previousUrl;
     QPoint m_previousScrollPosition;
