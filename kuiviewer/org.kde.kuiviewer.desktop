@@ -140,6 +140,7 @@ Comment[sv]=En snabbvisning av en Qt Designer UI-fil
 Comment[tr]=QT Tasarım UI dosyası için hızlı görüntüleyici
 Comment[uk]=Швидкий засіб перегляду для файлів UI Qt Designer
 Comment[x-test]=xxA quick viewer for Qt Designer UI Filexx
+Comment[zh_CN]=Qt 设计师 UI 文件快速查看器
 MimeType=application/x-designer;
 Terminal=false
 Categories=Qt;KDE;Development;
