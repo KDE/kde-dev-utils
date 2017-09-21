@@ -61,11 +61,12 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
     // we need an instance
     KAboutData about(QStringLiteral("kuiviewerpart"),
                      i18n("KUIViewerPart"),
-                     QStringLiteral("0.2"),
+                     QStringLiteral("0.3.0"),
                      i18n("Displays Designer's UI files"),
                      KAboutLicense::LGPL);
     about.addAuthor(i18n("Richard Moore"), i18n("Original author"), QStringLiteral("rich@kde.org"));
     about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), QStringLiteral("geiseri@kde.org"));
+    about.addAuthor(i18n("Friedrich W. H. Kossebau"), i18n("Subwindow-like display of UI files"), QStringLiteral("kossebau@kde.org"));
     setComponentData(about);
 
     // this should be your custom internal widget
