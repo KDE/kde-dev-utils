@@ -1,9 +1,6 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="kuiviewer_part" version="5" translationDomain="kuiviewer">
+<gui name="kuiviewer_part" version="6" translationDomain="kuiviewer">
 <MenuBar>
- <Menu name="file"><Text>&amp;File</Text>
-  <Action name="file_save_as"/>
- </Menu>
  <Menu name="edit"><Text>&amp;Edit</Text>
   <Action name="edit_copy"/>
  </Menu>
