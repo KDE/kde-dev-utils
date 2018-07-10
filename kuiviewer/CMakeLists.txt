@@ -15,7 +15,6 @@ find_package(KF5 REQUIRED
     COMPONENTS
     CoreAddons
     KIO
-    I18n
     Parts
 )
 

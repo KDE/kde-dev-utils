@@ -10,5 +10,8 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMQtDeclareLoggingCategory)
 
+# Required for ki18n_install(po) added on tarball generation
+find_package(KF5 REQUIRED COMPONENTS I18n)
+
 add_subdirectory(kpartloader)
 add_subdirectory(kuiviewer)
