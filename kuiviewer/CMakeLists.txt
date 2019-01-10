@@ -58,7 +58,7 @@ add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
 
 target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
 
-install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
+install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
 
 
 ########### next target ###############

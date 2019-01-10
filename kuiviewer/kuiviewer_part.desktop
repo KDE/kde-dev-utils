@@ -57,5 +57,5 @@ Name[zh_TW]=KUIViewerPart
 Icon=kuiviewer
 MimeType=application/x-designer;
 ServiceTypes=KParts/ReadOnlyPart
-X-KDE-Library=kuiviewerpart
+X-KDE-Library=kf5/parts/kuiviewerpart
 Type=Service
