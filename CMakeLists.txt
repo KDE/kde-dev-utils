@@ -15,3 +15,5 @@ find_package(KF5 REQUIRED COMPONENTS I18n)
 
 add_subdirectory(kpartloader)
 add_subdirectory(kuiviewer)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
