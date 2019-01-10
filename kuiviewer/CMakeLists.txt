@@ -55,6 +55,7 @@ ecm_qt_declare_logging_category(kuiviewerpart_PART_SRCS
 )
 
 add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
+kcoreaddons_desktop_to_json(kuiviewerpart kuiviewer_part.desktop)
 
 target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
 

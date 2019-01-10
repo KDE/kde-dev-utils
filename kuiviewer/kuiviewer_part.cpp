@@ -49,7 +49,8 @@
 #include <QBuffer>
 
 
-K_PLUGIN_FACTORY(KUIViewerPartFactory, registerPlugin<KUIViewerPart>();)
+K_PLUGIN_FACTORY_WITH_JSON(KUIViewerPartFactory, "kuiviewer_part.json",
+                           registerPlugin<KUIViewerPart>();)
 
 KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
                              QObject* parent,
