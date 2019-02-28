@@ -1,7 +1,5 @@
 project(kuiviewer)
 
-set(QT_MIN_VERSION "5.5.0")
-
 include(ECMAddAppIcon)
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
@@ -11,7 +9,7 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
     UiTools
 )
 
-find_package(KF5 REQUIRED
+find_package(KF5 ${KF_MIN_VERSION} REQUIRED
     COMPONENTS
     CoreAddons
     KIO
@@ -20,7 +18,7 @@ find_package(KF5 REQUIRED
 
 add_definitions(
     -DQT_DEPRECATED_WARNINGS
-    -DQT_DISABLE_DEPRECATED_BEFORE=0x050500
+    -DQT_DISABLE_DEPRECATED_BEFORE=0x050900
     -DQT_NO_SIGNALS_SLOTS_KEYWORDS
     -DQT_STRICT_ITERATORS
     -DQT_USE_QSTRINGBUILDER

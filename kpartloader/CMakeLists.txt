@@ -1,14 +1,12 @@
 project(kpartloader)
 ########### kpartloader ###############
 
-set(QT_MIN_VERSION "5.5.0")
-
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
     COMPONENTS
     Core
 )
 
-find_package(KF5 REQUIRED
+find_package(KF5 ${KF_MIN_VERSION} REQUIRED
     COMPONENTS
     CoreAddons
     Parts

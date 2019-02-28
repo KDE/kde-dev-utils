@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 
-find_package(ECM 5.14 REQUIRED NO_MODULE)
+set(QT_MIN_VERSION "5.9.0")
+set(KF_MIN_VERSION "5.53.0")
+
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(FeatureSummary)
@@ -11,7 +14,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMQtDeclareLoggingCategory)
 
 # Required for ki18n_install(po) added on tarball generation
-find_package(KF5 REQUIRED COMPONENTS I18n)
+find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n)
 
 add_subdirectory(kpartloader)
 add_subdirectory(kuiviewer)
