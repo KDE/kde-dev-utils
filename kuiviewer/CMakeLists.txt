@@ -32,6 +32,10 @@ add_definitions(
 
 set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
 
+qt5_add_resources(kuiviewer_SRCS
+    kuiviewer.qrc
+)
+
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kuiviewer.png")
 ecm_add_app_icon(kuiviewer_SRCS ICONS ${ICONS_SRCS})
 
@@ -45,6 +49,10 @@ install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 ########### next target ###############
 
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
+
+qt5_add_resources(kuiviewerpart_PART_SRCS
+    kuiviewer_part.qrc
+)
 
 ecm_qt_declare_logging_category(kuiviewerpart_PART_SRCS
     HEADER kuiviewer_part_debug.h
@@ -79,8 +87,6 @@ install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
 install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
-install( FILES kuiviewer_part.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewerpart )
-install( FILES kuiviewerui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kuiviewer )
 
 ecm_install_icons(ICONS
     16-apps-kuiviewer.png

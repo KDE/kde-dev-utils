@@ -16,9 +16,11 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED
 set(kpartloader_SRCS
     kpartloader.cpp
 )
+qt5_add_resources(kpartloader_SRCS
+    kpartloader.qrc
+)
 
 add_executable(kpartloader ${kpartloader_SRCS})
 target_link_libraries(kpartloader KF5::Parts)
 install(TARGETS kpartloader ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES kpartloaderui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kpartloader)
 
