@@ -4,7 +4,7 @@ set(QT_MIN_VERSION "5.9.0")
 set(KF_MIN_VERSION "5.53.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(FeatureSummary)
 include(ECMInstallIcons)
