@@ -49,8 +49,6 @@ int main(int argc, char** argv)
     KAboutData::setApplicationData(about);
 
     QCommandLineParser parser;
-    parser.addVersionOption();
-    parser.addHelpOption();
     about.setupCommandLine(&parser);
 
     parser.addPositionalArgument(QLatin1String("[URL]"), i18n("Document to open"));

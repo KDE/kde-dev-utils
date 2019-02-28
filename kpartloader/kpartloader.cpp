@@ -92,8 +92,6 @@ int main( int argc, char **argv )
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
-    parser.addVersionOption();
-    parser.addHelpOption();
     parser.addPositionalArgument(QLatin1String("part"), i18n("Name of the part to load, e.g. dolphinpart"));
 
     parser.process(app);
