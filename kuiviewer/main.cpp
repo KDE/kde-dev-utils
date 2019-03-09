@@ -70,13 +70,14 @@ int main(int argc, char** argv)
     } else {
         // no session.. just start up normally
 
+        KUIViewer* widget = new KUIViewer;
+        if (!widget->isReady()) return 1;
+
         const auto positionalArguments = parser.positionalArguments();
         if (positionalArguments.isEmpty()) {
-            KUIViewer* widget = new KUIViewer;
             widget->show();
         } else {
             const bool takeScreenshot = parser.isSet(takeScreenshotOptionKey);
-            KUIViewer* widget = new KUIViewer;
             // show before loading, so widget geometries will be properly updated when requested
             // TODO: investigate how to do this properly with perhaps showevents & Co.?
             if (takeScreenshot) {

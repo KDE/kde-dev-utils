@@ -62,6 +62,11 @@ public:
     void load(const QUrl& url);
 
     /**
+     * Check whether the viewer KPart is correctly found and loaded
+     */
+    bool isReady() const 				{ return (m_part!=nullptr); }
+
+    /**
      * Take screenshot of current ui file
      * @param filename to save image in
      * @param h height of image
