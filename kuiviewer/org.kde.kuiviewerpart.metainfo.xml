@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="addon">
+  <id>org.kde.kuiviewerpart</id>
+  <!--
+    Appstream model currently does not support the idea of generic addons
+    See https://github.com/ximion/appstream/issues/157
+    As intermediate work-around some typical consumers are listed explicitely.
+  -->
+  <extends>org.kde.ark.desktop</extends>
+  <extends>org.kde.kate.desktop</extends>
+  <extends>org.kde.kdevelop.desktop</extends>
+  <extends>org.kde.krusader.desktop</extends>
+  <extends>org.kde.konqueror.desktop</extends>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LGPL-2.0</project_license>
+  <name>KUIViewer KPart</name>
+  <summary>Qt Designer UI File Viewer in KParts-using software</summary>
+  <description>
+    <p>The KUIViewer KPart allows KParts-using software to display and check user interface (.ui) files created in Qt Designer.</p>
+  </description>
+  <url type="homepage">https://userbase.kde.org/KUIViewer</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kuiviewer</url>
+  <url type="help">https://userbase.kde.org/KUIViewer</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=kuiviewer</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://kde.org/images/screenshots/kuiviewer.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <categories>
+    <category>Development</category>
+  </categories>
+  <update_contact>kde-devel@kde.org</update_contact>
+</component>

@@ -66,6 +66,7 @@ kcoreaddons_desktop_to_json(kuiviewerpart kuiviewer_part.desktop)
 target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
 
 install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
+install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 
 ########### next target ###############
@@ -87,6 +88,7 @@ install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
 install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
+install(FILES org.kde.kuiviewer.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 ecm_install_icons(ICONS
     16-apps-kuiviewer.png

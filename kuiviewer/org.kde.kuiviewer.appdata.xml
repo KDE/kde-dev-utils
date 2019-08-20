@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>org.kde.kuiviewer</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LGPL-2.0</project_license>
+  <name>KUIViewer</name>
+  <summary>Qt Designer UI File Viewer</summary>
+  <description>
+    <p>KUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.</p>
+  </description>
+  <url type="homepage">https://userbase.kde.org/KUIViewer</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kuiviewer</url>
+  <url type="help">https://userbase.kde.org/KUIViewer</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=kuiviewer</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://kde.org/images/screenshots/kuiviewer.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>kuiviewer</binary>
+  </provides>
+  <launchable type="desktop-id">org.kde.kuiviewer.desktop</launchable>
+  <categories>
+    <category>Development</category>
+  </categories>
+  <update_contact>kde-devel@kde.org</update_contact>
+</component>
