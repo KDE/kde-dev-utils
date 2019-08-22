@@ -4,9 +4,24 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.0</project_license>
   <name>KUIViewer</name>
+  <name xml:lang="de">KUIViewer</name>
+  <name xml:lang="nl">KUIViewer</name>
+  <name xml:lang="pt">KUIViewer</name>
+  <name xml:lang="uk">KUIViewer</name>
+  <name xml:lang="x-test">xxKUIViewerxx</name>
   <summary>Qt Designer UI File Viewer</summary>
+  <summary xml:lang="de">Betrachter für UI-Dateien des Qt Designer</summary>
+  <summary xml:lang="nl">Weergave van QT Designer UI-bestanden</summary>
+  <summary xml:lang="pt">Visualizador de Ficheiros UI do Qt Designer</summary>
+  <summary xml:lang="uk">Переглядач UI-файлів Qt Designer</summary>
+  <summary xml:lang="x-test">xxQt Designer UI File Viewerxx</summary>
   <description>
     <p>KUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.</p>
+    <p xml:lang="de">KUIViewer ist ein Dienstprogramm, um Dateien mit Definitionen von Benutzeroberflächen (.ui-Dateien) anzuzeigen und zu überprüfen, die in Qt-Designer erstellt wurden.</p>
+    <p xml:lang="nl">KUIViewer is een hulpmiddel om gebruikersinterfacebestanden (.ui) gemaakt in Qt Designer te tonen en te controleren.</p>
+    <p xml:lang="pt">O KUIViewer é uma ferramenta para apresentar e verificar os ficheiros de interface do utilizador (.ui) criados no Qt Designer.</p>
+    <p xml:lang="uk">KUIViewer — програма для показу та перевірки файлів інтерфейсу користувача (.ui), які створено у Qt Designer.</p>
+    <p xml:lang="x-test">xxKUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.xx</p>
   </description>
   <url type="homepage">https://userbase.kde.org/KUIViewer</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kuiviewer</url>
