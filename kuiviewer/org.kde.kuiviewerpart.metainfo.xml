@@ -43,5 +43,6 @@
   <categories>
     <category>Development</category>
   </categories>
+  <icon type="stock">kuiviewer</icon>
   <update_contact>kde-devel@kde.org</update_contact>
 </component>
