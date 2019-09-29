@@ -30,6 +30,7 @@
   <name xml:lang="sv">Kuiviewer delprogram</name>
   <name xml:lang="uk">KPart KUIViewer</name>
   <name xml:lang="x-test">xxKUIViewer KPartxx</name>
+  <name xml:lang="zh-TW">KUIViewer KPart</name>
   <summary>Qt Designer UI File Viewer in KParts-using software</summary>
   <summary xml:lang="ca">Visor de fitxer UI del Qt Designer en el programari que empra KParts</summary>
   <summary xml:lang="de">Betrachter für UI-Dateien des Qt-Designer in Anwendungen, die KParts verwenden</summary>
