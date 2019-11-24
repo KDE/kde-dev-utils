@@ -324,7 +324,7 @@ void KUIViewerPart::slotStyle(int)
     m_view->hide();
 
     const QString styleName = m_style->currentText();
-    qCDebug(KUIVIEWERPART) << "Style selectd:" << styleName;
+    qCDebug(KUIVIEWERPART) << "Style selected:" << styleName;
     restyleView(styleName);
 
     m_view->show();

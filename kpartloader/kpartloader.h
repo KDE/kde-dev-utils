@@ -29,7 +29,7 @@ class KPartLoaderWindow : public KParts::MainWindow
 {
   Q_OBJECT
 public:
-  KPartLoaderWindow(const QString& partLib);
+  explicit KPartLoaderWindow(const QString& partLib);
   ~KPartLoaderWindow() override;
 
 private Q_SLOTS:
