@@ -5,6 +5,7 @@
   <project_license>LGPL-2.0</project_license>
   <name>KUIViewer</name>
   <name xml:lang="ca">KUIViewer</name>
+  <name xml:lang="ca-valencia">KUIViewer</name>
   <name xml:lang="cs">KUIViewer</name>
   <name xml:lang="de">KUIViewer</name>
   <name xml:lang="en-GB">KUIViewer</name>
@@ -24,6 +25,7 @@
   <name xml:lang="zh-TW">KUIViewer</name>
   <summary>Qt Designer UI File Viewer</summary>
   <summary xml:lang="ca">Visor de fitxer UI del Qt Designer</summary>
+  <summary xml:lang="ca-valencia">Visor de fitxer UI del Qt Designer</summary>
   <summary xml:lang="cs">Prohlížeč UI souborů z Qt Designeru</summary>
   <summary xml:lang="de">Betrachter für UI-Dateien des Qt Designer</summary>
   <summary xml:lang="en-GB">Qt Designer UI File Viewer</summary>
@@ -44,6 +46,7 @@
   <description>
     <p>KUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.</p>
     <p xml:lang="ca">El KUIViewer és una eina per a visualitzar i comprovar els fitxers d'interfície d'usuari (.ui) creats amb el Qt Designer.</p>
+    <p xml:lang="ca-valencia">El KUIViewer és una eina per a visualitzar i comprovar els fitxers d'interfície d'usuari (.ui) creats amb el Qt Designer.</p>
     <p xml:lang="de">KUIViewer ist ein Dienstprogramm, um Dateien mit Definitionen von Benutzeroberflächen (.ui-Dateien), die in Qt-Designer erstellt wurden, anzuzeigen und zu überprüfen.</p>
     <p xml:lang="en-GB">KUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.</p>
     <p xml:lang="es">KUIViewer es una herramienta para mostrar y probar archivos de interfaz de usuario (.ui) creados con Qt Designer.</p>
