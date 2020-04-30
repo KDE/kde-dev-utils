@@ -19,6 +19,7 @@
   <name xml:lang="pl">KUIViewer</name>
   <name xml:lang="pt">KUIViewer</name>
   <name xml:lang="pt-BR">KUIViewer</name>
+  <name xml:lang="ru">KUIViewer</name>
   <name xml:lang="sk">KUIViewer</name>
   <name xml:lang="sv">Kuiviewer</name>
   <name xml:lang="uk">KUIViewer</name>
@@ -41,6 +42,7 @@
   <summary xml:lang="pl">Przeglądarka plików interfejsu użytkownika Qt Designera</summary>
   <summary xml:lang="pt">Visualizador de Ficheiros UI do Qt Designer</summary>
   <summary xml:lang="pt-BR">Visualizador de arquivos UI do Qt Designer</summary>
+  <summary xml:lang="ru">Просмотрщик UI-файлов Qt Designer</summary>
   <summary xml:lang="sk">Prehliadač súborov UI pre Qt Designer</summary>
   <summary xml:lang="sv">Visning av Qt Designer användargränssnittsfiler</summary>
   <summary xml:lang="uk">Переглядач UI-файлів Qt Designer</summary>
