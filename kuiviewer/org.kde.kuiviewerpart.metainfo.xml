@@ -27,6 +27,7 @@
   <name xml:lang="it">KPart di KUIViewer</name>
   <name xml:lang="ko">KUiViewer KPart</name>
   <name xml:lang="nl">KUIViewer KPart</name>
+  <name xml:lang="nn">KUIViewer-KPart</name>
   <name xml:lang="pl">KUIViewer KPart</name>
   <name xml:lang="pt">KPart do KUIViewer</name>
   <name xml:lang="pt-BR">KUIViewer KPart</name>
@@ -50,6 +51,7 @@
   <summary xml:lang="it">Visore di file UI di Qt Designer nei programmi che utilizzano KPart</summary>
   <summary xml:lang="ko">KParts를 사용하는 소프트웨어에서 사용할 수 있는 Qt Designer UI 파일 뷰어</summary>
   <summary xml:lang="nl">Weergave van QT Designer UI-bestanden in software gebruikmakend van KParts</summary>
+  <summary xml:lang="nn">Visar for Qt Designer-UI-filer brukt i KParts-programvare</summary>
   <summary xml:lang="pl">Przeglądarka plików interfejsu użytkownika w oprogramowaniu używającym KParts</summary>
   <summary xml:lang="pt">Componente KPart de Visualização de Ficheiros UI do Qt Designer</summary>
   <summary xml:lang="pt-BR">Visualizador de arquivos .ui do Qt Designer em softwares que usam o KPart</summary>
@@ -72,6 +74,7 @@
     <p xml:lang="it">Il KPart di KUIViewer consente ai programmi che utilizzando KPart di visualizzare e controllare i file dell'interfaccia utente (.ui) creati in Qt Designer.</p>
     <p xml:lang="ko">KUIViewer KPart는 KParts를 사용하는 프로그램에서 Qt Designer로 만든 사용자 인터페이스 파일(.ui)을 보고 검사하는 도구입니다.</p>
     <p xml:lang="nl">De KUIViewer KParts biedt van KParts gebruik makende software om gebruikersinterfacebestanden (.ui), gemaakt in Qt Designer, deze te tonen en te controleren.</p>
+    <p xml:lang="nn">KUIViewer KPart lèt programvare som brukar KParts visa og sjekka brukarflate­filer (.ui) laga i Qt Designer.</p>
     <p xml:lang="pl">KPart KUIViewera umożliwia oprogramowaniu używającemu KParts wyświetlenie i sprawdzenie plików interfejsu użytkownika (.ui), które zostały utworzone w Qt Designer.</p>
     <p xml:lang="pt">O KPart do KUIViewer permite às aplicações que usam o KParts apresentar e verificar os ficheiros de interface de utilizador (.ui) criados no Qt Designer.</p>
     <p xml:lang="pt-BR">O KUIViewer KPart permite aos softwares que usam o KParts mostrar e verificar os arquivos de interface do usuário (.ui) criados no Qt Designer.</p>
