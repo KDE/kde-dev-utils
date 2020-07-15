@@ -28,8 +28,8 @@
   <name xml:lang="zh-CN">KUIViewer</name>
   <name xml:lang="zh-TW">KUIViewer</name>
   <summary>Qt Designer UI File Viewer</summary>
-  <summary xml:lang="ca">Visor de fitxer UI del Qt Designer</summary>
-  <summary xml:lang="ca-valencia">Visor de fitxer UI del Qt Designer</summary>
+  <summary xml:lang="ca">Visor de fitxers UI del Qt Designer</summary>
+  <summary xml:lang="ca-valencia">Visor de fitxers UI del Qt Designer</summary>
   <summary xml:lang="cs">Prohlížeč UI souborů z Qt Designeru</summary>
   <summary xml:lang="de">Betrachter für UI-Dateien des Qt Designer</summary>
   <summary xml:lang="en-GB">Qt Designer UI File Viewer</summary>
