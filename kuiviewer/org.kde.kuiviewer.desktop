@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=KUIViewer
+Name[az]=KUIViewer
 Name[bg]=KUIViewer
 Name[br]=KUIViewer
 Name[bs]=KUIViewer
@@ -59,6 +60,7 @@ Exec=kuiviewer -qwindowtitle %c %u
 Icon=kuiviewer
 Type=Application
 GenericName=Qt Designer UI File Viewer
+GenericName[az]=Qt Designer UI Faylına baxış vasitəsi
 GenericName[bg]=Преглед на файлове на Qt Designer
 GenericName[br]=Ur gweler restr UI Ergrafer Qt
 GenericName[bs]=Preglednik datoteka Qt dizajnera
@@ -114,6 +116,7 @@ GenericName[x-test]=xxQt Designer UI File Viewerxx
 GenericName[zh_CN]=Qt 设计师 UI 文件查看器
 GenericName[zh_TW]=Qt Designer UI 檔案檢視器
 Comment=A quick viewer for Qt Designer UI File
+Comment[az]=Qt Designer UI Faylına cəld baxış vasitəsi
 Comment[ca]=Un visor ràpid de fitxers UI del Qt Designer
 Comment[ca@valencia]=Un visor ràpid de fitxers UI del Qt Designer
 Comment[cs]=Rychlý prohlížeč souborů UI programu Qt Designer
