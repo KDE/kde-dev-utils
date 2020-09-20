@@ -14,6 +14,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.0</project_license>
   <name>KUIViewer KPart</name>
+  <name xml:lang="az">KUIViewer KPart</name>
   <name xml:lang="ca">KPart del KUiViewer</name>
   <name xml:lang="ca-valencia">KPart del KUiViewer</name>
   <name xml:lang="cs">KPart pro KUIViewer</name>
@@ -39,6 +40,7 @@
   <name xml:lang="zh-CN">KUIViewer KPart</name>
   <name xml:lang="zh-TW">KUIViewer KPart</name>
   <summary>Qt Designer UI File Viewer in KParts-using software</summary>
+  <summary xml:lang="az">Qt Designer UI Faylına baxış vasitəsi KParts-ın istifadəsi ilə proqram təminatında</summary>
   <summary xml:lang="ca">Visor de fitxers UI del Qt Designer en el programari que empra les KPart</summary>
   <summary xml:lang="ca-valencia">Visor de fitxers UI del Qt Designer en el programari que empra les KPart</summary>
   <summary xml:lang="de">Betrachter für UI-Dateien des Qt-Designer in Anwendungen, die KParts verwenden</summary>
@@ -63,6 +65,7 @@
   <summary xml:lang="zh-CN">Qt Designer 用户界面文件查看器 KPart</summary>
   <description>
     <p>The KUIViewer KPart allows KParts-using software to display and check user interface (.ui) files created in Qt Designer.</p>
+    <p xml:lang="az">KUIViewer KPart, KParts-ın istifadə etdiyi proqram təminatına QT Designer proqramında yaradılmış istifadəçi interfeysi (.ui) fayllarını göstərməyə və onları yoxlamağa imkan verir.</p>
     <p xml:lang="ca">La KPart del KUIViewer permet que el programari que empra les KPart mostri i verifiqui els fitxers d'interfície d'usuari (.ui) creats amb el Qt Designer.</p>
     <p xml:lang="ca-valencia">La KPart del KUIViewer permet que el programari que empra les KPart mostre i verifiqui els fitxers d'interfície d'usuari (.ui) creats amb el Qt Designer.</p>
     <p xml:lang="de">Mit KUIViewer-KPart können Anwendungen, die KParts verwenden, Dateien mit Definitionen von Benutzeroberflächen (.ui-Dateien), die in Qt-Designer erstellt wurden, anzeigen und überprüfen.</p>
