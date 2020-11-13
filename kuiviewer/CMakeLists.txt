@@ -51,6 +51,8 @@ target_link_libraries(kuiviewer  KF5::Parts  )
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
+configure_file(kuiviewer_part.desktop ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
+
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
 qt5_add_resources(kuiviewerpart_PART_SRCS
@@ -64,7 +66,7 @@ ecm_qt_declare_logging_category(kuiviewerpart_PART_SRCS
 )
 
 add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
-kcoreaddons_desktop_to_json(kuiviewerpart kuiviewer_part.desktop)
+kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
 
 target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
 
@@ -85,7 +87,11 @@ target_link_libraries(quithumbnail
 install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
-install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
+install(FILES
+    designerthumbnail.desktop
+    ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop
+    DESTINATION  ${KDE_INSTALL_KSERVICES5DIR}
+)
 install(FILES org.kde.kuiviewer.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 ecm_install_icons(ICONS

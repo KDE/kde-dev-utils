@@ -20,7 +20,11 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <KLocalizedString>
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+#include <KPluginMetaData>
+#else
 #include <KAboutData>
+#endif
 #include <KPluginFactory>
 
 // Qt
@@ -42,11 +46,17 @@ K_PLUGIN_FACTORY_WITH_JSON(KUIViewerPartFactory, "kuiviewer_part.json",
 
 KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
                              QObject* parent,
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+                             const KPluginMetaData& metaData,
+#endif
                              const QVariantList& /*args*/)
     : KParts::ReadOnlyPart(parent)
     , m_subWindow(nullptr)
     , m_view(nullptr)
 {
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+    setMetaData(metaData);
+#else
     // we need an instance
     KAboutData about(QStringLiteral("kuiviewerpart"),
                      i18n("KUIViewerPart"),
@@ -57,6 +67,7 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
     about.addAuthor(i18n("Ian Reinhart Geiser"), i18n("Original author"), QStringLiteral("geiseri@kde.org"));
     about.addAuthor(i18n("Friedrich W. H. Kossebau"), i18n("Subwindow-like display of UI files"), QStringLiteral("kossebau@kde.org"));
     setComponentData(about);
+#endif
 
     // this should be your custom internal widget
     m_widget = new QMdiArea(parentWidget);

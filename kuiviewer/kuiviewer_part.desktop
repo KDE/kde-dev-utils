@@ -55,8 +55,17 @@ Name[uk]=KUIViewerPart
 Name[x-test]=xxKUIViewerPartxx
 Name[zh_CN]=KUIViewerPart
 Name[zh_TW]=KUIViewerPart
+Comment=Displays Designer's UI files
 Icon=kuiviewer
 MimeType=application/x-designer;
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=kf5/parts/kuiviewerpart
 Type=Service
+
+X-KDE-PluginInfo-Name=kuiviewerpart
+X-KDE-PluginInfo-Version=@KUIVIEWER_VERSION@
+X-KDE-PluginInfo-License=LGPL
+X-KDE-PluginInfo-Copyright=
+X-KDE-PluginInfo-Authors=Richard Moore,Ian Reinhart Geiser,Friedrich W. H. Kossebau
+X-KDE-PluginInfo-Emails=rich@kde.org,geiseri@kde.org,kossebau@kde.org
+X-KDE-PluginInfo-Website=
