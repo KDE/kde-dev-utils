@@ -21,6 +21,8 @@
 
 #include "kuiviewer.h"
 
+// app
+#include "kuiviewer_version.h"
 // KF
 #include <KAboutData>
 #include <KLocalizedString>
@@ -39,7 +41,8 @@ int main(int argc, char** argv)
 
     KLocalizedString::setApplicationDomain("kuiviewer");
 
-    KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"), QStringLiteral("0.3.0"),
+    KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"),
+                     QStringLiteral(KUIVIEWER_VERSION_STRING),
                      i18n("Displays Designer's UI files"),
                      KAboutLicense::LGPL);
     about.addAuthor(i18n("Richard Moore"), i18n("Original author"), QStringLiteral("rich@kde.org"));

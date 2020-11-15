@@ -23,8 +23,9 @@
 
 #include "kuiviewer_part.h"
 
+// part
 #include <kuiviewer_part_debug.h>
-
+#include "kuiviewer_version.h"
 // KF
 #include <KActionCollection>
 #include <KSelectAction>
@@ -62,7 +63,7 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
     // we need an instance
     KAboutData about(QStringLiteral("kuiviewerpart"),
                      i18n("KUIViewerPart"),
-                     QStringLiteral("0.3.0"),
+                     QStringLiteral(KUIVIEWER_VERSION_STRING),
                      i18n("Displays Designer's UI files"),
                      KAboutLicense::LGPL);
     about.addAuthor(i18n("Richard Moore"), i18n("Original author"), QStringLiteral("rich@kde.org"));
