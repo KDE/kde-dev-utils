@@ -52,6 +52,7 @@ int main(int argc, char** argv)
     about.addAuthor(i18n("Friedrich W. H. Kossebau"), i18n("Subwindow-like display of UI files"), QStringLiteral("kossebau@kde.org"));
 
     KAboutData::setApplicationData(about);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kuiviewer"), app.windowIcon()));
 
     QCommandLineParser parser;
     about.setupCommandLine(&parser);

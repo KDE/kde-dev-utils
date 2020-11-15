@@ -97,6 +97,7 @@ int main( int argc, char **argv )
         KAboutLicense::GPL
     );
     KAboutData::setApplicationData(aboutData);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kde-frameworks"), app.windowIcon()));
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
