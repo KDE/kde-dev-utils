@@ -21,6 +21,8 @@
 
 #include "kuiviewer.h"
 
+// app
+#include "kuiviewer_version.h"
 // KF
 #include <KAboutData>
 #include <KLocalizedString>
@@ -33,11 +35,14 @@
 
 int main(int argc, char** argv)
 {
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("kuiviewer");
 
-    KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"), QStringLiteral("0.3.0"),
+    KAboutData about(QStringLiteral("kuiviewer"), i18n("KUIViewer"),
+                     QStringLiteral(KUIVIEWER_VERSION_STRING),
                      i18n("Displays Designer's UI files"),
                      KAboutLicense::LGPL);
     about.addAuthor(i18n("Richard Moore"), i18n("Original author"), QStringLiteral("rich@kde.org"));
@@ -47,6 +52,7 @@ int main(int argc, char** argv)
     about.addAuthor(i18n("Friedrich W. H. Kossebau"), i18n("Subwindow-like display of UI files"), QStringLiteral("kossebau@kde.org"));
 
     KAboutData::setApplicationData(about);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kuiviewer"), app.windowIcon()));
 
     QCommandLineParser parser;
     about.setupCommandLine(&parser);

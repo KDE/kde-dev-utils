@@ -1,5 +1,6 @@
-project(kpartloader)
-########### kpartloader ###############
+# Bump KPARTLOADER_BASE_VERSION once new features are added
+set(KPARTLOADER_BASE_VERSION "1.1")
+set(KPARTLOADER_VERSION "${KPARTLOADER_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
     COMPONENTS
@@ -11,6 +12,11 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED
     CoreAddons
     Parts
     WidgetsAddons
+)
+
+ecm_setup_version(${KPARTLOADER_VERSION}
+    VARIABLE_PREFIX KPARTLOADER
+    VERSION_HEADER kpartloader_version.h
 )
 
 set(kpartloader_SRCS

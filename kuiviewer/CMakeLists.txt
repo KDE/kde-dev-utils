@@ -1,4 +1,6 @@
-project(kuiviewer)
+# Bump KUIVIEWER_BASE_VERSION once new features are added
+set(KUIVIEWER_BASE_VERSION "0.3")
+set(KUIVIEWER_VERSION "${KUIVIEWER_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
 
 include(ECMAddAppIcon)
 
@@ -28,7 +30,10 @@ add_definitions(
     -DQT_NO_URL_CAST_FROM_STRING
 )
 
-########### next target ###############
+ecm_setup_version(${KUIVIEWER_VERSION}
+    VARIABLE_PREFIX KUIVIEWER
+    VERSION_HEADER kuiviewer_version.h
+)
 
 set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
 
@@ -45,8 +50,6 @@ target_link_libraries(kuiviewer  KF5::Parts  )
 
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
-
-########### next target ###############
 
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
@@ -69,8 +72,6 @@ install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 
-########### next target ###############
-
 set(quithumbnail_PART_SRCS quicreator.cpp )
 
 add_library(quithumbnail MODULE ${quithumbnail_PART_SRCS})
@@ -82,9 +83,6 @@ target_link_libraries(quithumbnail
 )
 
 install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
-
-
-########### install files ###############
 
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
 install( FILES designerthumbnail.desktop kuiviewer_part.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )

@@ -20,6 +20,8 @@
 
 #include "kpartloader.h"
 
+// app
+#include "kpartloader_version.h"
 // KF
 #include <KAboutData>
 #include <KActionCollection>
@@ -81,14 +83,21 @@ void KPartLoaderWindow::aboutKPart()
 
 int main( int argc, char **argv )
 {
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
     QApplication app(argc, argv);
-    const char version[] = "v 1.1";
 
     KLocalizedString::setApplicationDomain("kpartloader");
 
-    KAboutData aboutData(QLatin1String("kpartloader"), i18n("kpartloader"), QLatin1String(version));
-    aboutData.setShortDescription(i18n("This is a test application for KParts."));
+    KAboutData aboutData(
+        QStringLiteral("kpartloader"),
+        i18n("kpartloader"),
+        QStringLiteral(KPARTLOADER_VERSION_STRING),
+        i18n("This is a test application for KParts."),
+        KAboutLicense::GPL
+    );
     KAboutData::setApplicationData(aboutData);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kde-frameworks"), app.windowIcon()));
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
