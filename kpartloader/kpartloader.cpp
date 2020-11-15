@@ -91,7 +91,7 @@ int main( int argc, char **argv )
 
     KAboutData aboutData(
         QStringLiteral("kpartloader"),
-        i18n("kpartloader"),
+        i18n("KPartLoader"),
         QStringLiteral(KPARTLOADER_VERSION_STRING),
         i18n("This is a test application for KParts."),
         KAboutLicense::GPL
