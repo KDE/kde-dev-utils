@@ -9,12 +9,18 @@
 // app
 #include "kpartloader_version.h"
 // KF
+#include <kcoreaddons_version.h>
 #include <KAboutData>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <KPluginLoader>
+#if KCOREADDONS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+#include <KPluginMetaData>
+#include <KAboutPluginDialog>
+#else
 #include <KAboutApplicationDialog>
+#endif
 #include <KMessageBox>
 
 // Qt
@@ -63,7 +69,11 @@ KPartLoaderWindow::~KPartLoaderWindow()
 
 void KPartLoaderWindow::aboutKPart()
 {
+#if KCOREADDONS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+    KAboutPluginDialog dlg(m_part->metaData(), this);
+#else
     KAboutApplicationDialog dlg(m_part->componentData(), this);
+#endif
     dlg.exec();
 }
 
