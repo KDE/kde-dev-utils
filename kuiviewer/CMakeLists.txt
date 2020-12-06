@@ -51,7 +51,7 @@ target_link_libraries(kuiviewer  KF5::Parts  )
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
-configure_file(kuiviewer_part.desktop ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
+configure_file(kuiviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
 
 set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
 
