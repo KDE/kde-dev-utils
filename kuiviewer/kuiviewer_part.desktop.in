@@ -58,6 +58,7 @@ Name[zh_TW]=KUIViewerPart
 Comment=Displays Designer's UI files
 Comment[az]=Qt Designer İİ fayllarını göstərir
 Comment[ca]=Mostra els Fitxers UI del Qt Designer
+Comment[de]=Zeigt UI-Dateien des Designers an
 Comment[el]=Εμφανίζει αρχεία περιβάλλοντος χρήστη του Designer
 Comment[en_GB]=Displays Designer's UI files
 Comment[es]=Muestra archivos de interfaz de usuario de Designer
