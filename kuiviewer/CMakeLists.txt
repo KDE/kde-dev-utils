@@ -14,6 +14,7 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED
     COMPONENTS
     CoreAddons
+    I18n
     KIO
     Parts
 )
@@ -46,7 +47,7 @@ ecm_add_app_icon(kuiviewer_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kuiviewer ${kuiviewer_SRCS})
 
-target_link_libraries(kuiviewer  KF5::Parts  )
+target_link_libraries(kuiviewer KF5::I18n KF5::Parts )
 
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -68,7 +69,7 @@ ecm_qt_declare_logging_category(kuiviewerpart_PART_SRCS
 add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
 kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
 
-target_link_libraries(kuiviewerpart  KF5::Parts Qt5::Designer Qt5::UiTools)
+target_link_libraries(kuiviewerpart KF5::I18n KF5::Parts Qt5::Designer Qt5::UiTools)
 
 install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})

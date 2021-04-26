@@ -9,6 +9,7 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
 
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED
     COMPONENTS
+    I18n
     CoreAddons
     Parts
     WidgetsAddons
@@ -27,6 +28,6 @@ qt5_add_resources(kpartloader_SRCS
 )
 
 add_executable(kpartloader ${kpartloader_SRCS})
-target_link_libraries(kpartloader KF5::Parts)
+target_link_libraries(kpartloader KF5::I18n KF5::Parts)
 install(TARGETS kpartloader ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
