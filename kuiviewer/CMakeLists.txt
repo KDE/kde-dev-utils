@@ -36,16 +36,17 @@ ecm_setup_version(${KUIVIEWER_VERSION}
     VERSION_HEADER kuiviewer_version.h
 )
 
-set(kuiviewer_SRCS main.cpp kuiviewer.cpp )
+add_executable(kuiviewer)
 
-qt5_add_resources(kuiviewer_SRCS
+target_sources(kuiviewer PRIVATE
+    main.cpp
+    kuiviewer.cpp
+
     kuiviewer.qrc
 )
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kuiviewer.png")
-ecm_add_app_icon(kuiviewer_SRCS ICONS ${ICONS_SRCS})
-
-add_executable(kuiviewer ${kuiviewer_SRCS})
+ecm_add_app_icon(kuiviewer ICONS ${ICONS_SRCS})
 
 target_link_libraries(kuiviewer KF5::I18n KF5::Parts )
 
@@ -54,30 +55,38 @@ install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 configure_file(kuiviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
 
-set(kuiviewerpart_PART_SRCS kuiviewer_part.cpp )
+add_library(kuiviewerpart MODULE)
 
-qt5_add_resources(kuiviewerpart_PART_SRCS
+target_sources(kuiviewerpart PRIVATE
+    kuiviewer_part.cpp
+
     kuiviewer_part.qrc
 )
 
-ecm_qt_declare_logging_category(kuiviewerpart_PART_SRCS
+ecm_qt_declare_logging_category(kuiviewerpart
     HEADER kuiviewer_part_debug.h
     IDENTIFIER KUIVIEWERPART
     CATEGORY_NAME "kuiviewerpart"
 )
 
-add_library(kuiviewerpart MODULE ${kuiviewerpart_PART_SRCS})
 kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
 
-target_link_libraries(kuiviewerpart KF5::I18n KF5::Parts Qt5::Designer Qt5::UiTools)
+target_link_libraries(kuiviewerpart
+    KF5::I18n
+    KF5::Parts
+    Qt5::Designer
+    Qt5::UiTools
+)
 
 install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 
-set(quithumbnail_PART_SRCS quicreator.cpp )
+add_library(quithumbnail MODULE)
 
-add_library(quithumbnail MODULE ${quithumbnail_PART_SRCS})
+target_sources(quithumbnail PRIVATE
+    quicreator.cpp
+)
 
 target_link_libraries(quithumbnail
     KF5::KIOWidgets

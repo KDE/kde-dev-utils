@@ -20,14 +20,16 @@ ecm_setup_version(${KPARTLOADER_VERSION}
     VERSION_HEADER kpartloader_version.h
 )
 
-set(kpartloader_SRCS
+add_executable(kpartloader)
+
+target_sources(kpartloader PRIVATE
     kpartloader.cpp
-)
-qt5_add_resources(kpartloader_SRCS
+
     kpartloader.qrc
 )
 
-add_executable(kpartloader ${kpartloader_SRCS})
-target_link_libraries(kpartloader KF5::I18n KF5::Parts)
+target_link_libraries(kpartloader
+    KF5::Parts
+    KF5::I18n
+)
 install(TARGETS kpartloader ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-
