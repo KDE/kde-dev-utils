@@ -43,11 +43,7 @@ public:
     /**
      * Default constructor
      */
-#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
     KUIViewerPart(QWidget* parentWidget, QObject* parent, const KPluginMetaData& metaData, const QVariantList& args);
-#else
-    KUIViewerPart(QWidget* parentWidget, QObject* parent, const QVariantList& args);
-#endif
 
     /**
      * Destructor
