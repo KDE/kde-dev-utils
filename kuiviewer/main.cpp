@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 
     // see if we are starting with session management
     if (app.isSessionRestored()) {
-        RESTORE(KUIViewer)
+        kRestoreMainWindows<KUIViewer>();
     } else {
         // no session.. just start up normally
 
