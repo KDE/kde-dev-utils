@@ -52,9 +52,3 @@ bool QUICreator::create(const QString& path, int width, int height, QImage& img)
 
     return true;
 }
-
-ThumbCreator::Flags QUICreator::flags() const
-{
-    return DrawFrame;
-}
-
