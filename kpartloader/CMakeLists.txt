@@ -15,6 +15,11 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED
     WidgetsAddons
 )
 
+# added by KDE_COMPILERSETTINGS_LEVEL 5.85
+remove_definitions(
+    -DQT_NO_CAST_FROM_ASCII
+)
+
 ecm_setup_version(${KPARTLOADER_VERSION}
     VARIABLE_PREFIX KPARTLOADER
     VERSION_HEADER kpartloader_version.h
