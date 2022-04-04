@@ -26,6 +26,7 @@ include(FeatureSummary)
 
 # Required for ki18n_install(po)
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core)
 
 add_definitions(
     -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
