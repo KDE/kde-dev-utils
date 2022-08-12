@@ -72,8 +72,7 @@ target_link_libraries(kuiviewerpart
 install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${KF_MAJOR_VERSION}/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
-
-add_library(quithumbnail MODULE)
+kcoreaddons_add_plugin(quithumbnail INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/thumbcreator")
 
 target_sources(quithumbnail PRIVATE
     quicreator.cpp
@@ -85,11 +84,8 @@ target_link_libraries(quithumbnail
     Qt${QT_MAJOR_VERSION}::UiTools
 )
 
-install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
-
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
 install(FILES
-    designerthumbnail.desktop
     ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop
     DESTINATION  ${KDE_INSTALL_KSERVICESDIR}
 )

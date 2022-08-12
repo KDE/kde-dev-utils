@@ -25,6 +25,13 @@ Q_DECL_EXPORT ThumbCreator* new_creator()
 
 }
 
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "KIOPluginForMetaData" FILE "designerthumbnail.json")
+};
+
+
 bool QUICreator::create(const QString& path, int width, int height, QImage& img)
 {
     QStringList designerPluginPaths;
@@ -52,3 +59,5 @@ bool QUICreator::create(const QString& path, int width, int height, QImage& img)
 
     return true;
 }
+
+#include "quicreator.moc"
