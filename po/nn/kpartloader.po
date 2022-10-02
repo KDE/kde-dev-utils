@@ -1,0 +1,73 @@
+# Translation of kpartloader to Norwegian Nynorsk
+#
+# Eirik U. Birkeland <eirbir@gmail.com>, 2008, 2009.
+# Karl Ove Hufthammer <karl@huftis.org>, 2018, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: KDE 4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2020-11-16 20:01+0100\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.08.3\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Eirik U. Birkeland,Karl Ove Hufthammer"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "eirbir@gmail.com,karl@huftis.org"
+
+#: kpartloader.cpp:34
+#, kde-format
+msgid "&Quit"
+msgstr "&Avslutt"
+
+#: kpartloader.cpp:39
+#, kde-format
+msgid "&About KPart..."
+msgstr "&Om KPart …"
+
+#: kpartloader.cpp:48
+#, kde-format
+msgid "No part named %1 found."
+msgstr "Fann ikkje nokon del med namnet %1."
+
+#: kpartloader.cpp:81
+#, kde-format
+msgid "KPartLoader"
+msgstr "KPartLoader"
+
+#: kpartloader.cpp:83
+#, kde-format
+msgid "This is a test application for KParts."
+msgstr "Dette er eit testprogram for KParts."
+
+#: kpartloader.cpp:91
+#, kde-format
+msgid "Name of the part to load, e.g. dolphinpart"
+msgstr "Namnet på delen som skal lastast, for eksempel «dolphinpart»."
+
+#. i18n: ectx: Menu (file)
+#: kpartloaderui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fil"
+
+#. i18n: ectx: Menu (help)
+#: kpartloaderui.rc:8
+#, kde-format
+msgid "&Help"
+msgstr "&Hjelp"

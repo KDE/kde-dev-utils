@@ -1,0 +1,73 @@
+# Translation of kpartloader.po to Low Saxon
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Sönke Dibbern <s_dibbern@web.de>, 2008.
+# Manfred Wiese <m.j.wiese@web.de>, 2009, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kpartloader\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2011-01-05 11:31+0100\n"
+"Last-Translator: Manfred Wiese <m.j.wiese@web.de>\n"
+"Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
+"Language: nds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: kpartloader.cpp:34
+#, kde-format
+msgid "&Quit"
+msgstr "&Utmaken"
+
+#: kpartloader.cpp:39
+#, kde-format
+msgid "&About KPart..."
+msgstr ""
+
+#: kpartloader.cpp:48
+#, kde-format
+msgid "No part named %1 found."
+msgstr "Keen Komponent mit den Naam \"%1\" funnen."
+
+#: kpartloader.cpp:81
+#, fuzzy, kde-format
+#| msgid "kpartloader"
+msgid "KPartLoader"
+msgstr "kpartloader"
+
+#: kpartloader.cpp:83
+#, kde-format
+msgid "This is a test application for KParts."
+msgstr "Dit is en Utprobeerprogramm för KParts."
+
+#: kpartloader.cpp:91
+#, kde-format
+msgid "Name of the part to load, e.g. dolphinpart"
+msgstr "Naam vun de Komponent, de Du laden wullt, a.B. \"dolphinpart\""
+
+#. i18n: ectx: Menu (file)
+#: kpartloaderui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Datei"
+
+#. i18n: ectx: Menu (help)
+#: kpartloaderui.rc:8
+#, kde-format
+msgid "&Help"
+msgstr ""

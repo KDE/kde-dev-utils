@@ -1,0 +1,72 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kde-dev-utils package.
+# Sergiu Bivol <sergiu@cip.md>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kde-dev-utils\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2020-09-27 12:47+0100\n"
+"Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
+"Language-Team: Romanian\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Sergiu Bivol"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sergiu@cip.md"
+
+#: kpartloader.cpp:34
+#, kde-format
+msgid "&Quit"
+msgstr "&Termină"
+
+#: kpartloader.cpp:39
+#, kde-format
+msgid "&About KPart..."
+msgstr "&Despre KPart..."
+
+#: kpartloader.cpp:48
+#, kde-format
+msgid "No part named %1 found."
+msgstr "Nu s-a găsit nicio componentă cu denumirea %1."
+
+#: kpartloader.cpp:81
+#, fuzzy, kde-format
+#| msgid "kpartloader"
+msgid "KPartLoader"
+msgstr "kpartloader"
+
+#: kpartloader.cpp:83
+#, kde-format
+msgid "This is a test application for KParts."
+msgstr "Aceasta e o aplicație de test pentru KParts."
+
+#: kpartloader.cpp:91
+#, kde-format
+msgid "Name of the part to load, e.g. dolphinpart"
+msgstr "Denumirea componentei de încărcat, de exemplu dolphinpart"
+
+#. i18n: ectx: Menu (file)
+#: kpartloaderui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fișier"
+
+#. i18n: ectx: Menu (help)
+#: kpartloaderui.rc:8
+#, kde-format
+msgid "&Help"
+msgstr "&Ajutor"

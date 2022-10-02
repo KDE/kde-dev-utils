@@ -1,0 +1,146 @@
+# Translation of kuiviewer to Norwegian Nynorsk
+#
+# Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2016, 2018, 2019.
+# Eirik U. Birkeland <eirbir@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kuiviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2019-04-06 14:50+0200\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 18.12.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Eirik U. Birkeland,Karl Ove Hufthammer"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "eirbir@gmail.com,karl@huftis.org"
+
+#: kuiviewer.cpp:73
+#, kde-format
+msgid "Unable to locate or load KUiViewer KPart."
+msgstr "Klarte ikkje finna/lasta Kuiviewer-delen."
+
+#: kuiviewer.cpp:103
+#, kde-format
+msgid "*.ui *.UI|User Interface Files"
+msgstr "*.ui *.UI|Brukargrensesnitt-filer"
+
+#. i18n: ectx: ToolBar (styleBar)
+#: kuiviewer_part.cpp:65 kuiviewer_part.rc:11
+#, kde-format
+msgid "Style"
+msgstr "Stil"
+
+#: kuiviewer_part.cpp:74
+#, kde-format
+msgctxt "Default style"
+msgid "Default"
+msgstr "Standard"
+
+#: kuiviewer_part.cpp:93
+#, kde-format
+msgid "Set the style used for the view."
+msgstr "Vel stilen som skal brukast til å visa vindauget."
+
+#: kuiviewer_part.cpp:97
+#, kde-format
+msgid "Copy as Image"
+msgstr "Kopier som bilete"
+
+#. i18n: ectx: Menu (edit)
+#: kuiviewer_part.rc:4 kuiviewerui.rc:6
+#, kde-format
+msgid "&Edit"
+msgstr "&Rediger"
+
+#. i18n: ectx: Menu (view)
+#: kuiviewer_part.rc:7 kuiviewerui.rc:8
+#, kde-format
+msgid "&View"
+msgstr "&Vis"
+
+#. i18n: ectx: Menu (file)
+#: kuiviewerui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fil"
+
+#: main.cpp:31
+#, kde-format
+msgid "KUIViewer"
+msgstr "KUIViewer"
+
+#: main.cpp:33
+#, kde-format
+msgid "Displays Designer's UI files"
+msgstr "Viser UI-filene til utformaren"
+
+#: main.cpp:35
+#, kde-format
+msgid "Richard Moore"
+msgstr "Richard Moore"
+
+#: main.cpp:35 main.cpp:36
+#, kde-format
+msgid "Original author"
+msgstr "Opphavsperson"
+
+#: main.cpp:36
+#, kde-format
+msgid "Ian Reinhart Geiser"
+msgstr "Ian Reinhart Geiser"
+
+#: main.cpp:38
+#, kde-format
+msgid "Benjamin C. Meyer"
+msgstr "Benjamin C. Meyer"
+
+#: main.cpp:38
+#, kde-format
+msgid "Screenshot capability"
+msgstr "Støtte for skjermbilete"
+
+#: main.cpp:39
+#, kde-format
+msgid "Friedrich W. H. Kossebau"
+msgstr "Friedrich W.H. Kossebau"
+
+#: main.cpp:39
+#, kde-format
+msgid "Subwindow-like display of UI files"
+msgstr "Delvindaugsvising av UI-filer"
+
+#: main.cpp:47
+#, kde-format
+msgid "Document to open"
+msgstr "Dokument som skal opnast"
+
+#: main.cpp:51
+#, kde-format
+msgid "Save screenshot to file and exit"
+msgstr "Lagra skjermbiletet til ei fil og avslutt"
+
+#: main.cpp:53
+#, kde-format
+msgid "Screenshot width"
+msgstr "Breidd på skjermbilete"
+
+#: main.cpp:55
+#, kde-format
+msgid "Screenshot height"
+msgstr "Høgd på skjermbilete"

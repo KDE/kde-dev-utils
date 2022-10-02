@@ -1,0 +1,73 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2008.
+# Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kpartloader\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2009-06-04 12:04+0300\n"
+"Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
+"Language-Team: Latvian <locale@laka.lv>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: kpartloader.cpp:34
+#, kde-format
+msgid "&Quit"
+msgstr "&Iziet"
+
+#: kpartloader.cpp:39
+#, kde-format
+msgid "&About KPart..."
+msgstr ""
+
+#: kpartloader.cpp:48
+#, kde-format
+msgid "No part named %1 found."
+msgstr "Nav atrasta neviena daļa ar nosaukumu %1."
+
+#: kpartloader.cpp:81
+#, fuzzy, kde-format
+#| msgid "kpartloader"
+msgid "KPartLoader"
+msgstr "kpartloader"
+
+#: kpartloader.cpp:83
+#, kde-format
+msgid "This is a test application for KParts."
+msgstr "Šī ir KParts testēšanas programma."
+
+#: kpartloader.cpp:91
+#, kde-format
+msgid "Name of the part to load, e.g. dolphinpart"
+msgstr "Ielādējamās daļas nosaukums, piemēram, 'dolphinpart'"
+
+#. i18n: ectx: Menu (file)
+#: kpartloaderui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fails"
+
+#. i18n: ectx: Menu (help)
+#: kpartloaderui.rc:8
+#, kde-format
+msgid "&Help"
+msgstr ""

@@ -1,0 +1,70 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Shinjo Park <kde@peremen.name>, 2008, 2009, 2010, 2017, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kpartloader\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2021-05-16 20:17+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 20.12.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "박신조"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde@peremen.name"
+
+#: kpartloader.cpp:34
+#, kde-format
+msgid "&Quit"
+msgstr "끝내기(&Q)"
+
+#: kpartloader.cpp:39
+#, kde-format
+msgid "&About KPart..."
+msgstr "KPart 정보(&A)..."
+
+#: kpartloader.cpp:48
+#, kde-format
+msgid "No part named %1 found."
+msgstr "이름이 %1인 부분이 없습니다."
+
+#: kpartloader.cpp:81
+#, kde-format
+msgid "KPartLoader"
+msgstr "KPartLoader"
+
+#: kpartloader.cpp:83
+#, kde-format
+msgid "This is a test application for KParts."
+msgstr "KPart 테스트 프로그램입니다."
+
+#: kpartloader.cpp:91
+#, kde-format
+msgid "Name of the part to load, e.g. dolphinpart"
+msgstr "불러올 부분의 이름. 예를 들어서 dolphinpart"
+
+#. i18n: ectx: Menu (file)
+#: kpartloaderui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "파일(&F)"
+
+#. i18n: ectx: Menu (help)
+#: kpartloaderui.rc:8
+#, kde-format
+msgid "&Help"
+msgstr "도움말(&H)"

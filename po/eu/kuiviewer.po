@@ -1,0 +1,152 @@
+# Translation for kuiviewer.po to Euskara/Basque (eu).
+# Copyright (C) 2003, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2006-2021, This file is copyright:
+# This file is distributed under the same license as the kde-dev-utils package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# Marcos  <marcos@euskalgnu.org>, 2003.
+# Ion Gaztañaga <ion_g_m@hotmail.com>, 2005.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kde-dev-utils\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"PO-Revision-Date: 2021-07-22 11:41+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.04.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Ion Gaztañaga"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ion_g_m@hotmail.com"
+
+#: kuiviewer.cpp:73
+#, kde-format
+msgid "Unable to locate or load KUiViewer KPart."
+msgstr "Ezin izan du KUiViewer KPart aurkitu edo zamatu."
+
+#: kuiviewer.cpp:103
+#, kde-format
+msgid "*.ui *.UI|User Interface Files"
+msgstr "*.ui *.UI| Erabiltzaile interfaze fitxategiak"
+
+#. i18n: ectx: ToolBar (styleBar)
+#: kuiviewer_part.cpp:65 kuiviewer_part.rc:11
+#, kde-format
+msgid "Style"
+msgstr "Estiloa"
+
+#: kuiviewer_part.cpp:74
+#, kde-format
+msgctxt "Default style"
+msgid "Default"
+msgstr "Lehenetsia"
+
+#: kuiviewer_part.cpp:93
+#, kde-format
+msgid "Set the style used for the view."
+msgstr "Ezarri ikuspegiarekin erabiltzeko estiloa."
+
+#: kuiviewer_part.cpp:97
+#, kde-format
+msgid "Copy as Image"
+msgstr "Kopiatu irudi gisa"
+
+#. i18n: ectx: Menu (edit)
+#: kuiviewer_part.rc:4 kuiviewerui.rc:6
+#, kde-format
+msgid "&Edit"
+msgstr "&Editatu"
+
+#. i18n: ectx: Menu (view)
+#: kuiviewer_part.rc:7 kuiviewerui.rc:8
+#, kde-format
+msgid "&View"
+msgstr "&Ikuspegia"
+
+#. i18n: ectx: Menu (file)
+#: kuiviewerui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fitxategia"
+
+#: main.cpp:31
+#, kde-format
+msgid "KUIViewer"
+msgstr "KUIViewer"
+
+#: main.cpp:33
+#, kde-format
+msgid "Displays Designer's UI files"
+msgstr "«Designer»ren UI fitxategiak erakusten ditu"
+
+#: main.cpp:35
+#, kde-format
+msgid "Richard Moore"
+msgstr "Richard Moore"
+
+#: main.cpp:35 main.cpp:36
+#, kde-format
+msgid "Original author"
+msgstr "Jatorrizko egilea"
+
+#: main.cpp:36
+#, kde-format
+msgid "Ian Reinhart Geiser"
+msgstr "Ian Reinhart Geiser"
+
+#: main.cpp:38
+#, kde-format
+msgid "Benjamin C. Meyer"
+msgstr "Benjamin C. Meyer"
+
+#: main.cpp:38
+#, kde-format
+msgid "Screenshot capability"
+msgstr "Pantaila-argazkien gaitasuna"
+
+#: main.cpp:39
+#, kde-format
+msgid "Friedrich W. H. Kossebau"
+msgstr "Friedrich W. H. Kossebau"
+
+#: main.cpp:39
+#, kde-format
+msgid "Subwindow-like display of UI files"
+msgstr "Erabiltzaile-Interfaze fitxategiak azpi-leiho moduan erakustea"
+
+#: main.cpp:47
+#, kde-format
+msgid "Document to open"
+msgstr "Irekitzeko dokumentua"
+
+#: main.cpp:51
+#, kde-format
+msgid "Save screenshot to file and exit"
+msgstr "Gorde pantaila-argazkia fitxategira eta irten"
+
+#: main.cpp:53
+#, kde-format
+msgid "Screenshot width"
+msgstr "Pantaila-argazkiaren zabalera"
+
+#: main.cpp:55
+#, kde-format
+msgid "Screenshot height"
+msgstr "Pantaila-argazkiaren altuera"
+
+#~ msgid "KUIViewerPart"
+#~ msgstr "KUIViewerPart"
