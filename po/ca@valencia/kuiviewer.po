@@ -80,7 +80,7 @@ msgstr "Vi&sualitza"
 #: kuiviewerui.rc:4
 #, kde-format
 msgid "&File"
-msgstr "&Fitxer"
+msgstr "Fi&txer"
 
 #: main.cpp:31
 #, kde-format

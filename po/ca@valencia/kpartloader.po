@@ -66,7 +66,7 @@ msgstr "Nom de la «part» que s'ha de carregar, p. ex. dolphinpart"
 #: kpartloaderui.rc:4
 #, kde-format
 msgid "&File"
-msgstr "&Fitxer"
+msgstr "Fi&txer"
 
 #. i18n: ectx: Menu (help)
 #: kpartloaderui.rc:8
