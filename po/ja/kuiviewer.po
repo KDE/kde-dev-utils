@@ -150,6 +150,3 @@ msgstr "スクリーンショットの幅"
 #, kde-format
 msgid "Screenshot height"
 msgstr "スクリーンショットの高さ"
-
-#~ msgid "KUIViewerPart"
-#~ msgstr "KUIViewerPart"
