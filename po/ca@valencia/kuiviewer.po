@@ -130,7 +130,7 @@ msgstr "Visualització dels fitxers IU com a una subfinestra"
 #: main.cpp:47
 #, kde-format
 msgid "Document to open"
-msgstr "Document que s'obrirà"
+msgstr "Document que s'ha d'obrir"
 
 #: main.cpp:51
 #, kde-format
