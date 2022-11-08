@@ -146,6 +146,3 @@ msgstr "Amplada de la captura de pantalla"
 #, kde-format
 msgid "Screenshot height"
 msgstr "Alçada de la captura de pantalla"
-
-#~ msgid "KUIViewerPart"
-#~ msgstr "KUIViewerPart"
