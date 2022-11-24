@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kde-dev-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-05-17 00:26+0000\n"
-"PO-Revision-Date: 2022-09-28 10:36+0200\n"
+"PO-Revision-Date: 2022-11-23 06:54+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -51,7 +51,7 @@ msgstr "KPartLoader"
 #: kpartloader.cpp:83
 #, kde-format
 msgid "This is a test application for KParts."
-msgstr "ეს KParts-ის სატესტო აპლიკაციაა"
+msgstr "ეს KParts-ის სატესტო აპლიკაციაა."
 
 #: kpartloader.cpp:91
 #, kde-format
