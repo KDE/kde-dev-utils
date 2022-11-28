@@ -8,5 +8,5 @@ Dependencies:
     'frameworks/ki18n': '@stable'
     'frameworks/kcoreaddons': '@stable'
     'frameworks/kparts': '@stable'
-    'frameworks/kwidgetaddons': '@stable'
+    'frameworks/kwidgetsaddons': '@stable'
     'frameworks/kio': '@stable'
