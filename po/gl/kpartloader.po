@@ -4,14 +4,14 @@
 # mvillarino <mvillarino@users.sourceforge.net>, 2008.
 # Marce Villarino <mvillarino@gmail.com>, 2009.
 # Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail.com>, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-05-17 00:26+0000\n"
-"PO-Revision-Date: 2019-09-29 09:26+0200\n"
+"PO-Revision-Date: 2023-04-24 07:13+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -47,10 +47,9 @@ msgid "No part named %1 found."
 msgstr "Non se atopou ningunha compoñente chamada %1."
 
 #: kpartloader.cpp:81
-#, fuzzy, kde-format
-#| msgid "kpartloader"
+#, kde-format
 msgid "KPartLoader"
-msgstr "kpartloader"
+msgstr "KPartLoader"
 
 #: kpartloader.cpp:83
 #, kde-format
