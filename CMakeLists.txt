@@ -9,8 +9,8 @@ set (RELEASE_SERVICE_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_
 
 project(kde-dev-utils VERSION ${RELEASE_SERVICE_VERSION})
 
-set(QT_MIN_VERSION "5.15.0")
-set(KF_MIN_VERSION "5.85.0")
+set(QT_MIN_VERSION "5.15.2")
+set(KF_MIN_VERSION "5.91.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -22,17 +22,16 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
+include(ECMDeprecationSettings)
 include(FeatureSummary)
 
 # Required for ki18n_install(po)
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n)
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core)
 
-add_definitions(
-    -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
-    -DQT_DEPRECATED_WARNINGS_SINCE=0x060000
-    -DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055500
-    -DKF_DEPRECATED_WARNINGS_SINCE=0x060000
+ecm_set_disabled_deprecation_versions(
+    QT 5.15.2
+    KF 5.85.0
 )
 
 add_subdirectory(kpartloader)
