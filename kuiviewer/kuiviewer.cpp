@@ -14,10 +14,8 @@
 #include <KActionCollection>
 #include <KStandardAction>
 #include <KPluginFactory>
-#include <KPluginLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KService>
 
 // Qt
 #include <QObject>
@@ -46,27 +44,19 @@ KUIViewer::KUIViewer()
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
 
-    const KService::Ptr service = KService::serviceByDesktopName(QStringLiteral("kuiviewer_part"));
-    if (service)
+    const auto partLoadResult = KPluginFactory::instantiatePlugin<KParts::ReadOnlyPart>(KPluginMetaData(QStringLiteral("kf5/parts/kuiviewerpart")), this);
+
+    if (partLoadResult)
     {
-        KPluginFactory *factory = KPluginLoader(*service).factory();
-        if (factory) {
-            // now that the Part is loaded, we cast it to a Part to get
-            // our hands on it
-            m_part = factory->create<KParts::ReadOnlyPart>(this);
+        m_part = partLoadResult.plugin;
 
-            if (m_part) {
-                m_part->setObjectName(QStringLiteral("kuiviewer_part"));
-                // tell the KParts::MainWindow that this is indeed the main widget
-                setCentralWidget(m_part->widget());
+        m_part->setObjectName(QStringLiteral("kuiviewer_part"));
+        // tell the KParts::MainWindow that this is indeed the main widget
+        setCentralWidget(m_part->widget());
 
-                // and integrate the part's GUI with the shell's
-                createGUI(m_part);
-            }
-        }
-    }
-
-    if (m_part==nullptr) {
+        // and integrate the part's GUI with the shell's
+        createGUI(m_part);
+    } else {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
         //FIXME improve message, which Part is this referring to?

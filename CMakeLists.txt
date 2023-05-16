@@ -31,7 +31,7 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core)
 
 ecm_set_disabled_deprecation_versions(
     QT 5.15.2
-    KF 5.85.0
+    KF 5.91.0
 )
 
 add_subdirectory(kpartloader)

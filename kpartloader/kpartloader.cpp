@@ -14,7 +14,6 @@
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <KPluginLoader>
 #include <KPluginMetaData>
 #include <KAboutPluginDialog>
 #include <KMessageBox>
@@ -39,8 +38,7 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
     a->setText(i18n("&About KPart..."));
     connect(a, SIGNAL(triggered()), this, SLOT(aboutKPart()));
 
-    KPluginLoader loader(partLib);
-    KPluginFactory* factory = loader.factory();
+    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData(partLib)).plugin;
     if (factory) {
         // Create the part
         m_part = factory->create<KParts::ReadOnlyPart>(this, this);
