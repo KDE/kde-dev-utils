@@ -14,6 +14,7 @@
 #include <kuiviewer_part_debug.h>
 #include "kuiviewer_version.h"
 // KF
+#include <kparts_version.h>
 #include <KActionCollection>
 #include <KSelectAction>
 #include <KConfig>
@@ -44,11 +45,17 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
                              QObject* parent,
                              const KPluginMetaData& metaData,
                              const QVariantList& /*args*/)
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 240, 0)
+    : KParts::ReadOnlyPart(parent, metaData)
+#else
     : KParts::ReadOnlyPart(parent)
+#endif
     , m_subWindow(nullptr)
     , m_view(nullptr)
 {
+#if KPARTS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     setMetaData(metaData);
+#endif
 
     // this should be your custom internal widget
     m_widget = new QMdiArea(parentWidget);

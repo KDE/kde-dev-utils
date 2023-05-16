@@ -44,7 +44,7 @@ KUIViewer::KUIViewer()
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
 
-    const auto partLoadResult = KPluginFactory::instantiatePlugin<KParts::ReadOnlyPart>(KPluginMetaData(QStringLiteral("kf5/parts/kuiviewerpart")), this);
+    const auto partLoadResult = KPluginFactory::instantiatePlugin<KParts::ReadOnlyPart>(KPluginMetaData(QStringLiteral("kf"  QT_STRINGIFY(QT_VERSION_MAJOR) "/parts/kuiviewerpart")), this);
 
     if (partLoadResult)
     {

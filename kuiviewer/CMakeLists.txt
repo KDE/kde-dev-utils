@@ -4,14 +4,14 @@ set(KUIVIEWER_VERSION "${KUIVIEWER_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSI
 
 include(ECMAddAppIcon)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE
     COMPONENTS
     Core
     Designer
     UiTools
 )
 
-find_package(KF5 ${KF_MIN_VERSION} REQUIRED
+find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED
     COMPONENTS
     CoreAddons
     I18n
@@ -36,7 +36,10 @@ target_sources(kuiviewer PRIVATE
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kuiviewer.png")
 ecm_add_app_icon(kuiviewer ICONS ${ICONS_SRCS})
 
-target_link_libraries(kuiviewer KF5::I18n KF5::Parts )
+target_link_libraries(kuiviewer
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::Parts
+)
 
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -57,16 +60,16 @@ ecm_qt_declare_logging_category(kuiviewerpart
     CATEGORY_NAME "kuiviewerpart"
 )
 
-kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
+# kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
 
 target_link_libraries(kuiviewerpart
-    KF5::I18n
-    KF5::Parts
-    Qt5::Designer
-    Qt5::UiTools
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::Parts
+    Qt${QT_MAJOR_VERSION}::Designer
+    Qt${QT_MAJOR_VERSION}::UiTools
 )
 
-install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
+install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${KF_MAJOR_VERSION}/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 
@@ -77,9 +80,9 @@ target_sources(quithumbnail PRIVATE
 )
 
 target_link_libraries(quithumbnail
-    KF5::KIOWidgets
-    Qt5::Designer
-    Qt5::UiTools
+    KF${KF_MAJOR_VERSION}::KIOWidgets
+    Qt${QT_MAJOR_VERSION}::Designer
+    Qt${QT_MAJOR_VERSION}::UiTools
 )
 
 install(TARGETS quithumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
@@ -88,7 +91,7 @@ install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} 
 install(FILES
     designerthumbnail.desktop
     ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop
-    DESTINATION  ${KDE_INSTALL_KSERVICES5DIR}
+    DESTINATION  ${KDE_INSTALL_KSERVICESDIR}
 )
 install(FILES org.kde.kuiviewer.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
