@@ -60,7 +60,7 @@ ecm_qt_declare_logging_category(kuiviewerpart
     CATEGORY_NAME "kuiviewerpart"
 )
 
-# kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
+kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
 
 target_link_libraries(kuiviewerpart
     KF${KF_MAJOR_VERSION}::I18n
