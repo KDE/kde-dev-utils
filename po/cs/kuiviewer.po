@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2020-06-10 12:46+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -27,34 +27,34 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "borg.dax@quick.cz"
 
-#: kuiviewer.cpp:73
+#: kuiviewer.cpp:63
 #, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
 msgstr "Nelze najít a načíst komponentu KUiViewer."
 
-#: kuiviewer.cpp:103
+#: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|Soubory uživatelského rozhraní"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:65 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "Styl"
 
-#: kuiviewer_part.cpp:74
+#: kuiviewer_part.cpp:81
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr "Výchozí"
 
-#: kuiviewer_part.cpp:93
+#: kuiviewer_part.cpp:100
 #, kde-format
 msgid "Set the style used for the view."
 msgstr "Nastavit styl použitý k náhledu."
 
-#: kuiviewer_part.cpp:97
+#: kuiviewer_part.cpp:104
 #, kde-format
 msgid "Copy as Image"
 msgstr "Kopírovat jako obrázek"
@@ -77,67 +77,67 @@ msgstr "Po&hled"
 msgid "&File"
 msgstr "S&oubor"
 
-#: main.cpp:31
+#: main.cpp:33
 #, kde-format
 msgid "KUIViewer"
 msgstr "ProhlížečUI"
 
-#: main.cpp:33
+#: main.cpp:35
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "Zobrazuje UI soubory Qt Designeru"
 
-#: main.cpp:35
+#: main.cpp:37
 #, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
-#: main.cpp:35 main.cpp:36
+#: main.cpp:37 main.cpp:38
 #, kde-format
 msgid "Original author"
 msgstr "Původní autor"
 
-#: main.cpp:36
+#: main.cpp:38
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Screenshot capability"
 msgstr "Schopnost snímání obrazovky"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr "Friedrich W. H. Kossebau"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr "Zobrazení souborů UI jako v podokně"
 
-#: main.cpp:47
+#: main.cpp:49
 #, kde-format
 msgid "Document to open"
 msgstr "Dokument k otevření"
 
-#: main.cpp:51
+#: main.cpp:53
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "Uložit snímek obrazovky do souboru a ukončit"
 
-#: main.cpp:53
+#: main.cpp:55
 #, kde-format
 msgid "Screenshot width"
 msgstr "Šířka snímku"
 
-#: main.cpp:55
+#: main.cpp:57
 #, kde-format
 msgid "Screenshot height"
 msgstr "Výška snímku"

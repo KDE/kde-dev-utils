@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2019-03-11 11:55+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -34,34 +34,34 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "vertaling@kde.nl,ruurd@tiscali.nl,,freekdekruijf@kde.nl"
 
-#: kuiviewer.cpp:73
+#: kuiviewer.cpp:63
 #, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
 msgstr "Kan KUIViewer KPart niet vinden of laden."
 
-#: kuiviewer.cpp:103
+#: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|User Interface-bestanden"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:65 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "Stijl"
 
-#: kuiviewer_part.cpp:74
+#: kuiviewer_part.cpp:81
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr "Standaard"
 
-#: kuiviewer_part.cpp:93
+#: kuiviewer_part.cpp:100
 #, kde-format
 msgid "Set the style used for the view."
 msgstr "Stel de stijl in gebruikt om weer te geven."
 
-#: kuiviewer_part.cpp:97
+#: kuiviewer_part.cpp:104
 #, kde-format
 msgid "Copy as Image"
 msgstr "Als afbeelding kopiëren"
@@ -84,67 +84,67 @@ msgstr "Beel&d"
 msgid "&File"
 msgstr "&Bestand"
 
-#: main.cpp:31
+#: main.cpp:33
 #, kde-format
 msgid "KUIViewer"
 msgstr "KUIViewer"
 
-#: main.cpp:33
+#: main.cpp:35
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "Toont de UI-bestanden van Designer."
 
-#: main.cpp:35
+#: main.cpp:37
 #, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
-#: main.cpp:35 main.cpp:36
+#: main.cpp:37 main.cpp:38
 #, kde-format
 msgid "Original author"
 msgstr "Oorspronkelijke auteur"
 
-#: main.cpp:36
+#: main.cpp:38
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Screenshot capability"
 msgstr "Mogelijkheid van schermafdruk"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr "Friedrich W. H. Kossebau"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr "Op subvenster gelijkende weergave van UIT-bestanden"
 
-#: main.cpp:47
+#: main.cpp:49
 #, kde-format
 msgid "Document to open"
 msgstr "Te openen document"
 
-#: main.cpp:51
+#: main.cpp:53
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "Schermafdruk opslaan en afsluiten"
 
-#: main.cpp:53
+#: main.cpp:55
 #, kde-format
 msgid "Screenshot width"
 msgstr "Breedte schermafdruk"
 
-#: main.cpp:55
+#: main.cpp:57
 #, kde-format
 msgid "Screenshot height"
 msgstr "Hoogte schermafdruk"

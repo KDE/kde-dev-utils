@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2020-11-16 10:58+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -27,17 +27,17 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "ecuadra@eloihr.net"
 
-#: kpartloader.cpp:34
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "&Salir"
 
-#: kpartloader.cpp:39
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr "&Acerca de KPart..."
 
-#: kpartloader.cpp:48
+#: kpartloader.cpp:46
 #, kde-format
 msgid "No part named %1 found."
 msgstr "No se ha encontrado una parte con el nombre %1."

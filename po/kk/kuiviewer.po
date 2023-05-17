@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2013-01-16 03:56+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -27,36 +27,36 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "sairan@computer.org"
 
-#: kuiviewer.cpp:73
+#: kuiviewer.cpp:63
 #, fuzzy, kde-format
 #| msgid "Unable to locate Kuiviewer kpart."
 msgid "Unable to locate or load KUiViewer KPart."
 msgstr "Kuiviewer бөлшегі табылмады."
 
-#: kuiviewer.cpp:103
+#: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|Пайдаланушы интерфейс файлдары"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:65 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "Стилі"
 
-#: kuiviewer_part.cpp:74
+#: kuiviewer_part.cpp:81
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr ""
 
-#: kuiviewer_part.cpp:93
+#: kuiviewer_part.cpp:100
 #, fuzzy, kde-format
 #| msgid "Set the current style to view."
 msgid "Set the style used for the view."
 msgstr "Көрініске қолданыстағы стильді орнату"
 
-#: kuiviewer_part.cpp:97
+#: kuiviewer_part.cpp:104
 #, kde-format
 msgid "Copy as Image"
 msgstr "Кескін деп көшіріп алу"
@@ -79,68 +79,68 @@ msgstr "&Көрініс"
 msgid "&File"
 msgstr "&Файл"
 
-#: main.cpp:31
+#: main.cpp:33
 #, kde-format
 msgid "KUIViewer"
 msgstr "KUIViewer"
 
-#: main.cpp:33
+#: main.cpp:35
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "Designer UI файлдарын көрсетеді"
 
-#: main.cpp:35
+#: main.cpp:37
 #, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
-#: main.cpp:35 main.cpp:36
+#: main.cpp:37 main.cpp:38
 #, kde-format
 msgid "Original author"
 msgstr ""
 
-#: main.cpp:36
+#: main.cpp:38
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
-#: main.cpp:38
+#: main.cpp:40
 #, fuzzy, kde-format
 #| msgid "Screenshot width"
 msgid "Screenshot capability"
 msgstr "Суретінің ені"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr ""
 
-#: main.cpp:47
+#: main.cpp:49
 #, kde-format
 msgid "Document to open"
 msgstr "Ашатын құжат"
 
-#: main.cpp:51
+#: main.cpp:53
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "Экранның суретін сақтап шығу"
 
-#: main.cpp:53
+#: main.cpp:55
 #, kde-format
 msgid "Screenshot width"
 msgstr "Суретінің ені"
 
-#: main.cpp:55
+#: main.cpp:57
 #, kde-format
 msgid "Screenshot height"
 msgstr "Суретінің биіктігі"

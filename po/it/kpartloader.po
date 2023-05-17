@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2020-11-17 23:18+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -29,17 +29,17 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "luigi.toscano@tiscali.it,"
 
-#: kpartloader.cpp:34
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "&Esci"
 
-#: kpartloader.cpp:39
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr "Inform&azioni sul componente KPart..."
 
-#: kpartloader.cpp:48
+#: kpartloader.cpp:46
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Non è stato trovato nessun componente di nome %1."

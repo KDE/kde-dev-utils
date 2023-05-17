@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2019-03-10 08:25+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -31,34 +31,34 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "ivanpetrouchtchak@yahoo.com"
 
-#: kuiviewer.cpp:73
+#: kuiviewer.cpp:63
 #, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
 msgstr "Не вдалося знайти або завантажити KPart KUiViewer."
 
-#: kuiviewer.cpp:103
+#: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|Файли інтерфейсу користувача"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:65 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "Стиль"
 
-#: kuiviewer_part.cpp:74
+#: kuiviewer_part.cpp:81
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr "Типовий"
 
-#: kuiviewer_part.cpp:93
+#: kuiviewer_part.cpp:100
 #, kde-format
 msgid "Set the style used for the view."
 msgstr "Встановити стиль для перегляду."
 
-#: kuiviewer_part.cpp:97
+#: kuiviewer_part.cpp:104
 #, kde-format
 msgid "Copy as Image"
 msgstr "Копіювати як зображення"
@@ -81,67 +81,67 @@ msgstr "П&ерегляд"
 msgid "&File"
 msgstr "&Файл"
 
-#: main.cpp:31
+#: main.cpp:33
 #, kde-format
 msgid "KUIViewer"
 msgstr "KUIViewer"
 
-#: main.cpp:33
+#: main.cpp:35
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "Показує UI файли програми Designer"
 
-#: main.cpp:35
+#: main.cpp:37
 #, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
-#: main.cpp:35 main.cpp:36
+#: main.cpp:37 main.cpp:38
 #, kde-format
 msgid "Original author"
 msgstr "Автор початкової версії"
 
-#: main.cpp:36
+#: main.cpp:38
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
-#: main.cpp:38
+#: main.cpp:40
 #, kde-format
 msgid "Screenshot capability"
 msgstr "Можливість створення знімків екрана"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr "Friedrich W. H. Kossebau"
 
-#: main.cpp:39
+#: main.cpp:41
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr "Показ вмісту файлів UI у форматі допоміжних вікон"
 
-#: main.cpp:47
+#: main.cpp:49
 #, kde-format
 msgid "Document to open"
 msgstr "Відкрити документ"
 
-#: main.cpp:51
+#: main.cpp:53
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "Зберегти знімок екрана у файл і вийти"
 
-#: main.cpp:53
+#: main.cpp:55
 #, kde-format
 msgid "Screenshot width"
 msgstr "Ширина знімка екрана"
 
-#: main.cpp:55
+#: main.cpp:57
 #, kde-format
 msgid "Screenshot height"
 msgstr "Висота знімка екрана"

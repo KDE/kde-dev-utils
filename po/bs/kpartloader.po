@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdesdk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2012-09-03 15:20+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -30,17 +30,17 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: kpartloader.cpp:34
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "&Izlaz"
 
-#: kpartloader.cpp:39
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr ""
 
-#: kpartloader.cpp:48
+#: kpartloader.cpp:46
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Nije pronađen dio po imenu %1."

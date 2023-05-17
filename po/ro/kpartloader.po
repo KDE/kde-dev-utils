@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kde-dev-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-05-17 00:26+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2020-09-27 12:47+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -28,17 +28,17 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "sergiu@cip.md"
 
-#: kpartloader.cpp:34
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "&Termină"
 
-#: kpartloader.cpp:39
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr "&Despre KPart..."
 
-#: kpartloader.cpp:48
+#: kpartloader.cpp:46
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Nu s-a găsit nicio componentă cu denumirea %1."
