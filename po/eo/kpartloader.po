@@ -1,13 +1,15 @@
 # Translation of kpartloader into esperanto.
+# Copyright (C) 2009 Free Software Foundation, Inc.
 # Axel Rousseau <axel@esperanto-jeunes.org>, 2009.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2009-11-15 12:06+0100\n"
-"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
+"PO-Revision-Date: 2023-05-17 11:58+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -19,12 +21,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Axel Rousseau,Oliver Kellogg"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "axel@esperanto-jeunes.org,okellogg@users.sourceforge.net"
 
 #: kpartloader.cpp:33
 #, kde-format
@@ -34,27 +36,27 @@ msgstr "&Ĉesi"
 #: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
-msgstr ""
+msgstr "Pri KP&art..."
 
 #: kpartloader.cpp:46
 #, kde-format
 msgid "No part named %1 found."
-msgstr ""
+msgstr "Trovis neniun parton nomita %1."
 
 #: kpartloader.cpp:81
 #, kde-format
 msgid "KPartLoader"
-msgstr ""
+msgstr "KPartLoader"
 
 #: kpartloader.cpp:83
 #, kde-format
 msgid "This is a test application for KParts."
-msgstr ""
+msgstr "Tiu estas testaplikaĵo por KParts."
 
 #: kpartloader.cpp:91
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
-msgstr ""
+msgstr "Nomo de la parto ŝargenda, ekz. dolphinpart"
 
 #. i18n: ectx: Menu (file)
 #: kpartloaderui.rc:4
@@ -66,4 +68,4 @@ msgstr "&Dosiero"
 #: kpartloaderui.rc:8
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Helpo"

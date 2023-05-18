@@ -1,13 +1,15 @@
 # Translation of kuiviewer into esperanto.
+# Copyright (C) 2009 Free Software Foundation, Inc.
 # Axel Rousseau <axel@esperanto-jeunes.org>, 2009.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2009-11-15 12:06+0100\n"
-"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
+"PO-Revision-Date: 2023-05-17 11:58+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -19,22 +21,22 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Axel Rousseau"
+msgstr "Axel Rousseau,Oliver Kellogg"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "axel@esperanto-jeunes.org"
+msgstr "axel@esperanto-jeunes.org,okellogg@users.sourceforge.net"
 
 #: kuiviewer.cpp:63
 #, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr ""
+msgstr "Ne eblis lokigi aŭ ŝargi KUiViewer-KParton."
 
 #: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
-msgstr ""
+msgstr "*.ui *.UI|Uzantinterfacaj Dosieroj"
 
 #. i18n: ectx: ToolBar (styleBar)
 #: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
@@ -46,23 +48,23 @@ msgstr "Stilo"
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
-msgstr ""
+msgstr "Defaŭlta"
 
 #: kuiviewer_part.cpp:100
 #, kde-format
 msgid "Set the style used for the view."
-msgstr ""
+msgstr "Mati la stilon uzatan por la vido."
 
 #: kuiviewer_part.cpp:104
 #, kde-format
 msgid "Copy as Image"
-msgstr ""
+msgstr "Kopii kiel bildon"
 
 #. i18n: ectx: Menu (edit)
 #: kuiviewer_part.rc:4 kuiviewerui.rc:6
 #, kde-format
 msgid "&Edit"
-msgstr "&Redakti"
+msgstr "R&edakti"
 
 #. i18n: ectx: Menu (view)
 #: kuiviewer_part.rc:7 kuiviewerui.rc:8
@@ -79,12 +81,12 @@ msgstr "&Dosiero"
 #: main.cpp:33
 #, kde-format
 msgid "KUIViewer"
-msgstr ""
+msgstr "KUIViewer"
 
 #: main.cpp:35
 #, kde-format
 msgid "Displays Designer's UI files"
-msgstr ""
+msgstr "Montras UI-doseirojn de Designer"
 
 #: main.cpp:37
 #, kde-format
@@ -94,7 +96,7 @@ msgstr "Richard Moore"
 #: main.cpp:37 main.cpp:38
 #, kde-format
 msgid "Original author"
-msgstr ""
+msgstr "Origina aŭtoro"
 
 #: main.cpp:38
 #, kde-format
@@ -109,17 +111,17 @@ msgstr "Benjamin C. Meyer"
 #: main.cpp:40
 #, kde-format
 msgid "Screenshot capability"
-msgstr ""
+msgstr "Ekrankopia kapablo"
 
 #: main.cpp:41
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
-msgstr ""
+msgstr "Friedrich W. H. Kossebau"
 
 #: main.cpp:41
 #, kde-format
 msgid "Subwindow-like display of UI files"
-msgstr ""
+msgstr "Subfenestreca bildigo de UI-dosieroj"
 
 #: main.cpp:49
 #, kde-format
@@ -129,14 +131,14 @@ msgstr "La dosiero malfermiĝi"
 #: main.cpp:53
 #, kde-format
 msgid "Save screenshot to file and exit"
-msgstr ""
+msgstr "Konservi ekrankopion la dosiero kaj eliri"
 
 #: main.cpp:55
 #, kde-format
 msgid "Screenshot width"
-msgstr ""
+msgstr "Ekrankopia larĝeco"
 
 #: main.cpp:57
 #, kde-format
 msgid "Screenshot height"
-msgstr ""
+msgstr "Ekrankopia alteco"
