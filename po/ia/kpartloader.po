@@ -1,0 +1,70 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kde-dev-utils package.
+#
+# giovanni <g.sora@tiscali.it>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: kde-dev-utils\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"PO-Revision-Date: 2023-05-19 22:26+0200\n"
+"Last-Translator: giovanni <g.sora@tiscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Giovanni Sora"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "g.sora@tiscali.it"
+
+#: kpartloader.cpp:33
+#, kde-format
+msgid "&Quit"
+msgstr "&Quita"
+
+#: kpartloader.cpp:38
+#, kde-format
+msgid "&About KPart..."
+msgstr "&A proposito de KPart..."
+
+#: kpartloader.cpp:46
+#, kde-format
+msgid "No part named %1 found."
+msgstr "Nulle parte nominate %1 trovate."
+
+#: kpartloader.cpp:81
+#, kde-format
+msgid "KPartLoader"
+msgstr "KPartLoader"
+
+#: kpartloader.cpp:83
+#, kde-format
+msgid "This is a test application for KParts."
+msgstr "Isto es un application de prova per KParts."
+
+#: kpartloader.cpp:91
+#, kde-format
+msgid "Name of the part to load, e.g. dolphinpart"
+msgstr "Nomine de parte de cargar, p.ex. dolphinpart"
+
+#. i18n: ectx: Menu (file)
+#: kpartloaderui.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&File"
+
+#. i18n: ectx: Menu (help)
+#: kpartloaderui.rc:8
+#, kde-format
+msgid "&Help"
+msgstr "Ad&juta"
