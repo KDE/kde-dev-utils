@@ -33,7 +33,7 @@
   <name xml:lang="sk">KUIViewer</name>
   <name xml:lang="sl">KUIViewer</name>
   <name xml:lang="sv">Kuiviewer</name>
-  <name xml:lang="tr">KUIViewer</name>
+  <name xml:lang="tr">K Arayüz Görüntüleyicisi</name>
   <name xml:lang="uk">KUIViewer</name>
   <name xml:lang="x-test">xxKUIViewerxx</name>
   <name xml:lang="zh-CN">KUIViewer</name>
@@ -104,7 +104,7 @@
     <p xml:lang="sk">KUIViewer je nástroj na zobrazenie a kontrolu súborov používateľského rozhrania (.ui) vytvorených v programe Qt Designer.</p>
     <p xml:lang="sl">KUIViewer je orodje za prikaz in preverjanje datotek uporabniškega vmesnika (.ui), ustvarjenih v Qt Designerju.</p>
     <p xml:lang="sv">Kuiviewer är ett verktyg för att visa och kontrollera användargränssnittfiler (.ui) skapade i Qt Designer.</p>
-    <p xml:lang="tr">KUIViewer, Qt Designer içinde oluşturulmuş kullanıcı arabirim dosyalarını görüntülemek ve denetlemek için kullanılan bir araçtır.</p>
+    <p xml:lang="tr">K Arayüz Görüntüleyicisi, Qt Designer içinde oluşturulmuş kullanıcı arabirim dosyalarını görüntülemek ve denetlemek için kullanılan bir araçtır.</p>
     <p xml:lang="uk">KUIViewer — програма для показу та перевірки файлів інтерфейсу користувача (.ui), які створено у Qt Designer.</p>
     <p xml:lang="x-test">xxKUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.xx</p>
     <p xml:lang="zh-CN">KUIViewer 是一个工具，可以显示和检查在 Qt Designer 中创建的用户界面 (.ui) 文件。</p>
