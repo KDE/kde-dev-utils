@@ -56,7 +56,7 @@ msgstr "Predeterminado"
 #: kuiviewer_part.cpp:100
 #, kde-format
 msgid "Set the style used for the view."
-msgstr "Estabelecer o estilo para a vista."
+msgstr "Definir o estilo para a vista."
 
 #: kuiviewer_part.cpp:104
 #, kde-format
