@@ -123,3 +123,5 @@ void KUIViewer::takeScreenshot(const QString& filename, int w, int h)
     const QPixmap pixmap = uiviewerInterface->renderWidgetAsPixmap();
     pixmap.save(filename, "PNG");
 }
+
+#include "moc_kuiviewer.cpp"

@@ -343,3 +343,4 @@ void KUIViewerPart::slotGrab()
 }
 
 #include "kuiviewer_part.moc"
+#include "moc_kuiviewer_part.cpp"
