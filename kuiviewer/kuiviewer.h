@@ -12,8 +12,6 @@
 // KF
 #include <KParts/MainWindow>
 
-class KToggleAction;
-
 namespace KParts
 {
 class ReadOnlyPart;
@@ -69,8 +67,6 @@ private:
 
 private:
     KParts::ReadOnlyPart* m_part;
-    KToggleAction* m_toolbarAction;
-    KToggleAction* m_statusbarAction;
 };
 
 #endif // KUIVIEWER_H
