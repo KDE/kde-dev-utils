@@ -89,7 +89,7 @@ msgstr "KUIViewer"
 #: main.cpp:33
 #, kde-format
 msgid "Displays Designer's UI files"
-msgstr "Mostra ficheiros UI de Designer"
+msgstr "Amosa ficheiros UI de Designer"
 
 #: main.cpp:35
 #, kde-format
