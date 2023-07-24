@@ -50,7 +50,7 @@ msgstr "KPartLoader"
 #: kpartloader.cpp:83
 #, kde-format
 msgid "This is a test application for KParts."
-msgstr "KPart 테스트 프로그램입니다."
+msgstr "KPart 테스트 앱입니다."
 
 #: kpartloader.cpp:91
 #, kde-format
