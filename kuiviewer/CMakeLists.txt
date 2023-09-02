@@ -60,8 +60,6 @@ ecm_qt_declare_logging_category(kuiviewerpart
     CATEGORY_NAME "kuiviewerpart"
 )
 
-kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
-
 target_link_libraries(kuiviewerpart
     KF${KF_MAJOR_VERSION}::I18n
     KF${KF_MAJOR_VERSION}::Parts
@@ -84,7 +82,7 @@ target_link_libraries(quithumbnail
     Qt${QT_MAJOR_VERSION}::UiTools
 )
 
-install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
+install(PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop
     DESTINATION  ${KDE_INSTALL_KSERVICESDIR}
