@@ -34,7 +34,7 @@ msgstr "veronicafernandezcouce@gmail.com, mvillarino@gmail.com"
 #: kuiviewer.cpp:63
 #, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr "Non se pode atopar ou cargar a KPart de KUiViewer."
+msgstr "Non é posíbel atopar ou cargar a KPart de KUiViewer."
 
 #: kuiviewer.cpp:93
 #, kde-format
