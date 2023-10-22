@@ -4,6 +4,15 @@
         "MimeTypes": [
             "application/x-designer"
         ],
-        "Name": "Qt Designer Files"
+        "Name": "Qt Designer Files",
+        "Name[ca]": "Fitxers del Qt Designer",
+        "Name[es]": "Archivos de Qt Designer",
+        "Name[eu]": "«Qt Designer»ren fitxategiak",
+        "Name[nl]": "Qt Designer-bestanden",
+        "Name[pl]": "Pliki projektanta Qt",
+        "Name[sv]": "Qt-designer-filer",
+        "Name[tr]": "Qt Designer Dosyaları",
+        "Name[uk]": "файли Qt Designer",
+        "Name[x-test]": "xxQt Designer Filesxx"
     }
 }
