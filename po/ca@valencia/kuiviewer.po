@@ -35,7 +35,7 @@ msgstr "aacid@kde.org"
 #: kuiviewer.cpp:63
 #, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr "No s'ha pogut localitzar o carregar KPart del KUiViewer."
+msgstr "No s'ha pogut localitzar o carregar la KPart de KUIViewer."
 
 #: kuiviewer.cpp:93
 #, kde-format
