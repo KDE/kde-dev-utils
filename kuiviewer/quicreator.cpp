@@ -8,31 +8,19 @@
 
 #include "quicreator.h"
 
+// KF
+#include <KPluginFactory>
 // Qt
 #include <QPixmap>
 #include <QImage>
 #include <QFormBuilder>
 #include <QWidget>
 #include <QCoreApplication>
+#include <QDebug>
 
-extern "C"
-{
+K_PLUGIN_CLASS_WITH_JSON(QUICreator, "designerthumbnail.json")
 
-Q_DECL_EXPORT ThumbCreator* new_creator()
-{
-    return new QUICreator;
-}
-
-}
-
-class KIOPluginForMetaData : public QObject
-{
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "KIOPluginForMetaData" FILE "designerthumbnail.json")
-};
-
-
-bool QUICreator::create(const QString& path, int width, int height, QImage& img)
+KIO::ThumbnailResult QUICreator::create( const KIO::ThumbnailRequest &request )
 {
     QStringList designerPluginPaths;
     const QStringList& libraryPaths = QCoreApplication::libraryPaths();
@@ -42,22 +30,21 @@ bool QUICreator::create(const QString& path, int width, int height, QImage& img)
     QFormBuilder builder;
     builder.setPluginPath(designerPluginPaths);
 
-    QFile file(path);
+    QFile file(request.url().toLocalFile());
     if (!file.open(QFile::ReadOnly)) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     QWidget* w = builder.load(&file);
     file.close();
 
     if (!w) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     const QPixmap p = w->grab();
-    img = p.toImage().scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-    return true;
+    const QImage img = p.toImage().scaled(request.targetSize(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    return KIO::ThumbnailResult::pass(img);
 }
 
 #include "quicreator.moc"

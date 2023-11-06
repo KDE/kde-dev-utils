@@ -79,7 +79,7 @@ target_sources(quithumbnail PRIVATE
 )
 
 target_link_libraries(quithumbnail
-    KF${KF_MAJOR_VERSION}::KIOWidgets
+    KF${KF_MAJOR_VERSION}::KIOGui
     Qt${QT_MAJOR_VERSION}::Designer
     Qt${QT_MAJOR_VERSION}::UiTools
 )

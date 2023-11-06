@@ -9,14 +9,16 @@
 #ifndef UICREATOR_H
 #define UICREATOR_H
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class QUICreator : public ThumbCreator
+class QUICreator : public KIO::ThumbnailCreator
 {
 public:
-    QUICreator() {}
+    QUICreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+    {}
 
-    bool create(const QString& path, int, int, QImage& img) override;
+    KIO::ThumbnailResult create( const KIO::ThumbnailRequest &request ) override;
 };
 
 #endif // UICREATOR_H
