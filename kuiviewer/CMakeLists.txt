@@ -44,7 +44,11 @@ target_link_libraries(kuiviewer
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
-configure_file(kuiviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
+if (QT_MAJOR_VERSION STREQUAL "5")
+    configure_file(kuiviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
+else()
+    configure_file(kuiviewer_part.json.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.json @ONLY)
+endif()
 
 add_library(kuiviewerpart MODULE)
 
@@ -60,7 +64,9 @@ ecm_qt_declare_logging_category(kuiviewerpart
     CATEGORY_NAME "kuiviewerpart"
 )
 
-kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
+if (QT_MAJOR_VERSION STREQUAL "5")
+    kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
+endif()
 
 target_link_libraries(kuiviewerpart
     KF${KF_MAJOR_VERSION}::I18n
@@ -85,10 +91,12 @@ target_link_libraries(quithumbnail
 )
 
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
+if (QT_MAJOR_VERSION STREQUAL "5")
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop
     DESTINATION  ${KDE_INSTALL_KSERVICESDIR}
 )
+endif()
 install(FILES org.kde.kuiviewer.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 ecm_install_icons(ICONS

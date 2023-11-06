@@ -1,0 +1,31 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "rich@kde.org",
+                "Name": "Richard Moore"
+            },
+            {
+                "Email": "geiseri@kde.org",
+                "Name": "Ian Reinhart Geiser"
+            },
+            {
+                "Email": "kossebau@kde.org",
+                "Name": "Friedrich W. H. Kossebau"
+            }
+        ],
+        "Description": "Displays Designer's UI files",
+        "Icon": "kuiviewer",
+        "Id": "kuiviewerpart",
+        "License": "LGPL",
+        "MimeTypes": [
+            "application/x-designer"
+        ],
+        "Name": "KUIViewerPart",
+        "ServiceTypes": [
+            "KParts/ReadOnlyPart"
+        ],
+        "Version": "@@KUIVIEWER_VERSION@@"
+    },
+    "MimeType": "application/x-designer;"
+}
