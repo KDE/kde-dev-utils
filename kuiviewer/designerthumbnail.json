@@ -9,6 +9,7 @@
         "Name[ca]": "Fitxers del Qt Designer",
         "Name[es]": "Archivos de Qt Designer",
         "Name[eu]": "«Qt Designer»ren fitxategiak",
+        "Name[fi]": "Qt Designer -tiedostot",
         "Name[fr]": "Fichiers pour Qt Designer",
         "Name[it]": "File di Qt Designer",
         "Name[ka]": "Qt Designer -ის ფაილები",
@@ -18,6 +19,7 @@
         "Name[sl]": "Datoteke Qt Designer",
         "Name[sv]": "Qt-designer-filer",
         "Name[tr]": "Qt Designer Dosyaları",
-        "Name[uk]": "файли Qt Designer"
+        "Name[uk]": "файли Qt Designer",
+        "Name[x-test]": "xxQt Designer Filesxx"
     }
 }
