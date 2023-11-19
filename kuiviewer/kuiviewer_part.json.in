@@ -12,6 +12,7 @@
                 "Name[ka]": "Richard Moore",
                 "Name[nl]": "Richard Moore",
                 "Name[sl]": "Richard Moore",
+                "Name[sv]": "Richard Moore",
                 "Name[tr]": "Richard Moore",
                 "Name[uk]": "Richard Moore",
                 "Name[x-test]": "xxRichard Moorexx"
@@ -27,6 +28,7 @@
                 "Name[ka]": "Ian Reinhart Geiser",
                 "Name[nl]": "Ian Reinhart Geiser",
                 "Name[sl]": "Ian Reinhart Geiser",
+                "Name[sv]": "Ian Reinhart Geiser",
                 "Name[tr]": "Ian Reinhart Geiser",
                 "Name[uk]": "Ian Reinhart Geiser",
                 "Name[x-test]": "xxIan Reinhart Geiserxx"
@@ -42,6 +44,7 @@
                 "Name[ka]": "Friedrich W. H. Kossebau",
                 "Name[nl]": "Friedrich W. H. Kossebau",
                 "Name[sl]": "Friedrich W. H. Kossebau",
+                "Name[sv]": "Friedrich W. H. Kossebau",
                 "Name[tr]": "Friedrich W. H. Kossebau",
                 "Name[uk]": "Friedrich W. H. Kossebau",
                 "Name[x-test]": "xxFriedrich W. H. Kossebauxx"
@@ -56,6 +59,7 @@
         "Description[ka]": "დიზაინერის UI ფაილების ჩვენება",
         "Description[nl]": "Toont UI-bestanden van Designer.",
         "Description[sl]": "Prikazuje datoteke Qt Designer",
+        "Description[sv]": "Visa Designers UI-filer",
         "Description[tr]": "Display Designer Arayüz Dosyaları",
         "Description[uk]": "Показує UI-файли програми Designer",
         "Description[x-test]": "xxDisplays Designer's UI filesxx",
@@ -74,6 +78,7 @@
         "Name[ka]": "KUIViewerPart",
         "Name[nl]": "KUIViewerPart",
         "Name[sl]": "KUIViewerPart",
+        "Name[sv]": "KUI-visningsdel",
         "Name[tr]": "KUIViewerPart",
         "Name[uk]": "KUIViewerPart",
         "Name[x-test]": "xxKUIViewerPartxx",
