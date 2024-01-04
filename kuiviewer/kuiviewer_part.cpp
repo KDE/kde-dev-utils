@@ -75,7 +75,7 @@ KUIViewerPart::KUIViewerPart(QWidget* parentWidget,
     //m_style->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     m_style->setEditable(false);
 
-    m_styleFromConfig = KConfigGroup(KSharedConfig::openConfig(), "General").readEntry("currentWidgetStyle", QString());
+    m_styleFromConfig = KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("General")).readEntry("currentWidgetStyle", QString());
 
     const QStringList styles = QStyleFactory::keys();
     m_style->setItems(QStringList(i18nc("Default style", "Default")) + styles);
@@ -319,7 +319,7 @@ void KUIViewerPart::slotStyle(int)
     /* the style changed, update the configuration */
     if (m_styleFromConfig != styleName) {
         KSharedConfig::Ptr cfg = KSharedConfig::openConfig();
-        KConfigGroup cg(cfg, "General");
+        KConfigGroup cg(cfg, QStringLiteral("General"));
         if (m_style->currentItem() > 0) {
             /* A style different from the default */
             cg.writeEntry("currentWidgetStyle", styleName);
