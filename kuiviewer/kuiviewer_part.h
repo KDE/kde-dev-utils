@@ -12,7 +12,6 @@
 #include "kuiviewer_part_interface.h"
 
 // KF
-#include <kparts_version.h>
 #include <KParts/ReadOnlyPart>
 // Qt
 #include <QPointer>

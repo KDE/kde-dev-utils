@@ -9,19 +9,11 @@ set (RELEASE_SERVICE_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_
 
 project(kde-dev-utils VERSION ${RELEASE_SERVICE_VERSION})
 
-set(QT_MIN_VERSION "5.15.2")
-set(KF_MIN_VERSION "5.100.0")
+set(QT_MIN_VERSION "6.5.0")
+set(KF_MIN_VERSION "5.245.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT_MIN_VERSION "6.5.0")
-    set(KF_MIN_VERSION "5.240.0")
-    set(KF_MAJOR_VERSION "6")
-else()
-    set(KF_MAJOR_VERSION "5")
-endif()
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -34,12 +26,12 @@ include(ECMDeprecationSettings)
 include(FeatureSummary)
 
 # Required for ki18n_install(po)
-find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n)
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED COMPONENTS Core)
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n)
+find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core)
 
 ecm_set_disabled_deprecation_versions(
-    QT 5.15.2
-    KF 5.91.0
+    QT 6.5
+    KF 5.245.0
 )
 
 add_subdirectory(kpartloader)

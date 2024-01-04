@@ -4,15 +4,13 @@ set(KUIVIEWER_VERSION "${KUIVIEWER_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSI
 
 include(ECMAddAppIcon)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE
-    COMPONENTS
+find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
     Core
     Designer
     UiTools
 )
 
-find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED
-    COMPONENTS
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     I18n
     KIO
@@ -37,18 +35,13 @@ file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kuiviewer.png")
 ecm_add_app_icon(kuiviewer ICONS ${ICONS_SRCS})
 
 target_link_libraries(kuiviewer
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::Parts
+    KF6::I18n
+    KF6::Parts
 )
 
 install(TARGETS kuiviewer  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
-
-if (QT_MAJOR_VERSION STREQUAL "5")
-    configure_file(kuiviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop @ONLY)
-else()
-    configure_file(kuiviewer_part.json.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.json @ONLY)
-endif()
+configure_file(kuiviewer_part.json.in ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.json @ONLY)
 
 add_library(kuiviewerpart MODULE)
 
@@ -64,39 +57,29 @@ ecm_qt_declare_logging_category(kuiviewerpart
     CATEGORY_NAME "kuiviewerpart"
 )
 
-if (QT_MAJOR_VERSION STREQUAL "5")
-    kcoreaddons_desktop_to_json(kuiviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop)
-endif()
-
 target_link_libraries(kuiviewerpart
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::Parts
-    Qt${QT_MAJOR_VERSION}::Designer
-    Qt${QT_MAJOR_VERSION}::UiTools
+    KF6::I18n
+    KF6::Parts
+    Qt6::Designer
+    Qt6::UiTools
 )
 
-install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${KF_MAJOR_VERSION}/parts )
+install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6}/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
-kcoreaddons_add_plugin(quithumbnail INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/thumbcreator")
+kcoreaddons_add_plugin(quithumbnail INSTALL_NAMESPACE "kf6/thumbcreator")
 
 target_sources(quithumbnail PRIVATE
     quicreator.cpp
 )
 
 target_link_libraries(quithumbnail
-    KF${KF_MAJOR_VERSION}::KIOGui
-    Qt${QT_MAJOR_VERSION}::Designer
-    Qt${QT_MAJOR_VERSION}::UiTools
+    KF6::KIOGui
+    Qt6::Designer
+    Qt6::UiTools
 )
 
 install( PROGRAMS org.kde.kuiviewer.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
-if (QT_MAJOR_VERSION STREQUAL "5")
-install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/kuiviewer_part.desktop
-    DESTINATION  ${KDE_INSTALL_KSERVICESDIR}
-)
-endif()
 install(FILES org.kde.kuiviewer.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 ecm_install_icons(ICONS

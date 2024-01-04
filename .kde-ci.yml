@@ -10,12 +10,3 @@ Dependencies:
     'frameworks/kparts': '@latest-kf6'
     'frameworks/kwidgetsaddons': '@latest-kf6'
     'frameworks/kio': '@latest-kf6'
-
-- 'on': ['Linux/Qt5', 'FreeBSD/Qt5']
-  'require':
-    'frameworks/extra-cmake-modules': '@stable'
-    'frameworks/ki18n': '@stable'
-    'frameworks/kcoreaddons': '@stable'
-    'frameworks/kparts': '@stable'
-    'frameworks/kwidgetsaddons': '@stable'
-    'frameworks/kio': '@stable'
