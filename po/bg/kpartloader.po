@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kde-dev-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2022-11-17 15:34+0200\n"
 "Last-Translator: Светослав Стефанов <svetlisashkov@yahoo.com>\n"
 "Language-Team: none\n"
@@ -28,32 +28,32 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "svetlisashkov@yahoo.com"
 
-#: kpartloader.cpp:33
+#: kpartloader.cpp:32
 #, kde-format
 msgid "&Quit"
 msgstr "&Изход"
 
-#: kpartloader.cpp:38
+#: kpartloader.cpp:37
 #, kde-format
 msgid "&About KPart..."
 msgstr "&Относно KPart..."
 
-#: kpartloader.cpp:46
+#: kpartloader.cpp:45
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Не е открита част с името %1."
 
-#: kpartloader.cpp:81
+#: kpartloader.cpp:76
 #, kde-format
 msgid "KPartLoader"
 msgstr "KPartLoader"
 
-#: kpartloader.cpp:83
+#: kpartloader.cpp:78
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "Това е тестово приложение за KParts."
 
-#: kpartloader.cpp:91
+#: kpartloader.cpp:86
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "Име на частта за зареждане, например dolphinpart"

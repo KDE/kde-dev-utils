@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2019-04-06 14:50+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -41,23 +41,23 @@ msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|Brukargrensesnitt-filer"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:63 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "Stil"
 
-#: kuiviewer_part.cpp:81
+#: kuiviewer_part.cpp:72
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr "Standard"
 
-#: kuiviewer_part.cpp:100
+#: kuiviewer_part.cpp:91
 #, kde-format
 msgid "Set the style used for the view."
 msgstr "Vel stilen som skal brukast til å visa vindauget."
 
-#: kuiviewer_part.cpp:104
+#: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
 msgstr "Kopier som bilete"
@@ -80,67 +80,67 @@ msgstr "&Vis"
 msgid "&File"
 msgstr "&Fil"
 
-#: main.cpp:33
+#: main.cpp:29
 #, kde-format
 msgid "KUIViewer"
 msgstr "KUIViewer"
 
-#: main.cpp:35
+#: main.cpp:31
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "Viser UI-filene til utformaren"
 
-#: main.cpp:37
+#: main.cpp:33
 #, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
-#: main.cpp:37 main.cpp:38
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr "Opphavsperson"
 
-#: main.cpp:38
+#: main.cpp:34
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
-#: main.cpp:40
+#: main.cpp:36
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
-#: main.cpp:40
+#: main.cpp:36
 #, kde-format
 msgid "Screenshot capability"
 msgstr "Støtte for skjermbilete"
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr "Friedrich W.H. Kossebau"
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr "Delvindaugsvising av UI-filer"
 
-#: main.cpp:49
+#: main.cpp:45
 #, kde-format
 msgid "Document to open"
 msgstr "Dokument som skal opnast"
 
-#: main.cpp:53
+#: main.cpp:49
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "Lagra skjermbiletet til ei fil og avslutt"
 
-#: main.cpp:55
+#: main.cpp:51
 #, kde-format
 msgid "Screenshot width"
 msgstr "Breidd på skjermbilete"
 
-#: main.cpp:57
+#: main.cpp:53
 #, kde-format
 msgid "Screenshot height"
 msgstr "Høgd på skjermbilete"

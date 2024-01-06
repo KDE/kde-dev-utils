@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kde-dev-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2023-06-05 08:01+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -27,32 +27,32 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "wantoyek@gmail.com"
 
-#: kpartloader.cpp:33
+#: kpartloader.cpp:32
 #, kde-format
 msgid "&Quit"
 msgstr "&Berhenti"
 
-#: kpartloader.cpp:38
+#: kpartloader.cpp:37
 #, kde-format
 msgid "&About KPart..."
 msgstr "&Tentang KPart..."
 
-#: kpartloader.cpp:46
+#: kpartloader.cpp:45
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Tidak ada part bernama %1 yang di temukan."
 
-#: kpartloader.cpp:81
+#: kpartloader.cpp:76
 #, kde-format
 msgid "KPartLoader"
 msgstr "KPartLoader"
 
-#: kpartloader.cpp:83
+#: kpartloader.cpp:78
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "Ini adalah sebuah aplikasi uji untuk KPart"
 
-#: kpartloader.cpp:91
+#: kpartloader.cpp:86
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "Nama dari part untuk memuat, misal dolphinpart"

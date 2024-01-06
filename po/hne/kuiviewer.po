@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2008-02-20 14:14+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -40,24 +40,24 @@ msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|यूजर इंटरफेस फाइल मन ल"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:63 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "सैली"
 
-#: kuiviewer_part.cpp:81
+#: kuiviewer_part.cpp:72
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr ""
 
-#: kuiviewer_part.cpp:100
+#: kuiviewer_part.cpp:91
 #, fuzzy, kde-format
 #| msgid "Set the current style to view."
 msgid "Set the style used for the view."
 msgstr "अभी हाल के सैली देखे बर सेट करव."
 
-#: kuiviewer_part.cpp:104
+#: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
 msgstr ""
@@ -80,68 +80,68 @@ msgstr "देखव (&V)"
 msgid "&File"
 msgstr "फाइल (&F)"
 
-#: main.cpp:33
+#: main.cpp:29
 #, kde-format
 msgid "KUIViewer"
 msgstr "के-यूआई-व्यूअर-पार्ट"
 
-#: main.cpp:35
+#: main.cpp:31
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "डिजाइनर के यूआई फाइल मन ल प्रदर्सित करथे "
 
-#: main.cpp:37
+#: main.cpp:33
 #, kde-format
 msgid "Richard Moore"
 msgstr "रिचर्ड मूर"
 
-#: main.cpp:37 main.cpp:38
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr ""
 
-#: main.cpp:38
+#: main.cpp:34
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "इयान रेनहार्ट गिसर"
 
-#: main.cpp:40
+#: main.cpp:36
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "बेंजामिन से मेयर"
 
-#: main.cpp:40
+#: main.cpp:36
 #, fuzzy, kde-format
 #| msgid "Screenshot width"
 msgid "Screenshot capability"
 msgstr "स्क्रीनसाट चौड़ाई"
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr ""
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr ""
 
-#: main.cpp:49
+#: main.cpp:45
 #, kde-format
 msgid "Document to open"
 msgstr "कागद जऊन ल खोलना हे"
 
-#: main.cpp:53
+#: main.cpp:49
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "स्क्रीनसाट फाइल मं सहेज कर बाहिर हों"
 
-#: main.cpp:55
+#: main.cpp:51
 #, kde-format
 msgid "Screenshot width"
 msgstr "स्क्रीनसाट चौड़ाई"
 
-#: main.cpp:57
+#: main.cpp:53
 #, kde-format
 msgid "Screenshot height"
 msgstr "स्क्रीनसाट ऊँचाई"

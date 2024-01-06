@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdesdk/kuiviewer.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -33,23 +33,23 @@ msgid "*.ui *.UI|User Interface Files"
 msgstr ""
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:63 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "Ardull"
 
-#: kuiviewer_part.cpp:81
+#: kuiviewer_part.cpp:72
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr ""
 
-#: kuiviewer_part.cpp:100
+#: kuiviewer_part.cpp:91
 #, kde-format
 msgid "Set the style used for the view."
 msgstr ""
 
-#: kuiviewer_part.cpp:104
+#: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
 msgstr ""
@@ -72,67 +72,67 @@ msgstr ""
 msgid "&File"
 msgstr ""
 
-#: main.cpp:33
+#: main.cpp:29
 #, kde-format
 msgid "KUIViewer"
 msgstr "KUIGwelydd"
 
-#: main.cpp:35
+#: main.cpp:31
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr ""
 
-#: main.cpp:37
+#: main.cpp:33
 #, kde-format
 msgid "Richard Moore"
 msgstr ""
 
-#: main.cpp:37 main.cpp:38
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr ""
 
-#: main.cpp:38
+#: main.cpp:34
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:36
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:36
 #, kde-format
 msgid "Screenshot capability"
 msgstr ""
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr ""
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr ""
 
-#: main.cpp:49
+#: main.cpp:45
 #, kde-format
 msgid "Document to open"
 msgstr "Dogfen i'w hagor"
 
-#: main.cpp:53
+#: main.cpp:49
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr ""
 
-#: main.cpp:55
+#: main.cpp:51
 #, kde-format
 msgid "Screenshot width"
 msgstr ""
 
-#: main.cpp:57
+#: main.cpp:53
 #, kde-format
 msgid "Screenshot height"
 msgstr ""

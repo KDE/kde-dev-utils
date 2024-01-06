@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdesdk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2009-07-31 02:54+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -29,33 +29,33 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: kpartloader.cpp:33
+#: kpartloader.cpp:32
 #, kde-format
 msgid "&Quit"
 msgstr "&Dil"
 
-#: kpartloader.cpp:38
+#: kpartloader.cpp:37
 #, kde-format
 msgid "&About KPart..."
 msgstr ""
 
-#: kpartloader.cpp:46
+#: kpartloader.cpp:45
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Asnjë pjesë e emërtuar %1 nuk u gjet."
 
-#: kpartloader.cpp:81
+#: kpartloader.cpp:76
 #, fuzzy, kde-format
 #| msgid "kpartloader"
 msgid "KPartLoader"
 msgstr "kpartloader"
 
-#: kpartloader.cpp:83
+#: kpartloader.cpp:78
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "Ky është një program testimi për KParts."
 
-#: kpartloader.cpp:91
+#: kpartloader.cpp:86
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "Emri i pjesës që duhet ngarkuar, p.sh. dolphinpart"

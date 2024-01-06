@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2009-06-04 12:04+0300\n"
 "Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -29,33 +29,33 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: kpartloader.cpp:33
+#: kpartloader.cpp:32
 #, kde-format
 msgid "&Quit"
 msgstr "&Iziet"
 
-#: kpartloader.cpp:38
+#: kpartloader.cpp:37
 #, kde-format
 msgid "&About KPart..."
 msgstr ""
 
-#: kpartloader.cpp:46
+#: kpartloader.cpp:45
 #, kde-format
 msgid "No part named %1 found."
 msgstr "Nav atrasta neviena daļa ar nosaukumu %1."
 
-#: kpartloader.cpp:81
+#: kpartloader.cpp:76
 #, fuzzy, kde-format
 #| msgid "kpartloader"
 msgid "KPartLoader"
 msgstr "kpartloader"
 
-#: kpartloader.cpp:83
+#: kpartloader.cpp:78
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "Šī ir KParts testēšanas programma."
 
-#: kpartloader.cpp:91
+#: kpartloader.cpp:86
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "Ielādējamās daļas nosaukums, piemēram, 'dolphinpart'"

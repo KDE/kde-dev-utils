@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:37+0000\n"
+"POT-Creation-Date: 2024-01-06 01:34+0000\n"
 "PO-Revision-Date: 2009-01-12 09:44+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -43,24 +43,24 @@ msgid "*.ui *.UI|User Interface Files"
 msgstr "*.ui *.UI|ឯកសារ​ចំណុច​ប្រទាក់​អ្នក​ប្រើ"
 
 #. i18n: ectx: ToolBar (styleBar)
-#: kuiviewer_part.cpp:72 kuiviewer_part.rc:11
+#: kuiviewer_part.cpp:63 kuiviewer_part.rc:11
 #, kde-format
 msgid "Style"
 msgstr "រចនាប័ទ្ម"
 
-#: kuiviewer_part.cpp:81
+#: kuiviewer_part.cpp:72
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
 msgstr ""
 
-#: kuiviewer_part.cpp:100
+#: kuiviewer_part.cpp:91
 #, fuzzy, kde-format
 #| msgid "Set the current style to view."
 msgid "Set the style used for the view."
 msgstr "កំណត់​រចនាប័ទ្ម​បច្ចុប្បន្ន​ត្រូ​វមើល ។"
 
-#: kuiviewer_part.cpp:104
+#: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
 msgstr ""
@@ -83,68 +83,68 @@ msgstr "មើល"
 msgid "&File"
 msgstr "ឯកសារ"
 
-#: main.cpp:33
+#: main.cpp:29
 #, kde-format
 msgid "KUIViewer"
 msgstr "KUIViewer"
 
-#: main.cpp:35
+#: main.cpp:31
 #, kde-format
 msgid "Displays Designer's UI files"
 msgstr "បង្ហាញ​ឯកសារ​ចំណុច​ប្រទាក់​អ្នក​ប្រើ​របស់​កម្មវិធី​រចនា"
 
-#: main.cpp:37
+#: main.cpp:33
 #, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
-#: main.cpp:37 main.cpp:38
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr ""
 
-#: main.cpp:38
+#: main.cpp:34
 #, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
-#: main.cpp:40
+#: main.cpp:36
 #, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
-#: main.cpp:40
+#: main.cpp:36
 #, fuzzy, kde-format
 #| msgid "Screenshot width"
 msgid "Screenshot capability"
 msgstr "ទទឹង​រូបថត​អេក្រង់"
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
 msgstr ""
 
-#: main.cpp:41
+#: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
 msgstr ""
 
-#: main.cpp:49
+#: main.cpp:45
 #, kde-format
 msgid "Document to open"
 msgstr "ឯកសារ​ត្រូវ​បើក"
 
-#: main.cpp:53
+#: main.cpp:49
 #, kde-format
 msgid "Save screenshot to file and exit"
 msgstr "រក្សាទុក​រូបថត​អេក្រង់​ទៅ​កាន់​ឯកសារ ហើយ​ចេញ"
 
-#: main.cpp:55
+#: main.cpp:51
 #, kde-format
 msgid "Screenshot width"
 msgstr "ទទឹង​រូបថត​អេក្រង់"
 
-#: main.cpp:57
+#: main.cpp:53
 #, kde-format
 msgid "Screenshot height"
 msgstr "កម្ពស់​រូបថត​អេក្រង់"
