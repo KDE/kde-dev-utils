@@ -64,7 +64,7 @@ target_link_libraries(kuiviewerpart
     Qt6::UiTools
 )
 
-install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6}/parts )
+install(TARGETS kuiviewerpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/parts )
 install(FILES org.kde.kuiviewerpart.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 kcoreaddons_add_plugin(quithumbnail INSTALL_NAMESPACE "kf6/thumbcreator")
