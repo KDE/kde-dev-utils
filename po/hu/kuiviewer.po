@@ -1,36 +1,36 @@
 #
 # Tamas Szanto <tszanto@interware.hu>, 2003.
 # Balázs Úr <urbalazs@gmail.com>, 2012.
+# SPDX-FileCopyrightText: 2024 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:34+0000\n"
-"PO-Revision-Date: 2012-10-05 21:35+0200\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"PO-Revision-Date: 2024-01-15 21:36+0100\n"
+"Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Szántó Tamás"
+msgstr "Kiszel Kristóf"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "tszanto@interware.hu"
+msgstr "ulysses@fsf.hu"
 
 #: kuiviewer.cpp:63
-#, fuzzy, kde-format
-#| msgid "Unable to locate Kuiviewer kpart."
+#, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr "Nem található a Kuiviewer objektum."
+msgstr "A KUiViewer KPart nem található vagy nem tölthető be."
 
 #: kuiviewer.cpp:93
 #, kde-format
@@ -47,13 +47,12 @@ msgstr "Stílus"
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
-msgstr ""
+msgstr "Alapértelmezett"
 
 #: kuiviewer_part.cpp:91
-#, fuzzy, kde-format
-#| msgid "Set the current style to view."
+#, kde-format
 msgid "Set the style used for the view."
-msgstr "Az aktív stílus beállítása."
+msgstr "A nézet stílusának beállítása."
 
 #: kuiviewer_part.cpp:95
 #, kde-format
@@ -96,7 +95,7 @@ msgstr "Richard Moore"
 #: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
-msgstr ""
+msgstr "Eredeti szerző"
 
 #: main.cpp:34
 #, kde-format
@@ -109,20 +108,19 @@ msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
 #: main.cpp:36
-#, fuzzy, kde-format
-#| msgid "Screenshot width"
+#, kde-format
 msgid "Screenshot capability"
-msgstr "A felvétel szélessége"
+msgstr "Képernyőkép-készítési képesség"
 
 #: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
-msgstr ""
+msgstr "Friedrich W. H. Kossebau"
 
 #: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
-msgstr ""
+msgstr "UI-fájlok alablakszerű megjelenítése"
 
 #: main.cpp:45
 #, kde-format
