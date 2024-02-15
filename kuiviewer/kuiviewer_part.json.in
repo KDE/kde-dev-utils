@@ -4,6 +4,7 @@
             {
                 "Email": "rich@kde.org",
                 "Name": "Richard Moore",
+                "Name[bg]": "Richard Moore",
                 "Name[ca@valencia]": "Richard Moore",
                 "Name[ca]": "Richard Moore",
                 "Name[eo]": "Richard Moore",
@@ -30,6 +31,7 @@
             {
                 "Email": "geiseri@kde.org",
                 "Name": "Ian Reinhart Geiser",
+                "Name[bg]": "Ian Reinhart Geiser",
                 "Name[ca@valencia]": "Ian Reinhart Geiser",
                 "Name[ca]": "Ian Reinhart Geiser",
                 "Name[eo]": "Ian Reinhart Geiser",
@@ -56,6 +58,7 @@
             {
                 "Email": "kossebau@kde.org",
                 "Name": "Friedrich W. H. Kossebau",
+                "Name[bg]": "Friedrich W. H. Kossebau",
                 "Name[ca@valencia]": "Friedrich W. H. Kossebau",
                 "Name[ca]": "Friedrich W. H. Kossebau",
                 "Name[cs]": "Friedrich W. H. Kossebau",
@@ -82,6 +85,7 @@
             }
         ],
         "Description": "Displays Designer's UI files",
+        "Description[bg]": "Визуализатор на дизайнерските файлове за потребителския интерфейс",
         "Description[ca@valencia]": "Mostra els fitxers UI de Designer",
         "Description[ca]": "Mostra els fitxers UI del Designer",
         "Description[eo]": "Montras UI-dosierojn de Designer",
@@ -111,6 +115,7 @@
             "application/x-designer"
         ],
         "Name": "KUIViewerPart",
+        "Name[bg]": "KUIViewerPart",
         "Name[ca@valencia]": "KUIViewerPart",
         "Name[ca]": "KUIViewerPart",
         "Name[cs]": "KUIViewerPart",
