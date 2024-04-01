@@ -27,7 +27,8 @@
                 "Name[sv]": "Richard Moore",
                 "Name[tr]": "Richard Moore",
                 "Name[uk]": "Richard Moore",
-                "Name[x-test]": "xxRichard Moorexx"
+                "Name[x-test]": "xxRichard Moorexx",
+                "Name[zh_CN]": "Richard Moore"
             },
             {
                 "Email": "geiseri@kde.org",
@@ -55,7 +56,8 @@
                 "Name[sv]": "Ian Reinhart Geiser",
                 "Name[tr]": "Ian Reinhart Geiser",
                 "Name[uk]": "Ian Reinhart Geiser",
-                "Name[x-test]": "xxIan Reinhart Geiserxx"
+                "Name[x-test]": "xxIan Reinhart Geiserxx",
+                "Name[zh_CN]": "Ian Reinhart Geiser"
             },
             {
                 "Email": "kossebau@kde.org",
@@ -84,7 +86,8 @@
                 "Name[sv]": "Friedrich W. H. Kossebau",
                 "Name[tr]": "Friedrich W. H. Kossebau",
                 "Name[uk]": "Friedrich W. H. Kossebau",
-                "Name[x-test]": "xxFriedrich W. H. Kossebauxx"
+                "Name[x-test]": "xxFriedrich W. H. Kossebauxx",
+                "Name[zh_CN]": "Friedrich W. H. Kossebau"
             }
         ],
         "Description": "Displays Designer's UI files",
@@ -112,6 +115,7 @@
         "Description[tr]": "Display Designer Arayüz Dosyaları",
         "Description[uk]": "Показує UI-файли програми Designer",
         "Description[x-test]": "xxDisplays Designer's UI filesxx",
+        "Description[zh_CN]": "显示 Designer 的 UI 文件",
         "Icon": "kuiviewer",
         "Id": "kuiviewerpart",
         "License": "LGPL",
@@ -144,6 +148,7 @@
         "Name[tr]": "KUIViewerPart",
         "Name[uk]": "KUIViewerPart",
         "Name[x-test]": "xxKUIViewerPartxx",
+        "Name[zh_CN]": "KUIViewerPart",
         "ServiceTypes": [
             "KParts/ReadOnlyPart"
         ],
