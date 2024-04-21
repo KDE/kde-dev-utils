@@ -13,6 +13,9 @@
   <extends>org.kde.konqueror.desktop</extends>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.0</project_license>
+  <developer id="org.kde">
+    <name translate="no">KDE</name>
+  </developer>
   <name>KUIViewer KPart</name>
   <name xml:lang="az">KUIViewer KPart</name>
   <name xml:lang="bg">KUIViewer KPart</name>
