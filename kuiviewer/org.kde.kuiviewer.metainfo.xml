@@ -7,7 +7,6 @@
     <name translate="no">KDE</name>
   </developer>
   <name>KUIViewer</name>
-  <name xml:lang="ast">KUIViewer</name>
   <name xml:lang="az">KUIViewer</name>
   <name xml:lang="bg">KUIViewer</name>
   <name xml:lang="ca">KUIViewer</name>
@@ -23,7 +22,6 @@
   <name xml:lang="fi">KUIViewer</name>
   <name xml:lang="fr">KUIViewer</name>
   <name xml:lang="gl">KUIViewer</name>
-  <name xml:lang="he">KUIViewer</name>
   <name xml:lang="hu">KUIViewer</name>
   <name xml:lang="ia">KUIViewer</name>
   <name xml:lang="id">KUIViewer</name>
@@ -61,7 +59,6 @@
   <summary xml:lang="fi">Qt Designerin käyttöliittymätiedostokatselin</summary>
   <summary xml:lang="fr">Afficheur de fichiers d'interface graphique « Qt Designer »</summary>
   <summary xml:lang="gl">Visor de ficheiros UI de Qt Designer</summary>
-  <summary xml:lang="he">מציג קובצי UI של Qt Designer</summary>
   <summary xml:lang="hu">Qt Designer UI-fájlnézegető</summary>
   <summary xml:lang="ia">Visor de File de UI de Qt Designer</summary>
   <summary xml:lang="id">Penampil File Qt Designer UI</summary>
@@ -100,7 +97,6 @@
     <p xml:lang="fi">KUIViewer on työkalu Qt Designerin luomien käyttöliittymätiedostojen (.ui) näyttämiseen ja tarkistamiseen.</p>
     <p xml:lang="fr">KUIViewer est un outil permettant d'afficher et de consulter les fichiers d'interface utilisateur (.ui) créés avec Qt Designer.</p>
     <p xml:lang="gl">KUIViewer é unha ferramenta para amosar e comprobar ficheiros de interface de usuario (.ui) creados con Qt Designer.</p>
-    <p xml:lang="he">‏KUIViewer הוא כלי להצגת ובדיקת קובצי ממשק משתמש (‎.ui) שנוצרו על ידי Qt Designer.</p>
     <p xml:lang="hu">A KUIViewer egy eszköz a Qt Designerben létrehozott felhasználóifelület-fájlok (.ui) megjelenítésére és ellenőrzésére.</p>
     <p xml:lang="ia">KUIViewer es un instrumento per monstrar e verificar le files de usator (.ui) create in Qt Designer.</p>
     <p xml:lang="id">KUIViewer adalah sebuah alat untuk menampilkan dan memeriksa file-file antarmuka pengguna (.ui) yang dibuat di Qt Designer.</p>
