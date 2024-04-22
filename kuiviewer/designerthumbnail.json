@@ -5,6 +5,7 @@
             "application/x-designer"
         ],
         "Name": "Qt Designer Files",
+        "Name[bg]": "Файлове на Qt Designer",
         "Name[ca@valencia]": "Fitxers de Qt Designer",
         "Name[ca]": "Fitxers del Qt Designer",
         "Name[cs]": "Soubory Qt designeru",
@@ -15,7 +16,6 @@
         "Name[fi]": "Qt Designer -tiedostot",
         "Name[fr]": "Fichiers pour Qt Designer",
         "Name[gl]": "Ficheiros de Qt Designer",
-        "Name[he]": "קובצי Qt Designer",
         "Name[hu]": "Qt Designer fájlok",
         "Name[ia]": "Files de Qt Designer",
         "Name[it]": "File di Qt Designer",
@@ -31,7 +31,6 @@
         "Name[tr]": "Qt Designer Dosyaları",
         "Name[uk]": "файли Qt Designer",
         "Name[x-test]": "xxQt Designer Filesxx",
-        "Name[zh_CN]": "Qt Designer 文件",
-        "Name[zh_TW]": "Qt Designer 檔案"
+        "Name[zh_CN]": "Qt Designer 文件"
     }
 }

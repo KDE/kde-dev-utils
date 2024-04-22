@@ -4,6 +4,7 @@
             {
                 "Email": "rich@kde.org",
                 "Name": "Richard Moore",
+                "Name[bg]": "Richard Moore",
                 "Name[ca@valencia]": "Richard Moore",
                 "Name[ca]": "Richard Moore",
                 "Name[de]": "Richard Moore",
@@ -12,7 +13,6 @@
                 "Name[eu]": "Richard Moore",
                 "Name[fr]": "Richard Moore",
                 "Name[gl]": "Richard Moore",
-                "Name[he]": "ריצ׳ארד מור",
                 "Name[hu]": "Richard Moore",
                 "Name[ia]": "Richard Moore",
                 "Name[it]": "Richard Moore",
@@ -28,12 +28,12 @@
                 "Name[tr]": "Richard Moore",
                 "Name[uk]": "Richard Moore",
                 "Name[x-test]": "xxRichard Moorexx",
-                "Name[zh_CN]": "Richard Moore",
-                "Name[zh_TW]": "Richard Moore"
+                "Name[zh_CN]": "Richard Moore"
             },
             {
                 "Email": "geiseri@kde.org",
                 "Name": "Ian Reinhart Geiser",
+                "Name[bg]": "Ian Reinhart Geiser",
                 "Name[ca@valencia]": "Ian Reinhart Geiser",
                 "Name[ca]": "Ian Reinhart Geiser",
                 "Name[de]": "Ian Reinhart Geiser",
@@ -42,7 +42,6 @@
                 "Name[eu]": "Ian Reinhart Geiser",
                 "Name[fr]": "Ian Reinhart Geiser",
                 "Name[gl]": "Ian Reinhart Geiser",
-                "Name[he]": "איאן ריינהארט גייזר",
                 "Name[hu]": "Ian Reinhart Geiser",
                 "Name[ia]": "Ian Reinhart Geiser",
                 "Name[it]": "Ian Reinhart Geiser",
@@ -58,12 +57,12 @@
                 "Name[tr]": "Ian Reinhart Geiser",
                 "Name[uk]": "Ian Reinhart Geiser",
                 "Name[x-test]": "xxIan Reinhart Geiserxx",
-                "Name[zh_CN]": "Ian Reinhart Geiser",
-                "Name[zh_TW]": "Ian Reinhart Geiser"
+                "Name[zh_CN]": "Ian Reinhart Geiser"
             },
             {
                 "Email": "kossebau@kde.org",
                 "Name": "Friedrich W. H. Kossebau",
+                "Name[bg]": "Friedrich W. H. Kossebau",
                 "Name[ca@valencia]": "Friedrich W. H. Kossebau",
                 "Name[ca]": "Friedrich W. H. Kossebau",
                 "Name[cs]": "Friedrich W. H. Kossebau",
@@ -73,7 +72,6 @@
                 "Name[eu]": "Friedrich W. H. Kossebau",
                 "Name[fr]": "Friedrich W. H. Kossebau",
                 "Name[gl]": "Friedrich W. H. Kossebau",
-                "Name[he]": "פרידריך ו. ה. קוסבאו",
                 "Name[hu]": "Friedrich W. H. Kossebau",
                 "Name[ia]": "Friedrich W. H. Kossebau",
                 "Name[it]": "Friedrich W. H. Kossebau",
@@ -89,11 +87,11 @@
                 "Name[tr]": "Friedrich W. H. Kossebau",
                 "Name[uk]": "Friedrich W. H. Kossebau",
                 "Name[x-test]": "xxFriedrich W. H. Kossebauxx",
-                "Name[zh_CN]": "Friedrich W. H. Kossebau",
-                "Name[zh_TW]": "Friedrich W. H. Kossebau"
+                "Name[zh_CN]": "Friedrich W. H. Kossebau"
             }
         ],
         "Description": "Displays Designer's UI files",
+        "Description[bg]": "Визуализатор на дизайнерските файлове за потребителския интерфейс",
         "Description[ca@valencia]": "Mostra els fitxers UI de Designer",
         "Description[ca]": "Mostra els fitxers UI del Designer",
         "Description[de]": "UI-Dateien des Designers anzeigen",
@@ -102,7 +100,6 @@
         "Description[eu]": "Diseinatzailearen EI fitxategiak azaltzen ditu",
         "Description[fr]": "Affiche les fichiers d’interface utilisateur du concepteur",
         "Description[gl]": "Amosa ficheiros UI de Designer",
-        "Description[he]": "מציג קובצי UI של Designer",
         "Description[hu]": "Megjeleníti a Designer UI-fájljait",
         "Description[ia]": "Monstra Files de UI de Designer",
         "Description[it]": "Visualizza i file UI di Designer",
@@ -119,7 +116,6 @@
         "Description[uk]": "Показує UI-файли програми Designer",
         "Description[x-test]": "xxDisplays Designer's UI filesxx",
         "Description[zh_CN]": "显示 Designer 的 UI 文件",
-        "Description[zh_TW]": "用來顯示 Designer 的 UI 檔案",
         "Icon": "kuiviewer",
         "Id": "kuiviewerpart",
         "License": "LGPL",
@@ -127,7 +123,7 @@
             "application/x-designer"
         ],
         "Name": "KUIViewerPart",
-        "Name[ast]": "KUIViewerPart",
+        "Name[bg]": "KUIViewerPart",
         "Name[ca@valencia]": "KUIViewerPart",
         "Name[ca]": "KUIViewerPart",
         "Name[cs]": "KUIViewerPart",
@@ -137,7 +133,6 @@
         "Name[eu]": "KUIViewerPart",
         "Name[fr]": "KUIViewerPart",
         "Name[gl]": "KUIViewerPart",
-        "Name[he]": "KUIViewerPart",
         "Name[hu]": "KUIViewerPart",
         "Name[ia]": "KUIViewerPart",
         "Name[it]": "KUIViewerPart",
@@ -154,7 +149,6 @@
         "Name[uk]": "KUIViewerPart",
         "Name[x-test]": "xxKUIViewerPartxx",
         "Name[zh_CN]": "KUIViewerPart",
-        "Name[zh_TW]": "KUIViewerPart",
         "ServiceTypes": [
             "KParts/ReadOnlyPart"
         ],
