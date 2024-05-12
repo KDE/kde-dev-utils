@@ -40,7 +40,7 @@ msgstr "I&x"
 #: kpartloader.cpp:37
 #, kde-format
 msgid "&About KPart..."
-msgstr "&Quant a les KPart..."
+msgstr "&Quant a les KPart…"
 
 #: kpartloader.cpp:45
 #, kde-format
