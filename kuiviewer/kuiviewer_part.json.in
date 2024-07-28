@@ -17,6 +17,7 @@
                 "Email": "kossebau@kde.org",
                 "Name": "Friedrich W. H. Kossebau",
                 "Name[he]": "פרידריך ו. ה. קוסבאו",
+                "Name[nn]": "Friedrich W.H. Kossebau",
                 "Name[x-test]": "xxFriedrich W. H. Kossebauxx"
             }
         ],
@@ -38,6 +39,7 @@
         "Description[ka]": "დიზაინერის UI ფაილების ჩვენება",
         "Description[ko]": "Designer의 UI 파일을 표시합니다",
         "Description[nl]": "Toont UI-bestanden van Designer.",
+        "Description[nn]": "Viser UI-filene til utformaren",
         "Description[pl]": "Wyświetla pliki UI Designera",
         "Description[pt_BR]": "Exibe arquivos UI do Designer",
         "Description[ru]": "Показывает UI-файлы программы Designer.",
