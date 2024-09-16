@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kdesdk-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:34+0000\n"
-"PO-Revision-Date: 2024-02-09 19:12+0300\n"
+"PO-Revision-Date: 2024-09-15 21:51+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -39,7 +39,7 @@ msgstr "K Arayüzcü KPart’ı bulunamadı veya yüklenemedi."
 #: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
-msgstr "*.ui *.UI|Kullanıcı Arayüzü Dosyaları"
+msgstr "*.ui *.UI|Kullanıcı arayüzü dosyaları"
 
 #. i18n: ectx: ToolBar (styleBar)
 #: kuiviewer_part.cpp:63 kuiviewer_part.rc:11
@@ -61,7 +61,7 @@ msgstr "Görüntü için kullanılan biçemi ayarlayın."
 #: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
-msgstr "Resim olarak Kopyala"
+msgstr "Görsel Olarak Kopyala"
 
 #. i18n: ectx: Menu (edit)
 #: kuiviewer_part.rc:4 kuiviewerui.rc:6
@@ -89,7 +89,7 @@ msgstr "K Arayüzcü"
 #: main.cpp:31
 #, kde-format
 msgid "Displays Designer's UI files"
-msgstr "Designer‘ın UI dosyalarını görüntüler"
+msgstr "Designer’ın UI dosyalarını görüntüler"
 
 #: main.cpp:33
 #, kde-format
@@ -99,7 +99,7 @@ msgstr "Richard Moore"
 #: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
-msgstr "İlk yazar"
+msgstr "Özgün yazar"
 
 #: main.cpp:34
 #, kde-format
