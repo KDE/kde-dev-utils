@@ -38,6 +38,13 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
     connect(a, SIGNAL(triggered()), this, SLOT(aboutKPart()));
 
     auto factory = KPluginFactory::loadFactory(KPluginMetaData(partLib));
+    if (!factory && !partLib.contains('/')) {
+        qDebug() << "No part named" << partLib << "found directly, trying to load from kf6/parts/";
+        auto fallback = KPluginFactory::loadFactory(KPluginMetaData(QLatin1String("kf6/parts/") + partLib));
+        if (fallback)
+            factory = fallback;
+    }
+
     if (factory) {
         // Create the part
         m_part = factory.plugin->create<KParts::ReadOnlyPart>(this, this);
