@@ -22,6 +22,7 @@
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QIcon>
+#include <QDir>
 
 
 KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
@@ -92,6 +93,9 @@ int main( int argc, char **argv )
     aboutData.setupCommandLine(&parser);
     parser.addPositionalArgument(QLatin1String("part"), i18n("Name of the part to load, e.g. dolphinpart"));
 
+    QCommandLineOption url("url", "URL to open in the KPart", "url");
+    parser.addOption(url);
+
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
@@ -100,6 +104,13 @@ int main( int argc, char **argv )
     {
         KPartLoaderWindow *shell = new KPartLoaderWindow(args.at(0));
         shell->show();
+
+        if (parser.isSet(url)) {
+            shell->part()->openUrl(QUrl::fromUserInput(parser.value(url),
+                                                       QDir::currentPath(),
+                                                       QUrl::AssumeLocalFile));
+        }
+
         return app.exec();
     }
     return -1;

@@ -18,6 +18,8 @@ public:
   explicit KPartLoaderWindow(const QString& partLib);
   ~KPartLoaderWindow() override;
 
+  KParts::ReadOnlyPart *part() const { return m_part; }
+
 private Q_SLOTS:
   void aboutKPart();
 
