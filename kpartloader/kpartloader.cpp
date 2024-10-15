@@ -37,12 +37,12 @@ KPartLoaderWindow::KPartLoaderWindow(const QString& partLib)
     a->setText(i18n("&About KPart..."));
     connect(a, SIGNAL(triggered()), this, SLOT(aboutKPart()));
 
-    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData(partLib)).plugin;
+    auto factory = KPluginFactory::loadFactory(KPluginMetaData(partLib));
     if (factory) {
         // Create the part
-        m_part = factory->create<KParts::ReadOnlyPart>(this, this);
+        m_part = factory.plugin->create<KParts::ReadOnlyPart>(this, this);
     } else {
-        KMessageBox::error(this, i18n("No part named %1 found.", partLib));
+        KMessageBox::error(this, i18n("No part named %1 found: %2", partLib, factory.errorString));
     }
 
     if (m_part) {
