@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:34+0000\n"
+"POT-Creation-Date: 2024-10-16 00:43+0000\n"
 "PO-Revision-Date: 2021-01-11 12:50+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -29,32 +29,33 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "pvidalis@gmail.com"
 
-#: kpartloader.cpp:32
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "Έ&ξοδος"
 
-#: kpartloader.cpp:37
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr "&Σχετικά με το KPart..."
 
-#: kpartloader.cpp:45
-#, kde-format
-msgid "No part named %1 found."
+#: kpartloader.cpp:53
+#, fuzzy, kde-format
+#| msgid "No part named %1 found."
+msgid "No part named %1 found: %2"
 msgstr "Δε βρέθηκε τμήμα με όνομα %1."
 
-#: kpartloader.cpp:76
+#: kpartloader.cpp:84
 #, kde-format
 msgid "KPartLoader"
 msgstr "kPartLoader"
 
-#: kpartloader.cpp:78
+#: kpartloader.cpp:86
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "Αυτή είναι μια εφαρμογή ελέγχου του KParts."
 
-#: kpartloader.cpp:86
+#: kpartloader.cpp:94
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "Όνομα τμήματος για φόρτωμα, π.χ. dolphinpart"

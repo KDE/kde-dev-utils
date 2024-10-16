@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kde-dev-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:34+0000\n"
+"POT-Creation-Date: 2024-10-16 00:43+0000\n"
 "PO-Revision-Date: 2020-09-27 12:47+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -28,33 +28,34 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "sergiu@cip.md"
 
-#: kpartloader.cpp:32
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "&Termină"
 
-#: kpartloader.cpp:37
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr "&Despre KPart..."
 
-#: kpartloader.cpp:45
-#, kde-format
-msgid "No part named %1 found."
+#: kpartloader.cpp:53
+#, fuzzy, kde-format
+#| msgid "No part named %1 found."
+msgid "No part named %1 found: %2"
 msgstr "Nu s-a găsit nicio componentă cu denumirea %1."
 
-#: kpartloader.cpp:76
+#: kpartloader.cpp:84
 #, fuzzy, kde-format
 #| msgid "kpartloader"
 msgid "KPartLoader"
 msgstr "kpartloader"
 
-#: kpartloader.cpp:78
+#: kpartloader.cpp:86
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "Aceasta e o aplicație de test pentru KParts."
 
-#: kpartloader.cpp:86
+#: kpartloader.cpp:94
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "Denumirea componentei de încărcat, de exemplu dolphinpart"

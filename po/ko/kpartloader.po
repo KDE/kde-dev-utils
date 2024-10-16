@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:34+0000\n"
+"POT-Creation-Date: 2024-10-16 00:43+0000\n"
 "PO-Revision-Date: 2021-05-16 20:17+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -27,32 +27,33 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kde@peremen.name"
 
-#: kpartloader.cpp:32
+#: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
 msgstr "끝내기(&Q)"
 
-#: kpartloader.cpp:37
+#: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
 msgstr "KPart 정보(&A)..."
 
-#: kpartloader.cpp:45
-#, kde-format
-msgid "No part named %1 found."
+#: kpartloader.cpp:53
+#, fuzzy, kde-format
+#| msgid "No part named %1 found."
+msgid "No part named %1 found: %2"
 msgstr "이름이 %1인 부분이 없습니다."
 
-#: kpartloader.cpp:76
+#: kpartloader.cpp:84
 #, kde-format
 msgid "KPartLoader"
 msgstr "KPartLoader"
 
-#: kpartloader.cpp:78
+#: kpartloader.cpp:86
 #, kde-format
 msgid "This is a test application for KParts."
 msgstr "KPart 테스트 앱입니다."
 
-#: kpartloader.cpp:86
+#: kpartloader.cpp:94
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
 msgstr "불러올 부분의 이름. 예를 들어서 dolphinpart"
