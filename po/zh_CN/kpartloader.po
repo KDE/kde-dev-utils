@@ -38,10 +38,9 @@ msgid "&About KPart..."
 msgstr "关于 KPart(&A)..."
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "未找到名为 %1 的部件。"
+msgstr ""
 
 #: kpartloader.cpp:84
 #, kde-format
