@@ -40,7 +40,7 @@ msgstr "关于 KPart(&A)..."
 #: kpartloader.cpp:53
 #, kde-format
 msgid "No part named %1 found: %2"
-msgstr ""
+msgstr "找不到名为 %1 的部件：%2"
 
 #: kpartloader.cpp:84
 #, kde-format
