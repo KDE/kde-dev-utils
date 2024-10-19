@@ -39,10 +39,9 @@ msgid "&About KPart..."
 msgstr "O &aplikaci KPart..."
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "Nebyl nalezen part %1."
+msgstr ""
 
 #: kpartloader.cpp:84
 #, kde-format
