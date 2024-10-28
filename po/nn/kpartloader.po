@@ -1,7 +1,6 @@
 # Translation of kpartloader to Norwegian Nynorsk
 #
 # Eirik U. Birkeland <eirbir@gmail.com>, 2008, 2009.
-# Karl Ove Hufthammer <karl@huftis.org>, 2018, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4\n"
@@ -15,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.3\n"
+"X-Generator: Lokalize 24.11.70\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
