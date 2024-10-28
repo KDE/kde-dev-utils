@@ -1,13 +1,12 @@
 # Translation of kpartloader to Norwegian Nynorsk
 #
 # Eirik U. Birkeland <eirbir@gmail.com>, 2008, 2009.
-# Karl Ove Hufthammer <karl@huftis.org>, 2018, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-16 00:43+0000\n"
-"PO-Revision-Date: 2020-11-16 20:01+0100\n"
+"PO-Revision-Date: 2024-10-27 14:48+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
@@ -15,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.3\n"
+"X-Generator: Lokalize 24.11.70\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -41,10 +40,9 @@ msgid "&About KPart..."
 msgstr "&Om KPart …"
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "Fann ikkje nokon del med namnet %1."
+msgstr "Fann ikkje nokon del med namnet %1: %2"
 
 #: kpartloader.cpp:84
 #, kde-format
