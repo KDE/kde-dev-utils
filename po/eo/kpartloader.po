@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-16 00:43+0000\n"
-"PO-Revision-Date: 2023-05-17 11:58+0100\n"
+"PO-Revision-Date: 2024-12-27 10:42+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -39,10 +39,9 @@ msgid "&About KPart..."
 msgstr "Pri KP&art..."
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "Trovis neniun parton nomita %1."
+msgstr "Trovis neniun parton nomita %1: %2"
 
 #: kpartloader.cpp:84
 #, kde-format
