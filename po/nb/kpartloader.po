@@ -41,7 +41,6 @@ msgstr ""
 
 #: kpartloader.cpp:53
 #, fuzzy, kde-format
-#| msgid "No part named %1 found."
 msgid "No part named %1 found: %2"
 msgstr "Fant ingen del med navnet %1."
 
