@@ -3,31 +3,32 @@
 #
 # Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2008.
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+# SPDX-FileCopyrightText: 2025 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-16 00:43+0000\n"
-"PO-Revision-Date: 2009-06-04 12:04+0300\n"
-"Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2025-01-31 16:34+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 24.12.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Toms Trasūns"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "toms.trasuns@posteo.net"
 
 #: kpartloader.cpp:33
 #, kde-format
@@ -37,38 +38,36 @@ msgstr "&Iziet"
 #: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
-msgstr ""
+msgstr "&Par „KPart“..."
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "Nav atrasta neviena daļa ar nosaukumu %1."
+msgstr "Nav atrasta neviena daļa ar nosaukumu „%1“: %2"
 
 #: kpartloader.cpp:84
-#, fuzzy, kde-format
-#| msgid "kpartloader"
+#, kde-format
 msgid "KPartLoader"
-msgstr "kpartloader"
+msgstr "KPartLoader"
 
 #: kpartloader.cpp:86
 #, kde-format
 msgid "This is a test application for KParts."
-msgstr "Šī ir KParts testēšanas programma."
+msgstr "Šī ir „KParts“ testēšanas programma."
 
 #: kpartloader.cpp:94
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
-msgstr "Ielādējamās daļas nosaukums, piemēram, 'dolphinpart'"
+msgstr "Ielādējamās daļas nosaukums, piemēram, „dolphinpart“"
 
 #. i18n: ectx: Menu (file)
 #: kpartloaderui.rc:4
 #, kde-format
 msgid "&File"
-msgstr "&Fails"
+msgstr "&Datne"
 
 #. i18n: ectx: Menu (help)
 #: kpartloaderui.rc:8
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Palīdzība"
