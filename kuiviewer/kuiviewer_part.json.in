@@ -148,7 +148,6 @@
         "Description[zh_CN]": "显示 Designer 的 UI 文件",
         "Description[zh_TW]": "用來顯示 Designer 的 UI 檔案",
         "Icon": "kuiviewer",
-        "Id": "kuiviewerpart",
         "License": "LGPL",
         "MimeTypes": [
             "application/x-designer"
