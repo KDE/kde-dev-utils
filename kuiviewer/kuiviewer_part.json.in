@@ -190,7 +190,7 @@
         "ServiceTypes": [
             "KParts/ReadOnlyPart"
         ],
-        "Version": "@@KUIVIEWER_VERSION@@"
+        "Version": "@KUIVIEWER_VERSION@"
     },
     "MimeType": "application/x-designer;"
 }
