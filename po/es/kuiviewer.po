@@ -1,17 +1,18 @@
-# translation of kuiviewer.po to Spanish
-# Copyright (C) 2003, 2004, 2005, 2007 Free Software Foundation, Inc.
+# Spanish translations for kuiviewer.po package.
+# Copyright (C) 2003-2025 This file is copyright:
+# This file is distributed under the same license as the kde-dev-utils package.
 #
-# Miguel Revilla Rodríguez <yo@miguelrevilla.com>, 2003.
-# Pedro Jurado Maqueda <pjmelenas@biwemail.com>, 2003.
-# Pedro Jurado Maqueda <melenas@kdehispano.org>, 2003, 2004, 2005.
-# Jaime Robles <jaime@kde.org>, 2004.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2007, 2012, 2017, 2019.
+# SPDX-FileCopyrightText: 2003 Miguel Revilla Rodríguez <yo@miguelrevilla.com>
+# SPDX-FileCopyrightText: 2003 Pedro Jurado Maqueda <pjmelenas@biwemail.com>
+# SPDX-FileCopyrightText: 2003, 2004, 2005 Pedro Jurado Maqueda <melenas@kdehispano.org>
+# SPDX-FileCopyrightText: 2004 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2007, 2012, 2017, 2019, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:34+0000\n"
-"PO-Revision-Date: 2019-03-10 14:01+0100\n"
+"PO-Revision-Date: 2025-05-12 14:04+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -145,6 +146,3 @@ msgstr "Ancho de la captura"
 #, kde-format
 msgid "Screenshot height"
 msgstr "Altura de la captura"
-
-#~ msgid "KUIViewerPart"
-#~ msgstr "KUIViewerPart"
