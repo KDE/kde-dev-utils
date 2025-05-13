@@ -1,13 +1,14 @@
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kpartloader.po package.
+# Copyright (C) 2008-2025 This file is copyright:
+# This file is distributed under the same license as the kde-dev-utils package.
 #
-# SPDX-FileCopyrightText: 2008, 2009, 2017, 2020, 2024 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2008, 2009, 2017, 2020, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-16 00:43+0000\n"
-"PO-Revision-Date: 2024-10-16 13:28+0200\n"
+"PO-Revision-Date: 2025-05-12 14:01+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -35,7 +36,7 @@ msgstr "&Salir"
 #: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
-msgstr "&Acerca de KPart..."
+msgstr "&Acerca de KPart…"
 
 #: kpartloader.cpp:53
 #, kde-format
