@@ -48,7 +48,7 @@ msgstr "სტილი"
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
-msgstr "ნაგულისხმები"
+msgstr "ნაგულისხმევი"
 
 #: kuiviewer_part.cpp:91
 #, kde-format
