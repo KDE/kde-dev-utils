@@ -34,7 +34,6 @@
                 "Name[sv]": "Richard Moore",
                 "Name[tr]": "Richard Moore",
                 "Name[uk]": "Richard Moore",
-                "Name[x-test]": "xxRichard Moorexx",
                 "Name[zh_CN]": "Richard Moore",
                 "Name[zh_TW]": "Richard Moore"
             },
@@ -71,7 +70,6 @@
                 "Name[sv]": "Ian Reinhart Geiser",
                 "Name[tr]": "Ian Reinhart Geiser",
                 "Name[uk]": "Ian Reinhart Geiser",
-                "Name[x-test]": "xxIan Reinhart Geiserxx",
                 "Name[zh_CN]": "Ian Reinhart Geiser",
                 "Name[zh_TW]": "Ian Reinhart Geiser"
             },
@@ -108,7 +106,6 @@
                 "Name[sv]": "Friedrich W. H. Kossebau",
                 "Name[tr]": "Friedrich W. H. Kossebau",
                 "Name[uk]": "Friedrich W. H. Kossebau",
-                "Name[x-test]": "xxFriedrich W. H. Kossebauxx",
                 "Name[zh_CN]": "Friedrich W. H. Kossebau",
                 "Name[zh_TW]": "Friedrich W. H. Kossebau"
             }
@@ -144,7 +141,6 @@
         "Description[sv]": "Visa Designers UI-filer",
         "Description[tr]": "Display Designer Arayüz Dosyaları",
         "Description[uk]": "Показує UI-файли програми Designer",
-        "Description[x-test]": "xxDisplays Designer's UI filesxx",
         "Description[zh_CN]": "显示 Designer 的 UI 文件",
         "Description[zh_TW]": "用來顯示 Designer 的 UI 檔案",
         "Icon": "kuiviewer",
@@ -184,7 +180,6 @@
         "Name[sv]": "KUI-visningsdel",
         "Name[tr]": "KUIViewerPart",
         "Name[uk]": "KUIViewerPart",
-        "Name[x-test]": "xxKUIViewerPartxx",
         "Name[zh_CN]": "KUIViewerPart",
         "Name[zh_TW]": "KUIViewerPart",
         "ServiceTypes": [
