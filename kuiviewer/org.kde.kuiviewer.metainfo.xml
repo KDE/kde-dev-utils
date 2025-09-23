@@ -7,6 +7,7 @@
     <name translate="no">KDE</name>
   </developer>
   <name>KUIViewer</name>
+  <name xml:lang="ar">KUIViewer</name>
   <name xml:lang="ast">KUIViewer</name>
   <name xml:lang="az">KUIViewer</name>
   <name xml:lang="bg">KUIViewer</name>
@@ -47,6 +48,7 @@
   <name xml:lang="zh-CN">KUIViewer</name>
   <name xml:lang="zh-TW">KUIViewer</name>
   <summary>Qt Designer UI File Viewer</summary>
+  <summary xml:lang="ar">عارض ملفات واجهة المستخدم Qt Designer</summary>
   <summary xml:lang="az">Qt Designer UI Faylına baxış vasitəsi</summary>
   <summary xml:lang="bg">Преглед на файлове за потребителски интерфейс на Qt Designer</summary>
   <summary xml:lang="ca">Visualitzador de fitxers UI del Qt Designer</summary>
@@ -87,6 +89,7 @@
   <summary xml:lang="zh-TW">Qt Designer UI 檔案檢視器</summary>
   <description>
     <p>KUIViewer is a tool to display and check user interface (.ui) files created in Qt Designer.</p>
+    <p xml:lang="ar">KUIViewer هي أداة لعرض وفحص ملفات واجهة المستخدم (.ui) التي أُنشئت في مصمم كيوت.</p>
     <p xml:lang="az">KUIViewer, Qt Designer proqramında yaradılmış istifadəçi interfeysi (.ui) fayllarını göstərmək və yoxlamaq üçün bir vasitədir.</p>
     <p xml:lang="bg">KUIViewer е инструмент за показване и проверка на файлове с потребителски интерфейс (.ui), създадени в Qt Designer.</p>
     <p xml:lang="ca">El KUIViewer és una eina per a visualitzar i comprovar els fitxers d'interfície d'usuari (.ui) creats amb el Qt Designer.</p>
