@@ -17,6 +17,7 @@
     <name translate="no">KDE</name>
   </developer>
   <name>KUIViewer KPart</name>
+  <name xml:lang="ar">KUIViewer KPart</name>
   <name xml:lang="az">KUIViewer KPart</name>
   <name xml:lang="bg">KUIViewer KPart</name>
   <name xml:lang="ca">KPart del KUiViewer</name>
@@ -55,6 +56,7 @@
   <name xml:lang="zh-CN">KUIViewer KPart</name>
   <name xml:lang="zh-TW">KUIViewer KPart</name>
   <summary>Qt Designer UI File Viewer in KParts-using software</summary>
+  <summary xml:lang="ar">عارض ملفات واجهة المستخدم مصمم كيوت في البرامج التي تستخدم KParts</summary>
   <summary xml:lang="az">Qt Designer UI Faylına baxış vasitəsi KParts-ın istifadəsi ilə proqram təminatında</summary>
   <summary xml:lang="bg">Преглед на файлове за потребителски интерфейс на Qt Designer в софтуер, използващ KParts.</summary>
   <summary xml:lang="ca">Visualitzador de fitxers UI del Qt Designer en el programari que empra les KPart</summary>
@@ -93,6 +95,7 @@
   <summary xml:lang="zh-TW">提供給利用 KParts 的軟體用的 Qt Designer UI 檔案檢視器</summary>
   <description>
     <p>The KUIViewer KPart allows KParts-using software to display and check user interface (.ui) files created in Qt Designer.</p>
+    <p xml:lang="ar">يتيح KUIViewer KPart للبرامج التي تستخدم KParts عرض ملفات واجهة المستخدم (.ui) التي تُنشئها في مصمم كيوت والتحقق منها.</p>
     <p xml:lang="az">KUIViewer KPart, KParts-ın istifadə etdiyi proqram təminatına QT Designer proqramında yaradılmış istifadəçi interfeysi (.ui) fayllarını göstərməyə və onları yoxlamağa imkan verir.</p>
     <p xml:lang="bg">KPart KUIViewer позволява на софтуер, използващ KParts, да показва и проверява файлове с потребителски интерфейс (.ui), създадени в Qt Designer.</p>
     <p xml:lang="ca">La KPart del KUIViewer permet que el programari que empra les KPart mostri i verifiqui els fitxers d'interfície d'usuari (.ui) creats amb el Qt Designer.</p>
