@@ -38,16 +38,14 @@ msgid "&About KPart..."
 msgstr ""
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "Níor aimsíodh comhpháirt darb ainm %1."
+msgstr ""
 
 #: kpartloader.cpp:84
-#, fuzzy, kde-format
-#| msgid "kpartloader"
+#, kde-format
 msgid "KPartLoader"
-msgstr "kpartloader"
+msgstr ""
 
 #: kpartloader.cpp:86
 #, kde-format
