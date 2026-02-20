@@ -28,10 +28,9 @@ msgid "Your emails"
 msgstr "seoc@iolfree.ie,kscanne@gmail.com"
 
 #: kuiviewer.cpp:63
-#, fuzzy, kde-format
-#| msgid "Unable to locate Kuiviewer kpart."
+#, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr "Ní féidir kpart Kuiviewer a aimsiú."
+msgstr ""
 
 #: kuiviewer.cpp:93
 #, kde-format
@@ -51,10 +50,9 @@ msgid "Default"
 msgstr ""
 
 #: kuiviewer_part.cpp:91
-#, fuzzy, kde-format
-#| msgid "Set the current style to view."
+#, kde-format
 msgid "Set the style used for the view."
-msgstr "Socraigh an stíl le breathnú uirthi."
+msgstr ""
 
 #: kuiviewer_part.cpp:95
 #, kde-format
@@ -110,10 +108,9 @@ msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
 #: main.cpp:36
-#, fuzzy, kde-format
-#| msgid "Screenshot width"
+#, kde-format
 msgid "Screenshot capability"
-msgstr "Leithead an tseat"
+msgstr ""
 
 #: main.cpp:37
 #, kde-format
@@ -144,6 +141,3 @@ msgstr "Leithead an tseat"
 #, kde-format
 msgid "Screenshot height"
 msgstr "Airde an tseat"
-
-#~ msgid "KUIViewerPart"
-#~ msgstr "KUIViewerPart"
