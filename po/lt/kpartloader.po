@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpartloader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2013-05-03 19:17+0300\n"
+"PO-Revision-Date: 2026-02-26 22:31+0200\n"
 "Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -18,49 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 3.8\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Moo"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "<>"
 
 #: kpartloader.cpp:33
 #, kde-format
 msgid "&Quit"
-msgstr "&Baigti"
+msgstr "&Išjungti"
 
 #: kpartloader.cpp:38
 #, kde-format
 msgid "&About KPart..."
-msgstr ""
+msgstr "&Apie KPart..."
 
 #: kpartloader.cpp:53
-#, fuzzy, kde-format
-#| msgid "No part named %1 found."
+#, kde-format
 msgid "No part named %1 found: %2"
-msgstr "Nėra dalies užvadintos %1."
+msgstr "Nerasta dalis, pavadinimu %1: %2"
 
 #: kpartloader.cpp:84
-#, fuzzy, kde-format
-#| msgid "kpartloader"
+#, kde-format
 msgid "KPartLoader"
-msgstr "kpartloader"
+msgstr "KPartLoader"
 
 #: kpartloader.cpp:86
 #, kde-format
 msgid "This is a test application for KParts."
-msgstr "Tai bandomoji programa skirta KParts."
+msgstr "Tai yra bandomoji KParts programa."
 
 #: kpartloader.cpp:94
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
-msgstr "Dalies vardas paleidimui, pvz.: dolphinpart"
+msgstr "Dalies, kurią įkelti, pavadinimas, pvz., dolphinpart"
 
 #. i18n: ectx: Menu (file)
 #: kpartloaderui.rc:4
@@ -72,4 +70,4 @@ msgstr "&Failas"
 #: kpartloaderui.rc:8
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Pagalba"
