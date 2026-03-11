@@ -1,7 +1,7 @@
 # translation of kuiviewer.po to Icelandic
 # Richard Allen <ra@ra.is>, 2004.
 # Arnar Leosson <leosson@frisurf.no>, 2005.
-# Sveinn í Felli <sveinki@nett.is>, 2011.
+# SPDX-FileCopyrightText: 2011, 2026 Sveinn í Felli <sveinki@nett.is>
 # Translation of kuiviewer.po to Icelandic
 # Copyright (C) 2001,2003, 2004, 2005, 2011 Free Software Foundation, Inc.
 msgid ""
@@ -9,31 +9,30 @@ msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2011-08-16 08:08+0000\n"
-"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
-"Language-Team: Icelandic <kde-isl@molar.is>\n"
+"PO-Revision-Date: 2026-03-10 19:44+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Richard Allen"
+msgstr "Richard Allen, Sveinn í Felli"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "ra@ra.is"
+msgstr "ra@ra.is, sv1@fellsnet.is"
 
 #: kuiviewer.cpp:63
-#, fuzzy, kde-format
-#| msgid "Unable to locate Kuiviewer kpart."
+#, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr "Get ekki fundið Kuiviewer kpart."
+msgstr "Get ekki fundið eða hlaðið inn KUiViewer KPart."
 
 #: kuiviewer.cpp:93
 #, kde-format
@@ -50,34 +49,33 @@ msgstr "Stíll"
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
-msgstr ""
+msgstr "Sjálfgefið"
 
 #: kuiviewer_part.cpp:91
-#, fuzzy, kde-format
-#| msgid "Set the current style to view."
+#, kde-format
 msgid "Set the style used for the view."
-msgstr "Stilla núverandi stíl."
+msgstr "Stilltu stíllinn sem notaður verður fyrir sýnina."
 
 #: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
-msgstr ""
+msgstr "Afrita sem mynd"
 
 #. i18n: ectx: Menu (edit)
 #: kuiviewer_part.rc:4 kuiviewerui.rc:6
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Edit"
 msgstr "Br&eyta"
 
 #. i18n: ectx: Menu (view)
 #: kuiviewer_part.rc:7 kuiviewerui.rc:8
-#, fuzzy, kde-format
+#, kde-format
 msgid "&View"
 msgstr "S&koða"
 
 #. i18n: ectx: Menu (file)
 #: kuiviewerui.rc:4
-#, fuzzy, kde-format
+#, kde-format
 msgid "&File"
 msgstr "&Skrá"
 
@@ -92,40 +90,39 @@ msgid "Displays Designer's UI files"
 msgstr "Birtir notandaviðmótsskrár"
 
 #: main.cpp:33
-#, fuzzy, kde-format
+#, kde-format
 msgid "Richard Moore"
 msgstr "Richard Moore"
 
 #: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
-msgstr ""
+msgstr "Upprunalegur höfundur"
 
 #: main.cpp:34
-#, fuzzy, kde-format
+#, kde-format
 msgid "Ian Reinhart Geiser"
 msgstr "Ian Reinhart Geiser"
 
 #: main.cpp:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "Benjamin C. Meyer"
 msgstr "Benjamin C. Meyer"
 
 #: main.cpp:36
-#, fuzzy, kde-format
-#| msgid "Screenshot width"
+#, kde-format
 msgid "Screenshot capability"
-msgstr "Breidd á skjámynd"
+msgstr "Getur tekið skjámynd"
 
 #: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
-msgstr ""
+msgstr "Friedrich W. H. Kossebau"
 
 #: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
-msgstr ""
+msgstr "Birting UI-skráa líkt og í undirglugga"
 
 #: main.cpp:45
 #, kde-format
