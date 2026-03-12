@@ -37,6 +37,7 @@
   <name xml:lang="hu">KUIViewer KPart</name>
   <name xml:lang="ia">KUIViewer KPart</name>
   <name xml:lang="id">KUIViewer KPart</name>
+  <name xml:lang="is">KUIViewer KPart</name>
   <name xml:lang="it">KPart di KUIViewer</name>
   <name xml:lang="ka">KUIViewer KPart</name>
   <name xml:lang="ko">KUiViewer KPart</name>
@@ -76,6 +77,7 @@
   <summary xml:lang="hu">Qt Designer UI-fájlnézegető a KPartsot használó szoftverben</summary>
   <summary xml:lang="ia">Visor de File de UI de Qt Designer in software usante KParts</summary>
   <summary xml:lang="id">Penampil File Qt Designer UI di perangkat lunak yang menggunakan KPart</summary>
+  <summary xml:lang="is">Qt Designer UI skráaskoðari fyrir hugbúnað sem notar KPart</summary>
   <summary xml:lang="it">Visore di file UI di Qt Designer nei programmi che utilizzano KPart</summary>
   <summary xml:lang="ka">Qt Designer UI ფაილის ნახვა KParts-ის გამომყენებელ პროგრამებში</summary>
   <summary xml:lang="ko">KParts를 사용하는 소프트웨어에서 사용할 수 있는 Qt Designer UI 파일 뷰어</summary>

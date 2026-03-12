@@ -28,6 +28,7 @@
   <name xml:lang="hu">KUIViewer</name>
   <name xml:lang="ia">KUIViewer</name>
   <name xml:lang="id">KUIViewer</name>
+  <name xml:lang="is">KUIViewer</name>
   <name xml:lang="it">KUIViewer</name>
   <name xml:lang="ka">KUIViewer</name>
   <name xml:lang="ko">KUIViewer</name>
@@ -69,6 +70,7 @@
   <summary xml:lang="hu">Qt Designer UI-fájlnézegető</summary>
   <summary xml:lang="ia">Visor de File de UI de Qt Designer</summary>
   <summary xml:lang="id">Penampil File Qt Designer UI</summary>
+  <summary xml:lang="is">Qt Designer UI skráaskoðari</summary>
   <summary xml:lang="it">Visore di file UI di Qt Designer</summary>
   <summary xml:lang="ka">Qt Designer UI ფაილების ნახვა</summary>
   <summary xml:lang="ko">Qt Designer UI 파일 뷰어</summary>
