@@ -8,35 +8,35 @@ msgstr ""
 "Project-Id-Version: kuiviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-04-15 13:33-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr "ئابدۇقادىر ئابلىز، غەيرەت كەنجى"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
+msgstr "sahranbay@gmail.com, gheyret@gmail.com"
 
 #: kuiviewer.cpp:63
-#, fuzzy, kde-format
-#| msgid "Unable to locate Kuiviewer kpart."
+#, kde-format
 msgid "Unable to locate or load KUiViewer KPart."
-msgstr "Unable to locate Kuiviewer kpart."
+msgstr "KUiViewer KPart نىڭ ئورنىنى تاپالمىدى ياكى يۈكلىيەلمىدى."
 
 #: kuiviewer.cpp:93
 #, kde-format
 msgid "*.ui *.UI|User Interface Files"
-msgstr ""
+msgstr "*.ui *.UI|ئىشلەتكۈچى ئارايۈز ھۆججىتى"
 
 #. i18n: ectx: ToolBar (styleBar)
 #: kuiviewer_part.cpp:63 kuiviewer_part.rc:11
@@ -48,17 +48,17 @@ msgstr "ئۇسلۇب"
 #, kde-format
 msgctxt "Default style"
 msgid "Default"
-msgstr ""
+msgstr "كۆڭۈلدىكى"
 
 #: kuiviewer_part.cpp:91
 #, kde-format
 msgid "Set the style used for the view."
-msgstr ""
+msgstr "كۆرۈنۈشكە ئىشلىتىدىغان ئۇسلۇب تەڭشىلىدۇ."
 
 #: kuiviewer_part.cpp:95
 #, kde-format
 msgid "Copy as Image"
-msgstr ""
+msgstr "سۈرەت سۈپىتىدە كۆچۈر"
 
 #. i18n: ectx: Menu (edit)
 #: kuiviewer_part.rc:4 kuiviewerui.rc:6
@@ -86,7 +86,7 @@ msgstr "KUIViewer"
 #: main.cpp:31
 #, kde-format
 msgid "Displays Designer's UI files"
-msgstr ""
+msgstr "Designer نىڭ ئارايۈز ھۆججىتىنى كۆرسىتىدۇ"
 
 #: main.cpp:33
 #, kde-format
@@ -96,7 +96,7 @@ msgstr "Richard Moore"
 #: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
-msgstr ""
+msgstr "ئەسلى يازغۇچى"
 
 #: main.cpp:34
 #, kde-format
@@ -111,17 +111,17 @@ msgstr "Benjamin C. Meyer"
 #: main.cpp:36
 #, kde-format
 msgid "Screenshot capability"
-msgstr ""
+msgstr "ئېكران كەسمىسى ئىقتىدارى"
 
 #: main.cpp:37
 #, kde-format
 msgid "Friedrich W. H. Kossebau"
-msgstr ""
+msgstr "Friedrich W. H. Kossebau"
 
 #: main.cpp:37
 #, kde-format
 msgid "Subwindow-like display of UI files"
-msgstr ""
+msgstr "ئارايۈز ھۆججىتىنى تارماق كۆزنەكتەك كۆرسىتىدۇ"
 
 #: main.cpp:45
 #, kde-format
@@ -131,17 +131,17 @@ msgstr "ئاچىدىغان پۈتۈك"
 #: main.cpp:49
 #, kde-format
 msgid "Save screenshot to file and exit"
-msgstr ""
+msgstr "ئېكران كەسمىسىنى ھۆججەت ۋە تېكىستكە ساقلايدۇ"
 
 #: main.cpp:51
 #, kde-format
 msgid "Screenshot width"
-msgstr ""
+msgstr "ئېكران كەسمىسىنىڭ كەڭلىكى"
 
 #: main.cpp:53
 #, kde-format
 msgid "Screenshot height"
-msgstr ""
+msgstr "ئېكران كەسمىسىنىڭ ئېگىزلىكى"
 
 #~ msgid "KUIViewerPart"
 #~ msgstr "KUIViewerPart"
