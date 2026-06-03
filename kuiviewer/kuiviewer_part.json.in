@@ -36,6 +36,7 @@
                 "Name[sl]": "Richard Moore",
                 "Name[sv]": "Richard Moore",
                 "Name[tr]": "Richard Moore",
+                "Name[ug]": "Richard Moore",
                 "Name[uk]": "Richard Moore",
                 "Name[zh_CN]": "Richard Moore",
                 "Name[zh_TW]": "Richard Moore"
@@ -75,6 +76,7 @@
                 "Name[sl]": "Ian Reinhart Geiser",
                 "Name[sv]": "Ian Reinhart Geiser",
                 "Name[tr]": "Ian Reinhart Geiser",
+                "Name[ug]": "Ian Reinhart Geiser",
                 "Name[uk]": "Ian Reinhart Geiser",
                 "Name[zh_CN]": "Ian Reinhart Geiser",
                 "Name[zh_TW]": "Ian Reinhart Geiser"
@@ -114,6 +116,7 @@
                 "Name[sl]": "Friedrich W. H. Kossebau",
                 "Name[sv]": "Friedrich W. H. Kossebau",
                 "Name[tr]": "Friedrich W. H. Kossebau",
+                "Name[ug]": "Friedrich W. H. Kossebau",
                 "Name[uk]": "Friedrich W. H. Kossebau",
                 "Name[zh_CN]": "Friedrich W. H. Kossebau",
                 "Name[zh_TW]": "Friedrich W. H. Kossebau"
@@ -152,6 +155,7 @@
         "Description[sl]": "Prikazuje datoteke Qt Designer",
         "Description[sv]": "Visa Designers UI-filer",
         "Description[tr]": "Display Designer Arayüz Dosyaları",
+        "Description[ug]": "Designer نىڭ ئارايۈز ھۆججىتىنى كۆرسىتىدۇ",
         "Description[uk]": "Показує UI-файли програми Designer",
         "Description[zh_CN]": "显示 Designer 的 UI 文件",
         "Description[zh_TW]": "用來顯示 Designer 的 UI 檔案",
@@ -194,6 +198,7 @@
         "Name[sl]": "KUIViewerPart",
         "Name[sv]": "KUI-visningsdel",
         "Name[tr]": "KUIViewerPart",
+        "Name[ug]": "KUIViewerPart",
         "Name[uk]": "KUIViewerPart",
         "Name[zh_CN]": "KUIViewerPart",
         "Name[zh_TW]": "KUIViewerPart",
