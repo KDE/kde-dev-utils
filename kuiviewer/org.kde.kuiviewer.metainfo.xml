@@ -46,6 +46,7 @@
   <name xml:lang="sl">KUIViewer</name>
   <name xml:lang="sv">Kuiviewer</name>
   <name xml:lang="tr">K Arayüzcü</name>
+  <name xml:lang="ug">KUIViewer</name>
   <name xml:lang="uk">KUIViewer</name>
   <name xml:lang="zh-CN">KUIViewer</name>
   <name xml:lang="zh-TW">KUIViewer</name>
@@ -88,6 +89,7 @@
   <summary xml:lang="sl">Ogledovalnik uporabniškega vmesnika Qt Designer</summary>
   <summary xml:lang="sv">Visning av Qt Designer användargränssnittsfiler</summary>
   <summary xml:lang="tr">Qt Designer UI Dosyası Görüntüleyicisi</summary>
+  <summary xml:lang="ug">Qt Designer ئارايۈز ھۆججەت كۆرگۈچ</summary>
   <summary xml:lang="uk">Переглядач UI-файлів Qt Designer</summary>
   <summary xml:lang="zh-CN">Qt Designer 用户界面文件查看器</summary>
   <summary xml:lang="zh-TW">Qt Designer UI 檔案檢視器</summary>
