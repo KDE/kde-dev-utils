@@ -54,7 +54,7 @@ msgstr "Dies ist eine Anwendung zum Testen von KParts."
 #: kpartloader.cpp:94
 #, kde-format
 msgid "Name of the part to load, e.g. dolphinpart"
-msgstr "Name der zu ladenden Komponente, z. B. dolphinpart"
+msgstr "Name der zu ladenden Komponente, z. B. dolphinpart"
 
 #. i18n: ectx: Menu (file)
 #: kpartloaderui.rc:4
