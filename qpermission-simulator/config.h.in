@@ -1,0 +1,11 @@
+/*
+    SPDX-FileCopyrightText: 2026 Volker Krause <vkrause@kde.org>
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define KDE_INSTALL_LIBDIR "@KDE_INSTALL_LIBDIR@"
+
+#endif

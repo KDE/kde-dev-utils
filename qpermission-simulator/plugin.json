@@ -1,0 +1,10 @@
+{
+    "Permissions": [
+        "QBluetoothPermission",
+        "QCalendarPermission",
+        "QCameraPermission",
+        "QContactPermission",
+        "QLocationPermission",
+        "QMicrophonePermission"
+    ]
+}

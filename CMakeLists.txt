@@ -36,6 +36,7 @@ ecm_set_disabled_deprecation_versions(
 
 add_subdirectory(kpartloader)
 add_subdirectory(kuiviewer)
+add_subdirectory(qpermission-simulator)
 
 ki18n_install(po)
 
